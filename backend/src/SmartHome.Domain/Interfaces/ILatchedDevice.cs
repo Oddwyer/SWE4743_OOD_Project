@@ -1,3 +1,5 @@
+namespace SmartHome.Domain.Interfaces;
+
 public interface ILatchedDevice
 {
     DeviceLatchState latchState {get;}

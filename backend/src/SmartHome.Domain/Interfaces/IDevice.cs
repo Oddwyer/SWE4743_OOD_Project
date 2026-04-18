@@ -1,7 +1,15 @@
-    Guid id {get;}
-    string deviceName {get; protected set;} = string.Empty;
-    string deviceLocation {get; protected set;} = string.Empty;
-    DeviceType device {get; protected set;}
-    DeviceState state {get; protected set;}
-    bool isDeviceOn {get;}
-    DeviceSnapshot dehydrate(); // we'll need this for persistence, reference section 2 in project doc
+   namespace SmartHome.Domain.Interfaces;
+
+   public interface IDevice{
+   
+    public Guid Id {get;}
+    public String DeviceName {get;} 
+    public String DeviceLocation {get;} 
+    public DeviceType Type {get;}
+    //TODO: Create DeviceState class
+    //public DeviceState State {get;}
+    public Boolean IsDeviceOn {get;}
+
+    //TODO: Create DeviceSnapshot class
+    //public DeviceSnapshot dehydrate(); // we'll need this for persistence, reference section 2 in project doc
+   }
