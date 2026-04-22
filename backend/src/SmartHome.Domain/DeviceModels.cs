@@ -22,8 +22,9 @@ public abstract class Device : IDevice
     public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; protected set; } = DateTime.UtcNow;
 
-    protected Device(string name, string location, DeviceType type)
+    protected Device(Guid id, string name, string location, DeviceType type)
     {
+        Id = id;
         DeviceName = name;
         DeviceLocation = location;
         Type = type;

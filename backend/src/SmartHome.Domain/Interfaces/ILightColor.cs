@@ -18,6 +18,6 @@ public enum LightColorState // might need to edit to account for the RGB values,
 
 public interface IDimLights
 {
-    void setLightBrightness(int brightnessPercentage); // brightness level from 0 to 100
+    void setLightBrightness(int brightnessPercentage); // brightness level from 10 to 100
     int lightBrightness {get;} // can be used to check current brightness level and for rehydration purposes
 }
