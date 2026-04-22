@@ -5,7 +5,7 @@ public interface ILightColor
     void ChangeColor(LightColorState newColor);
 }
 
-public enum LightColorState
+public enum LightColorState // might need to edit to account for the RGB values, but for now this should work for flushing out the logic and structure of the light device
 {
     White,
     Red,
