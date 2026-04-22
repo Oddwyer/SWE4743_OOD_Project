@@ -1,13 +1,13 @@
 namespace SmartHome.Api.Mappers.DeviceMapper;
 
 using SmartHome.Api.DTOs;
-using SmartHome.Domain;
 using SmartHome.Domain.Interfaces;
 
 /// <summary>
 /// Abstracts logic that varies by device type to avoid if/else statements in 
 /// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller. 
 /// </summary>
+/// 
 public static class DeviceMapper
 {
     public static DeviceResponse ToResponse(IDevice device)
