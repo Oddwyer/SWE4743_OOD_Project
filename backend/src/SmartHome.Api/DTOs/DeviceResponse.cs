@@ -25,6 +25,7 @@ public class DeviceResponse
     // Thermostat
     public string? Mode { get; set; }
     public int? DesiredTemperature { get; set; }
+    public int? AmbientTemperature { get; set; }
 
     // Doors
     public bool? IsLocked { get; set; }

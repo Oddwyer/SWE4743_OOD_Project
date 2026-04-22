@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace SmartHome.Api.DTOs;
 
 /// <summary>
@@ -18,8 +20,9 @@ public class ControlDeviceRequest
 
     // Thermostat
     public string? Mode { get; set; }
+
+    [Range(60,80)]
     public int? DesiredTemperature { get; set; }
-    public int? AmbientTemperature { get; set; }
 
     // Doors
     public bool? IsLocked { get; set; }
