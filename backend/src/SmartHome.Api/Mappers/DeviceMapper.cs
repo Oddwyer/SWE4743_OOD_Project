@@ -21,6 +21,7 @@ public static class DeviceMapper
             IsDeviceOn = device.IsDeviceOn,
         };
 
+        // Response specifics assigned based on specified device type.
         /*switch (device)
         {
             case Light light:

@@ -1,8 +1,26 @@
 namespace SmartHome.Api.DTOs;
 
-using SmartHome.Domain;
+/// <summary>
+/// DTO for data related to device state change requests.
+/// </summary>
 
 public class ControlDeviceRequest
 {
-    //TODO: Build ControlDeviceRequest DTO -> Handles state change requests
+    // All devices
+    public bool? IsDeviceOn { get; set; }
+
+    // Lights
+    public int? Brightness { get; set; }
+    public string? Color { get; set; }
+
+    // Fans
+    public string? Speed { get; set; }
+
+    // Thermostat
+    public string? Mode { get; set; }
+    public int? DesiredTemperature { get; set; }
+    public int? AmbientTemperature { get; set; }
+
+    // Doors
+    public bool? IsLocked { get; set; }
 }
