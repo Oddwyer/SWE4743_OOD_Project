@@ -1,0 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace SmartHome.Api.DTOs;
+
+/// <summary>
+/// DTO for setting the ambient temperature of a location.
+/// </summary>
+
+public class SetAmbientTemperatureRequest
+{
+    // Input Validation @ API Layer
+    [Required]
+    [Range(0, 120)]
+    public int Temperature { get; set; }
+
+}
