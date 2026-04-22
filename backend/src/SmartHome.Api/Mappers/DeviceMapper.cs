@@ -7,7 +7,7 @@ using SmartHome.Domain.Interfaces;
 /// Abstracts logic that varies by device type to avoid if/else statements in 
 /// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller. 
 /// </summary>
-/// 
+
 public static class DeviceMapper
 {
     public static DeviceResponse ToResponse(IDevice device)
