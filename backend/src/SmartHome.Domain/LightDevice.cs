@@ -3,40 +3,47 @@ using SmartHome.Domain.Interfaces;
 
 namespace SmartHome.Domain;
 
-public class LightDevice : IDevice, IPoweredDevice, ILightColor, IDimLights
+public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
-    //TODO: Replace with Kataali's code. 
-    public Guid Id { get; }
-    public string DeviceName { get; }
-    public string DeviceLocation { get; }
-    public DeviceType Type { get; }
+    private DevicePowerState _powerState;
+    private LightColorState _colorState;
+    private int _brightness;
 
-    //public DeviceState State {get;}
-    DevicePowerState powerState { get; }
-    public bool IsDeviceOn { get; }
-    LightColorState colorState { get; }
-
-    int lightBrightness { get; } // can be used to check current brightness level and for rehydration purposes
-    void setLightBrightness(int brightnessPercentage) // brightness level from 0 to 100
+    public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
     {
-        lightBrightness = brightnessPercentage;
-    } 
-
-
-    void TogglePower()
-    {
-        if (powerState.On)
-        {
-            powerState = powerState.Off;
-        }
-        else
-        {
-            powerState = powerState.On;
-        }
-    }
-    void ChangeColor(LightColorState newColor)
-    {
-        colorState = newColor;
+        _powerState = DevicePowerState.Off; // default state
+        _colorState = LightColorState.White; // default color
+        _brightness = 10; // default brightness
     }
 
+    public DevicePowerState powerState => _powerState;
+
+    public void TogglePower()
+    {
+        // trying toggle with a ternary operator for cleaner code
+        
+        _powerState = _powerState == DevicePowerState.On // check current state and toggle
+        ? DevicePowerState.Off  // if on, turn off
+        : DevicePowerState.On;  // if off, turn on
+    }
+
+    public override bool IsDeviceOn => _powerState == DevicePowerState.On;
+
+    public LightColorState colorState => _colorState;
+
+    public void ChangeColor(LightColorState newColor)
+    {
+        _colorState = newColor;
+    }
+
+    public int lightBrightness => _brightness;
+
+    public void setLightBrightness(int brightnessPercentage)
+    {
+        if (brightnessPercentage < 10 || brightnessPercentage > 100)
+        {
+            throw new ArgumentOutOfRangeException(nameof(brightnessPercentage), "Brightness must be between 10 and 100.");
+        }
+        _brightness = brightnessPercentage;
+    }
 }
