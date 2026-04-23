@@ -16,7 +16,15 @@ public class LightDevice : IDevice, IPoweredDevice, ILightColor, IDimLights
     public bool IsDeviceOn { get; }
     LightColorState colorState { get; }
 
-    void TogglePower(){
+    int lightBrightness { get; } // can be used to check current brightness level and for rehydration purposes
+    void setLightBrightness(int brightnessPercentage) // brightness level from 0 to 100
+    {
+        lightBrightness = brightnessPercentage;
+    } 
+
+
+    void TogglePower()
+    {
         if (powerState.On)
         {
             powerState = powerState.Off;
