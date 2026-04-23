@@ -5,13 +5,18 @@ using SmartHome.Domain.Interfaces;
 
 namespace SmartHome.Api;
 
-public class DeviceService
+public class DeviceService: IDeviceService
 {
     public List<IDevice> GetDevices()
     {
         //Temp stub data
         return new List<IDevice>();
     }
+}
+
+public interface IDeviceService
+{
+    List<IDeviceService> GetDevices();
 }
 
 

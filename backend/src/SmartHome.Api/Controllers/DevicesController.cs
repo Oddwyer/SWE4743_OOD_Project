@@ -1,5 +1,6 @@
-using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using SmartHome.Api.DTOs;
+using SmartHome.Api.Mappers;
 
 namespace SmartHome.Api.Controllers;
 
