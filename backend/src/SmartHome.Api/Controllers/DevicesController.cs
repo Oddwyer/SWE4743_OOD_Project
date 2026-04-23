@@ -27,8 +27,16 @@ public class DevicesController: ControllerBase
 
         // For each device in devices, translate using DeviceMapper and add to response.
         var response = devices.Select(DeviceMapper.ToResponse);
+
+        // 
         return Ok(response);
     }
+
+    //TODO:Methods for: 
+    //1. [HttpGet] -> single device
+    //2. [HttpPOST] -> register device
+    //3. [HttpPUT] -> update device
+    //4. [HttpDelete] -> delete device
 }
 
 

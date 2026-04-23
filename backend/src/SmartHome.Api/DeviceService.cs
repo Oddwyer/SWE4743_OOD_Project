@@ -1,22 +1,33 @@
 using SmartHome.Domain.Interfaces;
+using SmartHome.Domain;
 
-/// TODO: Remove when built.
-/// Stub for GetDevices(); until built in backend.
+/// TODO: Remove when built. Stub for GetDevices();
 
 namespace SmartHome.Api;
 
 public class DeviceService: IDeviceService
 {
+    private readonly List<IDevice> _devices;
+
+    public DeviceService()
+    {
+        _devices = new List<IDevice>
+        {
+            //TODO: Add seed data...
+            //new LightDevice, 
+            //new DoorLocks,
+        };
+    }
     public IReadOnlyList<IDevice> GetDevices()
     {
-        //Temp stub data
-        return new List<IDevice>();
+        return _devices;
     }
-}
 
-public interface IDeviceService
-{
-    IReadOnlyList<IDevice> GetDevices();
-}
+    //TODO: Implement...
+    //public IDevice GetDeviceById(string deviceID);
 
+    //public void RegisterDevice(string name, string type, string location);
+
+    //public void DeleteDevice(string deviceID);
+}
 
