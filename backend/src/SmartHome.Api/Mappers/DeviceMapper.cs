@@ -1,4 +1,4 @@
-namespace SmartHome.Api.Mappers.DeviceMapper;
+namespace SmartHome.Api.Mappers;
 
 using SmartHome.Api.DTOs;
 using SmartHome.Domain.Interfaces;

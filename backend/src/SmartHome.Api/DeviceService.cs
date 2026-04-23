@@ -7,7 +7,7 @@ namespace SmartHome.Api;
 
 public class DeviceService: IDeviceService
 {
-    public List<IDevice> GetDevices()
+    public IReadOnlyList<IDevice> GetDevices()
     {
         //Temp stub data
         return new List<IDevice>();
@@ -16,7 +16,7 @@ public class DeviceService: IDeviceService
 
 public interface IDeviceService
 {
-    List<IDeviceService> GetDevices();
+    IReadOnlyList<IDevice> GetDevices();
 }
 
 
