@@ -1,0 +1,31 @@
+using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
+
+namespace SmartHome.Domain.Factories;
+
+public class DeviceFactory
+{
+    IDevice newDevice;
+    public class DeviceFactory()
+    {
+        
+    }
+
+    public IDevice CreateDevice(string name, string location, string type)
+    {
+        Guid id = new Guid();
+        
+        if(!Enum.TryParse<DeviceType>(type, true, out var deviceType))
+        {
+            throw new ArgumentException("Invalid device type.");
+        }
+
+        return deviceType switch
+        {
+            DeviceType.Light => new LightDevice(name, location),
+            DeviceType.
+            
+        }
+    }
+}
+

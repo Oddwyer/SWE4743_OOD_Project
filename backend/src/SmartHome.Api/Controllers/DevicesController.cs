@@ -55,8 +55,9 @@ public class DevicesController : ControllerBase
     }
 
     // POST: api/devices/
-    [HttpPost("{device}")]
+    [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<DeviceResponse> AddDevice(RegisterDeviceRequest request)
     {
         // Decompose request
@@ -64,7 +65,7 @@ public class DevicesController : ControllerBase
         var location = request.DeviceLocation;
         var type = request.Type;
 
-        // 
+        // Use factory to create IDevice
 
 
   
@@ -73,7 +74,7 @@ public class DevicesController : ControllerBase
     [HttpDelete("{deviceId}")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<DeviceResponse> RemoveDevice(Guid deviceId)
+    public ActionResult RemoveDevice(Guid deviceId)
     {
 
        // Find and return device with matching ID.

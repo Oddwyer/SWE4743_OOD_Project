@@ -10,6 +10,7 @@ using SmartHome.Domain.Interfaces;
 
 public static class DeviceMapper
 {
+    // Converts device details to UI-friendly text.
     public static DeviceResponse ToResponse(IDevice device)
     {
         var response = new DeviceResponse
@@ -45,4 +46,5 @@ public static class DeviceMapper
 
         return response;
     }
+
 }

@@ -1,7 +1,8 @@
 namespace SmartHome.Api.DTOs;
 
 /// <summary>
-/// DTO for registering new devices into the smart home registry. Must provide device name, location, and type.
+/// DTO for registering new devices into the smart home registry. 
+/// Must provide device name, location, and type.
 /// </summary>
 
 public class RegisterDeviceRequest

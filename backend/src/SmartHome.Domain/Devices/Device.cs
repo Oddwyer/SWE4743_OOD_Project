@@ -1,6 +1,7 @@
 using System.Reflection.Metadata.Ecma335;
 using SmartHome.Domain.Interfaces;
 
+
 namespace SmartHome.Domain;
 
 
