@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using SmartHome.Api.DTOs;
 using SmartHome.Api.Mappers;
-using SmartHome.Api;
+using SmartHome.Domain;
 
 namespace SmartHome.Api.Controllers;
 
@@ -23,12 +23,12 @@ public class DevicesController: ControllerBase
     [ProducesResponseType(typeof(IEnumerable<DeviceResponse>), StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<DeviceResponse>> GetDevices()
     {
-        var devices = _deviceService.GetDevices();
+        var devices = _deviceService.GetAllDevices();
 
         // For each device in devices, translate using DeviceMapper and add to response.
         var response = devices.Select(DeviceMapper.ToResponse);
 
-        // 
+    
         return Ok(response);
     }
 

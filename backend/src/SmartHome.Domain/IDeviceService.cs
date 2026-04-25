@@ -7,14 +7,15 @@ public interface IDeviceService
     // TODO: DeviceFilter
     // Method to retrieve all devices in the system
     //IEnumerable<IDevice> GetAllDevices(DeviceFilter filter);
-
+    IReadOnlyList<IDevice> GetAllDevices();
+    
     // TODO: CommandHistoryEntry
     // command list for persistenance, reference and rehydration section in project doc
     //IEnumerable<CommandHistoryEntry> GetCommandHistory (Guid deviceId); 
     // this will return a list of all commands that have been executed on a specific device, which can be used for auditing and debugging purposes
 
     // Method to retrieve a device by its ID
-    IDevice GetDeviceById(Guid deviceId);
+    IDevice? GetDeviceById(Guid deviceId);
 
     // Method to add a new device to the system
     void AddDevice(IDevice device);

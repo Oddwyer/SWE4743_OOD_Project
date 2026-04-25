@@ -5,7 +5,7 @@ using SmartHome.Domain;
 
 namespace SmartHome.Api;
 
-public class DeviceService: IDeviceService
+public class DeviceService : IDeviceService
 {
     private readonly List<IDevice> _devices;
 
@@ -18,16 +18,31 @@ public class DeviceService: IDeviceService
             //new DoorLocks,
         };
     }
-    public IReadOnlyList<IDevice> GetDevices()
+    public IReadOnlyList<IDevice> GetAllDevices()
     {
         return _devices;
     }
 
-    //TODO: Implement...
-    //public IDevice GetDeviceById(string deviceID);
 
-    //public void RegisterDevice(string name, string type, string location);
+    public IDevice? GetDeviceById(Guid deviceId)
+    {
+        return _devices.FirstOrDefault(d => d.Id == deviceId);
+    }
 
-    //public void DeleteDevice(string deviceID);
+    public void AddDevice(IDevice device)
+    {
+        _devices.Add(device);
+    }
+
+    public void RemoveDevice(Guid deviceId)
+    {
+        var device = GetDeviceById(deviceId);
+
+        if(device == null)
+        {
+            return;
+        }
+            _devices.Remove(device);
+    }
 }
 
