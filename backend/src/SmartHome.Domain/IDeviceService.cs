@@ -23,7 +23,7 @@ public interface IDeviceService
     // Method to remove a device from the system by its ID
     void RemoveDevice(Guid deviceId);
 
-    IDevice ApplyDeviceCommand(Guid deviceId, DeviceCommand command);
+    IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command);
     // this method will take a device ID and a command, apply the command to the device
 
 }
