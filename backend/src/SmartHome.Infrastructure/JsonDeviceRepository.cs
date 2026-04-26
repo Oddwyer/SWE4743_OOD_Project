@@ -1,16 +1,27 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain;
 using System.Text.Json;
+using System.Runtime.CompilerServices;
+using System.IO;
+using SmartHome.Domain.Factories;
 
 namespace SmartHome.Infrastructure;
 
 /// <summary>
-/// Initial concrete repository using Json. To be switch to SQLite w/ ORM implementation.
+/// Initial concrete repository using Json --> to be switch to SQLite w/ ORM implementation.
 /// </summary>
 public class JsonDeviceRepository : IDeviceRepository
 {
     private readonly List<IDevice> _devices = new();
     private readonly string _filePath = "devices.json";
+
+    private readonly IDeviceFactory _deviceFactory;
+
+    public JsonDeviceRepository(IDeviceFactory deviceFactory)
+    {
+        _deviceFactory = deviceFactory;
+        LoadDevicesFromFile();
+    }
 
     // Returns any devices filtered by all or any location, type, or whether it is on.
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
@@ -27,7 +38,7 @@ public class JsonDeviceRepository : IDeviceRepository
         }
         if (filter.IsOn.HasValue)
         {
-            devices = devices.Where(d => d.IsDeviceOn == filter.IsOn);
+            devices = devices.Where(d => d.IsDeviceOn == filter.IsOn.Value);
         }
 
         return devices;
@@ -70,5 +81,29 @@ public class JsonDeviceRepository : IDeviceRepository
     public bool ThermostatInLocation(string location)
     {
         return _devices.Any(d => d.Type == DeviceType.Thermostat && d.DeviceLocation == location);
+    }
+
+    // Loads repository from file for persistence.
+    private void LoadDevicesFromFile()
+    {
+
+        // Check if file path exists and if so, read JSON file, deserialize into devices, and add to local repository.
+        if (!File.Exists(_filePath))
+        {
+            return;
+        }
+        var json = File.ReadAllText(_filePath);
+        var snapshots = JsonSerializer.Deserialize<List<DeviceSnapshot>>(json);
+
+        if (snapshots == null)
+        {
+            return;
+        }
+
+        foreach (var snapshot in snapshots)
+        {
+            _deviceFactory.RehydrateDevice(snapshot);
+        }
+
     }
 }

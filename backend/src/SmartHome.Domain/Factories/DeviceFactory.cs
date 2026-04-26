@@ -1,5 +1,6 @@
 using SmartHome.Domain.Devices;
 using System.Collections;
+using SmartHome.Domain;
 
 namespace SmartHome.Domain.Factories;
 
@@ -40,7 +41,24 @@ public class DeviceFactory : IDeviceFactory
             default:
                 throw new ArgumentException("Unsupported device type.");
         }
-        ;
+    }
+
+    public IDevice RehydrateDevice(DeviceSnapshot snapshot)
+    {
+        switch (snapshot.Type)
+        {
+            case DeviceType.Light:
+                return new LightDevice(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+
+            case DeviceType.Fan:
+                return new FanDevice(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+
+            case DeviceType.DoorLock:
+                return new DoorLocks(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+
+            default:
+                throw new ArgumentException("Unsupported device type.");
+        }
     }
 }
 

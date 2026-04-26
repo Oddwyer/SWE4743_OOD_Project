@@ -9,7 +9,7 @@ public record DeviceSnapshot
     public DeviceType Type { get; init; }
     public string? Location;
     public bool IsOn { get; init; }
-    public string? deviceState { get; init; } 
+    public string? deviceState { get; init; }
     // this will be a string representation of the device's current state, 
     // it can be used to store additional information about the device's state that is 
     // not captured by the IsOn property, for example for a light device it can store the current 
