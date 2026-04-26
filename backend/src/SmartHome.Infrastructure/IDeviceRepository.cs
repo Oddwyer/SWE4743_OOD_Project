@@ -1,6 +1,7 @@
+using SmartHome.Domain;
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain;
+namespace SmartHome.Infrastructure;
 
 public interface IDeviceRepository
 {

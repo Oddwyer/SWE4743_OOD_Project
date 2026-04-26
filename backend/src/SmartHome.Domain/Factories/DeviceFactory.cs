@@ -3,9 +3,10 @@ using System.Collections;
 
 namespace SmartHome.Domain.Factories;
 
-/// <summary>
-/// Device Factory class for device creation upon input type.
-/// </summary>
+// TODO Kataali:
+// This factory belongs to the Domain layer because it creates domain objects.
+// I added this so API endpoints could be tested but we still need thermostat. You're welcome to flush it out!
+
 public class DeviceFactory : IDeviceFactory
 {
     public DeviceFactory()

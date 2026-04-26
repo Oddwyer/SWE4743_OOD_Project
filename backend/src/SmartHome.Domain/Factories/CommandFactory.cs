@@ -3,9 +3,9 @@ using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Factories;
 
-/// <summary>
-/// Command Factory for command creation based on user input.
-/// </summary>
+// TODO Kataali:
+// This factory belongs to the Domain layer because it creates domain objects.
+// I added this temporarily so API endpoints could be tested.
 public class CommandFactory : ICommandFactory
 {
 
