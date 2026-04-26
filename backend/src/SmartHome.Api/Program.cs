@@ -1,4 +1,3 @@
-using SmartHome.Api.Factories;
 using SmartHome.Domain.Factories;
 using SmartHome.Domain.Services;
 

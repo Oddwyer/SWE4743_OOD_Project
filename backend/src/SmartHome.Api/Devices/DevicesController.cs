@@ -5,7 +5,6 @@ using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Factories;
 using SmartHome.Domain;
-using SmartHome.Api.Factories;
 
 namespace SmartHome.Api.Devices;
 

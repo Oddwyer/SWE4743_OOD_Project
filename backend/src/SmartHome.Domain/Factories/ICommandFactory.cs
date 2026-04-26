@@ -1,7 +1,7 @@
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Api.Factories;
+namespace SmartHome.Domain.Factories;
 
 /// <summary>
 /// Interface for CommandFactory for DIP principle and DI.
