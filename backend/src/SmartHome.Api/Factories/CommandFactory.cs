@@ -6,7 +6,7 @@ namespace SmartHome.Api.Factories;
 /// <summary>
 /// Command Factory for command creation based on user input.
 /// </summary>
-public class CommandFactory
+public class CommandFactory : ICommandFactory
 {
 
     public IDeviceCommand CreateCommand(string command, IDevice device)

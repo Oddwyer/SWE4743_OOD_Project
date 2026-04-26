@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using SmartHome.Api.Devices;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
@@ -8,7 +7,7 @@ using SmartHome.Domain.Factories;
 using SmartHome.Domain;
 using SmartHome.Api.Factories;
 
-namespace SmartHome.Api.Controllers;
+namespace SmartHome.Api.Devices;
 
 [ApiController]
 [Route("api/[controller]")]
