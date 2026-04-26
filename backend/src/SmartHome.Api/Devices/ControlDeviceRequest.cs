@@ -9,21 +9,6 @@ namespace SmartHome.Api.Devices;
 public class ControlDeviceRequest
 {
     // All devices
-    public bool? IsDeviceOn { get; set; }
+    public string Command { get; set; } = string.Empty;
 
-    // Lights
-    public int? Brightness { get; set; }
-    public string? Color { get; set; }
-
-    // Fans
-    public string? Speed { get; set; }
-
-    // Thermostat
-    public string? Mode { get; set; }
-
-    [Range(60,80)]
-    public int? DesiredTemperature { get; set; }
-
-    // Doors
-    public bool? IsLocked { get; set; }
 }

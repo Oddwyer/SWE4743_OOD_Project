@@ -8,6 +8,6 @@ namespace SmartHome.Api.Factories;
 /// </summary>
 public interface ICommandFactory
 {
-    public IDeviceCommand CreateCommand(IDevice device);
+    public IDeviceCommand CreateCommand(string command, IDevice device);
 
 }

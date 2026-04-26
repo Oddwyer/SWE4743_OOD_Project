@@ -6,6 +6,7 @@ using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Factories;
 using SmartHome.Domain;
+using SmartHome.Api.Factories;
 
 namespace SmartHome.Api.Controllers;
 
@@ -15,6 +16,8 @@ public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
     private readonly IDeviceFactory _deviceFactory;
+
+    private readonly ICommandFactory _commandFactory;
 
     public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory)
     {
@@ -123,6 +126,7 @@ public class DevicesController : ControllerBase
             return NotFound();
         }
 
+        // TODO: Replace w/ command factory 
         var command = new StubDeviceCommand(device);
 
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);

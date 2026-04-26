@@ -9,7 +9,7 @@ namespace SmartHome.Api.Factories;
 public class CommandFactory
 {
 
-    public IDeviceCommand CreateCommand(IDevice device)
+    public IDeviceCommand CreateCommand(string command, IDevice device)
     {
         // TODO: Placeholder for concrete commands.
         return new StubDeviceCommand(device);
