@@ -17,12 +17,14 @@ public class DevicesController : ControllerBase
     private readonly IDeviceService _deviceService;
     private readonly IDeviceFactory _deviceFactory;
     private readonly ICommandFactory _commandFactory;
+    private readonly ILogger<DevicesController> _logger;
 
-    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory)
+    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory, ILogger<DevicesController> logger)
     {
         _deviceService = deviceService;
         _deviceFactory = deviceFactory;
         _commandFactory = commandFactory;
+        _logger = logger;
     }
 
     // GET: api/devices
@@ -33,10 +35,8 @@ public class DevicesController : ControllerBase
     {
         var devices = _deviceService.GetAllDevices();
 
-        // For each device in devices, translate using DeviceMapper and add to response.
+        // Map domain devices to API response models.
         var response = devices.Select(DeviceMapper.ToResponse);
-
-
         return Ok(response);
     }
 
@@ -47,17 +47,17 @@ public class DevicesController : ControllerBase
     public ActionResult<DeviceResponse> GetDeviceById(Guid deviceId)
     {
 
-        // Find and return device with matching ID.
+        // Retrieve device to validate existence before operation.
+        _logger.LogInformation("Fetching device with id {DeviceId}", deviceId);
         var device = _deviceService.GetDeviceById(deviceId);
 
-        // If device could not be found, return status as not found.
+        // Return 404 if device not found.
         if (device == null)
         {
-            //logger.error("Device not found.");
+            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound();
         }
 
-        // Return found device and successful status.
         var response = DeviceMapper.ToResponse(device);
         return Ok(response);
     }
@@ -66,26 +66,28 @@ public class DevicesController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
         try
         {
-            // Use factory to create IDevice
+            // Log request and create device via factory.
+            _logger.LogInformation("Registering new device {Name} at {Location}.", request.DeviceName, request.DeviceLocation);
             var device = _deviceFactory.CreateDevice(
             request.DeviceName,
             request.DeviceLocation,
             request.Type
             );
 
-            // If Device added, return successful status and creation details.
+            // If Device added, return success status and creation details.
             _deviceService.RegisterDevice(device);
             var response = DeviceMapper.ToResponse(device);
             return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
         }
         catch (ArgumentException ex)
         {
-            //string message = "Unable to create device. Please try again.";
-            //logger.error(message, ex);
+            // Return 400 if device could not be created.
+            _logger.LogError(ex, "Failed to create device.");
             return BadRequest("Unable to create device. Please try again.");
         }
     }
@@ -97,19 +99,19 @@ public class DevicesController : ControllerBase
     public IActionResult RemoveDevice(Guid deviceId)
     {
 
-        // Find and return device with matching ID.
+        // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
 
-        // If device could not be found, return status as not found.
+        // Return 404 if device not found.
         if (device == null)
         {
-            //logger.error("Device not found.");
+            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound();
         }
 
-        // Return found device and successfull status.
+        _logger.LogInformation("Removing device with ID {DeviceId}", deviceId);
         _deviceService.RemoveDevice(device.Id);
-        return Ok();
+        return NoContent();
     }
 
     // PUT: api/devices/{id}/state
@@ -119,46 +121,49 @@ public class DevicesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
+        // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
 
+        // Return 404 if device not found.
         if (device == null)
         {
+            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound();
         }
 
-        // TODO: Replace w/ command factory logic
+        // TODO: Replace stub with CommandFactory when concrete commands are implemented.
         var command = new StubDeviceCommand(device);
-
+        _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
-
         var response = DeviceMapper.ToResponse(updatedDevice);
-
-        return NoContent();
+        return Ok(response);
     }
 
 
     // GET: api/devices/{id}/history
     /* TODO: Need GetCommandHistory method
-    [HttpGet ("{deviceId: guid}/history")] 
+    [HttpGet ("{deviceId:guid}/history")] 
     [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
 
     public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId){
         
-        // Confirm device exists
-        var devicce = _deviceService.GetDeviceById(deviceId);
-
+        // Retrieve device to validate existence before operation.
+        var device = _deviceService.GetDeviceById(deviceId);
+        
+        // Return 404 if device not found.
         if (device == null)
         {
-            //logger.error("Device not found.");
+            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound();
         }
 
-        // Return device's command history and successful status.
-        Need GetCommandHistory | var history = _deviceService.GetCommandHistory(deviceId);
+        
+        /* TODO: Need GetCommandHistory
+        _logger.LogWarning("Command history for device with ID {DeviceId} provided.", deviceId);
+        var history = _deviceService.GetCommandHistory(deviceId);
         return Ok(history);
     }*/
-
 
 }
 
