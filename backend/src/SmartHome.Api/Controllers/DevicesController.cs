@@ -12,10 +12,12 @@ namespace SmartHome.Api.Controllers;
 public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
+    private IDeviceFactory _deviceFactory;
 
-    public DevicesController(IDeviceService deviceService)
+    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory)
     {
         _deviceService = deviceService;
+        _deviceFactory = deviceFactory;
     }
 
     // GET: api/devices
@@ -55,7 +57,7 @@ public class DevicesController : ControllerBase
     }
 
     // POST: api/devices/
-    /*[HttpPost]
+    [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<DeviceResponse> AddDevice(RegisterDeviceRequest request)
@@ -68,8 +70,9 @@ public class DevicesController : ControllerBase
         // Use factory to create IDevice
 
 
+
   
-    }*/
+    }
     
     // DELETE: api/devices/{id}
     [HttpDelete("{deviceId}")]
