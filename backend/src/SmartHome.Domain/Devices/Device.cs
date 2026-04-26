@@ -1,7 +1,6 @@
 using System.Reflection.Metadata.Ecma335;
-using SmartHome.Domain.Interfaces;
 
-namespace SmartHome.Domain;
+namespace SmartHome.Domain.Devices;
 
 
 // basic template of what all devices will need in the home simulator

@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Interfaces;
+namespace SmartHome.Domain.Devices;
 
 public interface IDevice
 {
@@ -7,7 +7,7 @@ public interface IDevice
    public string DeviceName { get; }
    public string DeviceLocation { get; }
    public DeviceType Type { get; }
-   //TODO: Create DeviceState class
+   //TODO: Create DeviceState class?
    //public DeviceState State {get;}
    public bool IsDeviceOn { get; }
 

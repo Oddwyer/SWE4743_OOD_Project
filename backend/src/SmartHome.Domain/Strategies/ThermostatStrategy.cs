@@ -1,5 +1,5 @@
-using SmartHome.Domain.Interfaces;
-namespace SmartHome.Domain;
+using SmartHome.Domain.Devices;
+namespace SmartHome.Domain.Strategies;
 
 public class HeatModeStrategy : IThermostatModeStrategy
 {

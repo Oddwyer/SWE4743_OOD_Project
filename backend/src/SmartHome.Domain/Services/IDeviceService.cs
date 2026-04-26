@@ -1,24 +1,30 @@
-using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands;
 
-namespace SmartHome.Domain;
+
+namespace SmartHome.Domain.Services;
 
 public interface IDeviceService
 {
+    // TODO: DeviceFilter
     // Method to retrieve all devices in the system
-    IEnumerable<IDevice> GetAllDevices(DeviceFilter filter);
-
+    //IEnumerable<IDevice> GetAllDevices(DeviceFilter filter);
+    IReadOnlyList<IDevice> GetAllDevices();
+    
+    // TODO: CommandHistoryEntry
     // command list for persistenance, reference and rehydration section in project doc
-    IEnumerable<CommandHistoryEntry> GetCommandHistory (Guid deviceId); 
+    //IEnumerable<CommandHistoryEntry> GetCommandHistory (Guid deviceId); 
     // this will return a list of all commands that have been executed on a specific device, which can be used for auditing and debugging purposes
 
     // Method to retrieve a device by its ID
-    IDevice GetDeviceById(Guid deviceId);
+    IDevice? GetDeviceById(Guid deviceId);
 
     // Method to add a new device to the system
-    void AddDevice(IDevice device);
-    //IDevice registerDevice(RegisterDeviceRequest request); 
+    void RegisterDevice(IDevice device);
+
+    // IDevice RegisterDevice(IDevice device);
     // we can use this method to create a new device based on a request object
-    //not sure if 
+    // AO: I am converting from a DTO request object to an IDevice for you via API and controller. :-)
 
     // Method to remove a device from the system by its ID
     void RemoveDevice(Guid deviceId);

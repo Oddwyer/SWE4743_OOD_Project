@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Interfaces;
+namespace SmartHome.Domain.Devices;
 public interface IPoweredDevice
 {
     DevicePowerState powerState {get;}

@@ -1,6 +1,5 @@
-using SmartHome.Domain.Interfaces;
 
-namespace SmartHome.Domain;
+namespace SmartHome.Domain.Strategies;
 
 public interface IThermostatModeStrategy
 {

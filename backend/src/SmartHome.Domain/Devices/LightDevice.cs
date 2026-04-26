@@ -1,6 +1,6 @@
-using SmartHome.Domain.Interfaces;
+//using System.Reflection.Metadata.Ecma335;
 
-namespace SmartHome.Domain;
+namespace SmartHome.Domain.Devices;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {

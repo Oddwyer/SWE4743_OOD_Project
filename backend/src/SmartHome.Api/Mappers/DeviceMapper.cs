@@ -1,7 +1,7 @@
-namespace SmartHome.Api.Mappers.DeviceMapper;
+namespace SmartHome.Api.Mappers;
 
 using SmartHome.Api.DTOs;
-using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
 
 /// <summary>
 /// Abstracts logic that varies by device type to avoid if/else statements in 
@@ -10,6 +10,7 @@ using SmartHome.Domain.Interfaces;
 
 public static class DeviceMapper
 {
+    // Converts device details to UI-friendly text.
     public static DeviceResponse ToResponse(IDevice device)
     {
         var response = new DeviceResponse
@@ -45,4 +46,5 @@ public static class DeviceMapper
 
         return response;
     }
+
 }

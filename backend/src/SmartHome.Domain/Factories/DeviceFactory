@@ -1,0 +1,42 @@
+using SmartHome.Domain.Devices;
+using System.Collections;
+
+namespace SmartHome.Domain.Factories;
+
+public class DeviceFactory : IDeviceFactory
+{
+    public DeviceFactory()
+    {
+
+    }
+
+    public IDevice CreateDevice(string name, string location, string type)
+    {
+        Guid id = Guid.NewGuid();
+
+        if (!Enum.TryParse<DeviceType>(type, true, out var deviceType))
+        {
+            throw new ArgumentException("Invalid device type.");
+        }
+
+        switch (deviceType)
+        {
+            case DeviceType.Light:
+                return new LightDevice(name, location);
+
+            case DeviceType.Fan:
+                return new FanDevice(name, location);
+
+            /*case DeviceType.Thermostat:
+                return new Thermostat(name, location);*/
+
+            case DeviceType.DoorLock:
+                return new DoorLock(name, location);
+
+            default:
+                throw new ArgumentException("Unsupported device type.");
+        }
+        ;
+    }
+}
+
