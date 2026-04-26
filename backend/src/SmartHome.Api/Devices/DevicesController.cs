@@ -41,7 +41,7 @@ public class DevicesController : ControllerBase
     }
 
     // GET: api/devices/{id}
-    [HttpGet("{deviceId}")]
+    [HttpGet("{deviceId:guid}")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<DeviceResponse> GetDeviceById(Guid deviceId)
@@ -66,7 +66,7 @@ public class DevicesController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public ActionResult<DeviceResponse> RegisterDevice(RegisterDeviceRequest request)
+    public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
         try
         {
@@ -91,8 +91,8 @@ public class DevicesController : ControllerBase
     }
 
     // DELETE: api/devices/{id}
-    [HttpDelete("{deviceId}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [HttpDelete("{deviceId:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult RemoveDevice(Guid deviceId)
     {
@@ -113,11 +113,11 @@ public class DevicesController : ControllerBase
     }
 
     // PUT: api/devices/{id}/state
-    [HttpPut("{deviceId}/state")]
+    [HttpPut("{deviceId:guid}/state")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request)
+    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
         var device = _deviceService.GetDeviceById(deviceId);
 
@@ -133,13 +133,13 @@ public class DevicesController : ControllerBase
 
         var response = DeviceMapper.ToResponse(updatedDevice);
 
-        return Ok(response);
+        return NoContent();
     }
 
 
     // GET: api/devices/{id}/history
     /* TODO: Need GetCommandHistory method
-    [HttpGet ("{deviceId}/history")] 
+    [HttpGet ("{deviceId: guid}/history")] 
     [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
 
