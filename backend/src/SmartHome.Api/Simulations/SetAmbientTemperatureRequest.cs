@@ -8,7 +8,7 @@ namespace SmartHome.Api.Simulations;
 
 public class SetAmbientTemperatureRequest
 {
-    // Input Validation @ API Layer
+    // Input Validation at API Layer
     [Required]
     [Range(0, 120)]
     public int Temperature { get; set; }

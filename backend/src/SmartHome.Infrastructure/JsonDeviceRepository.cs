@@ -62,7 +62,9 @@ public class JsonDeviceRepository : IDeviceRepository
         else
         {
             _devices.Add(device);
+
         }
+        SaveDevicesToFile();
         return device;
     }
 
@@ -73,6 +75,7 @@ public class JsonDeviceRepository : IDeviceRepository
         if (existing != null)
         {
             _devices.Remove(existing);
+            SaveDevicesToFile();
         }
 
     }
@@ -83,11 +86,11 @@ public class JsonDeviceRepository : IDeviceRepository
         return _devices.Any(d => d.Type == DeviceType.Thermostat && d.DeviceLocation == location);
     }
 
-    // Loads repository from file for persistence.
+    // Loads repository from file.
     private void LoadDevicesFromFile()
     {
 
-        // Check if file path exists and if so, read JSON file, deserialize into devices, and add to local repository.
+        // Check if file path exists and if so, read JSON file, deserialize into devices, and rehydrate to local repository.
         if (!File.Exists(_filePath))
         {
             return;
@@ -102,8 +105,26 @@ public class JsonDeviceRepository : IDeviceRepository
 
         foreach (var snapshot in snapshots)
         {
-            _deviceFactory.RehydrateDevice(snapshot);
+            var device = _deviceFactory.RehydrateDevice(snapshot);
+            _devices.Add(device);
         }
 
+    }
+
+    // Serialize devices for persistence.
+    private void SaveDevicesToFile()
+    {
+        var snapshots = _devices.Select(d => new DeviceSnapshot
+        {
+            Id = d.Id,
+            Name = d.DeviceName,
+            Location = d.DeviceLocation,
+            Type = d.Type,
+            IsOn = d.IsDeviceOn
+        }).ToList();
+
+        var json = JsonSerializer.Serialize(snapshots);
+
+        File.WriteAllText(_filePath, json);
     }
 }
