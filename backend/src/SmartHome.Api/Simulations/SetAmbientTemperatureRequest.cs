@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SmartHome.Api.DTOs;
+namespace SmartHome.Api.Simulations;
 
 /// <summary>
 /// DTO for setting the ambient temperature of a location.

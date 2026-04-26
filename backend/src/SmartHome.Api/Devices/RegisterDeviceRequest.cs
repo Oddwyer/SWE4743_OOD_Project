@@ -1,4 +1,4 @@
-namespace SmartHome.Api.DTOs;
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// DTO for registering new devices into the smart home registry. 

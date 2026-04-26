@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SmartHome.Api.DTOs;
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// DTO for data related to device state change requests.

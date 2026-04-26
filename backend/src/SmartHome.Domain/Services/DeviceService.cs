@@ -1,10 +1,9 @@
-using SmartHome.Domain.Services;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
 
-/// TODO: Remove when built. Stub for GetDevices();
+/// TODO: Remove when built by Kataali. Stub for GetDevices();
 
-namespace SmartHome.Api;
+namespace SmartHome.Domain.Services;
 
 public class DeviceService : IDeviceService
 {

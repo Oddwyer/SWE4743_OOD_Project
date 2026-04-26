@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using SmartHome.Api.DTOs;
-using SmartHome.Api.Mappers;
+using SmartHome.Api.Devices;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
