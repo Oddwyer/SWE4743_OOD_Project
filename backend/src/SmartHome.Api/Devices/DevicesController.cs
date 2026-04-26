@@ -16,13 +16,13 @@ public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
     private readonly IDeviceFactory _deviceFactory;
-
     private readonly ICommandFactory _commandFactory;
 
-    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory)
+    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory)
     {
         _deviceService = deviceService;
         _deviceFactory = deviceFactory;
+        _commandFactory = commandFactory;
     }
 
     // GET: api/devices
@@ -126,7 +126,7 @@ public class DevicesController : ControllerBase
             return NotFound();
         }
 
-        // TODO: Replace w/ command factory 
+        // TODO: Replace w/ command factory logic
         var command = new StubDeviceCommand(device);
 
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);

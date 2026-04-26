@@ -9,6 +9,7 @@ namespace SmartHome.Api.Devices;
 public class ControlDeviceRequest
 {
     // All devices
+    [Required]
     public string Command { get; set; } = string.Empty;
 
 }
