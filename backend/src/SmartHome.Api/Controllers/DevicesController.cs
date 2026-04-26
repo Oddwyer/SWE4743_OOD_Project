@@ -114,7 +114,27 @@ public class DevicesController : ControllerBase
     }
     */
 
-    // TODO: Implement GET: api/devices/{id}/history
+    /* TODO: Implement GET: api/devices/{id}/history
+    [HttpGet ("{deviceId}/history")] 
+    [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+    public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId){
+        
+        // Confirm device exists
+        var devicce = _deviceService.GetDeviceById(deviceId);
+
+        if (device == null)
+        {
+            //logger.error("Device not found.");
+            return NotFound();
+        }
+
+        // Return device's command history and successful status.
+        var history = _deviceService.GetCommandHistory(deviceId);
+        return Ok(history);
+    }
+    */
 
     // DELETE: api/devices/{id}
     [HttpDelete("{deviceId}")]

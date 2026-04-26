@@ -8,10 +8,9 @@ namespace SmartHome.Api;
 public class DeviceService : IDeviceService
 {
     private readonly List<IDevice> _devices;
-    //private readoonly List<CommandHistoryEntry> _commandHistory = new();
+    //private readonly List<CommandHistoryEntry> _commandHistory = new();
 
-    public DeviceService()
-    {
+    public DeviceService(){
         _devices = new List<IDevice>
         {
             //TODO: Add seed data...
@@ -19,11 +18,12 @@ public class DeviceService : IDeviceService
             //new DoorLocks,
         };
     }
+
+
     public IReadOnlyList<IDevice> GetAllDevices()
     {
         return _devices;
     }
-
 
     public IDevice? GetDeviceById(Guid deviceId)
     {
@@ -35,7 +35,7 @@ public class DeviceService : IDeviceService
         _devices.Add(device);
     }
 
-    //  TODO: Implement once we know constructor params required by DeviceCommand
+    // TODO: Implement once we know constructor params required by DeviceCommand
     //public void ApplyDeviceCommand(Guid deviceId, DeviceCommand command){}
 
     public void RemoveDevice(Guid deviceId)
@@ -51,7 +51,7 @@ public class DeviceService : IDeviceService
 
     // TODO: Uncomment once CommandHistoryEntry + CommandHistory repository are created.
     /*public IEnumerable<CommandHistoryEntry> GetCommandHistory (Guid deviceId){
-        return _commandHistory.Where(entry => entry.DeviceId == device.Id);
+        return _commandHistory.Where(entry => entry.DeviceId == deviceId);
     }*/
 }
 
