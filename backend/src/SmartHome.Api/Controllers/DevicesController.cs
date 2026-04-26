@@ -79,7 +79,7 @@ public class DevicesController : ControllerBase
         }
         catch (ArgumentException ex)
         {
-            string message = "Unable to create device. Please try again.";
+            //string message = "Unable to create device. Please try again.";
             //logger.error(message, ex);
             return BadRequest("Unable to create device. Please try again.");
         }
