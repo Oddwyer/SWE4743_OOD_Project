@@ -1,4 +1,3 @@
-using SmartHome.Domain.Interfaces;
 using SmartHome.Domain.Devices;
 using System.Collections;
 

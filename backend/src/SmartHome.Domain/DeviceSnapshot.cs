@@ -1,4 +1,4 @@
-using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain;
 

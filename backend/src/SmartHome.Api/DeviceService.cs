@@ -1,5 +1,6 @@
-using SmartHome.Domain.Interfaces;
-using SmartHome.Domain;
+using SmartHome.Domain.Services;
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands;
 
 /// TODO: Remove when built. Stub for GetDevices();
 
@@ -10,7 +11,8 @@ public class DeviceService : IDeviceService
     private readonly List<IDevice> _devices;
     //private readonly List<CommandHistoryEntry> _commandHistory = new();
 
-    public DeviceService(){
+    public DeviceService()
+    {
         _devices = new List<IDevice>
         {
             //TODO: Add seed data...
@@ -18,7 +20,6 @@ public class DeviceService : IDeviceService
             //new DoorLocks,
         };
     }
-
 
     public IReadOnlyList<IDevice> GetAllDevices()
     {
@@ -36,17 +37,30 @@ public class DeviceService : IDeviceService
     }
 
     // TODO: Implement once we know constructor params required by DeviceCommand
-    //public void ApplyDeviceCommand(Guid deviceId, DeviceCommand command){}
+    public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
+    {
+        var device = GetDeviceById(deviceId);
+
+        if (device == null)
+        {
+            throw new ArgumentException("Device not found.");
+        }
+
+        command.Execute();
+
+        return device;
+
+    }
 
     public void RemoveDevice(Guid deviceId)
     {
         var device = GetDeviceById(deviceId);
 
-        if(device == null)
+        if (device == null)
         {
-            return;
+            throw new KeyNotFoundException("Device not found.");
         }
-            _devices.Remove(device);
+        _devices.Remove(device);
     }
 
     // TODO: Uncomment once CommandHistoryEntry + CommandHistory repository are created.

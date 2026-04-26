@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using SmartHome.Api.DTOs;
 using SmartHome.Api.Mappers;
-using SmartHome.Domain;
-using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Services;
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Factories;
 
 namespace SmartHome.Api.Controllers;
 
@@ -85,16 +87,16 @@ public class DevicesController : ControllerBase
         }
     }
 
-    /* TODO: PUT: api/devices/{id}/state
+    // PUT: api/devices/{id}/state
     [HttpPut] 
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request){
+    /*public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request){
     try
         {
             // Use factory to create IDevice
-            var command = new DeviceCommand(
+            var command = new StubDeviceCommand(
             
                 // DeviceCommand mapping
             );
@@ -111,8 +113,8 @@ public class DevicesController : ControllerBase
             //logger.error(message, ex);
             return BadRequest("Unable to update device settings. Please try again.");
         }
-    }
-    */
+    }*/
+    
 
     /* TODO: Implement GET: api/devices/{id}/history
     [HttpGet ("{deviceId}/history")] 

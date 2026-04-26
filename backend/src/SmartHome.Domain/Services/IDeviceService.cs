@@ -1,7 +1,8 @@
-using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands;
 
 
-namespace SmartHome.Domain;
+namespace SmartHome.Domain.Services;
 
 public interface IDeviceService
 {

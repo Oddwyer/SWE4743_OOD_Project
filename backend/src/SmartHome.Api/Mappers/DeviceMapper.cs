@@ -1,7 +1,7 @@
 namespace SmartHome.Api.Mappers;
 
 using SmartHome.Api.DTOs;
-using SmartHome.Domain.Interfaces;
+using SmartHome.Domain.Devices;
 
 /// <summary>
 /// Abstracts logic that varies by device type to avoid if/else statements in 

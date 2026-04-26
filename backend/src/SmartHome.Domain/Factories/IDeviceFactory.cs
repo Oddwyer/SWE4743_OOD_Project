@@ -1,5 +1,6 @@
+using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Interfaces;
+namespace SmartHome.Domain.Factories;
 
 public interface IDeviceFactory
 {
