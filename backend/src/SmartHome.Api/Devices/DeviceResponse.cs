@@ -1,4 +1,4 @@
-namespace SmartHome.Api.DTOs;
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// DTO for displaying device(s) and related data.

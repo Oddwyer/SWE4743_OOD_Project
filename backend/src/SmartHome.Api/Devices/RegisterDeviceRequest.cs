@@ -1,4 +1,6 @@
-namespace SmartHome.Api.DTOs;
+using System.ComponentModel.DataAnnotations;
+
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// DTO for registering new devices into the smart home registry. 
@@ -7,7 +9,13 @@ namespace SmartHome.Api.DTOs;
 
 public class RegisterDeviceRequest
 {
+
+    [Required]
     public string DeviceName { get; set; } = string.Empty;
+
+    [Required]
     public string DeviceLocation { get; set; } = string.Empty;
-    public string Type {get; set;} = string.Empty;
+
+    [Required]
+    public string Type { get; set; } = string.Empty;
 }

@@ -1,7 +1,6 @@
-namespace SmartHome.Api.Mappers;
-
-using SmartHome.Api.DTOs;
 using SmartHome.Domain.Devices;
+
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// Abstracts logic that varies by device type to avoid if/else statements in 
@@ -22,6 +21,7 @@ public static class DeviceMapper
             IsDeviceOn = device.IsDeviceOn,
         };
 
+        // TODO: Waiting on thermostat.
         // Response specifics assigned based on specified device type.
         /*switch (device)
         {
@@ -34,12 +34,12 @@ public static class DeviceMapper
                 response.Speed = fan.Speed;
                 break;
 
-            case Thermostat t:
+            case Thermostat thermostat:
                 response.Mode = t.Mode;
                 response.DesiredTemperature = t.DesiredTemperature;
                 break;
 
-            case DoorLock d:
+            case DoorLock doorlock:
                 response.IsLocked = d.IsLocked;
                 break;
         }*/
