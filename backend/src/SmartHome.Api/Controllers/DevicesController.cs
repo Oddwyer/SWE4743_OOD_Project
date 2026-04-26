@@ -55,7 +55,7 @@ public class DevicesController : ControllerBase
     }
 
     // POST: api/devices/
-    [HttpPost]
+    /*[HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<DeviceResponse> AddDevice(RegisterDeviceRequest request)
@@ -69,7 +69,8 @@ public class DevicesController : ControllerBase
 
 
   
-    }
+    }*/
+    
     // DELETE: api/devices/{id}
     [HttpDelete("{deviceId}")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
