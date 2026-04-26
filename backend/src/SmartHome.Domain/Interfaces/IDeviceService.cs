@@ -1,5 +1,6 @@
 using SmartHome.Domain.Interfaces;
 
+
 namespace SmartHome.Domain;
 
 public interface IDeviceService
@@ -18,10 +19,11 @@ public interface IDeviceService
     IDevice? GetDeviceById(Guid deviceId);
 
     // Method to add a new device to the system
-    void AddDevice(IDevice device);
-    //IDevice registerDevice(RegisterDeviceRequest request); 
+    void RegisterDevice(IDevice device);
+
+    // IDevice RegisterDevice(IDevice device);
     // we can use this method to create a new device based on a request object
-    //not sure if 
+    // AO: I am converting from a DTO request object to an IDevice for you via API and controller. :-)
 
     // Method to remove a device from the system by its ID
     void RemoveDevice(Guid deviceId);

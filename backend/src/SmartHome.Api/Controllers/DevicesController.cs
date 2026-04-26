@@ -12,7 +12,7 @@ namespace SmartHome.Api.Controllers;
 public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
-    private IDeviceFactory _deviceFactory;
+    private readonly IDeviceFactory _deviceFactory;
 
     public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory)
     {
@@ -42,16 +42,17 @@ public class DevicesController : ControllerBase
     public ActionResult<DeviceResponse> GetDeviceById(Guid deviceId)
     {
 
-       // Find and return device with matching ID.
+        // Find and return device with matching ID.
         var device = _deviceService.GetDeviceById(deviceId);
 
         // If device could not be found, return status as not found.
         if (device == null)
         {
+            //logger.error("Device not found.");
             return NotFound();
         }
 
-        // Return found device and successfull status.
+        // Return found device and successful status.
         var response = DeviceMapper.ToResponse(device);
         return Ok(response);
     }
@@ -60,20 +61,61 @@ public class DevicesController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<DeviceResponse> AddDevice(RegisterDeviceRequest request)
+    public ActionResult<DeviceResponse> RegisterDevice(RegisterDeviceRequest request)
     {
-        // Decompose request
-        var name = request.DeviceName;
-        var location = request.DeviceLocation;
-        var type = request.Type;
+        try
+        {
+            // Use factory to create IDevice
+            var device = _deviceFactory.CreateDevice(
+            request.DeviceName,
+            request.DeviceLocation,
+            request.Type
+            );
 
-        // Use factory to create IDevice
-
-
-
-  
+            // If Device added, return successful status and creation details.
+            _deviceService.RegisterDevice(device);
+            var response = DeviceMapper.ToResponse(device);
+            return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
+        }
+        catch (ArgumentException ex)
+        {
+            string message = "Unable to create device. Please try again.";
+            //logger.error(message, ex);
+            return BadRequest("Unable to create device. Please try again.");
+        }
     }
-    
+
+    /* TODO: PUT: api/devices/{id}/state
+    [HttpPut] 
+    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request){
+    try
+        {
+            // Use factory to create IDevice
+            var command = new DeviceCommand(
+            
+                // DeviceCommand mapping
+            );
+
+            // If Device update, return successful status.
+            _deviceService.ApplyDeviceCommand(deviceId, command);
+            var response = DeviceMapper.ToResponse(device);
+
+            return Ok(response);
+        }
+        catch (ArgumentException ex)
+        {
+            string message = "Unable to update device settings. Please try again.";
+            //logger.error(message, ex);
+            return BadRequest("Unable to update device settings. Please try again.");
+        }
+    }
+    */
+
+    // TODO: Implement GET: api/devices/{id}/history
+
     // DELETE: api/devices/{id}
     [HttpDelete("{deviceId}")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
@@ -81,12 +123,13 @@ public class DevicesController : ControllerBase
     public ActionResult RemoveDevice(Guid deviceId)
     {
 
-       // Find and return device with matching ID.
+        // Find and return device with matching ID.
         var device = _deviceService.GetDeviceById(deviceId);
 
         // If device could not be found, return status as not found.
         if (device == null)
         {
+            //logger.error("Device not found.");
             return NotFound();
         }
 

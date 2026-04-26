@@ -8,6 +8,7 @@ namespace SmartHome.Api;
 public class DeviceService : IDeviceService
 {
     private readonly List<IDevice> _devices;
+    //private readoonly List<CommandHistoryEntry> _commandHistory = new();
 
     public DeviceService()
     {
@@ -29,10 +30,13 @@ public class DeviceService : IDeviceService
         return _devices.FirstOrDefault(d => d.Id == deviceId);
     }
 
-    public void AddDevice(IDevice device)
+    public void RegisterDevice(IDevice device)
     {
         _devices.Add(device);
     }
+
+    //  TODO: Implement once we know constructor params required by DeviceCommand
+    //public void ApplyDeviceCommand(Guid deviceId, DeviceCommand command){}
 
     public void RemoveDevice(Guid deviceId)
     {
@@ -44,5 +48,10 @@ public class DeviceService : IDeviceService
         }
             _devices.Remove(device);
     }
+
+    // TODO: Uncomment once CommandHistoryEntry + CommandHistory repository are created.
+    /*public IEnumerable<CommandHistoryEntry> GetCommandHistory (Guid deviceId){
+        return _commandHistory.Where(entry => entry.DeviceId == device.Id);
+    }*/
 }
 
