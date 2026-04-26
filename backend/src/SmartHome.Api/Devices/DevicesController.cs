@@ -5,6 +5,7 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Factories;
+using SmartHome.Domain;
 
 namespace SmartHome.Api.Controllers;
 
@@ -61,7 +62,7 @@ public class DevicesController : ControllerBase
     // POST: api/devices/
     [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public ActionResult<DeviceResponse> RegisterDevice(RegisterDeviceRequest request)
     {
         try
@@ -86,15 +87,37 @@ public class DevicesController : ControllerBase
         }
     }
 
+    // DELETE: api/devices/{id}
+    [HttpDelete("{deviceId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult RemoveDevice(Guid deviceId)
+    {
+
+        // Find and return device with matching ID.
+        var device = _deviceService.GetDeviceById(deviceId);
+
+        // If device could not be found, return status as not found.
+        if (device == null)
+        {
+            //logger.error("Device not found.");
+            return NotFound();
+        }
+
+        // Return found device and successfull status.
+        _deviceService.RemoveDevice(device.Id);
+        return Ok();
+    }
+
     // PUT: api/devices/{id}/state
-    [HttpPut] 
+    [HttpPut("{deviceId}/state")] 
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    /*public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request){
+    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request){
     try
         {
-            // Use factory to create IDevice
+            // Use factory to create specific Command
             var command = new StubDeviceCommand(
             
                 // DeviceCommand mapping
@@ -112,10 +135,11 @@ public class DevicesController : ControllerBase
             //logger.error(message, ex);
             return BadRequest("Unable to update device settings. Please try again.");
         }
-    }*/
+    }
     
 
-    /* TODO: Implement GET: api/devices/{id}/history
+    // GET: api/devices/{id}/history
+    /* TODO: Need GetCommandHistory method
     [HttpGet ("{deviceId}/history")] 
     [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -132,32 +156,11 @@ public class DevicesController : ControllerBase
         }
 
         // Return device's command history and successful status.
-        var history = _deviceService.GetCommandHistory(deviceId);
+        Need GetCommandHistory | var history = _deviceService.GetCommandHistory(deviceId);
         return Ok(history);
-    }
-    */
+    }*/
 
-    // DELETE: api/devices/{id}
-    [HttpDelete("{deviceId}")]
-    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult RemoveDevice(Guid deviceId)
-    {
 
-        // Find and return device with matching ID.
-        var device = _deviceService.GetDeviceById(deviceId);
-
-        // If device could not be found, return status as not found.
-        if (device == null)
-        {
-            //logger.error("Device not found.");
-            return NotFound();
-        }
-
-        // Return found device and successfull status.
-        _deviceService.RemoveDevice(device.Id);
-        return Ok();
-    }
 }
 
 
