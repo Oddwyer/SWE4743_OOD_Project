@@ -1,0 +1,17 @@
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Devices;
+
+namespace SmartHome.Api.Factories;
+
+/// <summary>
+/// Command Factory for command creation based on user input.
+/// </summary>
+public class CommandFactory
+{
+
+    public IDeviceCommand CreateCommand(IDevice device)
+    {
+        // TODO: Placeholder for concrete commands.
+        return new StubDeviceCommand(device);
+    }
+}

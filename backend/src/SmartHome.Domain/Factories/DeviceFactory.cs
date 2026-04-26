@@ -3,6 +3,9 @@ using System.Collections;
 
 namespace SmartHome.Domain.Factories;
 
+/// <summary>
+/// Device Factory class for device creation upon input type.
+/// </summary>
 public class DeviceFactory : IDeviceFactory
 {
     public DeviceFactory()
@@ -22,16 +25,16 @@ public class DeviceFactory : IDeviceFactory
         switch (deviceType)
         {
             case DeviceType.Light:
-                return new LightDevice(name, location);
+                return new LightDevice(id, name, location);
 
             case DeviceType.Fan:
-                return new FanDevice(name, location);
+                return new FanDevice(id, name, location);
 
             /*case DeviceType.Thermostat:
                 return new Thermostat(name, location);*/
 
             case DeviceType.DoorLock:
-                return new DoorLock(name, location);
+                return new DoorLocks(id, name, location);
 
             default:
                 throw new ArgumentException("Unsupported device type.");

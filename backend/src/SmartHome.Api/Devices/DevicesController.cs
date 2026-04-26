@@ -110,33 +110,28 @@ public class DevicesController : ControllerBase
     }
 
     // PUT: api/devices/{id}/state
-    [HttpPut("{deviceId}/state")] 
+    [HttpPut("{deviceId}/state")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request)
+    {
+        var device = _deviceService.GetDeviceById(deviceId);
 
-    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, ControlDeviceRequest request){
-    try
+        if (device == null)
         {
-            // Use factory to create specific Command
-            var command = new StubDeviceCommand(
-            
-                // DeviceCommand mapping
-            );
-
-            // If Device update, return successful status.
-            _deviceService.ApplyDeviceCommand(deviceId, command);
-            var response = DeviceMapper.ToResponse(device);
-
-            return Ok(response);
+            return NotFound();
         }
-        catch (ArgumentException ex)
-        {
-            string message = "Unable to update device settings. Please try again.";
-            //logger.error(message, ex);
-            return BadRequest("Unable to update device settings. Please try again.");
-        }
+
+        var command = new StubDeviceCommand(device);
+
+        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
+
+        var response = DeviceMapper.ToResponse(updatedDevice);
+
+        return Ok(response);
     }
-    
+
 
     // GET: api/devices/{id}/history
     /* TODO: Need GetCommandHistory method
