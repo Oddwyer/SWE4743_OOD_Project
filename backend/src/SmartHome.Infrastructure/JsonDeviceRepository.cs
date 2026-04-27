@@ -13,7 +13,10 @@ namespace SmartHome.Infrastructure;
 public class JsonDeviceRepository : IDeviceRepository
 {
     private readonly List<IDevice> _devices = new();
-    private readonly string _filePath = "devices.json";
+    private readonly string _filePath = Path.Combine(
+    Directory.GetCurrentDirectory(),
+    "data",
+    "devices.json");
 
     private readonly IDeviceFactory _deviceFactory;
 
