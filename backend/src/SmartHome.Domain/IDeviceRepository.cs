@@ -10,4 +10,7 @@ public interface IDeviceRepository
     IDevice SaveDevice(IDevice device);
     void DeleteDevice(Guid deviceId);
     bool ThermostatInLocation(string location);
+
+    IReadOnlyList<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId);
+    void AddHistoryEntry(CommandHistoryEntry entry);
 }

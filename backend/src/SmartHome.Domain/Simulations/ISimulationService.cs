@@ -1,5 +1,5 @@
 
-namespace SmartHome.Domain.Services;
+namespace SmartHome.Domain.Simulations;
 
 public interface ISimulationService
 {

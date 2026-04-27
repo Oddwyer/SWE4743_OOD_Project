@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Factories;
+namespace SmartHome.Domain.Devices;
 
 /// <summary>
 /// Interface for DeviceFactory for DIP principle and DI.

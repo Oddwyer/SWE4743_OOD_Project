@@ -1,8 +1,7 @@
-using SmartHome.Domain.Devices;
 using System.Collections;
 using SmartHome.Domain;
 
-namespace SmartHome.Domain.Factories;
+namespace SmartHome.Domain.Devices;
 
 // TODO Kataali:
 // AO: This factory belongs to the Domain layer because it creates domain objects.

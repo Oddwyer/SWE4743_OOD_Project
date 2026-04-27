@@ -1,7 +1,6 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain;
 using System.Text.Json;
-using SmartHome.Domain.Factories;
 
 namespace SmartHome.Infrastructure;
 
@@ -82,6 +81,16 @@ public class JsonDeviceRepository : IDeviceRepository
     {
         return _devices.Any(d => d.Type == DeviceType.Thermostat && d.DeviceLocation == location);
     }
+
+    public IReadOnlyList<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
+    {
+
+    }
+    public void AddHistoryEntry(CommandHistoryEntry entry)
+    {
+
+    }
+
 
     // Loads repository from file.
     private void LoadDevicesFromFile()
