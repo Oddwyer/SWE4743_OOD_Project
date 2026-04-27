@@ -3,7 +3,7 @@ using SmartHome.Domain.Devices;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// Abstracts logic that varies by device type to avoid if/else statements in 
+/// Abstracts conditional logic that varies by device type to avoid if/else statements in 
 /// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller. 
 /// </summary>
 
@@ -21,28 +21,29 @@ public static class DeviceMapper
             IsDeviceOn = device.IsDeviceOn,
         };
 
-        // TODO - Amber: Waiting on thermostat.
+        // TODO - Amber: Waiting on thermostat; fan speed.
         // Response specifics assigned based on specified device type.
-        /*switch (device)
+        switch (device)
         {
-            case Light light:
-                response.Brightness = light.Brightness;
-                response.Color = light.Color;
+            case LightDevice light:
+                response.Brightness = light.lightBrightness;
+                response.Color = light.colorState.ToString();
                 break;
 
-            case Fan fan:
-                response.Speed = fan.Speed;
+            /*case FanDevice fan:
+                response.Speed = fan.FanSpeed;
                 break;
 
             case Thermostat thermostat:
                 response.Mode = t.Mode;
                 response.DesiredTemperature = t.DesiredTemperature;
                 break;
+            */
 
-            case DoorLock doorlock:
-                response.IsLocked = d.IsLocked;
+            case DoorLocks doorlock:
+                response.IsLocked = doorlock.IsDeviceOn;
                 break;
-        }*/
+        }
 
         return response;
     }

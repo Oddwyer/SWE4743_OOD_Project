@@ -1,7 +1,7 @@
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// DTO for displaying device(s) and related data.
+/// DTO used to represent a device returned by the API.
 /// </summary>
 
 public class DeviceResponse : BaseDevice

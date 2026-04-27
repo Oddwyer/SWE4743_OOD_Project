@@ -136,15 +136,16 @@ public class DevicesController : ControllerBase
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
+
         if (request == null || string.IsNullOrWhiteSpace(request.Command))
         {
             return BadRequest(new { message = "Command is required." });
         }
 
-        // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
+
         try
         {
-            var command = new StubDeviceCommand(device);
+            var command = new StubDeviceCommand(device); // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
 
             _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
 

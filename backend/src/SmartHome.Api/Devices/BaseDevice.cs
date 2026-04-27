@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// Abstract DTO for reuse across concrete DTO classes.
+/// Abstract DTO for shared properties for reuse by concrete DTO classes.
 /// </summary>
 
 public abstract class BaseDevice

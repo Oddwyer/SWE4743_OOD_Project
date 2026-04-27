@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// DTO for registering new devices into the smart home registry. 
+/// DTO used to represent device registration request from the client.
 /// </summary>
 
 public class RegisterDeviceRequest : BaseDevice
