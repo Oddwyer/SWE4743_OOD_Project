@@ -12,11 +12,22 @@ builder.Services.AddSingleton<IDeviceService, DeviceService>();
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
 builder.Services.AddSingleton<IDeviceRepository, JsonDeviceRepository>();
+builder.Services.AddCors(options =>
+{
+    // TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors("AllowFrontend");
 app.MapControllers();
 app.Run();

@@ -13,7 +13,7 @@ public abstract class Device : IDevice
 
     //each device needs to be able to control/manage its own state
 
-    //TODO: Create DeviceState class...
+    //TODO - Kataali: Create DeviceState class...
     //public abstract DeviceState State {get; protected set;} 
     public abstract bool IsDeviceOn { get; }
 
@@ -29,7 +29,7 @@ public abstract class Device : IDevice
         Type = type;
     }
 
-    //TODO: Implement
+    //TODO - Kataali: Implement (AO: Should this be in IDeviceRepository??)
     /*public DeviceSnapshot dehydrate(
         return DeviceSnapshot;
     );*/
@@ -41,7 +41,7 @@ public abstract class Device : IDevice
     //wanted to create a shared template for how devices handle command execution
     //each device will specify how this is done
 
-    /* TODO: AO - Remove later but reference for now. Got it! :)
+    /* TODO - Kataali: - Remove later but reference for now.
         public void runCommands(DeviceCommand command){
             validateDeviceCommand(command); // validation should be universal across devices, help keep things DRY
             runDeviceCommand(command);

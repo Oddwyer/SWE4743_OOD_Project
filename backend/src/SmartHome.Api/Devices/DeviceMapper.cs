@@ -21,7 +21,7 @@ public static class DeviceMapper
             IsDeviceOn = device.IsDeviceOn,
         };
 
-        // TODO: Waiting on thermostat.
+        // TODO - Amber: Waiting on thermostat.
         // Response specifics assigned based on specified device type.
         /*switch (device)
         {

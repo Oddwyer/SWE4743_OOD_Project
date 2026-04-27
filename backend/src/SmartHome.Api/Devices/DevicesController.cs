@@ -129,7 +129,7 @@ public class DevicesController : ControllerBase
             return NotFound();
         }
 
-        // TODO: Replace stub with CommandFactory when concrete commands are implemented.
+        // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
         var command = new StubDeviceCommand(device);
         _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
