@@ -14,13 +14,15 @@ public class SimulationController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost("ambient-temperature")]
-    public IActionResult SetAmbientTemperature()
+    // PUT: api/simulation/speed
+    [HttpPut("speed")]
+    public IActionResult SetSimulationSpeed()
     {
-        _logger.LogInformation("Ambient temperature update requested.");
-        return Ok("Stub");
+        _logger.LogInformation("Simulation speed update requested.");
+        return Ok("Simulation speed set (stub)");
     }
 
+    // PUT: api/simulation/reset
     [HttpPost("reset")]
     public IActionResult ResetSimulation()
     {
