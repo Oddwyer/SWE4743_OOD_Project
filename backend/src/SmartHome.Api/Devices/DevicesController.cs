@@ -29,7 +29,7 @@ public class DevicesController : ControllerBase
     [HttpGet]
     // Return item of type iterable list of DeviceResponses, and whether successful.
     [ProducesResponseType(typeof(IEnumerable<DeviceResponse>), StatusCodes.Status200OK)]
-    public ActionResult<IEnumerable<DeviceResponse>> GetAllDevices(DeviceFilter filter)
+    public ActionResult<IEnumerable<DeviceResponse>> GetAllDevices([FromQuery] DeviceFilter filter)
     {
         var devices = _deviceService.GetAllDevices(filter);
 
