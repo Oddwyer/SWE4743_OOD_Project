@@ -6,7 +6,6 @@ namespace SmartHome.Api.Locations;
 [Route("api/[controller]")]
 public class LocationsController : ControllerBase
 {
-
     private readonly ILogger<LocationsController> _logger;
 
     public LocationsController(ILogger<LocationsController> logger)

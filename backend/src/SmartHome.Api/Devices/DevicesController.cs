@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using SmartHome.Domain.Devices;
+//using System.Linq;
+//using SmartHome.Domain.Devices;
 using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Factories;
@@ -35,6 +35,7 @@ public class DevicesController : ControllerBase
 
         // Map domain devices to API response models.
         var response = devices.Select(DeviceMapper.ToResponse);
+
         return Ok(response);
     }
 
@@ -53,17 +54,17 @@ public class DevicesController : ControllerBase
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
         var response = DeviceMapper.ToResponse(device);
+
         return Ok(response);
     }
 
     // POST: api/devices/
     [HttpPost("register-device")]
-    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
@@ -80,13 +81,19 @@ public class DevicesController : ControllerBase
             // If Device added, return success status and creation details.
             _deviceService.RegisterDevice(device);
             var response = DeviceMapper.ToResponse(device);
+
             return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
         }
         catch (ArgumentException ex)
         {
             // Return 400 if device could not be created.
             _logger.LogError(ex, "Failed to create device.");
-            return BadRequest("Unable to create device. Please try again.");
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Unable to create device. Please try again."
+            });
+            // TODO - Amber: Consider catch for invalid operation when attempting to add more than one thermostat per location.
         }
     }
 
@@ -104,11 +111,12 @@ public class DevicesController : ControllerBase
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
         _logger.LogInformation("Removing device with ID {DeviceId}", deviceId);
         _deviceService.RemoveDevice(device.Id);
+
         return NoContent();
     }
 
@@ -126,26 +134,54 @@ public class DevicesController : ControllerBase
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
+        }
+        if (request == null || string.IsNullOrWhiteSpace(request.Command))
+        {
+            return BadRequest(new { message = "Command is required." });
         }
 
         // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
-        var command = new StubDeviceCommand(device);
-        _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
-        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
-        var response = DeviceMapper.ToResponse(updatedDevice);
-        return Ok(response);
+        try
+        {
+            var command = new StubDeviceCommand(device);
+
+            _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
+
+            var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
+            var response = DeviceMapper.ToResponse(updatedDevice);
+
+            return Ok(response);
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogWarning(ex, "Invalid command {Command} for device {DeviceId}.", request.Command, deviceId);
+
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Invalid command request."
+            });
+        }
+        catch (InvalidOperationException ex)
+        {
+            _logger.LogWarning(ex, "Command {Command} cannot be applied to device {DeviceId}.", request.Command, deviceId);
+
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Command cannot be applied to the device in its current state."
+            });
+        }
     }
 
-
     // GET: api/devices/{id}/history
+    // TODO - Amber: Create DTO CommandHistoryReponse to abstract from CommandHistoryEntry.
     [HttpGet("{deviceId:guid}/history")]
     [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-
     public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId)
     {
-
         // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
 
@@ -153,11 +189,12 @@ public class DevicesController : ControllerBase
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
-        _logger.LogWarning("Command history for device with ID {DeviceId} provided.", deviceId);
+        _logger.LogInformation("Command history for device with ID {DeviceId} provided.", deviceId);
         var history = _deviceService.GetCommandHistory(deviceId);
+
         return Ok(history);
     }
 
