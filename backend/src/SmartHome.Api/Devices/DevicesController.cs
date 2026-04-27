@@ -8,6 +8,9 @@ using SmartHome.Domain;
 
 namespace SmartHome.Api.Devices;
 
+/// <summary>
+/// Device Controller: handles HTTP requests for device operations and coordinates responses between the client and application services.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class DevicesController : ControllerBase
@@ -25,9 +28,11 @@ public class DevicesController : ControllerBase
         _logger = logger;
     }
 
-    // GET: api/devices
+    /// <summary>
+    /// GET: api/devices
+    /// Return item of type iterable list of DeviceResponses, and whether successful.
+    /// </summary>
     [HttpGet]
-    // Return item of type iterable list of DeviceResponses, and whether successful.
     [ProducesResponseType(typeof(IEnumerable<DeviceResponse>), StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<DeviceResponse>> GetAllDevices([FromQuery] DeviceFilter filter)
     {
@@ -39,7 +44,9 @@ public class DevicesController : ControllerBase
         return Ok(response);
     }
 
-    // GET: api/devices/{id}
+    /// <summary>
+    /// GET: api/devices/{id}
+    /// </summary>
     [HttpGet("{deviceId:guid}")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -47,7 +54,7 @@ public class DevicesController : ControllerBase
     {
 
         // Retrieve device to validate existence before operation.
-        _logger.LogInformation("Fetching device with id {DeviceId}", deviceId);
+        _logger.LogInformation("Fetching device with id {DeviceId}.", deviceId);
         var device = _deviceService.GetDeviceById(deviceId);
 
         // Return 404 if device not found.
@@ -62,7 +69,9 @@ public class DevicesController : ControllerBase
         return Ok(response);
     }
 
-    // POST: api/devices/
+    /// <summary>
+    /// POST: api/devices/
+    /// </summary>
     [HttpPost("register-device")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -97,7 +106,9 @@ public class DevicesController : ControllerBase
         }
     }
 
-    // DELETE: api/devices/{id}
+    /// <summary>
+    /// DELETE: api/devices/{id}
+    /// </summary>
     [HttpDelete("{deviceId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -114,13 +125,15 @@ public class DevicesController : ControllerBase
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
-        _logger.LogInformation("Removing device with ID {DeviceId}", deviceId);
+        _logger.LogInformation("Removing device with ID {DeviceId}.", deviceId);
         _deviceService.RemoveDevice(device.Id);
 
         return NoContent();
     }
 
-    // PUT: api/devices/{id}/state
+    /// <summary>
+    /// PUT: api/devices/{id}/state
+    /// </summary>
     [HttpPut("{deviceId:guid}/state")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -176,12 +189,13 @@ public class DevicesController : ControllerBase
         }
     }
 
-    // GET: api/devices/{id}/history
-    // TODO - Amber: Create DTO CommandHistoryReponse to abstract from CommandHistoryEntry.
+    /// <summary>
+    /// GET: api/devices/{id}/history
+    /// </summary>
     [HttpGet("{deviceId:guid}/history")]
-    [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<CommandHistoryResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId)
+    public ActionResult<IEnumerable<CommandHistoryResponse>> GetDeviceHistory(Guid deviceId)
     {
         // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
@@ -193,10 +207,11 @@ public class DevicesController : ControllerBase
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
-        _logger.LogInformation("Command history for device with ID {DeviceId} provided.", deviceId);
+        _logger.LogInformation("Fetching history for device with ID {DeviceId}.", deviceId);
         var history = _deviceService.GetCommandHistory(deviceId);
+        var response = CommandHistoryMapper.ToResponse(history);
 
-        return Ok(history);
+        return Ok(response);
     }
 
 }

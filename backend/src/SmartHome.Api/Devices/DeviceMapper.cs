@@ -9,7 +9,9 @@ namespace SmartHome.Api.Devices;
 
 public static class DeviceMapper
 {
-    // Converts device details to UI-friendly text.
+    /// <summary>
+    /// Converts a Device into a DeviceResponse.
+    /// </summary>
     public static DeviceResponse ToResponse(IDevice device)
     {
         var response = new DeviceResponse
@@ -35,8 +37,8 @@ public static class DeviceMapper
                 break;
 
             case Thermostat thermostat:
-                response.Mode = t.Mode;
-                response.DesiredTemperature = t.DesiredTemperature;
+                response.Mode = thermostat.Mode;
+                response.DesiredTemperature = thermostat.DesiredTemperature;
                 break;
             */
 

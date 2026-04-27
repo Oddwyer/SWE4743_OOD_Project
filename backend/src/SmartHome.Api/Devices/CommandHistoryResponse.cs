@@ -1,5 +1,3 @@
-
-
 namespace SmartHome.Api.Devices;
 
 /// <summary>
