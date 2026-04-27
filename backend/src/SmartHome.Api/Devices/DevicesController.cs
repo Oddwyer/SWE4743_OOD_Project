@@ -139,16 +139,16 @@ public class DevicesController : ControllerBase
 
 
     // GET: api/devices/{id}/history
-    /* TODO: Need GetCommandHistory method
-    [HttpGet ("{deviceId:guid}/history")] 
+    [HttpGet("{deviceId:guid}/history")]
     [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-    public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId){
-        
+    public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId)
+    {
+
         // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
-        
+
         // Return 404 if device not found.
         if (device == null)
         {
@@ -156,12 +156,10 @@ public class DevicesController : ControllerBase
             return NotFound();
         }
 
-        
-        /* TODO: Need GetCommandHistory
         _logger.LogWarning("Command history for device with ID {DeviceId} provided.", deviceId);
         var history = _deviceService.GetCommandHistory(deviceId);
         return Ok(history);
-    }*/
+    }
 
 }
 
