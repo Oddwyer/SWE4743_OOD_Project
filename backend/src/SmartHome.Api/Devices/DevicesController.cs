@@ -29,9 +29,9 @@ public class DevicesController : ControllerBase
     [HttpGet]
     // Return item of type iterable list of DeviceResponses, and whether successful.
     [ProducesResponseType(typeof(IEnumerable<DeviceResponse>), StatusCodes.Status200OK)]
-    public ActionResult<IEnumerable<DeviceResponse>> GetAllDevices()
+    public ActionResult<IEnumerable<DeviceResponse>> GetAllDevices([FromQuery] DeviceFilter filter)
     {
-        var devices = _deviceService.GetAllDevices();
+        var devices = _deviceService.GetAllDevices(filter);
 
         // Map domain devices to API response models.
         var response = devices.Select(DeviceMapper.ToResponse);
@@ -61,7 +61,7 @@ public class DevicesController : ControllerBase
     }
 
     // POST: api/devices/
-    [HttpPost]
+    [HttpPost("register-device")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

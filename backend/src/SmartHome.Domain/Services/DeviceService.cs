@@ -1,41 +1,37 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
 
+
 /// TODO: Remove when built by Kataali. Stub for GetDevices();
 
 namespace SmartHome.Domain.Services;
 
 public class DeviceService : IDeviceService
 {
-    private readonly List<IDevice> _devices;
-    //private readonly List<CommandHistoryEntry> _commandHistory = new();
+    private readonly IDeviceRepository _deviceRepository;
+    private readonly List<CommandHistoryEntry> _commandHistory = new();
 
-    public DeviceService()
+    public DeviceService(IDeviceRepository deviceRepository)
     {
-        _devices = new List<IDevice>
-        {
-            //TODO: Add seed data...
-            //new LightDevice, 
-            //new DoorLocks,
-        };
+        _deviceRepository = deviceRepository;
     }
 
-    public IReadOnlyList<IDevice> GetAllDevices()
+    public IEnumerable<IDevice> GetAllDevices(DeviceFilter filter)
     {
-        return _devices;
+        return _deviceRepository.FindAllDevices(filter);
     }
 
     public IDevice? GetDeviceById(Guid deviceId)
     {
-        return _devices.FirstOrDefault(d => d.Id == deviceId);
+        return _deviceRepository.FindDeviceById(deviceId);
     }
 
     public void RegisterDevice(IDevice device)
     {
-        _devices.Add(device);
+        _deviceRepository.SaveDevice(device);
     }
 
-    // TODO: Implement once we know constructor params required by DeviceCommand
+    // TODO: Implement once we know constructor params required by concrete DeviceCommand
     public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
     {
         var device = GetDeviceById(deviceId);
@@ -46,9 +42,7 @@ public class DeviceService : IDeviceService
         }
 
         command.Execute();
-
         return device;
-
     }
 
     public void RemoveDevice(Guid deviceId)
@@ -59,12 +53,12 @@ public class DeviceService : IDeviceService
         {
             throw new KeyNotFoundException("Device not found.");
         }
-        _devices.Remove(device);
+        _deviceRepository.DeleteDevice(deviceId);
     }
 
-    // TODO: Uncomment once CommandHistoryEntry + CommandHistory repository are created.
-    /*public IEnumerable<CommandHistoryEntry> GetCommandHistory (Guid deviceId){
+    public IEnumerable<CommandHistoryEntry> GetCommandHistory(Guid deviceId)
+    {
         return _commandHistory.Where(entry => entry.DeviceId == deviceId);
-    }*/
+    }
 }
 

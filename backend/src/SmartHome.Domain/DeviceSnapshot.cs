@@ -5,11 +5,11 @@ namespace SmartHome.Domain;
 public record DeviceSnapshot
 {
     public Guid Id { get; init; }
-    public string? Name;
+    public string? Name { get; init; }
     public DeviceType Type { get; init; }
-    public string? Location;
+    public string? Location { get; init; }
     public bool IsOn { get; init; }
-    public string? deviceState { get; init; } 
+    public string? DeviceState { get; init; }
     // this will be a string representation of the device's current state, 
     // it can be used to store additional information about the device's state that is 
     // not captured by the IsOn property, for example for a light device it can store the current 

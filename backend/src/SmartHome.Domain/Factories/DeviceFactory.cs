@@ -1,11 +1,13 @@
 using SmartHome.Domain.Devices;
 using System.Collections;
+using SmartHome.Domain;
 
 namespace SmartHome.Domain.Factories;
 
-/// <summary>
-/// Device Factory class for device creation upon input type.
-/// </summary>
+// TODO Kataali:
+// This factory belongs to the Domain layer because it creates domain objects.
+// I added this so API endpoints could be tested but we still need thermostat. You're welcome to flush it out!
+
 public class DeviceFactory : IDeviceFactory
 {
     public DeviceFactory()
@@ -39,7 +41,24 @@ public class DeviceFactory : IDeviceFactory
             default:
                 throw new ArgumentException("Unsupported device type.");
         }
-        ;
+    }
+
+    public IDevice RehydrateDevice(DeviceSnapshot snapshot)
+    {
+        switch (snapshot.Type)
+        {
+            case DeviceType.Light:
+                return new LightDevice(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+
+            case DeviceType.Fan:
+                return new FanDevice(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+
+            case DeviceType.DoorLock:
+                return new DoorLocks(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+
+            default:
+                throw new ArgumentException("Unsupported device type.");
+        }
     }
 }
 
