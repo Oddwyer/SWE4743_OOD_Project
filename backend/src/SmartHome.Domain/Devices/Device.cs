@@ -29,19 +29,20 @@ public abstract class Device : IDevice
         Type = type;
     }
 
-    //TODO - Kataali: Implement (AO: Should this be in IDeviceRepository??)
+    //TODO - Kataali: Implement 
     /*public DeviceSnapshot dehydrate(
         return DeviceSnapshot;
     );*/
 
     // we'll need this for persistence, reference section 2 in project doc
+
     //thought to keep this in because of how the api signatures look
     //although command is higher in abstraction than the device models these would serve as reference 
     //when the command pattern needs to run on specific devices
     //wanted to create a shared template for how devices handle command execution
     //each device will specify how this is done
 
-    /* TODO - Kataali: - Remove later but reference for now.
+    /* TODO - Kataali
         public void runCommands(DeviceCommand command){
             validateDeviceCommand(command); // validation should be universal across devices, help keep things DRY
             runDeviceCommand(command);

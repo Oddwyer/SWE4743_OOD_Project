@@ -11,6 +11,6 @@ public interface IDevice
    //public DeviceState State {get;}
    public bool IsDeviceOn { get; }
 
-   //TODO - Kataali: Do we need this here or in repository?
+   //TODO - Kataali: Implement
    //public DeviceSnapshot dehydrate(); // we'll need this for persistence, reference section 2 in project doc
 }

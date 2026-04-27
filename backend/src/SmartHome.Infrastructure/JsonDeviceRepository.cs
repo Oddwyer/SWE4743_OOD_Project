@@ -109,6 +109,7 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     // Serialize devices for persistence.
+    // TODO - Amber: Replace w/ Device.Dehyradrate when implemented.
     private void SaveDevicesToFile()
     {
         var snapshots = _devices.Select(d => new DeviceSnapshot

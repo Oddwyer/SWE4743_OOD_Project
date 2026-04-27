@@ -11,6 +11,6 @@ public interface IDeviceFactory
     // For frontend device creation.
     public IDevice CreateDevice(string name, string location, string type);
 
-    // For backend device rehydration.
+    // For backend device rehydration (reference section 2 in project doc).
     public IDevice RehydrateDevice(DeviceSnapshot snapshot);
 }
