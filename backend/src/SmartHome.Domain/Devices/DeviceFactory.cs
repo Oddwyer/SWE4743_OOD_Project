@@ -3,6 +3,10 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
 
+/// <summary>
+/// Creates and rehydrates device instances based on type or persisted data.
+/// Centralizes device creation and hides concrete implementations (Factory Pattern).
+/// </summary>
 
 namespace SmartHome.Domain.Devices;
 

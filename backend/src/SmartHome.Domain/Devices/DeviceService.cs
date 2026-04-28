@@ -11,11 +11,19 @@ public class DeviceService : IDeviceService
         _deviceRepository = deviceRepository;
     }
 
+    /// <summary>
+    /// Returns all devices with/without filtered input.
+    /// </summary>
     public IEnumerable<IDevice> GetAllDevices(DeviceFilter filter)
     {
         return _deviceRepository.FindAllDevices(filter);
     }
 
+    /// <summary>
+    /// Returns device matching given ID.
+    /// </summary>
+    /// <param name="deviceId"></param>
+    /// <returns></returns>
     public IDevice? GetDeviceById(Guid deviceId)
     {
         return _deviceRepository.FindDeviceById(deviceId);
@@ -26,7 +34,6 @@ public class DeviceService : IDeviceService
         _deviceRepository.SaveDevice(device);
     }
 
-    // TODO - Amber: Revisit once we know constructor params required by concrete DeviceCommand.
     public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
     {
         var device = GetDeviceById(deviceId);
@@ -36,6 +43,7 @@ public class DeviceService : IDeviceService
             throw new ArgumentException("Device not found.");
         }
 
+        // TODO - if we need to change to .Execute(device).
         command.Execute();
 
         _deviceRepository.SaveDevice(device);

@@ -1,7 +1,7 @@
 namespace SmartHome.Domain.Devices;
 
 /// <summary>
-/// Interface for DeviceFactory for DIP principle and DI.
+/// Defines a contract for creating and rehydrating device instances without exposing concrete device types.
 /// </summary>
 
 public interface IDeviceFactory

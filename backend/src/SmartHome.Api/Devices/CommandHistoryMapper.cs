@@ -4,8 +4,7 @@ using SmartHome.Domain.Commands;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// Maps CommandHistoryEntry domain objects to CommandHistoryResponse DTOs
-/// for API responses.
+/// Maps CommandHistoryEntry domain objects to CommandHistoryResponse DTOs for API responses.
 /// </summary>
 
 public static class CommandHistoryMapper

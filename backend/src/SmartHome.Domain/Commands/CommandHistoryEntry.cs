@@ -11,14 +11,19 @@ public class CommandHistoryEntry
 
     public Guid Id { get; set; }
     public Guid DeviceId { get; set; }
-    public IDeviceCommand Command { get; set; }
+
+    // public IDeviceCommand Command { get; set; }
+
+    // TODO - Kataali: Thoughts of this instead of IDeviceCommand (also see constructor)?
+    public string Operation { get; set; } = string.Empty;
     public DateTime Timestamp { get; set; }
 
     public CommandHistoryEntry(Guid deviceId, IDeviceCommand command)
     {
         Id = Guid.NewGuid();
         DeviceId = deviceId;
-        Command = command;
+        //Command = command;
+        Operation = command.CommandDescription;
         Timestamp = DateTime.UtcNow;
     }
 }
