@@ -7,7 +7,7 @@ namespace SmartHome.Infrastructure;
 /// <summary>
 /// Initial concrete repository using Json --> to be switch to SQLite w/ ORM implementation.
 /// </summary>
-public class JsonDeviceRepository : IDeviceRepository
+public class JsonDeviceRepository : IDeviceRepository, ILocationRepository
 {
     private readonly List<IDevice> _devices = new();
     private readonly Dictionary<string, int> _locations = new();

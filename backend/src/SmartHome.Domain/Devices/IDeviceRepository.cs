@@ -10,7 +10,7 @@ public interface IDeviceRepository
     void DeleteDevice(Guid deviceId);
     bool ThermostatInLocation(string location);
 
-    // Added these so I could persist history. 
+    // Added these to persist device history. 
     IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId);
     void SaveHistoryEntry(CommandHistoryEntry entry);
 }
