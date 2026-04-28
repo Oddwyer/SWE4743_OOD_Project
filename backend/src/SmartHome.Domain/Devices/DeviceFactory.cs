@@ -1,3 +1,9 @@
+using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Devices.DoorLock;
+
+
 namespace SmartHome.Domain.Devices;
 
 // TODO Kataali:
