@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartHome.Api.Simulations;
 
+/// <summary>
+/// Simulation Controller: handles HTTP requests for simulation requests and coordinates responses between the client and application services.
+/// </summary>
+
 [ApiController]
 [Route("api/[controller]")]
 public class SimulationController : ControllerBase
@@ -14,7 +18,9 @@ public class SimulationController : ControllerBase
         _logger = logger;
     }
 
-    // PUT: api/simulation/speed
+    /// <summary>
+    /// PUT: api/simulation/speed
+    /// </summary>
     [HttpPut("speed")]
     public IActionResult SetSimulationSpeed()
     {
@@ -22,7 +28,9 @@ public class SimulationController : ControllerBase
         return Ok("Simulation speed set (stub)");
     }
 
-    // PUT: api/simulation/reset
+    /// <summary>
+    /// PUT: api/simulation/reset
+    /// </summary>
     [HttpPost("reset")]
     public IActionResult ResetSimulation()
     {

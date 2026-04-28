@@ -19,13 +19,12 @@ public class JsonDeviceRepository : IDeviceRepository
     public JsonDeviceRepository(IDeviceFactory deviceFactory)
     {
         _deviceFactory = deviceFactory;
-        LoadDevicesFromFile();
+        LoadFromFile();
     }
 
     /// <summary>
     /// Returns any devices filtered by all or any location, type, or whether it is on.
     /// </summary>
-
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
         var devices = _devices.AsEnumerable();
@@ -102,19 +101,23 @@ public class JsonDeviceRepository : IDeviceRepository
     public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
 
-        var deviceHistory = _commandHistory.Where(d => d.Id == deviceId);
+        var deviceHistory = _commandHistory.Where(d => d.DeviceId == deviceId);
         return deviceHistory.AsEnumerable();
 
     }
+
+    /// <summary>
+    /// Adds history entry to repository.
+    /// </summary>
     public void AddHistoryEntry(CommandHistoryEntry entry)
     {
         _commandHistory.Add(entry);
     }
 
     /// <summary>
-    /// Loads repository from file.
+    /// Loads data from file.
     /// </summary>
-    private void LoadDevicesFromFile()
+    private void LoadFromFile()
     {
         // Check if file path exists and if so, read JSON file, deserialize into devices, and rehydrate to local repository.
         if (!File.Exists(_filePath))
@@ -123,17 +126,57 @@ public class JsonDeviceRepository : IDeviceRepository
         }
 
         var json = File.ReadAllText(_filePath);
-        var snapshots = JsonSerializer.Deserialize<List<DeviceSnapshot>>(json);
+        var data = JsonSerializer.Deserialize<SmartHomeDataSnapshot>(json);
 
-        if (snapshots == null)
+        if (data == null)
         {
             return;
         }
 
-        foreach (var snapshot in snapshots)
+        LoadDevices(data);
+        LoadHistory(data);
+        LoadLocations(data);
+    }
+
+    /// <summary>
+    /// Loads devices from file.
+    /// </summary>
+    private void LoadDevices(SmartHomeDataSnapshot data)
+    {
+
+        foreach (var deviceSnapshot in data.Devices)
         {
-            var device = _deviceFactory.RehydrateDevice(snapshot);
+            var device = _deviceFactory.RehydrateDevice(deviceSnapshot);
             _devices.Add(device);
+        }
+
+    }
+
+    /// <summary>
+    /// Loads locations from file.
+    /// </summary>
+    private void LoadLocations(SmartHomeDataSnapshot data)
+    {
+
+        foreach (var locationSnapshot in data.Locations)
+        {
+            _locations[locationSnapshot.Location] = locationSnapshot.AmbientTemperature;
+        }
+    }
+
+    /// <summary>
+    /// Loads command history from file.
+    /// </summary>
+    private void LoadHistory(SmartHomeDataSnapshot data)
+    {
+        foreach (var historySnapshot in data.CommandHistory)
+        {
+            _commandHistory.Add(CommandHistoryEntry.Rehydrate(
+                historySnapshot.Id,
+                historySnapshot.DeviceId,
+                historySnapshot.Operation,
+                historySnapshot.Timestamp
+            ));
         }
 
     }
@@ -141,7 +184,7 @@ public class JsonDeviceRepository : IDeviceRepository
     /// <summary>
     /// Serialize devices for persistence.
     /// </summary>
-    // TODO - Amber: Replace w/ Device.Dehydrate when implemented.
+    // TODO - Amber: Update to SaveToFile (include locations,history) Replace w/ Device.Dehydrate when implemented.
     private void SaveDevicesToFile()
     {
         var snapshots = _devices.Select(d => new DeviceSnapshot
@@ -157,4 +200,6 @@ public class JsonDeviceRepository : IDeviceRepository
 
         File.WriteAllText(_filePath, json);
     }
+
+    // TODO - Amber: Add GetAmbientTemp, SetAmbientTemp methods.
 }

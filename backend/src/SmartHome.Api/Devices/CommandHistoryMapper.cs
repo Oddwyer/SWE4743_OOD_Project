@@ -4,8 +4,7 @@ using SmartHome.Domain.Commands;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// Maps CommandHistoryEntry domain objects to CommandHistoryResponse DTOs
-/// for API responses.
+/// Maps CommandHistoryEntry domain objects to CommandHistoryResponse DTOs for API responses.
 /// </summary>
 
 public static class CommandHistoryMapper
@@ -18,7 +17,7 @@ public static class CommandHistoryMapper
         return historyEntries.Select(entry => new CommandHistoryResponse
         {
             DeviceId = entry.DeviceId,
-            CommandName = entry.Command.CommandDescription,
+            CommandName = entry.Operation,
             Timestamp = entry.Timestamp
         });
     }

@@ -17,6 +17,9 @@ public class StubDeviceCommand : IDeviceCommand
         Id = device.Id;
     }
 
+    /// <summary>
+    /// Executes command.
+    /// </summary>
     public void Execute()
     {
         // TEMP: no real behavior yet

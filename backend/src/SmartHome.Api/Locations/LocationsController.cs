@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartHome.Api.Locations;
 
+/// <summary>
+/// Location Controller: handles HTTP requests for ambient temperature across locations between the client and application services.
+/// </summary>
+
 [ApiController]
 [Route("api/[controller]")]
 public class LocationsController : ControllerBase
@@ -13,7 +17,9 @@ public class LocationsController : ControllerBase
         _logger = logger;
     }
 
-    // PUT: api/locations/{location}/ambient-temperature
+    /// <summary>
+    /// PUT: api/locations/{location}/ambient-temperature
+    /// </summary>
     [HttpPut("{location}/ambient-temperature")]
     public IActionResult SetAmbientTemperature(string location, [FromBody] SetAmbientTemperatureRequest request)
     {

@@ -14,4 +14,7 @@ public record DeviceSnapshot
     // color and brightness, for a thermostat it can store the current temperature setting, etc.
 
     // Additional properties can be added as needed
+
+    // TODO - Kataali: Confirm which device-specific state fields must be added
+    // for persistence, especially thermostat mode, desired temperature, and state.
 }

@@ -11,22 +11,33 @@ public class DeviceService : IDeviceService
         _deviceRepository = deviceRepository;
     }
 
+    /// <summary>
+    /// Returns all devices with/without filtered input.
+    /// </summary>
     public IEnumerable<IDevice> GetAllDevices(DeviceFilter filter)
     {
         return _deviceRepository.FindAllDevices(filter);
     }
 
+    /// <summary>
+    /// Returns device matching device ID.
+    /// </summary>
     public IDevice? GetDeviceById(Guid deviceId)
     {
         return _deviceRepository.FindDeviceById(deviceId);
     }
 
+    /// <summary>
+    /// Registers new device to repository.
+    /// </summary>
     public void RegisterDevice(IDevice device)
     {
         _deviceRepository.SaveDevice(device);
     }
 
-    // TODO - Amber: Revisit once we know constructor params required by concrete DeviceCommand.
+    /// <summary>
+    /// Apply client command request to device.
+    /// </summary>
     public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
     {
         var device = GetDeviceById(deviceId);
@@ -36,6 +47,7 @@ public class DeviceService : IDeviceService
             throw new ArgumentException("Device not found.");
         }
 
+        // TODO - Kataali: Update to .Execute(device) if needed.
         command.Execute();
 
         _deviceRepository.SaveDevice(device);
@@ -44,6 +56,9 @@ public class DeviceService : IDeviceService
         return device;
     }
 
+    /// <summary>
+    /// Remove device with matching device ID. 
+    /// </summary>
     public void RemoveDevice(Guid deviceId)
     {
         var device = GetDeviceById(deviceId);
@@ -55,6 +70,9 @@ public class DeviceService : IDeviceService
         _deviceRepository.DeleteDevice(deviceId);
     }
 
+    /// <summary>
+    /// Return command history for device with matching device ID.
+    /// </summary>
     public IEnumerable<CommandHistoryEntry> GetCommandHistory(Guid deviceId)
     {
         return _deviceRepository.GetHistoryForDevice(deviceId);
