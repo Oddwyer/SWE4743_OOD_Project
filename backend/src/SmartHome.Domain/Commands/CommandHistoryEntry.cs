@@ -1,5 +1,4 @@
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
 
 namespace SmartHome.Domain.Commands;
 
@@ -25,12 +24,13 @@ public class CommandHistoryEntry
     {
         Id = Guid.NewGuid();
         DeviceId = deviceId;
-        //Command = command;
+        // Command = command; -> Suggest replacing with Operation...
         Operation = command.CommandDescription;
         Timestamp = DateTime.UtcNow;
     }
 
-    // TODO - Kataali: Thoughts on rehydration here?
+    // TODO - Kataali: Thoughts on rehydration shown below?
+
     /// <summary>
     /// Private constructor to rehydrate existing history entries.
     /// </summary>

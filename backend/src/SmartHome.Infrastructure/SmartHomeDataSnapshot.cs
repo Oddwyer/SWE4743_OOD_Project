@@ -7,5 +7,5 @@ public record SmartHomeDataSnapshot
 {
     public List<DeviceSnapshot> Devices { get; init; } = new();
     public List<CommandHistorySnapshot> CommandHistory { get; init; } = new();
-    public List<LocationEnvironmentSnapshot> Locations { get; init; } = new();
+    public List<LocationSnapshot> Locations { get; init; } = new();
 }

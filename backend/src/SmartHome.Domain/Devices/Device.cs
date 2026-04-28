@@ -29,12 +29,8 @@ public abstract class Device : IDevice
         Type = type;
     }
 
-    //TODO - Kataali: Implement 
-    /*public DeviceSnapshot dehydrate(
-        return DeviceSnapshot;
-    );*/
-
-    // we'll need this for persistence, reference section 2 in project doc
+    //TODO - Kataali: I moved this into JsonDeviceRepository. How does that work for you?
+    // public DeviceSnapshot dehydrate(return DeviceSnapshot;);
 
     //thought to keep this in because of how the api signatures look
     //although command is higher in abstraction than the device models these would serve as reference 

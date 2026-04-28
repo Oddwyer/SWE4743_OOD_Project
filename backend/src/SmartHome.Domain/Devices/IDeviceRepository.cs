@@ -12,5 +12,5 @@ public interface IDeviceRepository
 
     // Added these so I could persist history. 
     IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId);
-    void AddHistoryEntry(CommandHistoryEntry entry);
+    void SaveHistoryEntry(CommandHistoryEntry entry);
 }
