@@ -4,6 +4,8 @@ public class FanDevice : Device, IPoweredDevice
 {
     public DevicePowerState powerState { get; private set; }
 
+    public FanSpeed Speed { get; private set; } = FanSpeed.Medium;
+
     public override bool IsDeviceOn => powerState == DevicePowerState.Off;
 
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan)
