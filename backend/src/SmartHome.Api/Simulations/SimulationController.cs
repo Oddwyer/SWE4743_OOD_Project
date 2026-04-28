@@ -16,6 +16,15 @@ public class SimulationController : ControllerBase
     }
 
     /// <summary>
+    /// POST: api/simulation/reset
+    /// </summary>
+    [HttpPost("reset")]
+    public IActionResult ResetSimulation()
+    {
+        return Ok("Simulation reset (stub)");
+    }
+
+    /// <summary>
     /// PUT: api/simulation/speed
     /// </summary>
     [HttpPut("speed")]
@@ -24,14 +33,7 @@ public class SimulationController : ControllerBase
         return Ok("Simulation speed set (stub)");
     }
 
-    /// <summary>
-    /// PUT: api/simulation/reset
-    /// </summary>
-    [HttpPost("reset")]
-    public IActionResult ResetSimulation()
-    {
-        return Ok("Simulation reset (stub)");
-    }
+
 }
 
 

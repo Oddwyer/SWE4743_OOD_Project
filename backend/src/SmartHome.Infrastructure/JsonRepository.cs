@@ -13,7 +13,7 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     private readonly List<IDevice> _devices = new();
     private readonly Dictionary<string, int> _locations = new();
     private readonly List<CommandHistoryEntry> _commandHistory = new();
-    private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/devices.json"));
+    private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/smarthome.json"));
     private readonly IDeviceFactory _deviceFactory;
 
     public JsonRepository(IDeviceFactory deviceFactory)

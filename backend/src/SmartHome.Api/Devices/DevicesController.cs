@@ -62,6 +62,29 @@ public class DevicesController : ControllerBase
     }
 
     /// <summary>
+    /// GET: api/devices/{id}/history
+    /// </summary>
+    [HttpGet("{deviceId:guid}/history")]
+    [ProducesResponseType(typeof(IEnumerable<CommandHistoryResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<IEnumerable<CommandHistoryResponse>> GetDeviceHistory(Guid deviceId)
+    {
+        // Retrieve device to validate existence before operation.
+        var device = _deviceService.GetDeviceById(deviceId);
+
+        // Return 404 if device not found.
+        if (device == null)
+        {
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
+        }
+
+        var history = _deviceService.GetCommandHistory(deviceId);
+        var response = CommandHistoryMapper.ToResponse(history);
+
+        return Ok(response);
+    }
+
+    /// <summary>
     /// POST: api/devices/
     /// </summary>
     [HttpPost("register-device")]
@@ -94,28 +117,6 @@ public class DevicesController : ControllerBase
             });
             // TODO - Amber: Consider catch for invalid operation when attempting to add more than one thermostat per location.
         }
-    }
-
-    /// <summary>
-    /// DELETE: api/devices/{id}
-    /// </summary>
-    [HttpDelete("{deviceId:guid}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RemoveDevice(Guid deviceId)
-    {
-
-        // Retrieve device to validate existence before operation.
-        var device = _deviceService.GetDeviceById(deviceId);
-
-        // Return 404 if device not found.
-        if (device == null)
-        {
-            return NotFound(new { message = $"Device with ID {deviceId} not found." });
-        }
-        _deviceService.RemoveDevice(device.Id);
-
-        return NoContent();
     }
 
     /// <summary>
@@ -171,13 +172,14 @@ public class DevicesController : ControllerBase
     }
 
     /// <summary>
-    /// GET: api/devices/{id}/history
+    /// DELETE: api/devices/{id}
     /// </summary>
-    [HttpGet("{deviceId:guid}/history")]
-    [ProducesResponseType(typeof(IEnumerable<CommandHistoryResponse>), StatusCodes.Status200OK)]
+    [HttpDelete("{deviceId:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<IEnumerable<CommandHistoryResponse>> GetDeviceHistory(Guid deviceId)
+    public IActionResult RemoveDevice(Guid deviceId)
     {
+
         // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
 
@@ -186,13 +188,10 @@ public class DevicesController : ControllerBase
         {
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
+        _deviceService.RemoveDevice(device.Id);
 
-        var history = _deviceService.GetCommandHistory(deviceId);
-        var response = CommandHistoryMapper.ToResponse(history);
-
-        return Ok(response);
+        return NoContent();
     }
-
 }
 
 

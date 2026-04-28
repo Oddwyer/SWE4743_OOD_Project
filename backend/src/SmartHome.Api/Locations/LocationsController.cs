@@ -18,20 +18,6 @@ public class LocationsController : ControllerBase
     }
 
     /// <summary>
-    /// PUT: api/locations/{location}/ambient-temperature
-    /// </summary>
-    [HttpPut("{location}/ambient-temperature")]
-    public IActionResult SetAmbientTemperature(string location, [FromBody] SetAmbientTemperatureRequest request)
-    {
-        _simulationService.SetAmbientTemperature(location, request.Temperature);
-        return Ok(new
-        {
-            Location = location,
-            AmbientTemperature = request.Temperature
-        });
-    }
-
-    /// <summary>
     /// GET: api/locations/{location}/ambient-temperature
     /// </summary>
     [HttpGet("{location}/ambient-temperature")]
@@ -45,5 +31,20 @@ public class LocationsController : ControllerBase
         });
 
     }
+
+    /// <summary>
+    /// PUT: api/locations/{location}/ambient-temperature
+    /// </summary>
+    [HttpPut("{location}/ambient-temperature")]
+    public IActionResult SetAmbientTemperature(string location, [FromBody] SetAmbientTemperatureRequest request)
+    {
+        _simulationService.SetAmbientTemperature(location, request.Temperature);
+        return Ok(new
+        {
+            Location = location,
+            AmbientTemperature = request.Temperature
+        });
+    }
+
 }
 
