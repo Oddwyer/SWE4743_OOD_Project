@@ -18,6 +18,9 @@ public class CommandHistoryEntry
     public string Operation { get; set; } = string.Empty;
     public DateTime Timestamp { get; set; }
 
+    /// <summary>
+    /// Constructor for new history entries.
+    /// </summary>
     public CommandHistoryEntry(Guid deviceId, IDeviceCommand command)
     {
         Id = Guid.NewGuid();
@@ -25,5 +28,25 @@ public class CommandHistoryEntry
         //Command = command;
         Operation = command.CommandDescription;
         Timestamp = DateTime.UtcNow;
+    }
+
+    // TODO - Kataali: Thoughts on rehydration here?
+    /// <summary>
+    /// Private constructor to rehydrate existing history entries.
+    /// </summary>
+    private CommandHistoryEntry(Guid id, Guid deviceId, string operation, DateTime timestamp)
+    {
+        Id = id;
+        DeviceId = deviceId;
+        Operation = operation;
+        Timestamp = timestamp;
+    }
+
+    /// <summary>
+    /// Forward facing method to rehydrate existing history entries.
+    /// </summary>
+    public static CommandHistoryEntry Rehydrate(Guid id, Guid deviceId, string operation, DateTime timestamp)
+    {
+        return new CommandHistoryEntry(id, deviceId, operation, timestamp);
     }
 }

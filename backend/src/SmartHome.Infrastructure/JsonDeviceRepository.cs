@@ -25,7 +25,6 @@ public class JsonDeviceRepository : IDeviceRepository
     /// <summary>
     /// Returns any devices filtered by all or any location, type, or whether it is on.
     /// </summary>
-
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
         var devices = _devices.AsEnumerable();
@@ -106,13 +105,17 @@ public class JsonDeviceRepository : IDeviceRepository
         return deviceHistory.AsEnumerable();
 
     }
+
+    /// <summary>
+    /// Adds history entry to repository.
+    /// </summary>
     public void AddHistoryEntry(CommandHistoryEntry entry)
     {
         _commandHistory.Add(entry);
     }
 
     /// <summary>
-    /// Loads repository from file.
+    /// Loads devices from file.
     /// </summary>
     private void LoadDevicesFromFile()
     {
@@ -123,20 +126,78 @@ public class JsonDeviceRepository : IDeviceRepository
         }
 
         var json = File.ReadAllText(_filePath);
-        var snapshots = JsonSerializer.Deserialize<List<DeviceSnapshot>>(json);
+        var data = JsonSerializer.Deserialize<List<SmartHomeDataSnapshot>>(json);
 
-        if (snapshots == null)
+        if (data == null)
         {
             return;
         }
 
-        foreach (var snapshot in snapshots)
+        foreach (var deviceSnapshot in data.Devices)
         {
             var device = _deviceFactory.RehydrateDevice(snapshot);
             _devices.Add(device);
         }
 
     }
+
+    /// <summary>
+    /// Loads locations from file.
+    /// </summary>
+    private void LoadLocationsFromFile()
+    {
+        // Check if file path exists and if so, read JSON file, deserialize into devices, and rehydrate to local repository.
+        if (!File.Exists(_filePath))
+        {
+            return;
+        }
+
+        var json = File.ReadAllText(_filePath);
+        var data = JsonSerializer.Deserialize<List<SmartHomeDataSnapshot>>(json);
+
+        if (data == null)
+        {
+            return;
+        }
+
+        foreach (var locationSnapshot in data.Locations)
+        {
+            _locations[locationSnapshot.Location] = locationSnapshot.AmbientTemperature;
+        }
+
+    }
+
+    /// <summary>
+    /// Loads command history from file.
+    /// </summary>
+    private void LoadHistoryFromFile()
+    {
+        // Check if file path exists and if so, read JSON file, deserialize into devices, and rehydrate to local repository.
+        if (!File.Exists(_filePath))
+        {
+            return;
+        }
+
+        var json = File.ReadAllText(_filePath);
+        var data = JsonSerializer.Deserialize<List<SmartHomeDataSnapshot>>(json);
+
+        if (data == null)
+        {
+            return;
+        }
+
+        foreach (var historySnapshot in data.CommandHistory)
+        {
+            _commandHistory.Add(CommandHistoryEntry.Rehydrate(
+                historySnapshot.Id,
+                historySnapshot.DeviceId,
+                historySnapshot.Operation,
+                historySnapshot.ThermostatInLocation
+            ));
+        }
+
+    }
+
 
     /// <summary>
     /// Serialize devices for persistence.

@@ -18,7 +18,7 @@ public class DeviceFactory : IDeviceFactory
 {
 
     /// <summary>
-    /// Creates specific device based on type entered.
+    /// Creates new specific device based on type entered.
     /// </summary>
     public IDevice CreateDevice(string name, string location, string type)
     {
