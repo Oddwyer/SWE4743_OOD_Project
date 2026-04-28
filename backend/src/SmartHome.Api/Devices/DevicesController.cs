@@ -15,14 +15,12 @@ public class DevicesController : ControllerBase
     private readonly IDeviceService _deviceService;
     private readonly IDeviceFactory _deviceFactory;
     private readonly ICommandFactory _commandFactory;
-    private readonly ILogger<DevicesController> _logger;
 
-    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory, ILogger<DevicesController> logger)
+    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory)
     {
         _deviceService = deviceService;
         _deviceFactory = deviceFactory;
         _commandFactory = commandFactory;
-        _logger = logger;
     }
 
     /// <summary>
@@ -50,17 +48,38 @@ public class DevicesController : ControllerBase
     {
 
         // Retrieve device to validate existence before operation.
-        _logger.LogInformation("Fetching device with id {DeviceId}.", deviceId);
         var device = _deviceService.GetDeviceById(deviceId);
 
         // Return 404 if device not found.
         if (device == null)
         {
-            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
         var response = DeviceMapper.ToResponse(device);
+
+        return Ok(response);
+    }
+
+    /// <summary>
+    /// GET: api/devices/{id}/history
+    /// </summary>
+    [HttpGet("{deviceId:guid}/history")]
+    [ProducesResponseType(typeof(IEnumerable<CommandHistoryResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<IEnumerable<CommandHistoryResponse>> GetDeviceHistory(Guid deviceId)
+    {
+        // Retrieve device to validate existence before operation.
+        var device = _deviceService.GetDeviceById(deviceId);
+
+        // Return 404 if device not found.
+        if (device == null)
+        {
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
+        }
+
+        var history = _deviceService.GetCommandHistory(deviceId);
+        var response = CommandHistoryMapper.ToResponse(history);
 
         return Ok(response);
     }
@@ -75,8 +94,7 @@ public class DevicesController : ControllerBase
     {
         try
         {
-            // Log request and create device via factory.
-            _logger.LogInformation("Registering new device {Name} at {Location}.", request.DeviceName, request.DeviceLocation);
+            // Create device via factory.
             var device = _deviceFactory.CreateDevice(
             request.DeviceName,
             request.DeviceLocation,
@@ -92,13 +110,64 @@ public class DevicesController : ControllerBase
         catch (ArgumentException ex)
         {
             // Return 400 if device could not be created.
-            _logger.LogError(ex, "Failed to create device.");
             return BadRequest(new
             {
                 error = ex.Message,
                 message = "Unable to create device. Please try again."
             });
             // TODO - Amber: Consider catch for invalid operation when attempting to add more than one thermostat per location.
+        }
+    }
+
+    /// <summary>
+    /// PUT: api/devices/{id}/commands
+    /// </summary>
+    [HttpPut("{deviceId:guid}/commands")]
+    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
+    {
+        // Retrieve device to validate existence before operation.
+        var device = _deviceService.GetDeviceById(deviceId);
+
+        // Return 404 if device not found.
+        if (device == null)
+        {
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
+        }
+
+        if (request == null || string.IsNullOrWhiteSpace(request.Command))
+        {
+            return BadRequest(new { message = "Command is required." });
+        }
+
+
+        try
+        {
+            // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
+            var command = new StubDeviceCommand(device);
+
+            var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
+            var response = DeviceMapper.ToResponse(updatedDevice);
+
+            return Ok(response);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Invalid command request."
+            });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Command cannot be applied to the device in its current state."
+            });
         }
     }
 
@@ -117,99 +186,12 @@ public class DevicesController : ControllerBase
         // Return 404 if device not found.
         if (device == null)
         {
-            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
-
-        _logger.LogInformation("Removing device with ID {DeviceId}.", deviceId);
         _deviceService.RemoveDevice(device.Id);
 
         return NoContent();
     }
-
-    /// <summary>
-    /// PUT: api/devices/{id}/state
-    /// </summary>
-    [HttpPut("{deviceId:guid}/state")]
-    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
-    {
-        // Retrieve device to validate existence before operation.
-        var device = _deviceService.GetDeviceById(deviceId);
-
-        // Return 404 if device not found.
-        if (device == null)
-        {
-            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound(new { message = $"Device with ID {deviceId} not found." });
-        }
-
-        if (request == null || string.IsNullOrWhiteSpace(request.Command))
-        {
-            return BadRequest(new { message = "Command is required." });
-        }
-
-
-        try
-        {
-            var command = new StubDeviceCommand(device); // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
-
-            _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
-
-            var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
-            var response = DeviceMapper.ToResponse(updatedDevice);
-
-            return Ok(response);
-        }
-        catch (ArgumentException ex)
-        {
-            _logger.LogWarning(ex, "Invalid command {Command} for device {DeviceId}.", request.Command, deviceId);
-
-            return BadRequest(new
-            {
-                error = ex.Message,
-                message = "Invalid command request."
-            });
-        }
-        catch (InvalidOperationException ex)
-        {
-            _logger.LogWarning(ex, "Command {Command} cannot be applied to device {DeviceId}.", request.Command, deviceId);
-
-            return BadRequest(new
-            {
-                error = ex.Message,
-                message = "Command cannot be applied to the device in its current state."
-            });
-        }
-    }
-
-    /// <summary>
-    /// GET: api/devices/{id}/history
-    /// </summary>
-    [HttpGet("{deviceId:guid}/history")]
-    [ProducesResponseType(typeof(IEnumerable<CommandHistoryResponse>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<IEnumerable<CommandHistoryResponse>> GetDeviceHistory(Guid deviceId)
-    {
-        // Retrieve device to validate existence before operation.
-        var device = _deviceService.GetDeviceById(deviceId);
-
-        // Return 404 if device not found.
-        if (device == null)
-        {
-            _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound(new { message = $"Device with ID {deviceId} not found." });
-        }
-
-        _logger.LogInformation("Fetching history for device with ID {DeviceId}.", deviceId);
-        var history = _deviceService.GetCommandHistory(deviceId);
-        var response = CommandHistoryMapper.ToResponse(history);
-
-        return Ok(response);
-    }
-
 }
 
 

@@ -1,8 +1,4 @@
-using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Locations;
-
-namespace SmartHome.Domain;
+namespace SmartHome.Infrastructure;
 
 /// <summary>
 /// Represents the complete persisted state of the application, including devices, command history, and location environments.
@@ -11,5 +7,5 @@ public record SmartHomeDataSnapshot
 {
     public List<DeviceSnapshot> Devices { get; init; } = new();
     public List<CommandHistorySnapshot> CommandHistory { get; init; } = new();
-    public List<LocationEnvironmentSnapshot> Locations { get; init; } = new();
+    public List<LocationSnapshot> Locations { get; init; } = new();
 }

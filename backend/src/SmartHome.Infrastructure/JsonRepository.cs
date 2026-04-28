@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain;
+using SmartHome.Domain.Locations;
 using System.Text.Json;
 
 namespace SmartHome.Infrastructure;
@@ -8,22 +8,22 @@ namespace SmartHome.Infrastructure;
 /// <summary>
 /// Initial concrete repository using Json --> to be switch to SQLite w/ ORM implementation.
 /// </summary>
-public class JsonDeviceRepository : IDeviceRepository
+public class JsonRepository : IDeviceRepository, ILocationRepository
 {
     private readonly List<IDevice> _devices = new();
     private readonly Dictionary<string, int> _locations = new();
     private readonly List<CommandHistoryEntry> _commandHistory = new();
-    private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/devices.json"));
+    private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/smarthome.json"));
     private readonly IDeviceFactory _deviceFactory;
 
-    public JsonDeviceRepository(IDeviceFactory deviceFactory)
+    public JsonRepository(IDeviceFactory deviceFactory)
     {
         _deviceFactory = deviceFactory;
         LoadFromFile();
     }
 
     /// <summary>
-    /// Returns any devices filtered by all or any location, type, or whether it is on.
+    /// Returns all devices that match the provided filter criteria (type, location, and/or on/off state).
     /// </summary>
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
@@ -46,7 +46,7 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Returns any devices matching given ID.
+    /// Finds and returns a single device by its ID, or null if not found.
     /// </summary>
     public IDevice? FindDeviceById(Guid deviceId)
     {
@@ -54,7 +54,7 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Checks if device exists. If so, updates it. If not, adds it to the repository.
+    /// Adds a new device or updates an existing one in memory, then persists all data to the JSON file.
     /// </summary>
     public IDevice SaveDevice(IDevice device)
     {
@@ -69,12 +69,12 @@ public class JsonDeviceRepository : IDeviceRepository
             _devices.Add(device);
 
         }
-        SaveDevicesToFile();
+        SaveToFile();
         return device;
     }
 
     /// <summary>
-    /// Checks if device exists. If so, remove it from repository.
+    /// Removes a device from the repository if it exists and persists the change to the JSON file.
     /// </summary>
     public void DeleteDevice(Guid deviceId)
     {
@@ -82,13 +82,13 @@ public class JsonDeviceRepository : IDeviceRepository
         if (existing != null)
         {
             _devices.Remove(existing);
-            SaveDevicesToFile();
+            SaveToFile();
         }
 
     }
 
     /// <summary>
-    /// Confirms if thermostat already exists in given location (enforcing constraint of one per location).
+    /// Checks whether a thermostat already exists in a given location (used to enforce one-thermostat-per-location rule).
     /// </summary>
     public bool ThermostatInLocation(string location)
     {
@@ -96,7 +96,7 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Returns any history for a device with matching ID.
+    /// Returns all command history entries associated with a specific device.
     /// </summary>
     public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
@@ -107,15 +107,16 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Adds history entry to repository.
+    /// Adds a new command history entry and persists the updated data to the JSON file.
     /// </summary>
-    public void AddHistoryEntry(CommandHistoryEntry entry)
+    public void SaveHistoryEntry(CommandHistoryEntry entry)
     {
         _commandHistory.Add(entry);
+        SaveToFile();
     }
 
     /// <summary>
-    /// Loads data from file.
+    /// Reads the JSON file (if it exists), deserializes it into snapshots, and loads all data into memory.
     /// </summary>
     private void LoadFromFile()
     {
@@ -139,21 +140,28 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Loads devices from file.
+    /// Rehydrates device snapshots into real domain device objects using the factory and stores them in memory.
     /// </summary>
     private void LoadDevices(SmartHomeDataSnapshot data)
     {
 
         foreach (var deviceSnapshot in data.Devices)
         {
-            var device = _deviceFactory.RehydrateDevice(deviceSnapshot);
+            var device = _deviceFactory.RehydrateDevice(
+                deviceSnapshot.Id,
+                deviceSnapshot.Name ?? string.Empty,
+                deviceSnapshot.Location ?? string.Empty,
+                deviceSnapshot.Type,
+                deviceSnapshot.IsOn,
+                deviceSnapshot.DeviceState
+            );
             _devices.Add(device);
         }
 
     }
 
     /// <summary>
-    /// Loads locations from file.
+    /// Loads stored location temperature data into the in-memory dictionary.
     /// </summary>
     private void LoadLocations(SmartHomeDataSnapshot data)
     {
@@ -165,7 +173,7 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Loads command history from file.
+    /// Rehydrates command history snapshots into domain history entries and stores them in memory.
     /// </summary>
     private void LoadHistory(SmartHomeDataSnapshot data)
     {
@@ -182,24 +190,83 @@ public class JsonDeviceRepository : IDeviceRepository
     }
 
     /// <summary>
-    /// Serialize devices for persistence.
+    /// Dehydrates all in-memory data (devices, history, locations), bundles it into a root snapshot, 
+    /// serializes it to JSON, and writes it to file.
     /// </summary>
-    // TODO - Amber: Update to SaveToFile (include locations,history) Replace w/ Device.Dehydrate when implemented.
-    private void SaveDevicesToFile()
+    private void SaveToFile()
     {
-        var snapshots = _devices.Select(d => new DeviceSnapshot
+        var data = new SmartHomeDataSnapshot
+        {
+            Devices = DehydrateDevices(),
+            CommandHistory = DehydrateHistory(),
+            Locations = DehydrateLocations()
+        };
+
+
+        var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+
+        File.WriteAllText(_filePath, json);
+    }
+
+    /// <summary>
+    /// Converts all domain device objects into data-only snapshots for persistence.
+    /// </summary>
+    private List<DeviceSnapshot> DehydrateDevices()
+    {
+        return _devices.Select(d => new DeviceSnapshot
         {
             Id = d.Id,
             Name = d.DeviceName,
             Location = d.DeviceLocation,
             Type = d.Type,
-            IsOn = d.IsDeviceOn
+            IsOn = d.IsDeviceOn,
+            DeviceState = null
         }).ToList();
-
-        var json = JsonSerializer.Serialize(snapshots);
-
-        File.WriteAllText(_filePath, json);
     }
 
-    // TODO - Amber: Add GetAmbientTemp, SetAmbientTemp methods.
+    /// <summary>
+    /// Converts command history entries into snapshot objects for persistence.
+    /// </summary>
+    private List<CommandHistorySnapshot> DehydrateHistory()
+    {
+        return _commandHistory.Select(h => new CommandHistorySnapshot
+        {
+            Id = h.Id,
+            DeviceId = h.DeviceId,
+            Operation = h.Operation,
+            Timestamp = h.Timestamp
+        }).ToList();
+    }
+
+    /// <summary>
+    /// Converts in-memory location temperature data into snapshot objects for persistence.
+    /// </summary>
+    private List<LocationSnapshot> DehydrateLocations()
+    {
+        return _locations.Select(l => new LocationSnapshot
+        {
+            Location = l.Key,
+            AmbientTemperature = l.Value
+        }).ToList();
+    }
+
+    /// <summary>
+    /// Retrieves the stored ambient temperature for a given location, or returns null if no temperature has been recorded.
+    /// </summary>
+    public int? GetAmbientTemperature(string location)
+    {
+        return _locations.TryGetValue(location, out var temp) ? temp : null;
+    }
+
+    /// <summary>
+    /// Adds or updates the ambient temperature for a given location and persists the updated state to the JSON file.
+    /// </summary>
+    public void SaveAmbientTemperature(string location, int temperature)
+    {
+        _locations[location] = temperature;
+        SaveToFile();
+    }
 }

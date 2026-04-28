@@ -1,6 +1,8 @@
 using SmartHome.Domain;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Simulations;
+using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IDeviceService, DeviceService>();
+builder.Services.AddSingleton<ISimulationService, SimulationService>();
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
-builder.Services.AddSingleton<IDeviceRepository, JsonDeviceRepository>();
+builder.Services.AddSingleton<IDeviceRepository, JsonRepository>();
+builder.Services.AddSingleton<ILocationRepository, JsonRepository>();
+
 builder.Services.AddCors(options =>
 {
     // TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?

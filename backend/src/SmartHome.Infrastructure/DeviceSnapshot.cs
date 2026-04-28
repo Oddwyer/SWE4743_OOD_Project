@@ -1,4 +1,6 @@
-namespace SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices;
+
+namespace SmartHome.Infrastructure;
 
 public record DeviceSnapshot
 {

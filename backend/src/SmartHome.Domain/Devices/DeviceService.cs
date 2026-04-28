@@ -51,7 +51,7 @@ public class DeviceService : IDeviceService
         command.Execute();
 
         _deviceRepository.SaveDevice(device);
-        _deviceRepository.AddHistoryEntry(new CommandHistoryEntry(deviceId, command));
+        _deviceRepository.SaveHistoryEntry(new CommandHistoryEntry(deviceId, command));
 
         return device;
     }

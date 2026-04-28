@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 namespace SmartHome.Api.Devices;
 
@@ -16,4 +17,5 @@ public abstract class BaseDevice
 
     [Required]
     public string Type { get; set; } = string.Empty;
+
 }
