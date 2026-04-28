@@ -48,4 +48,16 @@ public class SimulationService : ISimulationService
 
         return _locationRepository.GetAmbientTemperature(location) ?? DefaultAmbientTemperature;
     }
+
+    public void SetSimulationSpeed(int speedMultiplier)
+    {
+        throw new NotImplementedException(
+            "Simulation speed is pending simulation engine implementation.");
+    }
+
+    public void ResetSimulation()
+    {
+        throw new NotImplementedException(
+            "Simulation reset is pending reset behavior implementation.");
+    }
 }
