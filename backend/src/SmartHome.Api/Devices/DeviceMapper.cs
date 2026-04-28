@@ -33,14 +33,14 @@ public static class DeviceMapper
         {
             case LightDevice light:
                 response.Brightness = light.lightBrightness;
-                response.Color = light.colorState.ToString();
+                response.Color = light.colorState;
                 break;
 
-            /*case FanDevice fan:
-                response.Speed = fan.FanSpeed;
+            case FanDevice fan:
+                response.Speed = fan.Speed;
                 break;
 
-            case Thermostat thermostat:
+            /*case Thermostat thermostat:
                 response.Mode = thermostat.Mode;
                 response.DesiredTemperature = thermostat.DesiredTemperature;
                 break;

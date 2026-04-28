@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace SmartHome.Api.Simulations;
+namespace SmartHome.Domain.Simulations;
 
 public enum SimulationSpeed
 {

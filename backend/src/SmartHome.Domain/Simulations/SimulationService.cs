@@ -1,5 +1,3 @@
-
-using SmartHome.Api.Simulations;
 using SmartHome.Domain.Locations;
 
 namespace SmartHome.Domain.Simulations;

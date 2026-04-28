@@ -1,3 +1,5 @@
+using SmartHome.Domain.Simulations;
+
 namespace SmartHome.Api.Simulations;
 
 public class SetSimulationSpeedRequest
