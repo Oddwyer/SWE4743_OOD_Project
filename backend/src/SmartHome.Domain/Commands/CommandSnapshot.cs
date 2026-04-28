@@ -2,7 +2,7 @@ using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Commands;
 
-public record DeviceSnapshot
+public record CommandSnapshot
 {
     public Guid Id { get; init; }
     public string? Name { get; init; }
