@@ -1,7 +1,6 @@
 using FluentValidation;
-using SmartHome.Api.Devices;
 
-namespace SmartHome.Api.Validators;
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// Base validator for device-related requests. Validates common properties such as device name, location, and type.
@@ -19,6 +18,6 @@ public class BaseDeviceValidator<T> : AbstractValidator<T> where T : BaseDevice
             .NotEmpty();
 
         RuleFor(x => x.Type)
-            .NotEmpty();
+            .IsInEnum();
     }
 }

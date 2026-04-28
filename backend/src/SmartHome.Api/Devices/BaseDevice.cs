@@ -1,3 +1,5 @@
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Api.Devices;
 
 /// <summary>
@@ -11,6 +13,6 @@ public abstract class BaseDevice
 
     public string DeviceLocation { get; set; } = string.Empty;
 
-    public string Type { get; set; } = string.Empty;
+    public DeviceType Type { get; set; }
 
 }

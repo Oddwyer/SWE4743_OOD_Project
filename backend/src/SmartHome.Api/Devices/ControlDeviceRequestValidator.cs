@@ -1,7 +1,6 @@
 using FluentValidation;
-using SmartHome.Api.Devices;
 
-namespace SmartHome.Api.Validators;
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// Validator for ControlDeviceRequest. Ensures that the command is valid for the device type.

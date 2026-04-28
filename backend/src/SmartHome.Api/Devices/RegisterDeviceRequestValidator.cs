@@ -1,7 +1,6 @@
 using FluentValidation;
-using SmartHome.Api.Devices;
 
-namespace SmartHome.Api.Validators;
+namespace SmartHome.Api.Devices;
 
 /// <summary>
 /// Validator for RegisterDeviceRequest. Ensures that the device name, location, and type are valid.
@@ -10,6 +9,5 @@ public class RegisterDeviceRequestValidator : BaseDeviceValidator<RegisterDevice
 {
     public RegisterDeviceRequestValidator()
     {
-
     }
 }

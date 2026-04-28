@@ -23,7 +23,7 @@ public static class DeviceMapper
             Id = device.Id,
             DeviceName = device.DeviceName,
             DeviceLocation = device.DeviceLocation,
-            Type = device.Type.ToString(),
+            Type = device.Type,
             IsDeviceOn = device.IsDeviceOn,
         };
 

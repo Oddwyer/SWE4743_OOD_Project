@@ -1,7 +1,6 @@
 using FluentValidation;
-using SmartHome.Api.Locations;
 
-namespace SmartHome.Api.Validators;
+namespace SmartHome.Api.Locations;
 
 /// <summary>
 /// Validator for SetAmbientTemperatureRequest. Ensures that the temperature is within a valid range.
