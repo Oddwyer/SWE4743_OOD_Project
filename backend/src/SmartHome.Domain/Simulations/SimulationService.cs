@@ -1,9 +1,16 @@
 namespace SmartHome.Domain.Simulations;
 
+/// <summary>
+/// Handles environment simulation operations such as setting and retrieving ambient temperature per location, 
+/// delegating persistence to the repository.
+/// </summary>
 public class SimulationService : ISimulationService
 {
     private readonly Dictionary<string, double> _ambientTemperatures = new();
 
+    /// <summary>
+    /// Set ambient temperature based on client's requested location and temperature.
+    /// </summary>
     public void SetAmbientTemperature(string location, int temperature)
     {
         if (string.IsNullOrWhiteSpace(location))
@@ -17,6 +24,10 @@ public class SimulationService : ISimulationService
         }
 
     }
+
+    /// <summary>
+    /// Return ambient temperature for a given location.
+    /// </summary>
     public double GetAmbientTemperature(string location)
     {
         if (string.IsNullOrWhiteSpace(location))

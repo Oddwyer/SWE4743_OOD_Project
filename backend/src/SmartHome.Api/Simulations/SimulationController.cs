@@ -5,6 +5,7 @@ namespace SmartHome.Api.Simulations;
 /// <summary>
 /// Simulation Controller: handles HTTP requests for simulation requests and coordinates responses between the client and application services.
 /// </summary>
+
 [ApiController]
 [Route("api/[controller]")]
 public class SimulationController : ControllerBase

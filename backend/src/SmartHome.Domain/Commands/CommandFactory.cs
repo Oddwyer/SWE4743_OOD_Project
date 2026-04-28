@@ -14,7 +14,7 @@ public class CommandFactory : ICommandFactory
 
     public IDeviceCommand CreateCommand(string command, IDevice device)
     {
-        // TODO - Kataali: Placeholder for concrete commands.
+        // TODO - Kataali: Replace placeholder with concrete commands.
         return new StubDeviceCommand(device);
     }
 }

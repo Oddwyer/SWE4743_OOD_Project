@@ -7,6 +7,9 @@ namespace SmartHome.Domain.Commands;
 /// </summary>
 public interface ICommandFactory
 {
+    /// <summary>
+    /// Creates new command.
+    /// </summary>
     public IDeviceCommand CreateCommand(string command, IDevice device);
 
 }

@@ -14,7 +14,7 @@ public class CommandHistoryEntry
 
     // public IDeviceCommand Command { get; set; }
 
-    // TODO - Kataali: Thoughts of this instead of IDeviceCommand (also see constructor)?
+    // TODO - Kataali: Thoughts of this property instead of IDeviceCommand (also see constructor)?
     public string Operation { get; set; } = string.Empty;
     public DateTime Timestamp { get; set; }
 

@@ -27,7 +27,6 @@ public class DevicesController : ControllerBase
 
     /// <summary>
     /// GET: api/devices
-    /// Return item of type iterable list of DeviceResponses, and whether successful.
     /// </summary>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<DeviceResponse>), StatusCodes.Status200OK)]

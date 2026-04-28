@@ -16,11 +16,10 @@ namespace SmartHome.Domain.Devices;
 
 public class DeviceFactory : IDeviceFactory
 {
-    public DeviceFactory()
-    {
 
-    }
-
+    /// <summary>
+    /// Creates specific device based on type entered.
+    /// </summary>
     public IDevice CreateDevice(string name, string location, string type)
     {
         Guid id = Guid.NewGuid();
@@ -49,6 +48,9 @@ public class DeviceFactory : IDeviceFactory
         }
     }
 
+    /// <summary>
+    /// Rehydrates saved data into device objects.
+    /// </summary>
     public IDevice RehydrateDevice(DeviceSnapshot snapshot)
     {
         switch (snapshot.Type)

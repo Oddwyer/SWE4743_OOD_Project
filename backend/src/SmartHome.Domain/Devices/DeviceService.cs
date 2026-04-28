@@ -20,20 +20,24 @@ public class DeviceService : IDeviceService
     }
 
     /// <summary>
-    /// Returns device matching given ID.
+    /// Returns device matching device ID.
     /// </summary>
-    /// <param name="deviceId"></param>
-    /// <returns></returns>
     public IDevice? GetDeviceById(Guid deviceId)
     {
         return _deviceRepository.FindDeviceById(deviceId);
     }
 
+    /// <summary>
+    /// Registers new device to repository.
+    /// </summary>
     public void RegisterDevice(IDevice device)
     {
         _deviceRepository.SaveDevice(device);
     }
 
+    /// <summary>
+    /// Apply client command request to device.
+    /// </summary>
     public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
     {
         var device = GetDeviceById(deviceId);
@@ -52,6 +56,9 @@ public class DeviceService : IDeviceService
         return device;
     }
 
+    /// <summary>
+    /// Remove device with matching device ID. 
+    /// </summary>
     public void RemoveDevice(Guid deviceId)
     {
         var device = GetDeviceById(deviceId);
@@ -63,6 +70,9 @@ public class DeviceService : IDeviceService
         _deviceRepository.DeleteDevice(deviceId);
     }
 
+    /// <summary>
+    /// Return command history for device with matching device ID.
+    /// </summary>
     public IEnumerable<CommandHistoryEntry> GetCommandHistory(Guid deviceId)
     {
         return _deviceRepository.GetHistoryForDevice(deviceId);
