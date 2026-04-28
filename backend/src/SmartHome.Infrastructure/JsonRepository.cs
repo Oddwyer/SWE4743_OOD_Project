@@ -1,5 +1,6 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
+using SmartHome.Domain.Locations;
 using System.Text.Json;
 
 namespace SmartHome.Infrastructure;
@@ -7,7 +8,7 @@ namespace SmartHome.Infrastructure;
 /// <summary>
 /// Initial concrete repository using Json --> to be switch to SQLite w/ ORM implementation.
 /// </summary>
-public class JsonDeviceRepository : IDeviceRepository, ILocationRepository
+public class JsonRepository : IDeviceRepository, ILocationRepository
 {
     private readonly List<IDevice> _devices = new();
     private readonly Dictionary<string, int> _locations = new();
@@ -15,7 +16,7 @@ public class JsonDeviceRepository : IDeviceRepository, ILocationRepository
     private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/devices.json"));
     private readonly IDeviceFactory _deviceFactory;
 
-    public JsonDeviceRepository(IDeviceFactory deviceFactory)
+    public JsonRepository(IDeviceFactory deviceFactory)
     {
         _deviceFactory = deviceFactory;
         LoadFromFile();

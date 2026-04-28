@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Devices;
+namespace SmartHome.Domain.Locations;
 
 public interface ILocationRepository
 {

@@ -10,12 +10,9 @@ namespace SmartHome.Api.Simulations;
 [Route("api/[controller]")]
 public class SimulationController : ControllerBase
 {
-
-    private readonly ILogger<SimulationController> _logger;
-
-    public SimulationController(ILogger<SimulationController> logger)
+    public SimulationController()
     {
-        _logger = logger;
+
     }
 
     /// <summary>
@@ -24,7 +21,6 @@ public class SimulationController : ControllerBase
     [HttpPut("speed")]
     public IActionResult SetSimulationSpeed()
     {
-        _logger.LogInformation("Simulation speed update requested.");
         return Ok("Simulation speed set (stub)");
     }
 
@@ -34,7 +30,6 @@ public class SimulationController : ControllerBase
     [HttpPost("reset")]
     public IActionResult ResetSimulation()
     {
-        _logger.LogInformation("Simulation reset requested.");
         return Ok("Simulation reset (stub)");
     }
 }

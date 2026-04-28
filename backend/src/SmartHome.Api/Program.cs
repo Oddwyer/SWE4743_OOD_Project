@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IDeviceService, DeviceService>();
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
-builder.Services.AddSingleton<IDeviceRepository, JsonDeviceRepository>();
+builder.Services.AddSingleton<IDeviceRepository, JsonRepository>();
 builder.Services.AddCors(options =>
 {
     // TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
