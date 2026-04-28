@@ -1,7 +1,7 @@
 using System.Reflection.Metadata.Ecma335;
+using SmartHome.Domain.Commands;
 
 namespace SmartHome.Domain.Devices;
-
 
 // basic template of what all devices will need in the home simulator
 public abstract class Device : IDevice
@@ -13,7 +13,7 @@ public abstract class Device : IDevice
 
     //each device needs to be able to control/manage its own state
 
-    //TODO: Create DeviceState class...
+    //TODO - Kataali: Create DeviceState class...
     //public abstract DeviceState State {get; protected set;} 
     public abstract bool IsDeviceOn { get; }
 
@@ -29,19 +29,20 @@ public abstract class Device : IDevice
         Type = type;
     }
 
-    //TODO: Implement
+    //TODO - Kataali: Implement 
     /*public DeviceSnapshot dehydrate(
         return DeviceSnapshot;
     );*/
 
     // we'll need this for persistence, reference section 2 in project doc
+
     //thought to keep this in because of how the api signatures look
     //although command is higher in abstraction than the device models these would serve as reference 
     //when the command pattern needs to run on specific devices
     //wanted to create a shared template for how devices handle command execution
     //each device will specify how this is done
 
-    /* TODO: AO - Remove later but reference for now. Got it! :)
+    /* TODO - Kataali
         public void runCommands(DeviceCommand command){
             validateDeviceCommand(command); // validation should be universal across devices, help keep things DRY
             runDeviceCommand(command);

@@ -1,11 +1,7 @@
-using SmartHome.Domain.Devices;
-using System.Collections;
-using SmartHome.Domain;
-
-namespace SmartHome.Domain.Factories;
+namespace SmartHome.Domain.Devices;
 
 // TODO Kataali:
-// This factory belongs to the Domain layer because it creates domain objects.
+// AO: This factory belongs to the Domain layer because it creates domain objects.
 // I added this so API endpoints could be tested but we still need thermostat. You're welcome to flush it out!
 
 public class DeviceFactory : IDeviceFactory

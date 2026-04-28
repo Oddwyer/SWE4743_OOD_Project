@@ -1,6 +1,6 @@
 //using System.Reflection.Metadata.Ecma335;
 
-namespace SmartHome.Domain.Devices;
+namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
@@ -20,7 +20,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     public void TogglePower()
     {
         // trying toggle with a ternary operator for cleaner code
-        
+
         _powerState = _powerState == DevicePowerState.On // check current state and toggle
         ? DevicePowerState.Off  // if on, turn off
         : DevicePowerState.On;  // if off, turn on

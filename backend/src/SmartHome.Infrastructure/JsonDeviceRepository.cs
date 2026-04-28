@@ -1,9 +1,7 @@
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands;
 using SmartHome.Domain;
 using System.Text.Json;
-using System.Runtime.CompilerServices;
-using System.IO;
-using SmartHome.Domain.Factories;
 
 namespace SmartHome.Infrastructure;
 
@@ -13,6 +11,8 @@ namespace SmartHome.Infrastructure;
 public class JsonDeviceRepository : IDeviceRepository
 {
     private readonly List<IDevice> _devices = new();
+    private readonly Dictionary<string, int> _locations = new();
+    private readonly List<CommandHistoryEntry> _commandHistory = new();
     private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/devices.json"));
     private readonly IDeviceFactory _deviceFactory;
 
@@ -22,7 +22,10 @@ public class JsonDeviceRepository : IDeviceRepository
         LoadDevicesFromFile();
     }
 
-    // Returns any devices filtered by all or any location, type, or whether it is on.
+    /// <summary>
+    /// Returns any devices filtered by all or any location, type, or whether it is on.
+    /// </summary>
+
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
         var devices = _devices.AsEnumerable();
@@ -43,13 +46,17 @@ public class JsonDeviceRepository : IDeviceRepository
         return devices;
     }
 
-    // Returns any devices matching given ID.
+    /// <summary>
+    /// Returns any devices matching given ID.
+    /// </summary>
     public IDevice? FindDeviceById(Guid deviceId)
     {
         return _devices.FirstOrDefault(d => d.Id == deviceId);
     }
 
-    // Checks if device exists. If so, updates it. If not, adds it to the repository.
+    /// <summary>
+    /// Checks if device exists. If so, updates it. If not, adds it to the repository.
+    /// </summary>
     public IDevice SaveDevice(IDevice device)
     {
         var existing = _devices.FirstOrDefault(d => d.Id == device.Id);
@@ -67,7 +74,9 @@ public class JsonDeviceRepository : IDeviceRepository
         return device;
     }
 
-    // Checks if device exists. If so, remove it from repository.
+    /// <summary>
+    /// Checks if device exists. If so, remove it from repository.
+    /// </summary>
     public void DeleteDevice(Guid deviceId)
     {
         var existing = _devices.FirstOrDefault(d => d.Id == deviceId);
@@ -79,21 +88,40 @@ public class JsonDeviceRepository : IDeviceRepository
 
     }
 
-    // Confirms if thermostat already exists in given location (enforcing constraint of one per location).
+    /// <summary>
+    /// Confirms if thermostat already exists in given location (enforcing constraint of one per location).
+    /// </summary>
     public bool ThermostatInLocation(string location)
     {
         return _devices.Any(d => d.Type == DeviceType.Thermostat && d.DeviceLocation == location);
     }
 
-    // Loads repository from file.
-    private void LoadDevicesFromFile()
+    /// <summary>
+    /// Returns any history for a device with matching ID.
+    /// </summary>
+    public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
 
+        var deviceHistory = _commandHistory.Where(d => d.Id == deviceId);
+        return deviceHistory.AsEnumerable();
+
+    }
+    public void AddHistoryEntry(CommandHistoryEntry entry)
+    {
+        _commandHistory.Add(entry);
+    }
+
+    /// <summary>
+    /// Loads repository from file.
+    /// </summary>
+    private void LoadDevicesFromFile()
+    {
         // Check if file path exists and if so, read JSON file, deserialize into devices, and rehydrate to local repository.
         if (!File.Exists(_filePath))
         {
             return;
         }
+
         var json = File.ReadAllText(_filePath);
         var snapshots = JsonSerializer.Deserialize<List<DeviceSnapshot>>(json);
 
@@ -110,7 +138,10 @@ public class JsonDeviceRepository : IDeviceRepository
 
     }
 
-    // Serialize devices for persistence.
+    /// <summary>
+    /// Serialize devices for persistence.
+    /// </summary>
+    // TODO - Amber: Replace w/ Device.Dehydrate when implemented.
     private void SaveDevicesToFile()
     {
         var snapshots = _devices.Select(d => new DeviceSnapshot

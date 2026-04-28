@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// DTO for data related to device state change requests.
+/// DTO used to represent a command request from the client.
 /// </summary>
 
 public class ControlDeviceRequest

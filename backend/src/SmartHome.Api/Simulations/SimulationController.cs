@@ -6,11 +6,30 @@ namespace SmartHome.Api.Simulations;
 [Route("api/[controller]")]
 public class SimulationController : ControllerBase
 {
-    [HttpPost("ambient-temperature")]
-    public IActionResult SetAmbientTemperature()
+
+    private readonly ILogger<SimulationController> _logger;
+
+    public SimulationController(ILogger<SimulationController> logger)
     {
-        return Ok("Stub");
+        _logger = logger;
+    }
+
+    // PUT: api/simulation/speed
+    [HttpPut("speed")]
+    public IActionResult SetSimulationSpeed()
+    {
+        _logger.LogInformation("Simulation speed update requested.");
+        return Ok("Simulation speed set (stub)");
+    }
+
+    // PUT: api/simulation/reset
+    [HttpPost("reset")]
+    public IActionResult ResetSimulation()
+    {
+        _logger.LogInformation("Simulation reset requested.");
+        return Ok("Simulation reset (stub)");
     }
 }
+
 
 

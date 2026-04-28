@@ -1,7 +1,6 @@
-using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Factories;
+namespace SmartHome.Domain.Commands;
 
 // TODO Kataali:
 // This factory belongs to the Domain layer because it creates domain objects.
@@ -11,7 +10,7 @@ public class CommandFactory : ICommandFactory
 
     public IDeviceCommand CreateCommand(string command, IDevice device)
     {
-        // TODO: Placeholder for concrete commands.
+        // TODO - Kataali: Placeholder for concrete commands.
         return new StubDeviceCommand(device);
     }
 }

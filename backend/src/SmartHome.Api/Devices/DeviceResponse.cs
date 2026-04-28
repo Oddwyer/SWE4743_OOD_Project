@@ -1,16 +1,13 @@
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// DTO for displaying device(s) and related data.
+/// DTO used to represent a device returned by the API.
 /// </summary>
 
-public class DeviceResponse
+public class DeviceResponse : BaseDevice
 {
-    // All devices
+    // All devices. Includes DeviceName, DeviceLocation, and Type from BaseDevice
     public Guid Id { get; set; }
-    public string DeviceName { get; set; } = string.Empty;
-    public string DeviceLocation { get; set; } = string.Empty;
-    public string Type { get; set; } = string.Empty;
     public bool IsDeviceOn { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }

@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Services;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain.Factories;
 using SmartHome.Domain;
 
 namespace SmartHome.Api.Devices;
 
+/// <summary>
+/// Device Controller: handles HTTP requests for device operations and coordinates responses between the client and application services.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class DevicesController : ControllerBase
@@ -25,9 +25,11 @@ public class DevicesController : ControllerBase
         _logger = logger;
     }
 
-    // GET: api/devices
+    /// <summary>
+    /// GET: api/devices
+    /// Return item of type iterable list of DeviceResponses, and whether successful.
+    /// </summary>
     [HttpGet]
-    // Return item of type iterable list of DeviceResponses, and whether successful.
     [ProducesResponseType(typeof(IEnumerable<DeviceResponse>), StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<DeviceResponse>> GetAllDevices([FromQuery] DeviceFilter filter)
     {
@@ -35,10 +37,13 @@ public class DevicesController : ControllerBase
 
         // Map domain devices to API response models.
         var response = devices.Select(DeviceMapper.ToResponse);
+
         return Ok(response);
     }
 
-    // GET: api/devices/{id}
+    /// <summary>
+    /// GET: api/devices/{id}
+    /// </summary>
     [HttpGet("{deviceId:guid}")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -46,24 +51,26 @@ public class DevicesController : ControllerBase
     {
 
         // Retrieve device to validate existence before operation.
-        _logger.LogInformation("Fetching device with id {DeviceId}", deviceId);
+        _logger.LogInformation("Fetching device with id {DeviceId}.", deviceId);
         var device = _deviceService.GetDeviceById(deviceId);
 
         // Return 404 if device not found.
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
         var response = DeviceMapper.ToResponse(device);
+
         return Ok(response);
     }
 
-    // POST: api/devices/
+    /// <summary>
+    /// POST: api/devices/
+    /// </summary>
     [HttpPost("register-device")]
-    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
@@ -80,17 +87,25 @@ public class DevicesController : ControllerBase
             // If Device added, return success status and creation details.
             _deviceService.RegisterDevice(device);
             var response = DeviceMapper.ToResponse(device);
+
             return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
         }
         catch (ArgumentException ex)
         {
             // Return 400 if device could not be created.
             _logger.LogError(ex, "Failed to create device.");
-            return BadRequest("Unable to create device. Please try again.");
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Unable to create device. Please try again."
+            });
+            // TODO - Amber: Consider catch for invalid operation when attempting to add more than one thermostat per location.
         }
     }
 
-    // DELETE: api/devices/{id}
+    /// <summary>
+    /// DELETE: api/devices/{id}
+    /// </summary>
     [HttpDelete("{deviceId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -104,15 +119,18 @@ public class DevicesController : ControllerBase
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
-        _logger.LogInformation("Removing device with ID {DeviceId}", deviceId);
+        _logger.LogInformation("Removing device with ID {DeviceId}.", deviceId);
         _deviceService.RemoveDevice(device.Id);
+
         return NoContent();
     }
 
-    // PUT: api/devices/{id}/state
+    /// <summary>
+    /// PUT: api/devices/{id}/state
+    /// </summary>
     [HttpPut("{deviceId:guid}/state")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -126,42 +144,72 @@ public class DevicesController : ControllerBase
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
-        // TODO: Replace stub with CommandFactory when concrete commands are implemented.
-        var command = new StubDeviceCommand(device);
-        _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
-        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
-        var response = DeviceMapper.ToResponse(updatedDevice);
-        return Ok(response);
+        if (request == null || string.IsNullOrWhiteSpace(request.Command))
+        {
+            return BadRequest(new { message = "Command is required." });
+        }
+
+
+        try
+        {
+            var command = new StubDeviceCommand(device); // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
+
+            _logger.LogInformation("Applying command {Command} to device {DeviceId}.", request.Command, deviceId);
+
+            var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
+            var response = DeviceMapper.ToResponse(updatedDevice);
+
+            return Ok(response);
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogWarning(ex, "Invalid command {Command} for device {DeviceId}.", request.Command, deviceId);
+
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Invalid command request."
+            });
+        }
+        catch (InvalidOperationException ex)
+        {
+            _logger.LogWarning(ex, "Command {Command} cannot be applied to device {DeviceId}.", request.Command, deviceId);
+
+            return BadRequest(new
+            {
+                error = ex.Message,
+                message = "Command cannot be applied to the device in its current state."
+            });
+        }
     }
 
-
-    // GET: api/devices/{id}/history
-    /* TODO: Need GetCommandHistory method
-    [HttpGet ("{deviceId:guid}/history")] 
-    [ProducesResponseType(typeof(IEnumerable<CommandHistoryEntry>), StatusCodes.Status200OK)]
+    /// <summary>
+    /// GET: api/devices/{id}/history
+    /// </summary>
+    [HttpGet("{deviceId:guid}/history")]
+    [ProducesResponseType(typeof(IEnumerable<CommandHistoryResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-
-    public ActionResult<IEnumerable<CommandHistoryEntry>> GetDeviceHistory(Guid deviceId){
-        
+    public ActionResult<IEnumerable<CommandHistoryResponse>> GetDeviceHistory(Guid deviceId)
+    {
         // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
-        
+
         // Return 404 if device not found.
         if (device == null)
         {
             _logger.LogWarning("Device with ID {DeviceId} not found.", deviceId);
-            return NotFound();
+            return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
 
-        
-        /* TODO: Need GetCommandHistory
-        _logger.LogWarning("Command history for device with ID {DeviceId} provided.", deviceId);
+        _logger.LogInformation("Fetching history for device with ID {DeviceId}.", deviceId);
         var history = _deviceService.GetCommandHistory(deviceId);
-        return Ok(history);
-    }*/
+        var response = CommandHistoryMapper.ToResponse(history);
+
+        return Ok(response);
+    }
 
 }
 
