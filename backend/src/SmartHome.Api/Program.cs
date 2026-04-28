@@ -4,10 +4,14 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IDeviceService, DeviceService>();
