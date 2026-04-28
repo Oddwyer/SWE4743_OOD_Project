@@ -10,6 +10,8 @@ namespace SmartHome.Infrastructure;
 public class JsonDeviceRepository : IDeviceRepository
 {
     private readonly List<IDevice> _devices = new();
+    private readonly Dictionary<string, int> _locations = new();
+    private readonly List<CommandHistoryEntry> _commandHistory = new();
     private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/devices.json"));
     private readonly IDeviceFactory _deviceFactory;
 
@@ -82,13 +84,16 @@ public class JsonDeviceRepository : IDeviceRepository
         return _devices.Any(d => d.Type == DeviceType.Thermostat && d.DeviceLocation == location);
     }
 
-    public IReadOnlyList<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
+    public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
+
+        var deviceHistory = _commandHistory.Where(d => d.Id == deviceId);
+        return deviceHistory.AsEnumerable();
 
     }
     public void AddHistoryEntry(CommandHistoryEntry entry)
     {
-
+        _commandHistory.Add(entry);
     }
 
 
@@ -116,6 +121,8 @@ public class JsonDeviceRepository : IDeviceRepository
         }
 
     }
+
+
 
     // Serialize devices for persistence.
     // TODO - Amber: Replace w/ Device.Dehyradrate when implemented.

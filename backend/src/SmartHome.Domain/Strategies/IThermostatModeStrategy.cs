@@ -1,4 +1,3 @@
-
 namespace SmartHome.Domain.Strategies;
 
 public interface IThermostatModeStrategy

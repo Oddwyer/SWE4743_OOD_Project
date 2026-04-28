@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace SmartHome.Api.Devices;
 
 /// <summary>

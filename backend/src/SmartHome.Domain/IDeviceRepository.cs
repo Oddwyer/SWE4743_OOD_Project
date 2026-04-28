@@ -1,4 +1,3 @@
-using SmartHome.Domain;
 using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain;
@@ -10,7 +9,6 @@ public interface IDeviceRepository
     IDevice SaveDevice(IDevice device);
     void DeleteDevice(Guid deviceId);
     bool ThermostatInLocation(string location);
-
-    IReadOnlyList<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId);
+    IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId);
     void AddHistoryEntry(CommandHistoryEntry entry);
 }

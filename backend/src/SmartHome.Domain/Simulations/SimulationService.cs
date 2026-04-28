@@ -1,4 +1,3 @@
-
 namespace SmartHome.Domain.Simulations;
 
 public class SimulationService : ISimulationService

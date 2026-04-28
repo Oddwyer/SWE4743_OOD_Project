@@ -2,7 +2,7 @@ namespace SmartHome.Domain.Devices;
 
 public interface ILatchedDevice
 {
-    DeviceLatchState latchState {get;}
+    DeviceLatchState latchState { get; }
     void ToggleLatch();
 }
 

@@ -1,6 +1,3 @@
-using System.Collections;
-using SmartHome.Domain;
-
 namespace SmartHome.Domain.Devices;
 
 // TODO Kataali:

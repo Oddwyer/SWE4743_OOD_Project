@@ -1,4 +1,3 @@
-
 namespace SmartHome.Domain.Devices;
 
 public class FanDevice : Device, IPoweredDevice

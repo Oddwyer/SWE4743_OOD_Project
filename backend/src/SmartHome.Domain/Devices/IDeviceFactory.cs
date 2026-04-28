@@ -1,5 +1,3 @@
-using SmartHome.Domain.Devices;
-
 namespace SmartHome.Domain.Devices;
 
 /// <summary>

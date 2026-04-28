@@ -1,4 +1,3 @@
-
 namespace SmartHome.Domain.Devices;
 
 public class DoorLocks : Device, ILatchedDevice
@@ -15,9 +14,9 @@ public class DoorLocks : Device, ILatchedDevice
     public void ToggleLatch()
     {
         // using ternary operators again for toggling the latch state
-        latchState = latchState == DeviceLatchState.Locked 
-        ? DeviceLatchState.Unlocked 
+        latchState = latchState == DeviceLatchState.Locked
+        ? DeviceLatchState.Unlocked
         : DeviceLatchState.Locked;
-       // UpdatedAt = DateTime.UtcNow;
+        // UpdatedAt = DateTime.UtcNow;
     }
 }

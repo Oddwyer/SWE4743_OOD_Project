@@ -1,6 +1,6 @@
-using SmartHome.Domain.Factories;
-using SmartHome.Domain.Services;
 using SmartHome.Domain;
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Devices;
 using SmartHome.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

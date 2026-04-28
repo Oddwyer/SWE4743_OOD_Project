@@ -1,12 +1,10 @@
-using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
 
-namespace SmartHome.Domain.Services;
+namespace SmartHome.Domain.Devices;
 
 public class DeviceService : IDeviceService
 {
     private readonly IDeviceRepository _deviceRepository;
-    private readonly List<CommandHistoryEntry> _commandHistory = new();
 
     public DeviceService(IDeviceRepository deviceRepository)
     {
@@ -28,7 +26,7 @@ public class DeviceService : IDeviceService
         _deviceRepository.SaveDevice(device);
     }
 
-    // TODO: Implement once we know constructor params required by concrete DeviceCommand
+    // TODO - Amber: Revisit once we know constructor params required by concrete DeviceCommand.
     public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
     {
         var device = GetDeviceById(deviceId);
@@ -39,6 +37,10 @@ public class DeviceService : IDeviceService
         }
 
         command.Execute();
+
+        _deviceRepository.SaveDevice(device);
+        _deviceRepository.AddHistoryEntry(new CommandHistoryEntry(deviceId, command));
+
         return device;
     }
 
@@ -55,7 +57,7 @@ public class DeviceService : IDeviceService
 
     public IEnumerable<CommandHistoryEntry> GetCommandHistory(Guid deviceId)
     {
-        return _commandHistory.Where(entry => entry.DeviceId == deviceId);
+        return _deviceRepository.GetHistoryForDevice(deviceId);
     }
 }
 

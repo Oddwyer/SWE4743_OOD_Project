@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-//using System.Linq;
-//using SmartHome.Domain.Devices;
-using SmartHome.Domain.Services;
+using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain.Factories;
 using SmartHome.Domain;
 
 namespace SmartHome.Api.Devices;
