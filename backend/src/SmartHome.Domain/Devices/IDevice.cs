@@ -7,6 +7,7 @@ public interface IDevice
    public string DeviceName { get; }
    public string DeviceLocation { get; }
    public DeviceType Type { get; }
+
    //TODO - Kataali: Create DeviceState class?
    //public DeviceState State {get;}
    public bool IsDeviceOn { get; }

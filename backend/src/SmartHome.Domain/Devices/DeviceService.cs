@@ -47,7 +47,7 @@ public class DeviceService : IDeviceService
             throw new ArgumentException("Device not found.");
         }
 
-        // TODO - if we need to change to .Execute(device).
+        // TODO - Kataali: Update to .Execute(device) if needed.
         command.Execute();
 
         _deviceRepository.SaveDevice(device);

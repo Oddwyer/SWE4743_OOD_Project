@@ -10,8 +10,7 @@ using SmartHome.Domain.Devices.DoorLock;
 
 namespace SmartHome.Domain.Devices;
 
-// TODO Kataali:
-// AO: This factory belongs to the Domain layer because it creates domain objects.
+// TODO Kataali: This factory belongs to the Domain layer because it creates domain objects.
 // I added this so API endpoints could be tested but we still need thermostat. You're welcome to flush it out!
 
 public class DeviceFactory : IDeviceFactory
@@ -36,6 +35,9 @@ public class DeviceFactory : IDeviceFactory
 
             case DeviceType.Fan:
                 return new FanDevice(id, name, location);
+
+            // TODO - Kataali (or I can do it): Add Thermostat creation and rehydration once thermostat constructor/state 
+            // fields are finalized.
 
             /*case DeviceType.Thermostat:
                 return new Thermostat(name, location);*/

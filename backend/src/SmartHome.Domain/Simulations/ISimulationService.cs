@@ -7,4 +7,7 @@ public interface ISimulationService
 {
     void SetAmbientTemperature(string location, int temperature);
     double GetAmbientTemperature(string location);
+
+    // TODO - Kataali: Implement full simulation behavior: tick timing,
+    // thermostat Heating/Cooling/Idle transitions, simulation speed, and reset rules.
 }

@@ -114,7 +114,6 @@ public class JsonDeviceRepository : IDeviceRepository
         _commandHistory.Add(entry);
     }
 
-
     /// <summary>
     /// Loads data from file.
     /// </summary>
@@ -185,7 +184,7 @@ public class JsonDeviceRepository : IDeviceRepository
     /// <summary>
     /// Serialize devices for persistence.
     /// </summary>
-    // TODO - Amber: Replace w/ Device.Dehydrate when implemented.
+    // TODO - Amber: Update to SaveToFile (include locations,history) Replace w/ Device.Dehydrate when implemented.
     private void SaveDevicesToFile()
     {
         var snapshots = _devices.Select(d => new DeviceSnapshot
@@ -201,4 +200,6 @@ public class JsonDeviceRepository : IDeviceRepository
 
         File.WriteAllText(_filePath, json);
     }
+
+    // TODO - Amber: Add GetAmbientTemp, SetAmbientTemp methods.
 }
