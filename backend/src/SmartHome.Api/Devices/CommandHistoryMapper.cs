@@ -17,7 +17,7 @@ public static class CommandHistoryMapper
         return historyEntries.Select(entry => new CommandHistoryResponse
         {
             DeviceId = entry.DeviceId,
-            CommandName = entry.Command.CommandDescription,
+            CommandName = entry.Operation,
             Timestamp = entry.Timestamp
         });
     }

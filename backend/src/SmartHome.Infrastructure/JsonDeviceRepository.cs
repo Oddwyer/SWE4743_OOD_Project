@@ -19,7 +19,7 @@ public class JsonDeviceRepository : IDeviceRepository
     public JsonDeviceRepository(IDeviceFactory deviceFactory)
     {
         _deviceFactory = deviceFactory;
-        LoadDevicesFromFile();
+        LoadFromFile();
     }
 
     /// <summary>
@@ -147,7 +147,7 @@ public class JsonDeviceRepository : IDeviceRepository
 
         foreach (var deviceSnapshot in data.Devices)
         {
-            var device = _deviceFactory.RehydrateDevice(snapshot);
+            var device = _deviceFactory.RehydrateDevice(deviceSnapshot);
             _devices.Add(device);
         }
 
@@ -168,7 +168,7 @@ public class JsonDeviceRepository : IDeviceRepository
     /// <summary>
     /// Loads command history from file.
     /// </summary>
-    private void LoadHistory(SmarHomeDataSnapshot data)
+    private void LoadHistory(SmartHomeDataSnapshot data)
     {
         foreach (var historySnapshot in data.CommandHistory)
         {
@@ -176,7 +176,7 @@ public class JsonDeviceRepository : IDeviceRepository
                 historySnapshot.Id,
                 historySnapshot.DeviceId,
                 historySnapshot.Operation,
-                historySnapshot.ThermostatInLocation
+                historySnapshot.Timestamp
             ));
         }
 

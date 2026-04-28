@@ -1,3 +1,7 @@
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Locations;
+
 namespace SmartHome.Domain;
 
 /// <summary>
