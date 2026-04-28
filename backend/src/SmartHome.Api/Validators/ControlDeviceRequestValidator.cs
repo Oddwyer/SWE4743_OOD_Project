@@ -3,8 +3,10 @@ using SmartHome.Api.Devices;
 
 namespace SmartHome.Api.Validators;
 
-public class ControlDeviceRequestValidator
-    : AbstractValidator<ControlDeviceRequest>
+/// <summary>
+/// Validator for ControlDeviceRequest. Ensures that the command is valid for the device type.
+/// </summary>
+public class ControlDeviceRequestValidator : AbstractValidator<ControlDeviceRequest>
 {
     public ControlDeviceRequestValidator()
     {
