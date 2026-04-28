@@ -1,6 +1,4 @@
-using SmartHome.Domain.Devices;
-
-namespace SmartHome.Domain;
+namespace SmartHome.Domain.Devices;
 
 public class DeviceFilter
 {

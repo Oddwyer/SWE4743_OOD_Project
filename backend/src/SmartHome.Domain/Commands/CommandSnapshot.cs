@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain;
+namespace SmartHome.Domain.Commands;
 
 public record DeviceSnapshot
 {

@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Devices;
+namespace SmartHome.Domain.Devices.DoorLock;
 
 public class DoorLocks : Device, ILatchedDevice
 {
