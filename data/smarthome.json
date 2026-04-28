@@ -15,6 +15,14 @@
       "Location": "string",
       "IsOn": false,
       "DeviceState": null
+    },
+    {
+      "Id": "6b22638d-e6e9-4295-93c9-73485f6c4eca",
+      "Name": "Living Room Light",
+      "Type": 0,
+      "Location": "Living Room",
+      "IsOn": false,
+      "DeviceState": null
     }
   ],
   "CommandHistory": [
