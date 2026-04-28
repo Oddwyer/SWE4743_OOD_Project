@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Locations;
+namespace SmartHome.Infrastructure;
 
 public record LocationEnvironmentSnapshot
 {

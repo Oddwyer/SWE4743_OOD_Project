@@ -53,18 +53,18 @@ public class DeviceFactory : IDeviceFactory
     /// <summary>
     /// Rehydrates saved data into device objects.
     /// </summary>
-    public IDevice RehydrateDevice(DeviceSnapshot snapshot)
+    public IDevice RehydrateDevice(Guid id, string name, string location, DeviceType type, bool isOn, string? deviceState)
     {
-        switch (snapshot.Type)
+        switch (type)
         {
             case DeviceType.Light:
-                return new LightDevice(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+                return new LightDevice(id, name ?? "", location ?? "");
 
             case DeviceType.Fan:
-                return new FanDevice(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+                return new FanDevice(id, name ?? "", location ?? "");
 
             case DeviceType.DoorLock:
-                return new DoorLocks(snapshot.Id, snapshot.Name ?? "", snapshot.Location ?? "");
+                return new DoorLocks(id, name ?? "", location ?? "");
 
             default:
                 throw new ArgumentException("Unsupported device type.");

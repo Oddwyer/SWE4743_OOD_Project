@@ -1,8 +1,4 @@
-using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Locations;
-
-namespace SmartHome.Domain;
+namespace SmartHome.Infrastructure;
 
 /// <summary>
 /// Represents the complete persisted state of the application, including devices, command history, and location environments.

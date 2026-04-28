@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Commands;
+namespace SmartHome.Infrastructure;
 
 /// <summary>
 /// String representation of the device's current history.

@@ -1,6 +1,5 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain;
 using System.Text.Json;
 
 namespace SmartHome.Infrastructure;
@@ -69,7 +68,7 @@ public class JsonDeviceRepository : IDeviceRepository
             _devices.Add(device);
 
         }
-        SaveDevicesToFile();
+        SaveToFile();
         return device;
     }
 
@@ -82,7 +81,7 @@ public class JsonDeviceRepository : IDeviceRepository
         if (existing != null)
         {
             _devices.Remove(existing);
-            SaveDevicesToFile();
+            SaveToFile();
         }
 
     }
@@ -146,7 +145,14 @@ public class JsonDeviceRepository : IDeviceRepository
 
         foreach (var deviceSnapshot in data.Devices)
         {
-            var device = _deviceFactory.RehydrateDevice(deviceSnapshot);
+            var device = _deviceFactory.RehydrateDevice(
+                deviceSnapshot.Id,
+                deviceSnapshot.Name ?? string.Empty,
+                deviceSnapshot.Location ?? string.Empty,
+                deviceSnapshot.Type,
+                deviceSnapshot.IsOn,
+                deviceSnapshot.DeviceState
+            );
             _devices.Add(device);
         }
 
@@ -185,7 +191,7 @@ public class JsonDeviceRepository : IDeviceRepository
     /// Serialize devices for persistence.
     /// </summary>
     // TODO - Amber: Update to SaveToFile (include locations,history) Replace w/ Device.Dehydrate when implemented.
-    private void SaveDevicesToFile()
+    private void SaveToFile()
     {
         var snapshots = _devices.Select(d => new DeviceSnapshot
         {
