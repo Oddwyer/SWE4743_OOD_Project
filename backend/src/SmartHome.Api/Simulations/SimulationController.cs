@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Api.Simulations;
 
@@ -10,30 +11,43 @@ namespace SmartHome.Api.Simulations;
 [Route("api/[controller]")]
 public class SimulationController : ControllerBase
 {
-    public SimulationController()
-    {
+    private readonly ISimulationService _simulationService;
 
+    public SimulationController(ISimulationService simulationService)
+    {
+        _simulationService = simulationService;
     }
 
     /// <summary>
     /// POST: api/simulation/reset
     /// </summary>
     [HttpPost("reset")]
+    [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status501NotImplemented)]
     public IActionResult ResetSimulation()
     {
-        return Ok("Simulation reset (stub)");
+        _simulationService.ResetSimulation();
+        return Ok(new
+        {
+            Message = "Simulation reset successfully."
+        });
     }
 
     /// <summary>
     /// PUT: api/simulation/speed
     /// </summary>
     [HttpPut("speed")]
-    public IActionResult SetSimulationSpeed()
+    [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status501NotImplemented)]
+    public IActionResult SetSimulationSpeed([FromBody] SetSimulationSpeedRequest request)
     {
-        return Ok("Simulation speed set (stub)");
+        _simulationService.SetSimulationSpeed(request.SpeedMultiplier);
+        return Ok(new
+        {
+            Message = $"Simulation speed set to {request.SpeedMultiplier}x."
+        });
     }
-
-
 }
 
 

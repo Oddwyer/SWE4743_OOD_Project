@@ -10,4 +10,6 @@ public interface ISimulationService
 
     // TODO - Kataali: Implement full simulation behavior: tick timing,
     // thermostat Heating/Cooling/Idle transitions, simulation speed, and reset rules.
+    void SetSimulationSpeed(int speedMultiplier);
+    void ResetSimulation();
 }
