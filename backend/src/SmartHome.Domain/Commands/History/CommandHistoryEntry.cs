@@ -1,6 +1,4 @@
-using SmartHome.Domain.Devices;
-
-namespace SmartHome.Domain.Commands;
+namespace SmartHome.Domain.Commands.History;
 
 public class CommandHistoryEntry
 {

@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Commands;
+namespace SmartHome.Domain.Commands.Power;
 
 /// <summary>
 /// Command to turn off a device in the smart home system. It checks if the device can be powered off.
@@ -18,7 +18,6 @@ public class TurnOffCommand : DeviceCommand
     /// Executes the command to turn off the device. It checks if the device can be powered off
     /// and if it is already off before toggling the power state.
     /// </summary>
-
     public override void Execute()
     {
         if (ManipulatedDevice is not IPoweredDevice poweredDevice)

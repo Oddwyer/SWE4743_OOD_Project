@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Commands;
+namespace SmartHome.Domain.Commands.Lock;
 
 /// <summary>
 /// Command to lock a device in the smart home system. It checks if the device can be locked.

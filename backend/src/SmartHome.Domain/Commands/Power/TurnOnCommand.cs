@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Commands;
+namespace SmartHome.Domain.Commands.Power;
 
 /// <summary>
 /// Command to turn on a device in the smart home system. It checks if the device can be powered on.
@@ -9,7 +9,6 @@ namespace SmartHome.Domain.Commands;
 public class TurnOnCommand : DeviceCommand
 {
     public override string CommandDescription => "Turn device ON";
-
     public TurnOnCommand(IDevice device) : base(device)
     {
 
