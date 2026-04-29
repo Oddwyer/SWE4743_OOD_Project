@@ -1,6 +1,6 @@
 namespace SmartHome.Domain.Devices.Thermostat;
 
-public enum ThermostatActivity
+public enum ThermostatState
 {
     Idle,
     Heating,
