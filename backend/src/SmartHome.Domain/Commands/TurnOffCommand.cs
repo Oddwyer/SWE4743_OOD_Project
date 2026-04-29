@@ -2,6 +2,9 @@ using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Commands;
 
+/// <summary>
+/// Command to turn off a device in the smart home system.
+/// </summary>
 
 public class TurnOffCommand : DeviceCommand
 {
@@ -11,6 +14,11 @@ public class TurnOffCommand : DeviceCommand
     {
 
     }
+
+    /// <summary>
+    /// Executes the command to turn off the device. It checks if the device can be powered off
+    /// and if it is already off before toggling the power state.
+    /// </summary>
 
     public override void Execute()
     {
@@ -28,5 +36,8 @@ public class TurnOffCommand : DeviceCommand
 
     }
 
+    /// <summary>
+    /// Provides a description of the command, including the name of the device being turned off.
+    /// </summary>
     public string Description => $"Turn off {ManipulatedDevice.DeviceName}";
 }
