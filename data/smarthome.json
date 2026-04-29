@@ -5,7 +5,7 @@
       "Name": "Living Room Ceiling Fan",
       "Type": 1,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null
     },
     {
@@ -13,7 +13,7 @@
       "Name": "Master Bedroom Fan",
       "Type": 1,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null
     },
     {
@@ -169,12 +169,42 @@
       "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
       "Timestamp": "2026-04-29T02:22:05.1357522Z",
       "Operation": "Stub command executed"
+    },
+    {
+      "Id": "713c2b47-ac55-45b0-81eb-587308e14fe5",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-04-29T14:27:30.1188387Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "c0743763-fc35-4322-a029-8296c7ae6a12",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-04-29T14:27:30.1611615Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "cd221a4a-d61e-4fa0-b86b-cf6500e4c445",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T14:27:30.1948342Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "9283c3bf-f15a-4e4d-9e31-18a41e8fbc79",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-04-29T14:27:30.2361733Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "54d2e97e-3376-4a35-8bf1-2dbbf06a50b5",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T14:27:30.2470548Z",
+      "Operation": "Stub command executed"
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 85
+      "AmbientTemperature": 72
     }
   ]
 }
