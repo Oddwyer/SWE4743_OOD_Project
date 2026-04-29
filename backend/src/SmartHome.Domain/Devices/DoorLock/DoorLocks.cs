@@ -11,7 +11,7 @@ public class DoorLocks : Device, ILatchedDevice
         latchState = DeviceLatchState.Locked;
     }
 
-    public void ToggleLatch()
+    public void ToggleLock()
     {
         // using ternary operators again for toggling the latch state
         latchState = latchState == DeviceLatchState.Locked

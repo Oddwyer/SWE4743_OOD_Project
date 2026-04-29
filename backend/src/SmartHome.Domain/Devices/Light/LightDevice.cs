@@ -37,7 +37,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     public int lightBrightness => _brightness;
 
-    public void setLightBrightness(int brightnessPercentage)
+    public void SetLightBrightness(int brightnessPercentage)
     {
         if (brightnessPercentage < 10 || brightnessPercentage > 100)
         {
