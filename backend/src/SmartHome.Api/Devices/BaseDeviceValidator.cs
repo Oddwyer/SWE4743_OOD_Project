@@ -12,12 +12,15 @@ public class BaseDeviceValidator<T> : AbstractValidator<T> where T : BaseDevice
     {
         RuleFor(x => x.DeviceName)
             .NotEmpty()
-            .MinimumLength(2);
+            .MinimumLength(2)
+            .WithMessage("Device name is required.");
 
         RuleFor(x => x.DeviceLocation)
-            .NotEmpty();
+            .NotEmpty()
+            .WithMessage("Device location is required.");
 
         RuleFor(x => x.Type)
-            .IsInEnum();
+            .IsInEnum()
+            .WithMessage("Device type must be valid.");
     }
 }
