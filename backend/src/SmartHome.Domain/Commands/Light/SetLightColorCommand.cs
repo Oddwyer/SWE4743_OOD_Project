@@ -27,7 +27,7 @@ public class SetLightColorCommand : DeviceCommand
             throw new InvalidOperationException("This device does not have a color setting.");
         }
 
-        if (!ManipulatedDevice.IsDeviceOn)
+        if (!lightDevice.IsDeviceOn)
         {
             throw new InvalidOperationException("Light is not on.");
         }

@@ -24,7 +24,7 @@ public class UnlockCommand : DeviceCommand
             throw new InvalidOperationException("This device cannot be unlocked.");
         }
 
-        if (ManipulatedDevice.IsDeviceOn)
+        if (latchedDevice.latchState == DeviceLatchState.Unlocked)
         {
             throw new InvalidOperationException("Device is already unLocked.");
         }

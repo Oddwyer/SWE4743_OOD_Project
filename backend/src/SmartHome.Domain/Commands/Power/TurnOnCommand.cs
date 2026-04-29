@@ -25,7 +25,7 @@ public class TurnOnCommand : DeviceCommand
             throw new InvalidOperationException("This device cannot be powered on.");
         }
 
-        if (ManipulatedDevice.IsDeviceOn)
+        if (poweredDevice.PowerState == DevicePowerState.On)
         {
             throw new InvalidOperationException("Device is already ON.");
         }

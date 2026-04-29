@@ -31,14 +31,14 @@ public class SetLightBrightnessCommand : DeviceCommand
             throw new InvalidOperationException("This device does not have a brightness setting.");
         }
 
-        if (!ManipulatedDevice.IsDeviceOn)
+        if (!lightDevice.IsDeviceOn)
         {
             throw new InvalidOperationException("Light is not on.");
         }
 
         if (Brightness < 10 || Brightness > 100)
         {
-            throw new InvalidOperationException("Brightness must be between 10 and 100.");
+            throw new ArgumentOutOfRangeException(nameof(Brightness), "Brightness must be between 10 and 100.");
         }
 
         lightDevice.SetLightBrightness(Brightness);

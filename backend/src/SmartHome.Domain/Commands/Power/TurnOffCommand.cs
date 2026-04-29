@@ -25,7 +25,7 @@ public class TurnOffCommand : DeviceCommand
             throw new InvalidOperationException("This device cannot be powered off.");
         }
 
-        if (ManipulatedDevice.IsDeviceOn)
+        if (poweredDevice.PowerState == DevicePowerState.Off)
         {
             throw new InvalidOperationException("Device is already OFF.");
         }

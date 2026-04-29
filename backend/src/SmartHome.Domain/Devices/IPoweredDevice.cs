@@ -6,8 +6,3 @@ public interface IPoweredDevice
     void TogglePower();
 }
 
-public enum DevicePowerState
-{
-    On,
-    Off
-}
