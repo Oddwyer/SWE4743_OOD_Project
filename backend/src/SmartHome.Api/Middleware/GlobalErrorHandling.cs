@@ -24,30 +24,31 @@ public class GlobalErrorHandling
         // 404 Not Found for missing resources
         catch (KeyNotFoundException ex)
         {
+            _logger.LogWarning(ex, "Resource not found.");
             await WriteErrorResponse(context, HttpStatusCode.NotFound, ex.Message);
         }
         // 400 Bad Request for invalid input or operations
         catch (ArgumentException ex)
         {
+            _logger.LogWarning(ex, "Bad request.");
             await WriteErrorResponse(context, HttpStatusCode.BadRequest, ex.Message);
         }
         catch (InvalidOperationException ex)
         {
+            _logger.LogWarning(ex, "Invalid operation.");
             await WriteErrorResponse(context, HttpStatusCode.BadRequest, ex.Message);
         }
         // 501 Not Implemented for features that are not yet implemented
         catch (NotImplementedException ex)
         {
+            _logger.LogWarning(ex, "Feature not implemented.");
             await WriteErrorResponse(context, HttpStatusCode.NotImplemented, ex.Message);
         }
         // Catch any other unhandled exceptions to return a generic 500 Internal Server Error
         catch (Exception ex)
         {
             _logger.LogError(ex, "Unexpected error occurred.");
-            await WriteErrorResponse(
-                context,
-                HttpStatusCode.InternalServerError,
-                "An unexpected error occurred. Please try again later.");
+            await WriteErrorResponse(context, HttpStatusCode.InternalServerError, "An unexpected error occurred. Please try again later.");
         }
     }
 

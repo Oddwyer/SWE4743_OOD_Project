@@ -13,7 +13,7 @@ public interface IDeviceService
     // this will return a list of all commands that have been executed on a specific device, which can be used for auditing and debugging purposes
 
     // Method to retrieve a device by its ID
-    IDevice? GetDeviceById(Guid deviceId);
+    IDevice GetDeviceById(Guid deviceId);
 
     // Method to add a new device to the system
     void RegisterDevice(IDevice device);
