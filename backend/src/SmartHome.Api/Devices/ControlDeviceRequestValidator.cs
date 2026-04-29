@@ -11,6 +11,7 @@ public class ControlDeviceRequestValidator : AbstractValidator<ControlDeviceRequ
     {
         // TODO - Amber: Validate that the command is valid for the device type; 
         RuleFor(x => x.Command)
-           .NotEmpty();
+           .NotNull()
+           .IsInEnum();
     }
 }

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain;
 
 namespace SmartHome.Api.Devices;
 
@@ -136,12 +135,6 @@ public class DevicesController : ControllerBase
         {
             return NotFound(new { message = $"Device with ID {deviceId} not found." });
         }
-
-        if (request == null || string.IsNullOrWhiteSpace(request.Command))
-        {
-            return BadRequest(new { message = "Command is required." });
-        }
-
 
         try
         {

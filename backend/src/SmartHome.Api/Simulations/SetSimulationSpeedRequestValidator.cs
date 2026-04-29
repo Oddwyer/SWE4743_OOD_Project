@@ -3,15 +3,14 @@ using FluentValidation;
 namespace SmartHome.Api.Simulations;
 
 /// <summary>
-/// Validator for SetSimulationSpeedRequest. Ensures that the simulation speed is within a valid range.
+/// Ensures that the simulation speed is a valid enum value.
 /// </summary>
 public class SetSimulationSpeedRequestValidator : AbstractValidator<SetSimulationSpeedRequest>
 {
     public SetSimulationSpeedRequestValidator()
     {
-        // TODO - Amber: Validate that the simulation speed is within a valid range;
         RuleFor(x => x.SpeedMultiplier)
             .IsInEnum()
-            .WithMessage("Invalid simulation speed."); // Example range, adjust as needed
+            .WithMessage("Simulation speed must be one of: 1x, 2x, 5x, 10x.");
     }
 }
