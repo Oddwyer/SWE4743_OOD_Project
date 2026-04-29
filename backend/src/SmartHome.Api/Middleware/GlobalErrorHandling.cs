@@ -20,10 +20,13 @@ public class GlobalErrorHandling
         {
             await _next(context);
         }
+        // Catch specific exceptions to return appropriate status codes and messages
+        // 404 Not Found for missing resources
         catch (KeyNotFoundException ex)
         {
             await WriteErrorResponse(context, HttpStatusCode.NotFound, ex.Message);
         }
+        // 400 Bad Request for invalid input or operations
         catch (ArgumentException ex)
         {
             await WriteErrorResponse(context, HttpStatusCode.BadRequest, ex.Message);
@@ -32,10 +35,12 @@ public class GlobalErrorHandling
         {
             await WriteErrorResponse(context, HttpStatusCode.BadRequest, ex.Message);
         }
+        // 501 Not Implemented for features that are not yet implemented
         catch (NotImplementedException ex)
         {
             await WriteErrorResponse(context, HttpStatusCode.NotImplemented, ex.Message);
         }
+        // Catch any other unhandled exceptions to return a generic 500 Internal Server Error
         catch (Exception ex)
         {
             _logger.LogError(ex, "Unexpected error occurred.");
