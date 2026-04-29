@@ -1,5 +1,5 @@
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
+using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Locations;
 using System.Text.Json;
 

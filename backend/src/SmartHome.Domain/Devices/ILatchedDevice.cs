@@ -6,8 +6,3 @@ public interface ILatchedDevice
     void ToggleLock();
 }
 
-public enum DeviceLatchState
-{
-    Locked,
-    Unlocked
-}

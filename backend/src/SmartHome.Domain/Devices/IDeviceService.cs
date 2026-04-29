@@ -1,3 +1,4 @@
+using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Commands;
 
 namespace SmartHome.Domain.Devices;

@@ -12,9 +12,32 @@ namespace SmartHome.Domain.Commands;
 public class CommandFactory : ICommandFactory
 {
 
-    public IDeviceCommand CreateCommand(string command, IDevice device)
+    public IDeviceCommand CreateCommand(DeviceCommandType command, IDevice device)
     {
         // TODO - Replace placeholder with concrete commands.
-        return new StubDeviceCommand(device);
+        //return new StubDeviceCommand(device);
+
+        switch (command)
+        {
+            case DeviceCommandType.TogglePower:
+
+            case DeviceCommandType.SetBrightness:
+
+            case DeviceCommandType.SetColor:
+
+            case DeviceCommandType.SetFanSpeed:
+
+            case DeviceCommandType.SetThermostatMode:
+
+            case DeviceCommandType.SetDesiredTemperature:
+
+            case DeviceCommandType.ToggleLock:
+
+            default:
+                throw new ArgumentException($"Unsupported command type: {command}");
+
+
+
+        }
     }
 }

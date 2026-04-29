@@ -24,11 +24,16 @@ public class FanDevice : Device, IPoweredDevice
 
         UpdatedAt = DateTime.UtcNow;
     }
+
+    public void SetSpeed(FanSpeed newSpeed)
+    {
+        if (PowerState == DevicePowerState.Off)
+        {
+            throw new InvalidOperationException("Cannot set speed when the fan is off.");
+        }
+
+        Speed = newSpeed;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }
 
-public enum FanSpeed
-{
-    Low = 1,
-    Medium = 2, //default speed when fan is turned on
-    High = 3
-}
