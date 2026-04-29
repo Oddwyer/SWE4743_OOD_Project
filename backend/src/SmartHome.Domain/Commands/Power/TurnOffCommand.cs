@@ -7,7 +7,7 @@ namespace SmartHome.Domain.Commands.Power;
 /// </summary>
 public class TurnOffCommand : DeviceCommand
 {
-    public override string CommandDescription => "Turn device OFF";
+    public override string CommandDescription => $"Turned off {ManipulatedDevice.DeviceName}.";
 
     public TurnOffCommand(IDevice device) : base(device)
     {

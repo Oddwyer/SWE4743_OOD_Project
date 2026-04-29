@@ -7,7 +7,7 @@ namespace SmartHome.Domain.Commands.Lock;
 /// </summary>
 public class UnlockCommand : DeviceCommand
 {
-    public override string CommandDescription => "Lock device.";
+    public override string CommandDescription => $"Unlocked {ManipulatedDevice.DeviceName}.";
 
     public UnlockCommand(IDevice device) : base(device)
     {
@@ -17,7 +17,6 @@ public class UnlockCommand : DeviceCommand
     /// <summary>
     /// Executes the unlock command by toggling the lock state of the device.
     /// </summary>
-
     public override void Execute()
     {
         if (ManipulatedDevice is not ILatchedDevice latchedDevice)

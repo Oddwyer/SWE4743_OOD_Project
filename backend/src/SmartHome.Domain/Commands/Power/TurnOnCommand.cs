@@ -8,7 +8,7 @@ namespace SmartHome.Domain.Commands.Power;
 
 public class TurnOnCommand : DeviceCommand
 {
-    public override string CommandDescription => "Turn device ON";
+    public override string CommandDescription => $"Turned on {ManipulatedDevice.DeviceName}.";
     public TurnOnCommand(IDevice device) : base(device)
     {
 

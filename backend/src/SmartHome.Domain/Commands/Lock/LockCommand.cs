@@ -7,7 +7,7 @@ namespace SmartHome.Domain.Commands.Lock;
 /// </summary> 
 public class LockCommand : DeviceCommand
 {
-    public override string CommandDescription => "Lock device.";
+    public override string CommandDescription => $"Locked {ManipulatedDevice.DeviceName}.";
 
     public LockCommand(IDevice device) : base(device)
     {
