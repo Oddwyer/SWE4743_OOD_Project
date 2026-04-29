@@ -4,6 +4,7 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure;
+using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 
@@ -41,6 +42,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<GlobalErrorHandling>();
 app.UseAuthorization();
 app.UseCors("AllowFrontend");
 app.MapControllers();
