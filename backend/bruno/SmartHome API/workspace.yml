@@ -1,0 +1,12 @@
+opencollection: 1.0.0
+info:
+  name: "SmartHome API"
+  type: workspace
+
+collections:
+  - name: "Devices"
+    path: "collections/Devices"
+
+specs:
+
+docs: ''

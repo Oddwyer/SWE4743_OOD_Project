@@ -1,0 +1,22 @@
+info:
+  name: Control Device - Set Fan Speed
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:5073/api/Devices/7a420ebf-e710-4d03-9079-132323754a2c/commands
+  body:
+    type: json
+    data: |-
+      {
+        "command": 3,
+        "fanSpeed": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

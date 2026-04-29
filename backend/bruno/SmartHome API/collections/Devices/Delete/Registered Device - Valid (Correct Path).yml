@@ -1,0 +1,15 @@
+info:
+  name: Registered Device - Valid (Correct Path)
+  type: http
+  seq: 1
+
+http:
+  method: DELETE
+  url: http://localhost:5073/api/Devices/02dc145c-75b3-47e4-a8d6-052324e0b31b
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

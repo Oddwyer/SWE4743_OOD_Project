@@ -1,0 +1,15 @@
+# Secrets
+.env*
+
+# Dependencies
+node_modules
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Bruno local settings (optional, machine-specific)
+.bruno/
+
+# Logs (just in case)
+*.log
