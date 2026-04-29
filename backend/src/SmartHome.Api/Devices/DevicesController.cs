@@ -101,7 +101,6 @@ public class DevicesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
-        // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
 
         // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
