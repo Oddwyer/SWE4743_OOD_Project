@@ -1,35 +1,113 @@
 {
   "Devices": [
     {
-      "Id": "45a5b095-901c-4e27-a1c9-62a18c9847d8",
-      "Name": "Living Room Floor Lamp",
+      "Id": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Name": "Living Room Ceiling Fan",
+      "Type": 1,
+      "Location": "Living Room",
+      "IsOn": true,
+      "DeviceState": null
+    },
+    {
+      "Id": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Name": "Master Bedroom Fan",
+      "Type": 1,
+      "Location": "Master Bedroom",
+      "IsOn": true,
+      "DeviceState": null
+    },
+    {
+      "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Name": "Master Bedroom Left Sconce",
+      "Type": 0,
+      "Location": "Master Bedroom",
+      "IsOn": false,
+      "DeviceState": null
+    },
+    {
+      "Id": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Name": "Master Bedroom Right Sconce",
+      "Type": 0,
+      "Location": "Master Bedroom",
+      "IsOn": false,
+      "DeviceState": null
+    },
+    {
+      "Id": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Name": "Living Room Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
       "IsOn": false,
       "DeviceState": null
     },
     {
-      "Id": "02dc145c-75b3-47e4-a8d6-052324e0b31b",
-      "Name": "Kitchen Overhead Light",
+      "Id": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Name": "Living Room Right Side Table Lamp",
       "Type": 0,
-      "Location": "string",
+      "Location": "Living Room",
       "IsOn": false,
       "DeviceState": null
     },
     {
-      "Id": "6b22638d-e6e9-4295-93c9-73485f6c4eca",
-      "Name": "Living Room Light",
-      "Type": 0,
+      "Id": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Name": "Back Door Lock",
+      "Type": 2,
       "Location": "Living Room",
+      "IsOn": true,
+      "DeviceState": null
+    },
+    {
+      "Id": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Name": "Entryway Overhead Light",
+      "Type": 0,
+      "Location": "Entryway",
       "IsOn": false,
+      "DeviceState": null
+    },
+    {
+      "Id": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Name": "Front Door Lock",
+      "Type": 2,
+      "Location": "Entryway",
+      "IsOn": true,
       "DeviceState": null
     }
   ],
   "CommandHistory": [
     {
-      "Id": "2d9d7a8f-2189-4c69-b0fc-cba70cb98be8",
-      "DeviceId": "0c024bad-f1b0-4764-aaa2-85b36441d984",
-      "Timestamp": "2026-04-28T17:45:46.5072499Z",
+      "Id": "06d4da06-8f2f-447c-887c-c66885064e9b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T01:27:49.2813069Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "05660806-b663-4c3a-9460-d1762dd16249",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-04-29T01:47:15.8382863Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "0cea3c0c-6288-4558-8a18-06502373b05b",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-04-29T01:49:09.2021062Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "622bcd24-cfb8-465f-b6a2-c73e2c820f81",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T01:49:23.3338564Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "30edf22a-a5cb-42e2-bfcf-68977bc974d5",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-04-29T01:49:33.713222Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "c44cbe43-b5b8-4ccf-bb8d-54b5fa366827",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T01:49:37.2761466Z",
       "Operation": "Stub command executed"
     }
   ],

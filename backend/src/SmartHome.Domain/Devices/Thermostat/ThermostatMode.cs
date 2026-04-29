@@ -2,7 +2,7 @@ namespace SmartHome.Domain.Devices.Thermostat;
 
 public enum ThermostatMode
 {
-    Heat,
-    Cool,
-    Auto
+    Heat = 1,
+    Cool = 2,
+    Auto = 3
 }

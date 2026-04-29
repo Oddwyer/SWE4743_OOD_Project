@@ -22,7 +22,7 @@ public class FanDevice : Device, IPoweredDevice
 
 public enum FanSpeed
 {
-    Low,
-    Medium, //default speed when fan is turned on
-    High
+    Low = 1,
+    Medium = 2, //default speed when fan is turned on
+    High = 3
 }
