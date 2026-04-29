@@ -1,4 +1,4 @@
-namespace SmartHome.Domain.Devices.Thermostat;
+namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 public enum ThermostatState
 {
