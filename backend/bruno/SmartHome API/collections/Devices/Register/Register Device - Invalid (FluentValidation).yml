@@ -1,11 +1,11 @@
 info:
-  name: Register Device - Invalid (FluentValidation Test)
+  name: Register Device - Invalid (FluentValidation)
   type: http
   seq: 1
 
 http:
   method: POST
-  url: http://localhost:5073/api/Devices/register-device
+  url: "{{baseUrl}}/api/Devices/register-device"
   body:
     type: json
     data: |-
@@ -22,6 +22,4 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: |-
-  Tests FluentValidation rules by sending empty fields. 
-  Expected: 400 Bad Request with validation errors.
+docs: Verifies that invalid input (missing/incorrect fields) is rejected by FluentValidation.

@@ -1,0 +1,23 @@
+info:
+  name: Location - Set Ambient Temp (Valid)
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/locations/living room/ambient-temperature"
+  body:
+    type: json
+    data: |-
+      {
+        "temperature": 72
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that ambient temperature can be updated with valid input.

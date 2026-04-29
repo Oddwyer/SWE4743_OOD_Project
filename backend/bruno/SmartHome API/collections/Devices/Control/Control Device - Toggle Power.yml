@@ -1,11 +1,11 @@
 info:
   name: Control Device - Toggle Power
   type: http
-  seq: 1
+  seq: 7
 
 http:
   method: PUT
-  url: http://localhost:5073/api/Devices/7a420ebf-e710-4d03-9079-132323754a2c/commands
+  url: "{{baseUrl}}/api/Devices/7a420ebf-e710-4d03-9079-132323754a2c/commands"
   body:
     type: json
     data: |-
@@ -19,3 +19,5 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

@@ -5,7 +5,7 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:5073/api/Devices/0ae336e9-f22f-47b4-bb0f-868f69cfaecd/commands
+  url: "{{baseUrl}}/api/Devices/0ae336e9-f22f-47b4-bb0f-868f69cfaecd/commands"
   body:
     type: json
     data: |-
@@ -20,3 +20,5 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

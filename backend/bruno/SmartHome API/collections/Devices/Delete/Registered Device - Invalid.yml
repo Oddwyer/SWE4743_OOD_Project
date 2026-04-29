@@ -1,0 +1,17 @@
+info:
+  name: Registered Device - Invalid
+  type: http
+  seq: 2
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/Devices/02dc145c-75b3-47e4-a8d6-052324e0b31c"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that deleting a non-existent device returns a 404 via middleware.
