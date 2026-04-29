@@ -61,6 +61,9 @@ public class DeviceFactory : IDeviceFactory
             case DeviceType.DoorLock:
                 return new DoorLocks(id, name ?? "", location ?? "");
 
+            /*case DeviceType.Thermostat:
+                return new Thermostat(id, name ?? "", location ?? "");*/
+
             default:
                 throw new ArgumentException("Unsupported device type.");
         }
