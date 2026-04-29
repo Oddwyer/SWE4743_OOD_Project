@@ -15,7 +15,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
         _brightness = 10; // default brightness
     }
 
-    public DevicePowerState powerState => _powerState;
+    public DevicePowerState PowerState => _powerState;
 
     public void TogglePower()
     {
@@ -37,7 +37,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     public int lightBrightness => _brightness;
 
-    public void setLightBrightness(int brightnessPercentage)
+    public void SetLightBrightness(int brightnessPercentage)
     {
         if (brightnessPercentage < 10 || brightnessPercentage > 100)
         {

@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace SmartHome.Api.Locations;
 
 /// <summary>
@@ -8,9 +6,7 @@ namespace SmartHome.Api.Locations;
 
 public class SetAmbientTemperatureRequest
 {
-    // Input Validation at API Layer
-    [Required]
-    [Range(0, 120)]
+
     public int Temperature { get; set; }
 
 }

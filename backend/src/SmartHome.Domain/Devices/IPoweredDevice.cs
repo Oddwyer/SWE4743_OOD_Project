@@ -1,7 +1,8 @@
 namespace SmartHome.Domain.Devices;
+
 public interface IPoweredDevice
 {
-    DevicePowerState powerState {get;}
+    DevicePowerState PowerState { get; }
     void TogglePower();
 }
 

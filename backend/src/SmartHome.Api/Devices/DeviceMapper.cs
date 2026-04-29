@@ -23,24 +23,24 @@ public static class DeviceMapper
             Id = device.Id,
             DeviceName = device.DeviceName,
             DeviceLocation = device.DeviceLocation,
-            Type = device.Type.ToString(),
+            Type = device.Type,
             IsDeviceOn = device.IsDeviceOn,
         };
 
-        // TODO - Amber: Waiting on thermostat; fan speed.
+        // TODO - Amber: Waiting on thermostat.
         // Response specifics assigned based on specified device type.
         switch (device)
         {
             case LightDevice light:
                 response.Brightness = light.lightBrightness;
-                response.Color = light.colorState.ToString();
+                response.Color = light.colorState;
                 break;
 
-            /*case FanDevice fan:
-                response.Speed = fan.FanSpeed;
+            case FanDevice fan:
+                response.Speed = fan.Speed;
                 break;
 
-            case Thermostat thermostat:
+            /*case Thermostat thermostat:
                 response.Mode = thermostat.Mode;
                 response.DesiredTemperature = thermostat.DesiredTemperature;
                 break;

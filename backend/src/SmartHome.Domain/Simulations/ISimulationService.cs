@@ -9,7 +9,7 @@ public interface ISimulationService
     int GetAmbientTemperature(string location);
 
     // TODO - Kataali: Implement full simulation behavior: tick timing,
-    // thermostat Heating/Cooling/Idle transitions, simulation speed, and reset rules.
-    void SetSimulationSpeed(int speedMultiplier);
+    // thermostat Heating/Cooling/Idle transitions, and reset rules.
+    void SetSimulationSpeed(SimulationSpeed speedMultiplier);
     void ResetSimulation();
 }

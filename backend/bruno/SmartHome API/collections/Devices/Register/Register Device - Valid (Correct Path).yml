@@ -1,0 +1,27 @@
+info:
+  name: Register Device - Valid (Correct Path)
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:5073/api/Devices/register-device
+  body:
+    type: json
+    data: |-
+      {
+        "deviceName": "Living Room Light",
+        "deviceLocation": "Living Room",
+        "type": "Light"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Tests successful device registration with valid input.
+  Expected: 201 Created.

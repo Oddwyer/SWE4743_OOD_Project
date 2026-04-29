@@ -19,16 +19,11 @@ public class DeviceFactory : IDeviceFactory
     /// <summary>
     /// Creates new specific device based on type entered.
     /// </summary>
-    public IDevice CreateDevice(string name, string location, string type)
+    public IDevice CreateDevice(string name, string location, DeviceType type)
     {
         Guid id = Guid.NewGuid();
 
-        if (!Enum.TryParse<DeviceType>(type, true, out var deviceType))
-        {
-            throw new ArgumentException("Invalid device type.");
-        }
-
-        switch (deviceType)
+        switch (type)
         {
             case DeviceType.Light:
                 return new LightDevice(id, name, location);
@@ -65,6 +60,9 @@ public class DeviceFactory : IDeviceFactory
 
             case DeviceType.DoorLock:
                 return new DoorLocks(id, name ?? "", location ?? "");
+
+            /*case DeviceType.Thermostat:
+                return new Thermostat(id, name ?? "", location ?? "");*/
 
             default:
                 throw new ArgumentException("Unsupported device type.");

@@ -1,4 +1,3 @@
-
 using SmartHome.Domain.Locations;
 
 namespace SmartHome.Domain.Simulations;
@@ -49,7 +48,7 @@ public class SimulationService : ISimulationService
         return _locationRepository.GetAmbientTemperature(location) ?? DefaultAmbientTemperature;
     }
 
-    public void SetSimulationSpeed(int speedMultiplier)
+    public void SetSimulationSpeed(SimulationSpeed speedMultiplier)
     {
         throw new NotImplementedException(
             "Simulation speed is pending simulation engine implementation.");

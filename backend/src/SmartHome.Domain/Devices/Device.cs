@@ -52,8 +52,8 @@ public abstract class Device : IDevice
 
 public enum DeviceType
 {
-    Light,
-    Fan,
-    DoorLock,
-    Thermostat
+    Light = 0,
+    Fan = 1,
+    DoorLock = 2,
+    Thermostat = 3
 }

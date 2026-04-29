@@ -7,7 +7,7 @@ namespace SmartHome.Domain.Devices;
 public interface IDeviceFactory
 {
     // For frontend device creation.
-    public IDevice CreateDevice(string name, string location, string type);
+    public IDevice CreateDevice(string name, string location, DeviceType type);
 
     // For backend device rehydration (reference section 2 in project doc).
     public IDevice RehydrateDevice(Guid id, string name, string location, DeviceType type, bool isOn, string? deviceState);
