@@ -33,8 +33,4 @@ public class UnlockCommand : DeviceCommand
 
     }
 
-    /// <summary>
-    /// Provides a description of the unlock command, including the name of the device being unlocked.
-    /// </summary>
-    public string Description => $"Unlock {ManipulatedDevice.DeviceName}";
 }

@@ -34,8 +34,4 @@ public class TurnOnCommand : DeviceCommand
 
     }
 
-    /// <summary>
-    /// Provides a description of the turn on command, including the name of the device being turned on.
-    /// </summary>
-    public string Description => $"Turn on {ManipulatedDevice.DeviceName}";
 }

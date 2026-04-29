@@ -3,6 +3,10 @@ using SmartHome.Domain.Devices.Fan;
 
 namespace SmartHome.Domain.Commands.Fan;
 
+/// <summary>
+/// Command to set the speed of a fan device. This command checks if the device is a fan and
+/// if it is currently on before changing its speed. If the device is not a fan or is off, it throws an exception.
+/// </summary>
 public class SetFanSpeedCommand : DeviceCommand
 {
     public FanSpeed NewSpeed { get; }
@@ -12,6 +16,10 @@ public class SetFanSpeedCommand : DeviceCommand
     {
         NewSpeed = newSpeed;
     }
+
+    /// <summary>
+    /// Executes the command to change the fan speed. It first checks if the manipulated device is a fan and if it is on.
+    /// </summary>
 
     public override void Execute()
     {
@@ -29,5 +37,4 @@ public class SetFanSpeedCommand : DeviceCommand
 
     }
 
-    public string Description => $"Speed set to {NewSpeed} for {ManipulatedDevice.DeviceName}";
 }

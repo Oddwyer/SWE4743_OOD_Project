@@ -33,9 +33,4 @@ public class TurnOffCommand : DeviceCommand
         poweredDevice.TogglePower();
 
     }
-
-    /// <summary>
-    /// Provides a description of the command, including the name of the device being turned off.
-    /// </summary>
-    public string Description => $"Turn off {ManipulatedDevice.DeviceName}";
 }

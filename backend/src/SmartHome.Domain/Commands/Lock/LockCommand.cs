@@ -35,8 +35,4 @@ public class LockCommand : DeviceCommand
 
     }
 
-    /// <summary>
-    /// Provides a description of the lock command, including the name of the device being locked.
-    /// </summary>
-    public string Description => $"Lock {ManipulatedDevice.DeviceName}";
 }
