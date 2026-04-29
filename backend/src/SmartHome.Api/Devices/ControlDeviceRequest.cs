@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Commands;
 
 namespace SmartHome.Api.Devices;
 
@@ -11,10 +12,12 @@ public class ControlDeviceRequest
 {
     // All devices
     [Required]
-    public string Command { get; set; } = string.Empty;
+    public DeviceCommandType Command { get; set; }
     public int? Brightness { get; set; }
     public LightColorState? Color { get; set; }
     public string? FanSpeed { get; set; }
+
+    //public TheromstatMode? ThermostatMode { get; set; }
     public int? DesiredTemperature { get; set; }
 
 }
