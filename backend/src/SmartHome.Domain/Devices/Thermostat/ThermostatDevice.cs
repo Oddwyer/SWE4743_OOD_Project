@@ -1,13 +1,13 @@
 namespace SmartHome.Domain.Devices.Thermostat;
 
 // basic template of what all devices will need in the home simulator
-public abstract class TheromstatDevice : Device, IPoweredDevice
+public abstract class ThermostatDevice : Device, IPoweredDevice
 {   //core fields and properties accounted for first
     private DevicePowerState _powerState;
     private readonly IThermostatModeStrategy _modeStrategy;
     public override bool IsDeviceOn => _powerState == DevicePowerState.On;
 
-    public TheromstatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) : base(id, deviceName, deviceLocation, DeviceType.Thermostat)
+    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) : base(id, deviceName, deviceLocation, DeviceType.Thermostat)
     {
         _powerState = DevicePowerState.Off; // default state
         _modeStrategy = strategy;
@@ -23,6 +23,18 @@ public abstract class TheromstatDevice : Device, IPoweredDevice
         ? DevicePowerState.Off  // if on, turn off
         : DevicePowerState.On;  // if off, turn on
     }
+
+
+    public bool ShouldStartHeating(double ambientTemperature, double desiredTemperature)
+    {
+        return _modeStrategy.StartHeating(ambientTemperature, desiredTemperature);
+    }
+
+    public bool ShouldStartCooling(double ambientTemperature, double desiredTemperature)
+    {
+        return _modeStrategy.StartCooling(ambientTemperature, desiredTemperature);
+    }
+
 
     //each device needs to be able to control/manage its own state
     //TODO - Kataali: Create DeviceState class...
