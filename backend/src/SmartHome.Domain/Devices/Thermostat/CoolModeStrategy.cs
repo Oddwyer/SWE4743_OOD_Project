@@ -1,16 +1,17 @@
 namespace SmartHome.Domain.Devices.Thermostat;
 
-public class CoolModeStrategy : IThermostatModeStrategy
+public class CoolModeStrategy //: IThermostatModeStrategy
 {
-    public bool StartHeating(double ambientTemperature, double desiredTemperature)
+    /*public IThermostatState DetermineState(ThermostatDevice thermostat, double ambientTemperature)
     {
-        // we cannot start heating in cool mode
-        return false;
-    }
+        if (!thermostat.IsDeviceOn)
+            return new ThermostatOffState();
 
-    public bool StartCooling(double ambientTemperature, double desiredTemperature)
-    {
-        // if the ambient temperature is greater than the desired temperature, we can start cooling
-        return ambientTemperature > desiredTemperature;
-    }
+        if (ambientTemperature < thermostat.TargetTemperature - 0.5)
+            return new ThermostatHeatingState();
+        else if (ambientTemperature > thermostat.TargetTemperature + 0.5)
+            return new ThermostatCoolingState();
+        else
+            return new ThermostatIdleState();
+    }*/
 }

@@ -4,6 +4,10 @@ public class ThermostatIdleState : IThermostatState
 {
     private readonly IDevice thermostat;
 
+    public ThermostatIdleState(IDevice thermostat)
+    {
+        this.thermostat = thermostat;
+    }
     public void TogglePower()
     {
 
