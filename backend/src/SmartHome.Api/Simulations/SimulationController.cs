@@ -22,7 +22,7 @@ public class SimulationController : ControllerBase
     /// POST: api/simulation/reset
     /// </summary>
     [HttpPost("reset")]
-    [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status501NotImplemented)]
     public IActionResult ResetSimulation()
     {
@@ -37,7 +37,7 @@ public class SimulationController : ControllerBase
     /// PUT: api/simulation/speed
     /// </summary>
     [HttpPut("speed")]
-    [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status501NotImplemented)]
     public IActionResult SetSimulationSpeed([FromBody] SetSimulationSpeedRequest request)
