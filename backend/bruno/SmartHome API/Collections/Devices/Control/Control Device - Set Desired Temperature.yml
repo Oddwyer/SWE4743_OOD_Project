@@ -1,0 +1,24 @@
+info:
+  name: Control Device - Set Desired Temperature
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/Devices/{deviceId}/commands"
+  body:
+    type: json
+    data: |-
+      {
+        "command": 5,
+        "desiredTemperature": 72
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

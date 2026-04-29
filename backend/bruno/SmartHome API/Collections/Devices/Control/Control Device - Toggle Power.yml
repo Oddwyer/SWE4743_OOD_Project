@@ -1,0 +1,23 @@
+info:
+  name: Control Device - Toggle Power
+  type: http
+  seq: 7
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/Devices/7a420ebf-e710-4d03-9079-132323754a2c/commands"
+  body:
+    type: json
+    data: |-
+      {
+        "command": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

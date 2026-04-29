@@ -1,0 +1,25 @@
+info:
+  name: Register Device - Invalid (Domain)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/Devices/register-device"
+  body:
+    type: json
+    data: |-
+      {
+        "deviceName": "Thermostat 1",
+        "deviceLocation": "Living Room",
+        "type": 3
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that valid input violating business rules is rejected by the service layer.

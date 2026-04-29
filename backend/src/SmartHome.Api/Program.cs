@@ -4,6 +4,7 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure;
+using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<GlobalErrorHandling>();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

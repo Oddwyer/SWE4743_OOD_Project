@@ -1,0 +1,21 @@
+info:
+  name: Get All Devices Filtered - Valid
+  type: http
+  seq: 14
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/Devices?location=Living Room"
+  params:
+    - name: location
+      value: Living Room
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies filtering of devices based on query parameters.

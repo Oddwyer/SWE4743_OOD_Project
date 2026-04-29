@@ -1,0 +1,23 @@
+info:
+  name: Control Device - Toggle Lock
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/Devices/5acb1dc6-b92c-4ff7-9f65-a32999b07887/commands"
+  body:
+    type: json
+    data: |-
+      {
+        "command": 6
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

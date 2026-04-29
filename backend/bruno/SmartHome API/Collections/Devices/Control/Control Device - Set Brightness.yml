@@ -1,0 +1,24 @@
+info:
+  name: Control Device - Set Brightness
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/Devices/0ae336e9-f22f-47b4-bb0f-868f69cfaecd/commands"
+  body:
+    type: json
+    data: |-
+      {
+        "command": 1,
+        "brightness": 75
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

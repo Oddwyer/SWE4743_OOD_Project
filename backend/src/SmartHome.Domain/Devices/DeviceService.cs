@@ -22,9 +22,14 @@ public class DeviceService : IDeviceService
     /// <summary>
     /// Returns device matching device ID.
     /// </summary>
-    public IDevice? GetDeviceById(Guid deviceId)
+    public IDevice GetDeviceById(Guid deviceId)
     {
-        return _deviceRepository.FindDeviceById(deviceId);
+        var device = _deviceRepository.FindDeviceById(deviceId);
+        if (device == null)
+        {
+            throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
+        }
+        return device;
     }
 
     /// <summary>
@@ -44,7 +49,7 @@ public class DeviceService : IDeviceService
 
         if (device == null)
         {
-            throw new ArgumentException("Device not found.");
+            throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
 
         // TODO - Kataali: Update to .Execute(device) if needed.
@@ -65,8 +70,9 @@ public class DeviceService : IDeviceService
 
         if (device == null)
         {
-            throw new KeyNotFoundException("Device not found.");
+            throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
+
         _deviceRepository.DeleteDevice(deviceId);
     }
 
@@ -75,6 +81,13 @@ public class DeviceService : IDeviceService
     /// </summary>
     public IEnumerable<CommandHistoryEntry> GetCommandHistory(Guid deviceId)
     {
+        var device = _deviceRepository.FindDeviceById(deviceId);
+
+        if (device == null)
+        {
+            throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
+        }
+
         return _deviceRepository.GetHistoryForDevice(deviceId);
     }
 }

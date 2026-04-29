@@ -1,0 +1,25 @@
+info:
+  name: Register Device - Invalid (FluentValidation)
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/Devices/register-device"
+  body:
+    type: json
+    data: |-
+      {
+        "deviceName": "",
+        "deviceLocation": "",
+        "type": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that invalid input (missing/incorrect fields) is rejected by FluentValidation.

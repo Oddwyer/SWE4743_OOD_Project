@@ -1,0 +1,17 @@
+info:
+  name: Simulation - Reset (501 Not Implemented)
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/simulation/reset"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that unimplemented simulation functionality returns a 501 response via middleware.

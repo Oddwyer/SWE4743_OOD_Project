@@ -1,0 +1,4 @@
+name: SmartHome API
+variables:
+  - name: baseUrl
+    value: http://localhost:5073
