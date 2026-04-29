@@ -17,7 +17,7 @@ public class ControlDeviceRequest
     public DeviceCommandType? Command { get; set; }
     public int? Brightness { get; set; }
     public LightColorState? Color { get; set; }
-    public FanSpeed FanSpeed { get; set; }
+    public FanSpeed? FanSpeed { get; set; }
     public ThermostatMode? Mode { get; set; }
     public int? DesiredTemperature { get; set; }
 

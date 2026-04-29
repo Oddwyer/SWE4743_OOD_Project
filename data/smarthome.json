@@ -109,6 +109,66 @@
       "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
       "Timestamp": "2026-04-29T01:49:37.2761466Z",
       "Operation": "Stub command executed"
+    },
+    {
+      "Id": "7586aa07-f169-4ce6-b97b-61d9025d9c4e",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:03:46.3774245Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "5ad182bb-7dcf-47d2-96ae-131397cdfa8f",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:04:05.4713348Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "b4d14ebb-ecf2-4f2a-bfad-3306e306e895",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:04:11.3140299Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "702635f5-b9ed-4d5f-8383-a319c4a1d841",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:04:16.9675343Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "3b260f9a-7a10-436f-a2b4-c1d46c67116c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:04:58.1261249Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "7c0cb7fd-913b-44f9-b74a-5353a2d278b9",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:05:54.7663563Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "3b3c3ad7-d3a5-4aa1-8b5b-36cb32b36b00",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:20:32.3999772Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "1befb8cd-b67a-4368-acf8-12c3b87af0e6",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:20:37.6366597Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "0f36f40b-ac02-4195-9866-0fa10b304f9e",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-04-29T02:20:39.5485297Z",
+      "Operation": "Stub command executed"
+    },
+    {
+      "Id": "ff086b91-af93-450d-8466-b1973e9acfd5",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-04-29T02:22:05.1357522Z",
+      "Operation": "Stub command executed"
     }
   ],
   "Locations": [
