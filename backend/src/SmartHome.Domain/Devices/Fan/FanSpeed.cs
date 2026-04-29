@@ -1,5 +1,8 @@
 namespace SmartHome.Domain.Devices.Fan;
 
+/// <summary>
+/// Represents the speed settings of a fan device, such as a ceiling fan or portable fan.
+/// </summary>
 public enum FanSpeed
 {
     Low = 1,

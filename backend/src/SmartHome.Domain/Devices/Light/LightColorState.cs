@@ -3,6 +3,9 @@ namespace SmartHome.Domain.Devices.Light;
 // might need to edit to account for the RGB values, but for now this should work for 
 //flushing out the logic and structure of the light device
 
+/// <summary>
+/// Represents the color state of a light device, such as a smart bulb that can change colors.
+/// </summary>
 public enum LightColorState
 {
     White = 1,
