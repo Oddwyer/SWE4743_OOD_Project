@@ -5,11 +5,11 @@ namespace SmartHome.Domain.Commands;
 /// </summary>
 public enum DeviceCommandType
 {
-    TogglePower,
-    SetBrightness,
-    SetColor,
-    SetFanSpeed,
-    SetThermostatMode,
-    SetDesiredTemperature,
-    ToggleLock
+    TogglePower = 0,
+    SetBrightness = 1,
+    SetColor = 2,
+    SetFanSpeed = 3,
+    SetThermostatMode = 4,
+    SetDesiredTemperature = 5,
+    ToggleLock = 6
 }
