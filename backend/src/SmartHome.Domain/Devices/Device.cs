@@ -49,11 +49,3 @@ public abstract class Device : IDevice
         private void recordCommandHistory(DeviceCommand command);
     }*/
 }
-
-public enum DeviceType
-{
-    Light = 0,
-    Fan = 1,
-    DoorLock = 2,
-    Thermostat = 3
-}
