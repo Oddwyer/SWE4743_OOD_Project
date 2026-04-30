@@ -19,7 +19,8 @@ public class ThermostatDevice : Device, IPoweredDevice
     public override bool IsDeviceOn => _powerState == DevicePowerState.On;
     public DevicePowerState PowerState => _powerState;
 
-    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) : base(id, deviceName, deviceLocation, DeviceType.Thermostat)
+    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) :
+    base(id, deviceName, deviceLocation, DeviceType.Thermostat)
     {
         CurrentMode = strategy;
 
@@ -112,5 +113,13 @@ public class ThermostatDevice : Device, IPoweredDevice
         _currentState = newState;
     }
 
-
+    /// <summary>
+    /// Determines the next state of the thermostat based on the current mode strategy and the ambient temperature. 
+    /// This method is called by the state classes during evaluation to decide if a state transition is necessary.
+    /// </summary>
+    internal IThermostatState DetermineNextState(int ambientTemperature)
+    {
+        var nextState = CurrentMode.DetermineNextState(this, ambientTemperature);
+        return nextState;
+    }
 }

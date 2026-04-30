@@ -4,5 +4,5 @@ namespace SmartHome.Domain.Devices.Thermostat;
 
 public interface IThermostatModeStrategy
 {
-    public IThermostatState DetermineState(ThermostatDevice thermostat, double ambientTemperature);
+    public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature);
 }

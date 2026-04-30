@@ -2,24 +2,29 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 public class ThermostatCoolingState : IThermostatState
 {
-    private readonly IDevice thermostat;
 
-    public ThermostatCoolingState(IDevice thermostat)
+    private readonly ThermostatDevice _thermostat;
+
+    public ThermostatCoolingState(ThermostatDevice thermostat)
     {
-        this.thermostat = thermostat;
+        _thermostat = thermostat;
     }
 
     public void TogglePower()
     {
+        _thermostat.TurnPowerOff();
+        _thermostat.SetState(_thermostat.OffState);
 
     }
     public void SetTargetTemperature(int temp)
     {
+        _thermostat.SetTargetTemperatureInternal(temp);
 
     }
     public void Evaluate(int ambientTemperature)
     {
-
+        var nextState = _thermostat.DetermineNextState(ambientTemperature);
+        _thermostat.SetState(nextState);
     }
 
 }
