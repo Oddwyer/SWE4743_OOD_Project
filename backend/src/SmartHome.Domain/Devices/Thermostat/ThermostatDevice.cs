@@ -61,6 +61,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     internal void TurnPowerOn()
     {
         _powerState = DevicePowerState.On;
+        UpdatedAt = DateTime.UtcNow;
 
     }
 
@@ -70,6 +71,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     internal void TurnPowerOff()
     {
         _powerState = DevicePowerState.Off;
+        UpdatedAt = DateTime.UtcNow;
 
     }
 
@@ -87,6 +89,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     internal void SetTargetTemperatureInternal(int targetTemperature)
     {
         TargetTemperature = targetTemperature;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     /// <summary>
@@ -103,6 +106,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     internal void SetModeStrategy(IThermostatModeStrategy strategy)
     {
         CurrentMode = strategy;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     /// <summary>
@@ -111,6 +115,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     internal void SetState(IThermostatState newState)
     {
         _currentState = newState;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     /// <summary>
@@ -120,6 +125,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     {
         var nextState = CurrentMode.DetermineNextState(this, ambientTemperature);
         return nextState;
+
     }
 
     /// <summary>

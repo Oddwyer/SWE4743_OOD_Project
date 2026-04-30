@@ -7,7 +7,7 @@ public class FanDevice : Device, IPoweredDevice
     // States
     private DevicePowerState _powerState;
     public IFanState Off { get; private set; }
-    public IFanState On { get; private set; } 
+    public IFanState On { get; private set; }
     private IFanState _currentState;
 
     public FanSpeed Speed { get; private set; } = FanSpeed.Medium;
@@ -41,6 +41,7 @@ public class FanDevice : Device, IPoweredDevice
     internal void TurnPowerOn()
     {
         _powerState = DevicePowerState.On;
+        UpdatedAt = DateTime.UtcNow;
 
     }
 
@@ -50,6 +51,7 @@ public class FanDevice : Device, IPoweredDevice
     internal void TurnPowerOff()
     {
         _powerState = DevicePowerState.Off;
+        UpdatedAt = DateTime.UtcNow;
 
     }
 
@@ -67,19 +69,26 @@ public class FanDevice : Device, IPoweredDevice
     internal void SetFanSpeedInternal(FanSpeed newSpeed)
     {
         Speed = newSpeed;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     /// <summary>
-    /// Updates the status message (used by states). The status message can be used for logging, debugging, or providing user feedback through the API.
+    /// Sets the current state of the fan (used by state classes to transition between states).
     /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
-    }
-
     internal void SetState(IFanState newState)
     {
         _currentState = newState;
+        UpdatedAt = DateTime.UtcNow;
     }
+
+    /// <summary>
+    /// Updates the status message (used by states). 
+    /// </summary>
+    internal void UpdateStatusMessageInternal(string message)
+    {
+        StatusMessage = message;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
 }
 

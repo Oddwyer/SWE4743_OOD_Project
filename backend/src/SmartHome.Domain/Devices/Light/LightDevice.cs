@@ -54,6 +54,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     internal void TurnPowerOn()
     {
         _powerState = DevicePowerState.On;
+        UpdatedAt = DateTime.UtcNow;
 
     }
 
@@ -63,6 +64,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     internal void TurnPowerOff()
     {
         _powerState = DevicePowerState.Off;
+        UpdatedAt = DateTime.UtcNow;
 
     }
 
@@ -80,6 +82,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     internal void ChangeColorInternal(LightColor newColor)
     {
         ColorState = newColor;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     /// <summary>
@@ -96,14 +99,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     internal void SetLightBrightnessInternal(int brightnessPercentage)
     {
         LightBrightness = brightnessPercentage;
-    }
-
-    /// <summary>
-    /// Updates the status message (used by states). The status message can be used for logging, debugging, or providing user feedback through the API.
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     /// <summary>
@@ -112,6 +108,18 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     internal void SetState(ILightState newState)
     {
         _currentState = newState;
+        UpdatedAt = DateTime.UtcNow;
     }
+
+    /// <summary>
+    /// Updates the status message (used by states).
+    /// </summary>
+    internal void UpdateStatusMessage(string message)
+    {
+        StatusMessage = message;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+
 
 }
