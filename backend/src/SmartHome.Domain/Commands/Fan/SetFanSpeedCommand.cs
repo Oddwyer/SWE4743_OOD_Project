@@ -33,7 +33,7 @@ public class SetFanSpeedCommand : DeviceCommand
             throw new InvalidOperationException("Fan is not on.");
         }
 
-        fanDevice.SetSpeed(NewSpeed);
+        fanDevice.SetFanSpeed(NewSpeed);
 
     }
 
