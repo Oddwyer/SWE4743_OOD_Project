@@ -137,13 +137,21 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
-    internal void RehydrateState(DevicePowerState powerState, IThermostatModeStrategy strategy, int targetTemperature)
+    /// </summary>
+    internal void RehydrateState(DevicePowerState powerState, IThermostatModeStrategy strategy, int targetTemperature, ThermostatStateType stateType)
     {
         _powerState = powerState;
         CurrentMode = strategy;
         TargetTemperature = targetTemperature;
-        _currentState = powerState == DevicePowerState.On ? Idle : Off;
+        _currentState = powerState == DevicePowerState.Off
+        ? Off
+       : stateType switch
+       {
+           ThermostatStateType.Idle => Idle,
+           ThermostatStateType.Heating => Heating,
+           ThermostatStateType.Cooling => Cooling,
+           _ => Idle
+       };
     }
 
 

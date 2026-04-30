@@ -3,6 +3,7 @@ using SmartHome.Domain.Commands.Fan;
 using SmartHome.Domain.Commands.Light;
 using SmartHome.Domain.Commands.Lock;
 using SmartHome.Domain.Commands.Power;
+using System.Data;
 
 
 namespace SmartHome.Domain.Commands;
@@ -58,7 +59,7 @@ public class CommandFactory : ICommandFactory
                 return new ToggleLockCommand(device);
 
             default:
-                throw new ArgumentException($"Unsupported command type: {command}");
+                throw new ArgumentException($"Unsupported command type.");
 
 
 

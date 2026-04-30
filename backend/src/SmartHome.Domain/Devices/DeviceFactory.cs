@@ -60,7 +60,7 @@ public class DeviceFactory : IDeviceFactory
 
         return data.Type switch
         {
-            DeviceType.Light => RehydrateLight(data),
+            DeviceType.Light => new LightDevice(data.Id, data.Name ?? "", data.Location ?? "")
 
             DeviceType.Fan =>
 
@@ -71,28 +71,6 @@ public class DeviceFactory : IDeviceFactory
 
             _ => throw new ArgumentException("Unsupported device type.")
         };
-    }
-
-    private IDevice RehydrateLight(DeviceRehydrationData data)
-    {
-        var light = new LightDevice(data.Id, data.Name ?? "", data.Location ?? "");
-
-        if (data.IsOn)
-        {
-            light.TurnPowerOn();
-        }
-
-        if (data.LightColor is not null)
-        {
-            light.ChangeColor(data.LightColor.Value);
-        }
-
-        if (data.LightBrightness is not null)
-        {
-            light.SetLightBrightness(data.LightBrightness.Value);
-        }
-
-        return light;
     }
 
 }
