@@ -84,7 +84,7 @@ public class FanDevice : Device, IPoweredDevice
     /// <summary>
     /// Updates the status message (used by states). 
     /// </summary>
-    internal void UpdateStatusMessageInternal(string message)
+    internal void UpdateStatusMessage(string message)
     {
         StatusMessage = message;
         UpdatedAt = DateTime.UtcNow;
