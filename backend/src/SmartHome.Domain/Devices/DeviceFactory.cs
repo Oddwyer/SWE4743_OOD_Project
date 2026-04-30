@@ -66,7 +66,7 @@ public class DeviceFactory : IDeviceFactory
 
             DeviceType.DoorLock => RehydrateDoorLock(data),
 
-            DeviceType.Thermostat => RehydrateThermostat(data);
+            DeviceType.Thermostat => RehydrateThermostat(data),
 
             _ => throw new ArgumentException("Unsupported device type.")
         };
@@ -90,16 +90,29 @@ public class DeviceFactory : IDeviceFactory
     private IDevice RehydrateFan(DeviceRehydrationData data)
     {
 
-        var light = new LightDevice(data.Id, data.Name ?? "", data.Location ?? "");
+        var fan = new FanDevice(data.Id, data.Name ?? "", data.Location ?? "");
 
         var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
-        var lightcolor = data.LightColor ?? LightColor.White;
-        var lightBrightness = data.LightBrightness ?? 100;
+        var fanSpeed = data.FanSpeed ?? FanSpeed.Medium;
 
-        light.RehydrateState(powerState, lightcolor, lightBrightness);
+        fan.RehydrateState(powerState, fanSpeed);
 
-        return light;
+        return fan;
     }
+
+
+    private IDevice RehydrateDoorLock(DeviceRehydrationData data)
+    {
+
+        var doorlock = new DoorLocks(data.Id, data.Name ?? "", data.Location ?? "");
+
+        var latchState = data.IsOn ? DeviceLatchState.Locked : DeviceLatchState.Unlocked;
+
+        doorlock.RehydrateState(latchState);
+
+        return doorlock;
+    }
+
 
 
     private IDevice RehydrateThermostat(DeviceRehydrationData data)
