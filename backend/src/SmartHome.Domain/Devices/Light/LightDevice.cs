@@ -99,4 +99,9 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     {
         StatusMessage = message;
     }
+
+    internal void SetState(ILightState newState)
+    {
+        _currentState = newState;
+    }
 }

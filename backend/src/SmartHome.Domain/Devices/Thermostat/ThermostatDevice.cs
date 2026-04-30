@@ -9,11 +9,8 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     // States
     private DevicePowerState _powerState; // Once flushed, revisit IPoweredDevice.
-
     public IdleState Idle { get; private set; }
-
     public CoolingState Cooling { get; private set; }
-
     public HeatingState Heating { get; private set; }
 
     public OffState Off { get; private set; }

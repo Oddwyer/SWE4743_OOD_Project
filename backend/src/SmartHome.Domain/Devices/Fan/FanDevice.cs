@@ -10,6 +10,7 @@ public class FanDevice : Device, IPoweredDevice
     public IFanState OffState { get; private set; }
 
     private IFanState _currentState;
+
     public FanSpeed Speed { get; private set; } = FanSpeed.Medium;
 
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan)
@@ -74,6 +75,11 @@ public class FanDevice : Device, IPoweredDevice
     internal void UpdateStatusMessage(string message)
     {
         StatusMessage = message;
+    }
+
+    internal void SetState(IFanState newState)
+    {
+        _currentState = newState;
     }
 }
 

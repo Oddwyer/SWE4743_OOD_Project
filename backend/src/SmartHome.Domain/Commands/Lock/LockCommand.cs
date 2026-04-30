@@ -26,7 +26,7 @@ public class LockCommand : DeviceCommand
             throw new InvalidOperationException("This device cannot be locked.");
         }
 
-        if (latchedDevice.latchState == DeviceLatchState.Locked)
+        if (latchedDevice.LatchState == DeviceLatchState.Locked)
         {
             throw new InvalidOperationException("Device is already Locked.");
         }
