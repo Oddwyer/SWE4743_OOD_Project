@@ -2,6 +2,7 @@ using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
+using SmartHome.Domain.Devices.Thermostat;
 
 /// <summary>
 /// Creates and rehydrates device instances based on type or persisted data.
@@ -15,6 +16,12 @@ namespace SmartHome.Domain.Devices;
 
 public class DeviceFactory : IDeviceFactory
 {
+    private IThermostatModeStrategyFactory _thermostatModeStrategy;
+
+    public DeviceFactory(IThermostatModeStrategyFactory factory)
+    {
+        _thermostatModeStrategy = factory;
+    }
 
     /// <summary>
     /// Creates new specific device based on type entered.
@@ -48,20 +55,45 @@ public class DeviceFactory : IDeviceFactory
     /// <summary>
     /// Rehydrates saved data into device objects.
     /// </summary>
-    public IDevice RehydrateDevice(Guid id, string name, string location, DeviceType type, bool isOn, string? deviceState)
+    public IDevice RehydrateDevice(DeviceRehydrationData data)
     {
-        return type switch
+
+        return data.Type switch
         {
-            DeviceType.Light => new LightDevice(id, name ?? "", location ?? ""),
+            DeviceType.Light => RehydrateLight(data),
 
-            DeviceType.Fan => new FanDevice(id, name ?? "", location ?? ""),
+            DeviceType.Fan =>
 
-            DeviceType.DoorLock => new DoorLocks(id, name ?? "", location ?? ""),
+            DeviceType.DoorLock => new DoorLocks(data.Id, data.Name ?? "", data.Location ?? ""),
 
-            DeviceType.Thermostat => new ThermostatDevice(id, name ?? "", location ?? "", ),
+            DeviceType.Thermostat => new ThermostatDevice(data.Id, data.Name ?? "", data.Location ?? "",
+            _thermostatModeStrategy.Create(data.ThermostatMode ?? ThermostatMode.Auto)),
 
             _ => throw new ArgumentException("Unsupported device type.")
         };
     }
+
+    private IDevice RehydrateLight(DeviceRehydrationData data)
+    {
+        var light = new LightDevice(data.Id, data.Name ?? "", data.Location ?? "");
+
+        if (data.IsOn)
+        {
+            light.TurnPowerOn();
+        }
+
+        if (data.LightColor is not null)
+        {
+            light.ChangeColor(data.LightColor.Value);
+        }
+
+        if (data.LightBrightness is not null)
+        {
+            light.SetLightBrightness(data.LightBrightness.Value);
+        }
+
+        return light;
+    }
+
 }
 
