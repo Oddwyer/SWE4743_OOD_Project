@@ -13,11 +13,11 @@ public class ThermostatCoolingState : IThermostatState
     {
 
     }
-    public void SetTargetTemperature(ThermostatDevice thermostat, double temp)
+    public void SetTargetTemperature(int temp)
     {
 
     }
-    public void Evaluate(ThermostatDevice thermostat, double ambientTemperature)
+    public void Evaluate(int ambientTemperature)
     {
 
     }
