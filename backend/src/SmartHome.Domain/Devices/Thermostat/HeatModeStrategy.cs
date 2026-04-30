@@ -1,14 +1,14 @@
+using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+
 namespace SmartHome.Domain.Devices.Thermostat;
 
-public class HeatModeStrategy //: IThermostatModeStrategy
+public class HeatModeStrategy : IThermostatModeStrategy
 {
 
-    /*public IThermostatState DetermineState(
-        double ambientTemperature,
-        double desiredTemperature)
+    public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
     {
-        return ambientTemperature < desiredTemperature
-            ? new ThermostatHeatingState()
-            : new ThermostatIdleState();
-    }*/
+        return ambientTemperature < thermostat.TargetTemperature
+            ? thermostat.HeatingState
+            : thermostat.IdleState;
+    }
 }
