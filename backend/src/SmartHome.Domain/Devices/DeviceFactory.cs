@@ -50,23 +50,18 @@ public class DeviceFactory : IDeviceFactory
     /// </summary>
     public IDevice RehydrateDevice(Guid id, string name, string location, DeviceType type, bool isOn, string? deviceState)
     {
-        switch (type)
+        return type switch
         {
-            case DeviceType.Light:
-                return new LightDevice(id, name ?? "", location ?? "");
+            DeviceType.Light => new LightDevice(id, name ?? "", location ?? ""),
 
-            case DeviceType.Fan:
-                return new FanDevice(id, name ?? "", location ?? "");
+            DeviceType.Fan => new FanDevice(id, name ?? "", location ?? ""),
 
-            case DeviceType.DoorLock:
-                return new DoorLocks(id, name ?? "", location ?? "");
+            DeviceType.DoorLock => new DoorLocks(id, name ?? "", location ?? ""),
 
-            /*case DeviceType.Thermostat:
-                return new Thermostat(id, name ?? "", location ?? "");*/
+            DeviceType.Thermostat => new ThermostatDevice(id, name ?? "", location ?? "", ),
 
-            default:
-                throw new ArgumentException("Unsupported device type.");
-        }
+            _ => throw new ArgumentException("Unsupported device type.")
+        };
     }
 }
 
