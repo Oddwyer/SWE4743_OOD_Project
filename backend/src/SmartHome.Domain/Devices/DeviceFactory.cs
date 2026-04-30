@@ -5,14 +5,10 @@ using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 /// <summary>
-/// Creates and rehydrates device instances based on type or persisted data.
-/// Centralizes device creation and hides concrete implementations (Factory Pattern).
+/// Creates and restores domain device instances.
 /// </summary>
 
 namespace SmartHome.Domain.Devices;
-
-// TODO Kataali: This factory belongs to the Domain layer because it creates domain objects.
-// I added this so API endpoints could be tested but we still need thermostat. You're welcome to flush it out!
 
 public class DeviceFactory : IDeviceFactory
 {
@@ -24,7 +20,7 @@ public class DeviceFactory : IDeviceFactory
     }
 
     /// <summary>
-    /// Creates new specific device based on type entered.
+    /// Creates and restores domain device instances.
     /// </summary>
     public IDevice CreateDevice(string name, string location, DeviceType type)
     {
@@ -53,7 +49,7 @@ public class DeviceFactory : IDeviceFactory
     }
 
     /// <summary>
-    /// Rehydrates saved data into device objects.
+    /// Creates and restores domain device instances.
     /// </summary>
     public IDevice RehydrateDevice(DeviceRehydrationData data)
     {
@@ -72,7 +68,9 @@ public class DeviceFactory : IDeviceFactory
         };
     }
 
-
+    /// <summary>
+    /// Restores a light from persisted values.
+    /// </summary>
     private IDevice RehydrateLight(DeviceRehydrationData data)
     {
 
@@ -87,6 +85,9 @@ public class DeviceFactory : IDeviceFactory
         return light;
     }
 
+    /// <summary>
+    /// Restores a fan from persisted values.
+    /// </summary>
     private IDevice RehydrateFan(DeviceRehydrationData data)
     {
 
@@ -101,20 +102,26 @@ public class DeviceFactory : IDeviceFactory
     }
 
 
+    /// <summary>
+    /// Restores a door lock from persisted values.
+    /// </summary>
     private IDevice RehydrateDoorLock(DeviceRehydrationData data)
     {
 
         var doorlock = new DoorLocks(data.Id, data.Name ?? "", data.Location ?? "");
 
-        var latchState = data.IsOn ? DeviceLatchState.Locked : DeviceLatchState.Unlocked;
+        var latchState = Enum.TryParse<DeviceLatchState>(data.DeviceState, ignoreCase: true, out var parsedState)
+            ? parsedState
+            : DeviceLatchState.Locked;
 
         doorlock.RehydrateState(latchState);
 
         return doorlock;
     }
 
-
-
+    /// <summary>
+    /// Restores a thermostat from persisted values.
+    /// </summary>
     private IDevice RehydrateThermostat(DeviceRehydrationData data)
     {
 

@@ -30,7 +30,7 @@ public class DoorLocks : Device, ILatchedDevice
     /// <summary>
     /// Indicates whether the door lock is currently locked (on) or unlocked (off).
     /// </summary>
-    public override bool IsDeviceOn => _latchState == DeviceLatchState.Locked;
+    public override bool IsDeviceOn => true; // Always "on" for UI.
 
     /// <summary>
     /// Toggles the lock state of the door. 
