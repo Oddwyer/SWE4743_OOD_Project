@@ -9,15 +9,11 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     // States
     private DevicePowerState _powerState; // Once flushed, revisit IPoweredDevice.
-    public ThermostatIdleState IdleState { get; private set; }
-    public ThermostatCoolingState CoolingState { get; private set; }
-    public ThermostatHeatingState HeatingState { get; private set; }
-    public ThermostatOffState OffState { get; private set; }
+    public IdleState Idle { get; private set; }
+    public CoolingState Cooling { get; private set; }
+    public HeatingState Heating { get; private set; }
+    public OffState Off { get; private set; }
     private IThermostatState _currentState;
-
-
-    public override bool IsDeviceOn => _powerState == DevicePowerState.On;
-    public DevicePowerState PowerState => _powerState;
 
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) :
     base(id, deviceName, deviceLocation, DeviceType.Thermostat)
@@ -26,17 +22,27 @@ public class ThermostatDevice : Device, IPoweredDevice
 
         // Initialize states
         _powerState = DevicePowerState.Off; // default state
-        IdleState = new ThermostatIdleState(this);
-        CoolingState = new ThermostatCoolingState(this);
-        HeatingState = new ThermostatHeatingState(this);
-        OffState = new ThermostatOffState(this);
+        Idle = new IdleState(this);
+        Cooling = new CoolingState(this);
+        Heating = new HeatingState(this);
+        Off = new OffState(this);
 
-        _currentState = OffState; // default state
+        _currentState = Off; // default state
 
     }
 
     /// <summary>
-    /// Toggles the power state of the thermostat. If the thermostat is currently on, it will be turned off, and vice versa.
+    /// Current power state of the thermostat.
+    /// </summary>
+    public DevicePowerState PowerState => _powerState;
+
+    /// <summary>
+    /// Indicates whether the thermostat is on.
+    /// </summary>
+    public override bool IsDeviceOn => _powerState == DevicePowerState.On;
+
+    /// <summary>
+    /// Requests a power toggle. Behavior is determined by the current state.
     /// </summary>
     public void TogglePower()
     {
@@ -44,7 +50,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// 1nternal method to turn the power on. This method is called by the state classes to update the power state of the thermostat.
+    /// Sets power to on (used by states).
     /// </summary>
     internal void TurnPowerOn()
     {
@@ -53,7 +59,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Internal method to turn the power off. This method is called by the state classes to update the power state of the thermostat.
+    /// Sets power to off (used by states).
     /// </summary>
     internal void TurnPowerOff()
     {
@@ -62,14 +68,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Sets the target temperature for the thermostat. The behavior of this method will depend on the current state of the thermostat
-    /// and the mode strategy in use. 
-    /// 
-    /// For example:
-    /// - If the thermostat is in cooling mode and the target temperature is set below the ambient temperature, it may transition to the cooling state. 
-    /// - If it's in heating mode and the target temperature is set above the ambient temperature, it may transition to the heating state. 
-    /// - If the target temperature is set to a comfortable range around the ambient temperature, it may transition to an idle state. 
-    /// The specific logic for these transitions will be defined within the respective state classes and influenced by the mode strategy.
+    /// Requests a target temperature change. The current state decides if allowed.
     /// </summary>
     public void SetTargetTemperature(int targetTemperature)
     {
@@ -77,8 +76,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Internal method to set the target temperature. This method is called by the state classes to update the target temperature of the 
-    /// thermostat based on the logic defined within those states and influenced by the mode strategy. (Prevents recursion using public method.)
+    /// Applies a target temperature change (used by states).
     /// </summary>
     internal void SetTargetTemperatureInternal(int targetTemperature)
     {
@@ -86,9 +84,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Evaluates the current state of the thermostat based on the ambient temperature and the target temperature. 
-    /// This method will be called periodically (e.g., every minute) to determine if the thermostat needs to transition 
-    /// to a different state (e.g., from idle to cooling or heating) based on the current conditions and the mode strategy in use.
+    /// Requests evaluation using the current state.
     /// </summary>
     public void Evaluate(int ambientTemperature)
     {
@@ -96,8 +92,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Sets the current state of the thermostat. This method is used by the state classes to transition the thermostat to a new state 
-    /// based on the logic defined within those states and influenced by the mode strategy.
+    /// Sets the active mode strategy.
     /// </summary>
     internal void SetModeStrategy(IThermostatModeStrategy strategy)
     {
@@ -105,8 +100,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Sets the current state of the thermostat. This method is used by the state classes to transition the thermostat to a new state 
-    /// based on the logic defined within those states and influenced by the mode strategy.
+    /// Sets the current state (used by states).
     /// </summary>
     internal void SetState(IThermostatState newState)
     {
@@ -114,12 +108,19 @@ public class ThermostatDevice : Device, IPoweredDevice
     }
 
     /// <summary>
-    /// Determines the next state of the thermostat based on the current mode strategy and the ambient temperature. 
-    /// This method is called by the state classes during evaluation to decide if a state transition is necessary.
+    /// Determines the next state using the current strategy.
     /// </summary>
     internal IThermostatState DetermineNextState(int ambientTemperature)
     {
         var nextState = CurrentMode.DetermineNextState(this, ambientTemperature);
         return nextState;
+    }
+
+    /// <summary>
+    /// Updates the status message (used by states). The status message can be used for logging, debugging, or providing user feedback through the API.
+    /// </summary>
+    internal void UpdateStatusMessage(string message)
+    {
+        StatusMessage = message;
     }
 }

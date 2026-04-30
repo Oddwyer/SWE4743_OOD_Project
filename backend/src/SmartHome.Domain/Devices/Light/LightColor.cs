@@ -6,7 +6,7 @@ namespace SmartHome.Domain.Devices.Light;
 /// <summary>
 /// Represents the color state of a light device, such as a smart bulb that can change colors.
 /// </summary>
-public enum LightColorState
+public enum LightColor
 {
     White = 1,
     Red = 2,

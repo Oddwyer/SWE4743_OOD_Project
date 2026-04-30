@@ -4,12 +4,12 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 /// The ThermostatCoolingState class represents the state of the thermostat when it is actively cooling.
 /// </summary>
 
-public class ThermostatCoolingState : IThermostatState
+public class CoolingState : IThermostatState
 {
 
     private readonly ThermostatDevice _thermostat;
 
-    public ThermostatCoolingState(ThermostatDevice thermostat)
+    public CoolingState(ThermostatDevice thermostat)
     {
         _thermostat = thermostat;
     }
@@ -20,7 +20,7 @@ public class ThermostatCoolingState : IThermostatState
     public void TogglePower()
     {
         _thermostat.TurnPowerOff();
-        _thermostat.SetState(_thermostat.OffState);
+        _thermostat.SetState(_thermostat.Off);
 
     }
 
@@ -37,6 +37,7 @@ public class ThermostatCoolingState : IThermostatState
     /// <summary>
     /// When evaluating the cooling state, we want to determine the next state based on the current ambient temperature and the target temperature.
     /// </summary>
+
     public void Evaluate(int ambientTemperature)
     {
         var nextState = _thermostat.DetermineNextState(ambientTemperature);

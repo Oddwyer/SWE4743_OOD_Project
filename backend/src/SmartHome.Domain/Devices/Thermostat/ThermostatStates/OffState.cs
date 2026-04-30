@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 /// <summary>
@@ -5,13 +7,13 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 /// should not be actively heating or cooling, and any attempts to set the target temperature or evaluate the state should have 
 /// no effect until the power is toggled back on.
 /// </summary>
-public class ThermostatOffState : IThermostatState
+public class OffState : IThermostatState
 {
-    private readonly IDevice thermostat;
+    private readonly ThermostatDevice _thermostat;
 
-    public ThermostatOffState(IDevice thermostat)
+    public OffState(ThermostatDevice thermostat)
     {
-        this.thermostat = thermostat;
+        _thermostat = thermostat;
     }
 
     /// <summary>
@@ -20,6 +22,8 @@ public class ThermostatOffState : IThermostatState
     /// </summary>
     public void TogglePower()
     {
+        _thermostat.TurnPowerOn();
+        _thermostat.SetState(_thermostat.Idle);
 
     }
 

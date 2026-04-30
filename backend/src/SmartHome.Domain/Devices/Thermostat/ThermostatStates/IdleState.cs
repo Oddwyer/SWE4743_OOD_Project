@@ -3,11 +3,11 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 /// <summary>
 /// The ThermostatIdleState class represents the state of the thermostat when it is idle (i.e., not actively heating or cooling).
 /// </summary>
-public class ThermostatIdleState : IThermostatState
+public class IdleState : IThermostatState
 {
     private readonly IDevice thermostat;
 
-    public ThermostatIdleState(IDevice thermostat)
+    public IdleState(IDevice thermostat)
     {
         this.thermostat = thermostat;
     }

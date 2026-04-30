@@ -3,11 +3,11 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 /// <summary>
 /// The ThermostatHeatingState class represents the state of the thermostat when it is actively heating.
 /// </summary>
-public class ThermostatHeatingState : IThermostatState
+public class HeatingState : IThermostatState
 {
     private readonly ThermostatDevice _thermostat;
 
-    public ThermostatHeatingState(ThermostatDevice thermostat)
+    public HeatingState(ThermostatDevice thermostat)
     {
         _thermostat = thermostat;
     }
@@ -18,7 +18,7 @@ public class ThermostatHeatingState : IThermostatState
     public void TogglePower()
     {
         _thermostat.TurnPowerOff();
-        _thermostat.SetState(_thermostat.OffState);
+        _thermostat.SetState(_thermostat.Off);
 
     }
 

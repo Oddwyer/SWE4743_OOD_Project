@@ -17,7 +17,7 @@ public class HeatModeStrategy : IThermostatModeStrategy
     {
 
         return ambientTemperature < thermostat.TargetTemperature
-            ? thermostat.HeatingState
-            : thermostat.IdleState;
+            ? thermostat.Heating
+            : thermostat.Idle;
     }
 }

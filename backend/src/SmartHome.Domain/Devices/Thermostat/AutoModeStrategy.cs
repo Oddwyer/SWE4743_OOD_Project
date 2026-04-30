@@ -15,10 +15,10 @@ public class AutoModeStrategy : IThermostatModeStrategy
     public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
     {
         return ambientTemperature < thermostat.TargetTemperature
-            ? thermostat.HeatingState
+            ? thermostat.Heating
             : ambientTemperature > thermostat.TargetTemperature
-                ? thermostat.CoolingState
-                : thermostat.IdleState;
+                ? thermostat.Cooling
+                : thermostat.Idle;
     }
 
 }

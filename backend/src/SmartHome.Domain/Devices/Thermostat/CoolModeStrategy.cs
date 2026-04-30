@@ -16,7 +16,7 @@ public class CoolModeStrategy : IThermostatModeStrategy
     public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
     {
         return ambientTemperature > thermostat.TargetTemperature
-            ? thermostat.CoolingState
-            : thermostat.IdleState;
+            ? thermostat.Cooling
+            : thermostat.Idle;
     }
 }
