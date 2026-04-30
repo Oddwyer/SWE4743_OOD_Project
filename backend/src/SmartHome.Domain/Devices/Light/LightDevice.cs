@@ -15,7 +15,6 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     private ILightState _currentState;
 
-
     public LightColor ColorState { get; private set; }
 
     public int LightBrightness { get; private set; }

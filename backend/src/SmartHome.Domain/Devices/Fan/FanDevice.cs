@@ -90,5 +90,17 @@ public class FanDevice : Device, IPoweredDevice
         UpdatedAt = DateTime.UtcNow;
     }
 
+    /// <summary>
+    /// Restores device properties.
+    /// <summary>
+    internal void RehydrateState(DevicePowerState powerState, LightColor color, int brightness)
+    {
+        _powerState = powerState;
+        ColorState = color;
+        LightBrightness = brightness;
+        _currentState = powerState == DevicePowerState.On ? On : Off;
+    }
+
+
 }
 

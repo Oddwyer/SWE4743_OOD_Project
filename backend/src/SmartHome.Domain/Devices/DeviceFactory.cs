@@ -2,7 +2,7 @@ using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
-using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 /// <summary>
 /// Creates and rehydrates device instances based on type or persisted data.
@@ -16,11 +16,11 @@ namespace SmartHome.Domain.Devices;
 
 public class DeviceFactory : IDeviceFactory
 {
-    private IThermostatModeStrategyFactory _thermostatModeStrategy;
+    private IThermostatModeStrategyFactory _thermostatModeStrategyFactory;
 
     public DeviceFactory(IThermostatModeStrategyFactory factory)
     {
-        _thermostatModeStrategy = factory;
+        _thermostatModeStrategyFactory = factory;
     }
 
     /// <summary>
@@ -60,18 +60,71 @@ public class DeviceFactory : IDeviceFactory
 
         return data.Type switch
         {
-            DeviceType.Light => new LightDevice(data.Id, data.Name ?? "", data.Location ?? "")
+            DeviceType.Light => RehydrateLight(data),
 
-            DeviceType.Fan =>
+            DeviceType.Fan => RehydrateFan(data),
 
-            DeviceType.DoorLock => new DoorLocks(data.Id, data.Name ?? "", data.Location ?? ""),
+            DeviceType.DoorLock => RehydrateDoorLock(data),
 
-            DeviceType.Thermostat => new ThermostatDevice(data.Id, data.Name ?? "", data.Location ?? "",
-            _thermostatModeStrategy.Create(data.ThermostatMode ?? ThermostatMode.Auto)),
+            DeviceType.Thermostat => RehydrateThermostat(data);
 
             _ => throw new ArgumentException("Unsupported device type.")
         };
     }
+
+
+    private IDevice RehydrateLight(DeviceRehydrationData data)
+    {
+
+        var light = new LightDevice(data.Id, data.Name ?? "", data.Location ?? "");
+
+        var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
+        var lightcolor = data.LightColor ?? LightColor.White;
+        var lightBrightness = data.LightBrightness ?? 100;
+
+        light.RehydrateState(powerState, lightcolor, lightBrightness);
+
+        return light;
+    }
+
+    private IDevice RehydrateFan(DeviceRehydrationData data)
+    {
+
+        var light = new LightDevice(data.Id, data.Name ?? "", data.Location ?? "");
+
+        var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
+        var lightcolor = data.LightColor ?? LightColor.White;
+        var lightBrightness = data.LightBrightness ?? 100;
+
+        light.RehydrateState(powerState, lightcolor, lightBrightness);
+
+        return light;
+    }
+
+
+    private IDevice RehydrateThermostat(DeviceRehydrationData data)
+    {
+
+        var strategy = _thermostatModeStrategyFactory.Create(data.ThermostatMode ?? ThermostatMode.Auto);
+
+        var thermostat = new ThermostatDevice(data.Id, data.Name ?? "", data.Location ?? "", strategy);
+
+        var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
+
+        var stateType = powerState == DevicePowerState.Off ?
+        ThermostatStateType.Off
+        : Enum.TryParse<ThermostatStateType>(data.DeviceState, ignoreCase: true, out var parsedState)
+            ? parsedState
+            : ThermostatStateType.Idle;
+
+        var targetTemp = data.TargetTemperature ?? ThermostatDevice.MinTemperature;
+
+        thermostat.RehydrateState(powerState, strategy, targetTemp, stateType);
+
+        return thermostat;
+    }
+
+
 
 }
 
