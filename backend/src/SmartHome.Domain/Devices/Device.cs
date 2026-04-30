@@ -3,15 +3,17 @@ using SmartHome.Domain.Commands;
 
 namespace SmartHome.Domain.Devices;
 
-// basic template of what all devices will need in the home simulator
+/// <summary>
+/// Base class for all devices in the smart home system. This class defines 
+/// common properties and methods that all devices must implement.
+/// </summary>
 public abstract class Device : IDevice
-{   //core fields and properties accounted for first
+{
     public Guid Id { get; protected set; } = Guid.NewGuid();
     public string DeviceName { get; protected set; } = string.Empty;
     public string DeviceLocation { get; protected set; } = string.Empty;
     public DeviceType Type { get; protected set; }
-
-    //each device needs to be able to control/manage its own state
+    public string StatusMessage { get; protected set; } = string.Empty; // Added StatusMessage to Device for better error handling and state reporting.
 
     //TODO - Kataali: Create DeviceState class...
     //public abstract DeviceState State {get; protected set;} 

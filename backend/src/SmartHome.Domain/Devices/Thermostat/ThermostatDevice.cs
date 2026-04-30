@@ -2,31 +2,58 @@ using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 namespace SmartHome.Domain.Devices.Thermostat;
 
-// basic template of what all devices will need in the home simulator
-public abstract class ThermostatDevice : Device, IPoweredDevice
-{   //core fields and properties accounted for first
+public class ThermostatDevice : Device, IPoweredDevice
+{
+    private DevicePowerState _powerState; // Once flushed, revisit IPoweredDevice.
+    // States
+    public ThermostatOnState OnState { get; }
+    public ThermostatIdleState IdleState { get; }
+    public ThermostatCoolingState CoolingState { get; }
+    public ThermostatHeatingState HeatingState { get; }
+    public ThermostatOffState OffState { get; }
+
+    // Current state 
     private IThermostatState _currentState;
-    private DevicePowerState _powerState;
-    private readonly IThermostatModeStrategy _modeStrategy;
+
+    public IThermostatModeStrategy ModeStrategy { get; private set; }
     public override bool IsDeviceOn => _powerState == DevicePowerState.On;
 
     public DevicePowerState PowerState => _powerState;
+
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) : base(id, deviceName, deviceLocation, DeviceType.Thermostat)
     {
+        ModeStrategy = strategy;
         _powerState = DevicePowerState.Off; // default state
-        _modeStrategy = strategy;
+
+        // Initialize states
+        OnState = new ThermostatOnState(this);
+        IdleState = new ThermostatIdleState(this);
+        CoolingState = new ThermostatCoolingState(this);
+        HeatingState = new ThermostatHeatingState(this);
+        OffState = new ThermostatOffState(this);
+
+        _currentState = OffState; // default state
+
     }
 
     public void TogglePower()
     {
-        // trying toggle with a ternary operator for cleaner code
-
-        _powerState = _powerState == DevicePowerState.On // check current state and toggle
-        ? DevicePowerState.Off  // if on, turn off
-        : DevicePowerState.On;  // if off, turn on
+        _currentState.TogglePower();
     }
 
+    public void SetTargetTemperature(ThermostatDevice thermostat, double temp)
+    {
+        _currentState.SetTargetTemperature(thermostat, temp);
+    }
+    public void Evaluate(ThermostatDevice thermostat, double ambientTemperature)
+    {
+        _currentState.Evaluate(thermostat, ambientTemperature);
+    }
 
+    public void SetModeStrategy(IThermostatModeStrategy strategy)
+    {
+        ModeStrategy = strategy;
+    }
 
 
 }
