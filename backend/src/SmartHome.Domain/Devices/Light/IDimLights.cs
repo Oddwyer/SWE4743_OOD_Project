@@ -6,5 +6,6 @@ namespace SmartHome.Domain.Devices.Light;
 public interface IDimLights
 {
     void SetLightBrightness(int brightnessPercentage); // brightness level from 10 to 100
-    int lightBrightness { get; } // can be used to check current brightness level and for rehydration purposes
+
+    int LightBrightness { get; } // can be used to check current brightness level and for rehydration purposes
 }

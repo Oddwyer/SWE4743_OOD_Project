@@ -1,17 +1,21 @@
+using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+
 namespace SmartHome.Domain.Devices.Thermostat;
 
-public class CoolModeStrategy //: IThermostatModeStrategy
+/// <summary>
+/// The CoolModeStrategy class implements the IThermostatModeStrategy interface and defines the logic for determining the next state 
+/// of the thermostat when it is in Cool mode.
+/// </summary>
+public class CoolModeStrategy : IThermostatModeStrategy
 {
-    /*public IThermostatState DetermineState(ThermostatDevice thermostat, double ambientTemperature)
-    {
-        if (!thermostat.IsDeviceOn)
-            return new ThermostatOffState();
 
-        if (ambientTemperature < thermostat.TargetTemperature - 0.5)
-            return new ThermostatHeatingState();
-        else if (ambientTemperature > thermostat.TargetTemperature + 0.5)
-            return new ThermostatCoolingState();
-        else
-            return new ThermostatIdleState();
-    }*/
+    /// <summary>
+    /// Determines the next state of the thermostat based on the current ambient temperature and the target temperature.
+    /// </summary>
+    public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
+    {
+        return ambientTemperature > thermostat.TargetTemperature
+            ? thermostat.Cooling
+            : thermostat.Idle;
+    }
 }

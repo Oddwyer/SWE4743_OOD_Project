@@ -2,31 +2,138 @@ using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 namespace SmartHome.Domain.Devices.Thermostat;
 
-// basic template of what all devices will need in the home simulator
-public abstract class ThermostatDevice : Device, IPoweredDevice
-{   //core fields and properties accounted for first
+public class ThermostatDevice : Device, IPoweredDevice
+{
+    public int TargetTemperature { get; private set; }
+    public IThermostatModeStrategy CurrentMode { get; private set; }
+
+    public const int MinTemperature = 60; // Minimum allowed temperature
+    public const int MaxTemperature = 80; // Maximum allowed temperature
+
+    // States
+    private DevicePowerState _powerState; // Forward declaration of power state. On has three sub-states: Idle, Cooling, Heating.
+    public IdleState Idle { get; private set; }
+    public CoolingState Cooling { get; private set; }
+    public HeatingState Heating { get; private set; }
+
+    public OffState Off { get; private set; }
+
     private IThermostatState _currentState;
-    private DevicePowerState _powerState;
-    private readonly IThermostatModeStrategy _modeStrategy;
+
+    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) :
+
+    base(id, deviceName, deviceLocation, DeviceType.Thermostat)
+    {
+        CurrentMode = strategy;
+
+        // Initialize states
+        _powerState = DevicePowerState.Off; // default state
+        Idle = new IdleState(this);
+        Cooling = new CoolingState(this);
+        Heating = new HeatingState(this);
+        Off = new OffState(this);
+
+        _currentState = Off; // default state
+
+    }
+
+    /// <summary>
+    /// Current power state of the thermostat.
+    /// </summary>
+    public DevicePowerState PowerState => _powerState;
+
+    /// <summary>
+    /// Indicates whether the thermostat is on.
+    /// </summary>
     public override bool IsDeviceOn => _powerState == DevicePowerState.On;
 
-    public DevicePowerState PowerState => _powerState;
-    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) : base(id, deviceName, deviceLocation, DeviceType.Thermostat)
-    {
-        _powerState = DevicePowerState.Off; // default state
-        _modeStrategy = strategy;
-    }
-
+    /// <summary>
+    /// Requests a power toggle. Behavior is determined by the current state.
+    /// </summary>
     public void TogglePower()
     {
-        // trying toggle with a ternary operator for cleaner code
-
-        _powerState = _powerState == DevicePowerState.On // check current state and toggle
-        ? DevicePowerState.Off  // if on, turn off
-        : DevicePowerState.On;  // if off, turn on
+        _currentState.TogglePower();
     }
 
+    /// <summary>
+    /// Sets power to on (used by states).
+    /// </summary>
+    internal void TurnPowerOn()
+    {
+        _powerState = DevicePowerState.On;
+        UpdatedAt = DateTime.UtcNow;
 
+    }
 
+    /// <summary>
+    /// Sets power to off (used by states).
+    /// </summary>
+    internal void TurnPowerOff()
+    {
+        _powerState = DevicePowerState.Off;
+        UpdatedAt = DateTime.UtcNow;
+
+    }
+
+    /// <summary>
+    /// Requests a target temperature change. The current state decides if allowed.
+    /// </summary>
+    public void SetTargetTemperature(int targetTemperature)
+    {
+        _currentState.SetTargetTemperature(targetTemperature);
+    }
+
+    /// <summary>
+    /// Applies a target temperature change (used by states).
+    /// </summary>
+    internal void SetTargetTemperatureInternal(int targetTemperature)
+    {
+        TargetTemperature = targetTemperature;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Requests evaluation using the current state.
+    /// </summary>
+    public void Evaluate(int ambientTemperature)
+    {
+        _currentState.Evaluate(ambientTemperature);
+    }
+
+    /// <summary>
+    /// Sets the active mode strategy.
+    /// </summary>
+    internal void SetModeStrategy(IThermostatModeStrategy strategy)
+    {
+        CurrentMode = strategy;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Sets the current state (used by states).
+    /// </summary>
+    internal void SetState(IThermostatState newState)
+    {
+        _currentState = newState;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Determines the next state using the current strategy.
+    /// </summary>
+    internal IThermostatState DetermineNextState(int ambientTemperature)
+    {
+        var nextState = CurrentMode.DetermineNextState(this, ambientTemperature);
+        return nextState;
+
+    }
+
+    /// <summary>
+    /// Updates the status message (used by states). The status message can be used for logging, debugging, or providing user feedback through the API.
+    /// </summary>
+    internal void UpdateStatusMessage(string message)
+    {
+        StatusMessage = message;
+    }
 
 }

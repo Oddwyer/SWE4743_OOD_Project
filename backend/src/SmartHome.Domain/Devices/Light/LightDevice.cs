@@ -1,48 +1,125 @@
-//using System.Reflection.Metadata.Ecma335;
+using SmartHome.Domain.Devices.Light.LightStates;
 
 namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
-    private DevicePowerState _powerState;
-    private LightColorState _colorState;
-    private int _brightness;
+    public const int MinBrightness = 10; // Minimum allowed brightness percentage
+    public const int MaxBrightness = 100; // Maximum allowed brightness percentage
+
+    // States
+    private DevicePowerState _powerState; // Forward declaration of power state. 
+    public OffState Off { get; private set; }
+
+    public OnState On { get; private set; }
+
+    private ILightState _currentState;
+
+
+    public LightColor ColorState { get; private set; }
+
+    public int LightBrightness { get; private set; }
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
     {
         _powerState = DevicePowerState.Off; // default state
-        _colorState = LightColorState.White; // default color
-        _brightness = 10; // default brightness
+        Off = new OffState(this);
+        On = new OnState(this);
+        _currentState = Off; // default state
+        ColorState = LightColor.White; // default color
+        LightBrightness = 10; // default brightness
     }
 
+    /// <summary>
+    /// Current power state of the light.
+    /// </summary>
     public DevicePowerState PowerState => _powerState;
 
-    public void TogglePower()
-    {
-        // trying toggle with a ternary operator for cleaner code
-
-        _powerState = _powerState == DevicePowerState.On // check current state and toggle
-        ? DevicePowerState.Off  // if on, turn off
-        : DevicePowerState.On;  // if off, turn on
-    }
-
+    /// <summary>
+    /// Indicates whether the light is on.
+    /// </summary>
     public override bool IsDeviceOn => _powerState == DevicePowerState.On;
 
-    public LightColorState colorState => _colorState;
-
-    public void ChangeColor(LightColorState newColor)
+    /// <summary>
+    /// Requests a power toggle. Behavior is determined by the current state.
+    /// </summary>
+    public void TogglePower()
     {
-        _colorState = newColor;
+        _currentState.TogglePower();
     }
 
-    public int lightBrightness => _brightness;
+    /// <summary>
+    /// Sets the power state to on (used by states).
+    /// </summary>
+    internal void TurnPowerOn()
+    {
+        _powerState = DevicePowerState.On;
+        UpdatedAt = DateTime.UtcNow;
 
+    }
+
+    /// <summary>
+    /// Sets the power state to off (used by states).
+    /// </summary>
+    internal void TurnPowerOff()
+    {
+        _powerState = DevicePowerState.Off;
+        UpdatedAt = DateTime.UtcNow;
+
+    }
+
+    /// <summary>
+    /// Requests a color change. The current state decides if it is allowed.
+    /// </summary>
+    public void ChangeColor(LightColor newColor)
+    {
+        _currentState.ChangeColor(newColor);
+    }
+
+    /// <summary>
+    /// Applies a color change (used by states).
+    /// </summary>
+    internal void ChangeColorInternal(LightColor newColor)
+    {
+        ColorState = newColor;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Requests a brightness change. The current state decides if it is allowed.
+    /// </summary>
     public void SetLightBrightness(int brightnessPercentage)
     {
-        if (brightnessPercentage < 10 || brightnessPercentage > 100)
-        {
-            throw new ArgumentOutOfRangeException(nameof(brightnessPercentage), "Brightness must be between 10 and 100.");
-        }
-        _brightness = brightnessPercentage;
+        _currentState.SetLightBrightness(brightnessPercentage);
     }
+
+    /// <summary>
+    /// Applies a brightness change (used by states).
+    /// </summary>
+    internal void SetLightBrightnessInternal(int brightnessPercentage)
+    {
+        LightBrightness = brightnessPercentage;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Sets the current state (used by states).`
+    /// </summary>
+    internal void SetState(ILightState newState)
+    {
+        _currentState = newState;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Updates the status message (used by states).
+    /// </summary>
+    internal void UpdateStatusMessage(string message)
+    {
+        StatusMessage = message;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+
+
 }

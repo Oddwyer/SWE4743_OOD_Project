@@ -15,9 +15,12 @@ public class DeviceResponse : BaseDevice
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
+    // Common status message for all devices, can be used to provide additional information about the device's current state or any errors.
+    public string StatusMessage { get; set; } = string.Empty;
+
     // Lights
     public int? Brightness { get; set; }
-    public LightColorState Color { get; set; }
+    public LightColor Color { get; set; }
 
     // Fans
     public FanSpeed Speed { get; set; }

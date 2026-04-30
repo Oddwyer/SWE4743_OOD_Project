@@ -1,39 +1,94 @@
+using SmartHome.Domain.Devices.Fan.FanStates;
+
 namespace SmartHome.Domain.Devices.Fan;
 
 public class FanDevice : Device, IPoweredDevice
 {
-    public DevicePowerState PowerState { get; private set; } = DevicePowerState.Off;
+    // States
+    private DevicePowerState _powerState;
+    public IFanState Off { get; private set; }
+    public IFanState On { get; private set; }
+    private IFanState _currentState;
 
     public FanSpeed Speed { get; private set; } = FanSpeed.Medium;
 
-    public override bool IsDeviceOn => PowerState == DevicePowerState.On;
-
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan)
     {
-        PowerState = DevicePowerState.Off;
+        _powerState = DevicePowerState.Off;
+        Off = new OffState(this);
+        On = new OnState(this);
+        _currentState = Off;
     }
+
+    /// <summary>
+    /// Current power state of the fan.
+    /// </summary>
+    public DevicePowerState PowerState => _powerState;
+
+    /// <summary>
+    /// Indicates whether the fan is on.
+    /// </summary>
+    public override bool IsDeviceOn => _powerState == DevicePowerState.On;
 
     public void TogglePower()
     {
-        PowerState = PowerState == DevicePowerState.On ? DevicePowerState.Off : DevicePowerState.On;
-
-        if (PowerState == DevicePowerState.On && Speed == default)
-        {
-            Speed = FanSpeed.Medium;
-        }
-
-        UpdatedAt = DateTime.UtcNow;
+        _currentState.TogglePower();
     }
 
-    public void SetSpeed(FanSpeed newSpeed)
+    /// <summary>
+    /// Sets the power state to on (used by states).
+    /// </summary>
+    internal void TurnPowerOn()
     {
-        if (PowerState == DevicePowerState.Off)
-        {
-            throw new InvalidOperationException("Cannot set speed when the fan is off.");
-        }
+        _powerState = DevicePowerState.On;
+        UpdatedAt = DateTime.UtcNow;
 
+    }
+
+    /// <summary>
+    /// Sets the power state to off (used by states).
+    /// </summary>
+    internal void TurnPowerOff()
+    {
+        _powerState = DevicePowerState.Off;
+        UpdatedAt = DateTime.UtcNow;
+
+    }
+
+    /// <summary>
+    ///  Requests a fan speed change. The current state decides if it is allowed.
+    /// </summary>
+    public void SetFanSpeed(FanSpeed newSpeed)
+    {
+        _currentState.SetFanSpeed(newSpeed);
+    }
+
+    /// <summary>
+    /// Sets the fan speed (used by states).
+    /// <summary>
+    internal void SetFanSpeedInternal(FanSpeed newSpeed)
+    {
         Speed = newSpeed;
         UpdatedAt = DateTime.UtcNow;
     }
+
+    /// <summary>
+    /// Sets the current state of the fan (used by state classes to transition between states).
+    /// </summary>
+    internal void SetState(IFanState newState)
+    {
+        _currentState = newState;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Updates the status message (used by states). 
+    /// </summary>
+    internal void UpdateStatusMessageInternal(string message)
+    {
+        StatusMessage = message;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
 }
 
