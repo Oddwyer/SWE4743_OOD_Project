@@ -4,12 +4,17 @@ namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
-    // States
-    private DevicePowerState _powerState;
+    public const int MinBrightness = 10; // Minimum allowed brightness percentage
+    public const int MaxBrightness = 100; // Maximum allowed brightness percentage
 
+    // States
+    private DevicePowerState _powerState; // Forward declaration of power state. 
     public OffState Off { get; private set; }
 
+    public OnState On { get; private set; }
+
     private ILightState _currentState;
+
 
     public LightColor ColorState { get; private set; }
 
@@ -19,6 +24,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     {
         _powerState = DevicePowerState.Off; // default state
         Off = new OffState(this);
+        On = new OnState(this);
         _currentState = Off; // default state
         ColorState = LightColor.White; // default color
         LightBrightness = 10; // default brightness
@@ -100,8 +106,12 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
         StatusMessage = message;
     }
 
+    /// <summary>
+    /// Sets the current state (used by states).`
+    /// </summary>
     internal void SetState(ILightState newState)
     {
         _currentState = newState;
     }
+
 }

@@ -6,7 +6,6 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 public class CoolingState : IThermostatState
 {
-
     private readonly ThermostatDevice _thermostat;
 
     public CoolingState(ThermostatDevice thermostat)
@@ -29,6 +28,11 @@ public class CoolingState : IThermostatState
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
+        if (temp < ThermostatDevice.MinTemperature || temp > ThermostatDevice.MaxTemperature)
+        {
+            _thermostat.UpdateStatusMessage($"Target temperature must be between {ThermostatDevice.MinTemperature} and {ThermostatDevice.MaxTemperature} degrees.");
+            return;
+        }
         _thermostat.SetTargetTemperatureInternal(temp);
 
     }

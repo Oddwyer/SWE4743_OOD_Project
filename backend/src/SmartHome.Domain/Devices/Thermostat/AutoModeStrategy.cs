@@ -3,14 +3,13 @@ using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 namespace SmartHome.Domain.Devices.Thermostat;
 
 /// <summary>
-/// In Auto mode, the thermostat will automatically switch between heating and cooling based on the ambient temperature and the target temperature.
+/// The AutoModeStrategy class implements the IThermostatModeStrategy interface and defines the logic for determining the next state 
+/// of the thermostat when it is in Auto mode.
 /// </summary>
 public class AutoModeStrategy : IThermostatModeStrategy
 {
     /// <summary>
-    /// When determining the next state in Auto mode, we want to check if the ambient temperature is below the target temperature 
-    /// (in which case we should heat), above the target temperature (in which case we should cool), or equal to the target temperature 
-    /// (in which case we should be idle).
+    /// Determines the next state of the thermostat based on the current ambient temperature and the target temperature.
     /// </summary>
     public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
     {

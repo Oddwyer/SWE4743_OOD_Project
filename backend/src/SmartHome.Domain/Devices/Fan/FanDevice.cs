@@ -6,9 +6,8 @@ public class FanDevice : Device, IPoweredDevice
 {
     // States
     private DevicePowerState _powerState;
-
-    public IFanState OffState { get; private set; }
-
+    public IFanState Off { get; private set; }
+    public IFanState On { get; private set; } 
     private IFanState _currentState;
 
     public FanSpeed Speed { get; private set; } = FanSpeed.Medium;
@@ -16,8 +15,9 @@ public class FanDevice : Device, IPoweredDevice
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan)
     {
         _powerState = DevicePowerState.Off;
-        OffState = new OffState(this);
-        _currentState = OffState;
+        Off = new OffState(this);
+        On = new OnState(this);
+        _currentState = Off;
     }
 
     /// <summary>

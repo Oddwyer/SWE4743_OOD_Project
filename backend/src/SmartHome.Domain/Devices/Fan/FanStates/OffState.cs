@@ -1,10 +1,8 @@
 namespace SmartHome.Domain.Devices.Fan.FanStates;
 
 /// <summary>
-/// The OffState class represents the state of a light device when it is turned off. In this state, 
-/// the light should not emit any light, and any attempts to change the color or brightness should 
-/// have no effect until the power is toggled back on.
-/// </summary> 
+/// The OffState class represents the state of a fan device when it is turned off.
+/// </summary>
 public class OffState : IFanState
 {
     private readonly FanDevice _fan;
@@ -14,11 +12,18 @@ public class OffState : IFanState
         _fan = fan;
     }
 
+    /// <summary>
+    /// Toggles the power state to on.
+    /// </summary>
     public void TogglePower()
     {
         _fan.TurnPowerOn();
+        _fan.SetState(_fan.On);
     }
 
+    /// <summary>
+    /// Attempts to set the fan speed while the fan is off. This should have no effect.
+    /// </summary>
     public void SetFanSpeed(FanSpeed speed)
     {
         // No effect when the fan is off

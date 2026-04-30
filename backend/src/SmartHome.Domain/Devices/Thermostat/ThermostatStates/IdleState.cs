@@ -26,6 +26,11 @@ public class IdleState : IThermostatState
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
+        if (temp < ThermostatDevice.MinTemperature || temp > ThermostatDevice.MaxTemperature)
+        {
+            _thermostat.UpdateStatusMessage($"Target temperature must be between {ThermostatDevice.MinTemperature} and {ThermostatDevice.MaxTemperature} degrees.");
+            return;
+        }
         _thermostat.SetTargetTemperatureInternal(temp);
     }
 

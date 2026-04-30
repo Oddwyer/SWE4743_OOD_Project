@@ -1,36 +1,38 @@
 namespace SmartHome.Domain.Devices.Light.LightStates;
 
 /// <summary>
-/// The OffState class represents the state of a light device when it is turned off. In this state, 
-/// the light should not emit any light, and any attempts to change the color or brightness should 
-/// have no effect until the power is toggled back on.
-/// </summary> 
+/// The OnState class represents the state of the light when it is turned on. 
+/// In this state, the light can have its color changed and brightness adjusted.
+/// </summary>
 public class OnState : ILightState
 {
-    private readonly LightDevice light;
+    private readonly LightDevice _light;
 
     public OnState(LightDevice light)
     {
-        this.light = light;
+        _light = light;
     }
 
     public void TogglePower()
     {
-        light.TurnPowerOff();
+        _light.TurnPowerOff();
+        _light.SetState(_light.Off);
     }
 
     public void ChangeColor(LightColor color)
     {
-        light.ChangeColorInternal(color);
+        _light.ChangeColorInternal(color);
     }
 
     public void SetLightBrightness(int brightness)
     {
-        if (brightness < 10 || brightness > 100)
+
+        if (brightness < LightDevice.MinBrightness || brightness > LightDevice.MaxBrightness)
         {
-            light.UpdateStatusMessage("Brightness must be between 10 and 100.");
+            _light.UpdateStatusMessage("Brightness must be between 10 and 100.");
             return;
         }
-        light.SetLightBrightnessInternal(brightness);
+
+        _light.SetLightBrightnessInternal(brightness);
     }
 }

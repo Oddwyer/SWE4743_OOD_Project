@@ -7,8 +7,11 @@ public class ThermostatDevice : Device, IPoweredDevice
     public int TargetTemperature { get; private set; }
     public IThermostatModeStrategy CurrentMode { get; private set; }
 
+    public const int MinTemperature = 60; // Minimum allowed temperature
+    public const int MaxTemperature = 80; // Maximum allowed temperature
+
     // States
-    private DevicePowerState _powerState; // Once flushed, revisit IPoweredDevice.
+    private DevicePowerState _powerState; // Forward declaration of power state. On has three sub-states: Idle, Cooling, Heating.
     public IdleState Idle { get; private set; }
     public CoolingState Cooling { get; private set; }
     public HeatingState Heating { get; private set; }
@@ -126,4 +129,5 @@ public class ThermostatDevice : Device, IPoweredDevice
     {
         StatusMessage = message;
     }
+
 }

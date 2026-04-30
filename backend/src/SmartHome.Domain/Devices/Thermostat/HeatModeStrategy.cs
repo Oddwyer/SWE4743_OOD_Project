@@ -10,8 +10,7 @@ public class HeatModeStrategy : IThermostatModeStrategy
 {
 
     /// <summary>
-    /// When determining the next state in Heat mode, we want to check if the ambient temperature is below the target temperature
-    /// (in which case we should heat) or equal to or above the target temperature (in which case we should be idle).
+    /// Determines the next state of the thermostat based on the current ambient temperature and target temperature.    
     /// </summary>
     public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
     {
