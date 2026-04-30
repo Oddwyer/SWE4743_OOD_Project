@@ -17,8 +17,7 @@ public class OffState : IThermostatState
     }
 
     /// <summary>
-    /// When toggling power from the off state, we want to turn on the thermostat and set the state to IdleState 
-    /// (or the appropriate state based on the current mode and conditions).
+    /// Turns on the thermostat.
     /// </summary>
     public void TogglePower()
     {
@@ -28,21 +27,19 @@ public class OffState : IThermostatState
     }
 
     /// <summary>
-    /// When setting the target temperature from the off state, we want to ignore the request since the thermostat is off and 
-    /// should not be able to change its target temperature until it is turned back on.
+    /// When setting the target temperature from the off state, we ignore the request since the thermostat is off.
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
-
+        _thermostat.UpdateStatusMessage("Cannot set target temperature while thermostat is off.");
     }
 
     /// <summary>
-    /// When evaluating the off state, we want to ignore the request since the thermostat is off and should not be able to change 
-    /// its state based on ambient temperature until it is turned back on.
+    /// When setting the target temperature from the off state, we ignore the request since the thermostat is off.
     /// </summary>
     public void Evaluate(int ambientTemperature)
     {
-
+        _thermostat.UpdateStatusMessage("Thermostat is off. No state evaluation performed.");
     }
 
 }

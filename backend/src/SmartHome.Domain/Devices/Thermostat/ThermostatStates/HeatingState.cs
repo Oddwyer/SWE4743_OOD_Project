@@ -13,7 +13,7 @@ public class HeatingState : IThermostatState
     }
 
     /// <summary>
-    /// When toggling power from the heating state, we want to turn off the thermostat and set the state to OffState.
+    /// Turns off the thermostat.
     /// </summary>
     public void TogglePower()
     {
@@ -23,8 +23,7 @@ public class HeatingState : IThermostatState
     }
 
     /// <summary>
-    /// When setting the target temperature from the heating state, we want to update the target temperature and then evaluate
-    /// the next state based on the new target temperature and the current ambient temperature.
+    /// Applies a new target temperature.
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
@@ -33,7 +32,7 @@ public class HeatingState : IThermostatState
     }
 
     /// <summary>
-    /// When evaluating the heating state, we want to determine the next state based on the current ambient temperature and the target temperature.
+    /// Evaluates and transitions to the next state.
     /// </summary>
     public void Evaluate(int ambientTemperature)
     {
