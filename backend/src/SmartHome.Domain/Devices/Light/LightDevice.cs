@@ -6,9 +6,13 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
     // States
     private DevicePowerState _powerState;
+
     public OffState Off { get; private set; }
+
     private ILightState _currentState;
+
     public LightColor ColorState { get; private set; }
+
     public int LightBrightness { get; private set; }
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
