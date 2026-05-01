@@ -103,7 +103,7 @@ public class DevicesController : ControllerBase
     {
         var device = _deviceService.GetDeviceById(deviceId);
         var context = DeviceMapper.MapToContext(request);
-        // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
+
         var command = _commandFactory.CreateCommand(device, context);
 
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);

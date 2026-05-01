@@ -14,9 +14,6 @@ public abstract class Device : IDevice
     public string DeviceLocation { get; protected set; } = string.Empty;
     public DeviceType Type { get; protected set; }
     public string StatusMessage { get; protected set; } = string.Empty; // Added StatusMessage to Device for better error handling and state reporting.
-
-    //TODO - Kataali: Create DeviceState class...
-    //public abstract DeviceState State {get; protected set;} 
     public abstract bool IsDeviceOn { get; }
 
     //useful for logging and auditing, also mentioned within section 2

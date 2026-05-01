@@ -54,7 +54,6 @@ public class DeviceService : IDeviceService
             throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
 
-        // TODO - Kataali: Update to .Execute(device) if needed.
         command.Execute();
 
         _deviceRepository.SaveDevice(device);
