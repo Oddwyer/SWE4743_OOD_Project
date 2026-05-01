@@ -14,8 +14,6 @@ namespace SmartHome.Domain.Commands;
 /// Encapsulates actions and provides descriptions for audit logging (Command Pattern).
 /// </summary>
 
-// TODO - Kataali: This factory belongs to the Domain layer because it creates domain objects.
-// I added this temporarily so API endpoints could be tested.
 public class CommandFactory : ICommandFactory
 {
     private readonly IThermostatModeStrategyFactory _thermostatStrategyFactory;
@@ -24,11 +22,8 @@ public class CommandFactory : ICommandFactory
     {
         _thermostatStrategyFactory = factory;
     }
-    public IDeviceCommand CreateCommand(CommandContext context, IDevice device)
+    public IDeviceCommand CreateCommand(IDevice device, CommandContext context)
     {
-        // TODO - Replace placeholder with concrete commands.
-        //return new StubDeviceCommand(device);
-
         switch (context.Command)
         {
             case DeviceCommandType.TogglePower:

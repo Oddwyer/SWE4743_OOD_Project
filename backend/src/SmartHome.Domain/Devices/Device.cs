@@ -34,13 +34,8 @@ public abstract class Device : IDevice
     //TODO - Kataali: I moved this into JsonDeviceRepository. How does that work for you?
     // public DeviceSnapshot dehydrate(return DeviceSnapshot;);
 
-    //thought to keep this in because of how the api signatures look
-    //although command is higher in abstraction than the device models these would serve as reference 
-    //when the command pattern needs to run on specific devices
-    //wanted to create a shared template for how devices handle command execution
-    //each device will specify how this is done
 
-    /* TODO - Kataali
+    /* TODO - Kataali: Can we remove this now?
         public void runCommands(DeviceCommand command){
             validateDeviceCommand(command); // validation should be universal across devices, help keep things DRY
             runDeviceCommand(command);

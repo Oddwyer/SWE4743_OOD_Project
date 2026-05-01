@@ -3,6 +3,7 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands;
 
 namespace SmartHome.Api.Devices;
 
@@ -27,7 +28,6 @@ public static class DeviceMapper
             IsDeviceOn = device.IsDeviceOn,
         };
 
-        // TODO - Amber: Waiting on thermostat.
         // Response specifics assigned based on specified device type.
         switch (device)
         {
@@ -45,7 +45,6 @@ public static class DeviceMapper
                 response.TargetTemperature = thermostat.TargetTemperature;
                 break;
 
-
             case DoorLocks doorlock:
                 response.IsLocked = doorlock.IsDeviceOn;
                 break;
@@ -54,4 +53,19 @@ public static class DeviceMapper
         return response;
     }
 
+
+    public static CommandContext MapToContext(ControlDeviceRequest request)
+    {
+        var context = new CommandContext
+        {
+            Command = request.Command,
+            Brightness = request.Brightness,
+            Color = request.Color,
+            FanSpeed = request.FanSpeed,
+            Mode = request.Mode,
+            TargetTemperature = request.DesiredTemperature
+        };
+
+        return context;
+    }
 }

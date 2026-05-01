@@ -92,5 +92,7 @@ public class DeviceService : IDeviceService
 
         return _deviceRepository.GetHistoryForDevice(deviceId);
     }
+
+
 }
 
