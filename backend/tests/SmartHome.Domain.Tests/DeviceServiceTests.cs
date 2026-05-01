@@ -76,9 +76,21 @@ public class DeviceServiceTests
         }
     }
 
+    private class FakeCommandFactory : ICommandFactory
+    {
+        public IDeviceCommand CreateCommand(IDevice device, CommandData context)
+        {
+            return context.Command switch
+            {
+                DeviceCommandType.ToggleLock => new ToggleLockCommand(device),
+                _ => throw new ArgumentException("Unsupported command type for fake command factory.")
+            };
+        }
+    }
+
     private static DeviceService CreateDeviceService(FakeDeviceRepository repository)
     {
-        return new DeviceService(repository, new FakeDeviceFactory());
+        return new DeviceService(repository, new FakeDeviceFactory(), new FakeCommandFactory());
     }
 
     [Fact]
@@ -148,14 +160,18 @@ public class DeviceServiceTests
         var device = new DoorLocks(Guid.NewGuid(), "GarageDoor", "Garage");
         repository.SaveDevice(device);
 
-        var command = new ToggleLockCommand(device);
-        var updated = service.ApplyDeviceCommand(device.Id, device, command);
+        var context = new CommandData
+        {
+            Command = DeviceCommandType.ToggleLock
+        };
+
+        var updated = service.ApplyDeviceCommand(device.Id, context);
 
         Assert.Same(device, updated);
         Assert.Equal(DeviceLatchState.Unlocked, device.LatchState);
         var history = repository.GetHistoryForDevice(device.Id).ToList();
         Assert.Single(history);
-        Assert.Equal(command.CommandDescription, history[0].Operation);
+        Assert.Equal($"Locked {device.DeviceName}.", history[0].Operation);
     }
 
     [Fact]
@@ -164,10 +180,12 @@ public class DeviceServiceTests
         var repository = new FakeDeviceRepository();
         var service = CreateDeviceService(repository);
 
-        var missingDevice = new DoorLocks(Guid.NewGuid(), "SideDoor", "Side");
-        var command = new ToggleLockCommand(missingDevice);
+        var context = new CommandData
+        {
+            Command = DeviceCommandType.ToggleLock
+        };
 
-        Assert.Throws<KeyNotFoundException>(() => service.ApplyDeviceCommand(Guid.NewGuid(), missingDevice, command));
+        Assert.Throws<KeyNotFoundException>(() => service.ApplyDeviceCommand(Guid.NewGuid(), context));
     }
 
     [Fact]
