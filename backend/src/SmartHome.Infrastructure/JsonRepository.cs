@@ -222,37 +222,40 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
         return _devices.Select(ToDeviceSnapshot).ToList();
     }
 
-    // TODO - Amber: This method is getting a bit unwieldy with all the device-specific properties. 
-    // Consider refactoring to use separate snapshot types per device category or a more 
-    // flexible serialization? 
     public static DeviceSnapshot ToDeviceSnapshot(IDevice device)
     {
+
+        var thermostat = device as ThermostatDevice;
+        var light = device as LightDevice;
+        var fan = device as FanDevice;
+        var doorLock = device as DoorLocks;
+
         return new DeviceSnapshot
         {
             Id = device.Id,
-
             Name = device.DeviceName,
-
             Location = device.DeviceLocation,
-
             Type = device.Type,
 
-            IsOn = device.IsDeviceOn,
+            /// <summary>
+            /// Store relevant state information based on device type. For thermostats, we capture the specific sub-state 
+            /// (Idle, Cooling, Heating) since that affects behavior and is not fully captured by the IsOn property.
+            /// </summary>
+            IsOn = thermostat != null
+                ? thermostat.PowerState == DevicePowerState.On
+                : device.IsDeviceOn,
 
-            DeviceState = device is DoorLocks doorLock ? doorLock.LatchState.ToString() :
-                          device is ThermostatDevice thermostat ? thermostat.CurrentStateType.ToString() :
+            DeviceState = doorLock != null ? doorLock.LatchState.ToString() :
+                          thermostat != null ? thermostat.CurrentStateType.ToString() :
                           null,
 
-            ThermostatMode = device is ThermostatDevice thermostat1 ? thermostat1.Mode : null,
+            ThermostatMode = thermostat?.Mode,
+            TargetTemperature = thermostat?.TargetTemperature,
 
-            TargetTemperature = device is ThermostatDevice thermostat2 ? thermostat2.TargetTemperature : null,
+            LightColor = light?.ColorState,
+            LightBrightness = light?.LightBrightness,
 
-            LightColor = device is LightDevice light ? light.ColorState : null,
-
-            LightBrightness = device is LightDevice light2 ? light2.LightBrightness : null,
-
-            FanSpeed = device is FanDevice fan ? fan.Speed : null
-
+            FanSpeed = fan?.Speed
         };
     }
 
