@@ -46,8 +46,11 @@ public static class DeviceMapper
                 break;
 
             case DoorLocks doorlock:
-                response.IsLocked = doorlock.IsDeviceOn;
+                response.IsLocked = doorlock.LatchState == DeviceLatchState.Locked;
                 break;
+
+            default:
+                throw new ArgumentException($"Unsupported device type: {device.Type}");
         }
 
         return response;
