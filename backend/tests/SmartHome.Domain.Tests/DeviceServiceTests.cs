@@ -82,7 +82,7 @@ public class DeviceServiceTests
         {
             return context.Command switch
             {
-                DeviceCommandType.ToggleLock => new ToggleLockCommand(device),
+                DeviceCommandType.ToggleLock when device is DoorLocks doorLock => new ToggleLockCommand(doorLock),
                 _ => throw new ArgumentException("Unsupported command type for fake command factory.")
             };
         }

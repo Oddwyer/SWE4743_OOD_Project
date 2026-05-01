@@ -237,10 +237,8 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
             Location = device.DeviceLocation,
             Type = device.Type,
 
-            /// <summary>
-            /// Store relevant state information based on device type. For thermostats, we capture the specific sub-state 
-            /// (Idle, Cooling, Heating) since that affects behavior and is not fully captured by the IsOn property.
-            /// </summary>
+            // Store relevant state information based on device type. For thermostats, we capture the specific sub-state 
+            // (Idle, Cooling, Heating) since that affects behavior and is not fully captured by the IsOn property.
             IsOn = thermostat != null
                 ? thermostat.PowerState == DevicePowerState.On
                 : device.IsDeviceOn,

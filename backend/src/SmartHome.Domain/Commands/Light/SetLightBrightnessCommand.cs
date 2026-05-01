@@ -9,11 +9,14 @@ namespace SmartHome.Domain.Commands.Light;
 public class SetLightBrightnessCommand : DeviceCommand
 {
     public int Brightness { get; }
-    public override string CommandDescription => $"Set light brightness to {Brightness} for {ManipulatedDevice.DeviceName}.";
 
-    public SetLightBrightnessCommand(IDevice device, int brightness) : base(device)
+    private readonly LightDevice _lightDevice;
+    public override string CommandDescription => $"Set light brightness to {Brightness} for {_lightDevice.DeviceName}.";
+
+    public SetLightBrightnessCommand(LightDevice device, int brightness) : base(device)
     {
         Brightness = brightness;
+        _lightDevice = device;
     }
 
     /// <summary>
@@ -21,12 +24,8 @@ public class SetLightBrightnessCommand : DeviceCommand
     /// </summary>
     public override void Execute()
     {
-        if (ManipulatedDevice is not LightDevice lightDevice)
-        {
-            throw new InvalidOperationException("This device does not have a brightness setting.");
-        }
 
-        lightDevice.SetLightBrightness(Brightness);
+        _lightDevice.SetLightBrightness(Brightness);
 
     }
 

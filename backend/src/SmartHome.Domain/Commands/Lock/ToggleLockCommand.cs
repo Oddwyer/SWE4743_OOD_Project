@@ -1,4 +1,5 @@
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.DoorLock;
 
 namespace SmartHome.Domain.Commands.Lock;
 
@@ -7,11 +8,13 @@ namespace SmartHome.Domain.Commands.Lock;
 /// </summary> 
 public class ToggleLockCommand : DeviceCommand
 {
-    public override string CommandDescription => $"Locked {ManipulatedDevice.DeviceName}.";
+    public override string CommandDescription => $"Locked {_doorLock.DeviceName}.";
 
-    public ToggleLockCommand(IDevice device) : base(device)
+    private readonly DoorLocks _doorLock;
+
+    public ToggleLockCommand(DoorLocks device) : base(device)
     {
-
+        _doorLock = device;
     }
 
     /// <summary>
@@ -19,12 +22,8 @@ public class ToggleLockCommand : DeviceCommand
     /// </summary>
     public override void Execute()
     {
-        if (ManipulatedDevice is not ILatchedDevice latchedDevice)
-        {
-            throw new InvalidOperationException($"Device '{ManipulatedDevice.DeviceName}' does not support locking.");
-        }
 
-        latchedDevice.ToggleLock();
+        _doorLock.ToggleLock();
 
     }
 

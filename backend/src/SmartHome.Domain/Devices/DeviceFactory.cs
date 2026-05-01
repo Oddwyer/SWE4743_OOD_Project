@@ -139,7 +139,7 @@ public class DeviceFactory : IDeviceFactory
             ? parsedState
             : ThermostatStateType.Idle;
 
-        var targetTemp = data.TargetTemperature ?? ThermostatDevice.MinTemperature;
+        var targetTemp = data.TargetTemperature ?? 72;
 
         thermostat.RehydrateState(powerState, strategy, targetTemp, stateType, mode);
 
