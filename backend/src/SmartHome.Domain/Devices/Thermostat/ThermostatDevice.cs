@@ -21,6 +21,24 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     private IThermostatState _currentState;
 
+    // Helper property to expose current state type for API responses and persistence.     
+    public ThermostatStateType CurrentStateType
+    {
+        get
+        {
+            if (_currentState == Off)
+                return ThermostatStateType.Off;
+
+            if (_currentState == Cooling)
+                return ThermostatStateType.Cooling;
+
+            if (_currentState == Heating)
+                return ThermostatStateType.Heating;
+
+            return ThermostatStateType.Idle;
+        }
+    }
+
     public override string StatusMessage { get; protected set; } = string.Empty;
 
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :

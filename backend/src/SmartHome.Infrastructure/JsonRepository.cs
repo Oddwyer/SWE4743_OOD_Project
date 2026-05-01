@@ -219,27 +219,36 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
 
     private List<DeviceSnapshot> DehydrateDevices()
     {
-        // TODO - Amber: This method is getting a bit unwieldy with all the device-specific properties. 
-        // Consider refactoring to use separate snapshot types per device category or a more 
-        // flexible serialization? 
-        return _devices.Select(d => new DeviceSnapshot
+        return _devices.Select(ToDeviceSnapshot).ToList();
+    }
+
+    // TODO - Amber: This method is getting a bit unwieldy with all the device-specific properties. 
+    // Consider refactoring to use separate snapshot types per device category or a more 
+    // flexible serialization? 
+    public static DeviceSnapshot ToDeviceSnapshot(IDevice device)
+    {
+
+        return new DeviceSnapshot
         {
-            Id = d.Id,
-            Name = d.DeviceName,
-            Location = d.DeviceLocation,
-            Type = d.Type,
-            IsOn = d.IsDeviceOn,
-            DeviceState = d is DoorLocks dl ? dl.LatchState.ToString() :
-                          d is ThermostatDevice td ? td.Mode.ToString() :
+            Id = device.Id,
+            Name = device.DeviceName,
+            Location = device.DeviceLocation,
+            Type = device.Type,
+            IsOn = device.IsDeviceOn,
+            DeviceState = device is DoorLocks doorLock ? doorLock.LatchState.ToString() :
+                          device is ThermostatDevice thermostat ? thermostat.Mode.ToString() :
                           null,
-            ThermostatMode = d is ThermostatDevice t ? t.Mode : (ThermostatMode?)null,
-            TargetTemperature = d is ThermostatDevice t2 ? t2.TargetTemperature : (int?)null,
-            LightColor = d is LightDevice l ? l.ColorState : null,
-            LightBrightness = d is LightDevice l2 ? l2.LightBrightness : (int?)null,
-            FanSpeed = d is FanDevice f ? f.Speed : (FanSpeed?)null
+            ThermostatMode = device is ThermostatDevice thermostat1 ? thermostat1.Mode : null,
 
+            TargetTemperature = device is ThermostatDevice thermostat2 ? thermostat2.TargetTemperature : null,
 
-        }).ToList();
+            LightColor = device is LightDevice light ? light.ColorState : null,
+
+            LightBrightness = device is LightDevice light2 ? light2.LightBrightness : null,
+
+            FanSpeed = device is FanDevice fan ? fan.Speed : null
+
+        };
     }
 
     /// <summary>

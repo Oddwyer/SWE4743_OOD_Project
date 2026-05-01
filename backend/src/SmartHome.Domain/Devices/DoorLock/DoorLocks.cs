@@ -11,7 +11,6 @@ public class DoorLocks : Device, ILatchedDevice
     private DeviceLatchState _latchState;
     public IDoorState Unlocked { get; private set; }
     public IDoorState Locked { get; private set; }
-
     private IDoorState _currentState;
 
     public DoorLocks(Guid id, string name, string location) : base(id, name, location, DeviceType.DoorLock)
