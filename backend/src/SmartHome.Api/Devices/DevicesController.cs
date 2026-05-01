@@ -95,12 +95,9 @@ public class DevicesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
-        var device = _deviceService.GetDeviceById(deviceId);
+
         var context = DeviceMapper.MapToCommandData(request);
-
-        var command = _commandFactory.CreateCommand(device, context);
-
-        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, device, command);
+        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, context);
         var response = DeviceMapper.ToResponse(updatedDevice);
 
         return Ok(response);

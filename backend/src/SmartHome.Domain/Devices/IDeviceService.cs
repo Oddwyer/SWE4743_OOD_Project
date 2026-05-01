@@ -24,7 +24,7 @@ public interface IDeviceService
     void RemoveDevice(Guid deviceId);
 
     // Method will take a device ID and a command, apply the command to the device
-    IDevice ApplyDeviceCommand(Guid deviceId, IDevice device, IDeviceCommand command);
+    IDevice ApplyDeviceCommand(Guid deviceId, CommandData context);
 
 
 }

@@ -123,6 +123,24 @@ public class DeviceServiceTests
     }
 
     [Fact]
+    public void RegisterDevice_ThrowsWhenThermostatAlreadyExistsInLocation()
+    {
+        var repository = new FakeDeviceRepository();
+        var service = CreateDeviceService(repository);
+        var first = new ThermostatDevice(Guid.NewGuid(), "MainThermostat", "LivingRoom", ThermostatMode.Auto, null!);
+        repository.SaveDevice(first);
+
+        var register = new RegisterDeviceData
+        {
+            DeviceName = "SecondThermostat",
+            DeviceLocation = "LivingRoom",
+            DeviceType = DeviceType.Thermostat
+        };
+
+        Assert.Throws<InvalidOperationException>(() => service.RegisterDevice(register));
+    }
+
+    [Fact]
     public void ApplyDeviceCommand_SavesDeviceAndHistory()
     {
         var repository = new FakeDeviceRepository();

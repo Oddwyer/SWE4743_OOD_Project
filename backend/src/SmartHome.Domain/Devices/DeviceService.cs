@@ -9,10 +9,13 @@ public class DeviceService : IDeviceService
     private readonly IDeviceRepository _deviceRepository;
     private readonly IDeviceFactory _deviceFactory;
 
-    public DeviceService(IDeviceRepository deviceRepository, IDeviceFactory factory)
+    private readonly ICommandFactory _commandFactory;
+
+    public DeviceService(IDeviceRepository deviceRepository, IDeviceFactory factory, ICommandFactory commandFactory)
     {
         _deviceRepository = deviceRepository;
         _deviceFactory = factory;
+        _commandFactory = commandFactory;
     }
 
     /// <summary>
@@ -41,7 +44,11 @@ public class DeviceService : IDeviceService
     /// </summary>
     public IDevice RegisterDevice(RegisterDeviceData register)
     {
-        // TODO - Add in only one thermostat per location logic.
+        // Enforce single thermostat per location rule.
+        if (_deviceRepository.ThermostatInLocation(register.DeviceLocation) && register.DeviceType == DeviceType.Thermostat)
+        {
+            throw new InvalidOperationException($"A thermostat already exists in location {register.DeviceLocation}.");
+        }
         var device = _deviceFactory.CreateDevice(register.DeviceName, register.DeviceLocation, register.DeviceType);
         _deviceRepository.SaveDevice(device);
         return device;
@@ -50,13 +57,16 @@ public class DeviceService : IDeviceService
     /// <summary>
     /// Apply client command request to device.
     /// </summary>
-    public IDevice ApplyDeviceCommand(Guid deviceId, IDevice device, IDeviceCommand command)
+    public IDevice ApplyDeviceCommand(Guid deviceId, CommandData context)
     {
+        var device = _deviceRepository.FindDeviceById(deviceId);
+
         if (device == null)
         {
             throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
 
+        var command = _commandFactory.CreateCommand(device, context);
         command.Execute();
 
         _deviceRepository.SaveDevice(device);
@@ -64,6 +74,7 @@ public class DeviceService : IDeviceService
 
         return device;
     }
+
 
     /// <summary>
     /// Remove device with matching device ID. 

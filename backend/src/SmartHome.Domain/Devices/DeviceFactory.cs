@@ -27,7 +27,7 @@ public class DeviceFactory : IDeviceFactory
     {
         Guid id = Guid.NewGuid();
 
-        // TODO: Amber - Modify away from switch for OCP.
+        // TODO: Amber - Modify away from switch for OCP?
         switch (type)
         {
             case DeviceType.Light:
