@@ -57,7 +57,7 @@ public class DeviceService : IDeviceService
     /// <summary>
     /// Apply client command request to device.
     /// </summary>
-    public IDevice ApplyDeviceCommand(Guid deviceId, CommandData context)
+    public IDevice ApplyDeviceCommand(Guid deviceId, CommandData commandData)
     {
         var device = _deviceRepository.FindDeviceById(deviceId);
 
@@ -66,11 +66,11 @@ public class DeviceService : IDeviceService
             throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
 
-        var command = _commandFactory.CreateCommand(device, context);
+        var command = _commandFactory.CreateCommand(device, commandData);
         command.Execute();
 
         _deviceRepository.SaveDevice(device);
-        _deviceRepository.SaveHistoryEntry(new CommandHistoryEntry(deviceId, command));
+        _deviceRepository.SaveHistoryEntry(new CommandHistoryEntry(device.Id, command));
 
         return device;
     }

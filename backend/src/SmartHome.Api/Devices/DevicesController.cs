@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Api.Devices;
 
@@ -14,12 +12,9 @@ public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
 
-    private readonly ICommandFactory _commandFactory;
-
-    public DevicesController(IDeviceService deviceService, ICommandFactory commandFactory)
+    public DevicesController(IDeviceService deviceService)
     {
         _deviceService = deviceService;
-        _commandFactory = commandFactory;
     }
 
     /// <summary>
