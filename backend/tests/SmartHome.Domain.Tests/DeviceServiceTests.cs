@@ -131,7 +131,7 @@ public class DeviceServiceTests
         repository.SaveDevice(device);
 
         var command = new ToggleLockCommand(device);
-        var updated = service.ApplyDeviceCommand(device.Id, command);
+        var updated = service.ApplyDeviceCommand(device.Id, device, command);
 
         Assert.Same(device, updated);
         Assert.Equal(DeviceLatchState.Unlocked, device.LatchState);
@@ -146,9 +146,10 @@ public class DeviceServiceTests
         var repository = new FakeDeviceRepository();
         var service = CreateDeviceService(repository);
 
-        var command = new ToggleLockCommand(new DoorLocks(Guid.NewGuid(), "SideDoor", "Side"));
+        var missingDevice = new DoorLocks(Guid.NewGuid(), "SideDoor", "Side");
+        var command = new ToggleLockCommand(missingDevice);
 
-        Assert.Throws<KeyNotFoundException>(() => service.ApplyDeviceCommand(Guid.NewGuid(), command));
+        Assert.Throws<KeyNotFoundException>(() => service.ApplyDeviceCommand(Guid.NewGuid(), missingDevice, command));
     }
 
     [Fact]

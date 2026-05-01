@@ -13,13 +13,12 @@ namespace SmartHome.Api.Devices;
 public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
-    private readonly IDeviceFactory _deviceFactory;
+
     private readonly ICommandFactory _commandFactory;
 
-    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory)
+    public DevicesController(IDeviceService deviceService, ICommandFactory commandFactory)
     {
         _deviceService = deviceService;
-        _deviceFactory = deviceFactory;
         _commandFactory = commandFactory;
     }
 
@@ -101,7 +100,7 @@ public class DevicesController : ControllerBase
 
         var command = _commandFactory.CreateCommand(device, context);
 
-        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
+        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, device, command);
         var response = DeviceMapper.ToResponse(updatedDevice);
 
         return Ok(response);

@@ -8,7 +8,7 @@ POST /api/devices → register device
 
 DELETE /api/devices/{id} → remove device 
 
-PUT /api/devices/{id}/state → control device 
+PUT /api/devices/{id}/commands → control device 
 
 GET /api/devices/{id}/history → see history 
 

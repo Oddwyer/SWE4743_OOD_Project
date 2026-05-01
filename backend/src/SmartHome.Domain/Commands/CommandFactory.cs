@@ -25,7 +25,9 @@ public class CommandFactory : ICommandFactory
     }
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
-        // TODO - Amber: Modify away from switch for OCP.
+        // TODO - Amber: Modify away from switch for OCP? Creation branching is centralized inside factories 
+        // so controllers/services remain closed to device-specific branching. Future improvement could be
+        // provider registration per device type.
         switch (context.Command)
         {
             case DeviceCommandType.TogglePower:

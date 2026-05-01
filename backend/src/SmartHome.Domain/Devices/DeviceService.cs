@@ -50,10 +50,8 @@ public class DeviceService : IDeviceService
     /// <summary>
     /// Apply client command request to device.
     /// </summary>
-    public IDevice ApplyDeviceCommand(Guid deviceId, IDeviceCommand command)
+    public IDevice ApplyDeviceCommand(Guid deviceId, IDevice device, IDeviceCommand command)
     {
-        var device = GetDeviceById(deviceId);
-
         if (device == null)
         {
             throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");

@@ -219,7 +219,7 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
 
     private List<DeviceSnapshot> DehydrateDevices()
     {
-        // TODO: This method is getting a bit unwieldy with all the device-specific properties. 
+        // TODO - Amber: This method is getting a bit unwieldy with all the device-specific properties. 
         // Consider refactoring to use separate snapshot types per device category or a more 
         // flexible serialization? 
         return _devices.Select(d => new DeviceSnapshot
