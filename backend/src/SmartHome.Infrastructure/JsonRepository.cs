@@ -227,17 +227,22 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     // flexible serialization? 
     public static DeviceSnapshot ToDeviceSnapshot(IDevice device)
     {
-
         return new DeviceSnapshot
         {
             Id = device.Id,
+
             Name = device.DeviceName,
+
             Location = device.DeviceLocation,
+
             Type = device.Type,
+
             IsOn = device.IsDeviceOn,
+
             DeviceState = device is DoorLocks doorLock ? doorLock.LatchState.ToString() :
-                          device is ThermostatDevice thermostat ? thermostat.Mode.ToString() :
+                          device is ThermostatDevice thermostat ? thermostat.CurrentStateType.ToString() :
                           null,
+
             ThermostatMode = device is ThermostatDevice thermostat1 ? thermostat1.Mode : null,
 
             TargetTemperature = device is ThermostatDevice thermostat2 ? thermostat2.TargetTemperature : null,
