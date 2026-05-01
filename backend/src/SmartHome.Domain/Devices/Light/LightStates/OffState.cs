@@ -17,17 +17,17 @@ public class OffState : ILightState
     public void TogglePower()
     {
         light.TurnPowerOn();
+        light.SetState(light.On);
     }
 
     public void ChangeColor(LightColor color)
     {
-        // No effect when the light is off
-        light.UpdateStatusMessage("Cannot change color when light is off.");
+
+        throw new InvalidOperationException("Cannot change color when light is off.");
     }
 
     public void SetLightBrightness(int brightness)
     {
-        // No effect when the light is off
-        light.UpdateStatusMessage("Cannot set brightness when light is off.");
+        throw new InvalidOperationException("Cannot set brightness when light is off.");
     }
 }

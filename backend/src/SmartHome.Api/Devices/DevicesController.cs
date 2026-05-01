@@ -72,7 +72,7 @@ public class DevicesController : ControllerBase
     /// <summary>
     /// POST: api/devices/
     /// </summary>
-    [HttpPost("register-device")]
+    [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)

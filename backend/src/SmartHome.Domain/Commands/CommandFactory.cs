@@ -5,6 +5,7 @@ using SmartHome.Domain.Commands.Lock;
 using SmartHome.Domain.Commands.Power;
 using SmartHome.Domain.Commands.Thermostat;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Contracts;
 
 
 namespace SmartHome.Domain.Commands;
@@ -22,7 +23,7 @@ public class CommandFactory : ICommandFactory
     {
         _thermostatStrategyFactory = factory;
     }
-    public IDeviceCommand CreateCommand(IDevice device, CommandContext context)
+    public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
         switch (context.Command)
         {

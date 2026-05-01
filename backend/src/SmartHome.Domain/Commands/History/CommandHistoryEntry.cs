@@ -17,7 +17,6 @@ public class CommandHistoryEntry
     {
         Id = Guid.NewGuid();
         DeviceId = deviceId;
-        // Command = command; -> Suggest replacing with Operation...
         Operation = command.CommandDescription;
         Timestamp = DateTime.UtcNow;
     }

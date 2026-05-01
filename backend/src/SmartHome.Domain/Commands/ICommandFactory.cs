@@ -1,4 +1,5 @@
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Domain.Commands;
 
@@ -7,6 +8,6 @@ namespace SmartHome.Domain.Commands;
 /// </summary>
 public interface ICommandFactory
 {
-    public IDeviceCommand CreateCommand(IDevice device, CommandContext context);
+    public IDeviceCommand CreateCommand(IDevice device, CommandData context);
 
 }

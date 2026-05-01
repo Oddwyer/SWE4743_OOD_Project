@@ -3,6 +3,7 @@ using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
+using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Infrastructure;
 using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
@@ -19,8 +20,10 @@ builder.Services.AddSingleton<IDeviceService, DeviceService>();
 builder.Services.AddSingleton<ISimulationService, SimulationService>();
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
-builder.Services.AddSingleton<IDeviceRepository, JsonRepository>();
-builder.Services.AddSingleton<ILocationRepository, JsonRepository>();
+builder.Services.AddSingleton<JsonRepository>();
+builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
 builder.Services.AddCors(options =>
 {

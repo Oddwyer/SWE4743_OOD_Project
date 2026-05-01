@@ -1,9 +1,10 @@
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
-using System.Runtime.InteropServices;
+using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Devices;
+
+namespace SmartHome.Domain.Contracts;
 
 public class DeviceRehydrationData
 {
