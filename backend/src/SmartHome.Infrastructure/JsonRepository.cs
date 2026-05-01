@@ -1,6 +1,11 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Locations;
+using SmartHome.Domain.Contracts;
+using SmartHome.Domain.Devices.DoorLock;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.Thermostat;
 using System.Text.Json;
 
 namespace SmartHome.Infrastructure;
@@ -147,16 +152,12 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
 
         foreach (var deviceSnapshot in data.Devices)
         {
-            var device = _deviceFactory.RehydrateDevice(
-                deviceSnapshot.Id,
-                deviceSnapshot.Name ?? string.Empty,
-                deviceSnapshot.Location ?? string.Empty,
-                deviceSnapshot.Type,
-                deviceSnapshot.IsOn,
-                deviceSnapshot.DeviceState
-            );
+            var rehydrationData = MapToRehydrationData(deviceSnapshot);
+            var device = _deviceFactory.RehydrateDevice(rehydrationData);
+
             _devices.Add(device);
         }
+
 
     }
 
@@ -214,17 +215,48 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     /// <summary>
     /// Converts all domain device objects into data-only snapshots for persistence.
     /// </summary>
+    /// 
+
     private List<DeviceSnapshot> DehydrateDevices()
     {
-        return _devices.Select(d => new DeviceSnapshot
+        return _devices.Select(ToDeviceSnapshot).ToList();
+    }
+
+    public static DeviceSnapshot ToDeviceSnapshot(IDevice device)
+    {
+
+        var thermostat = device as ThermostatDevice;
+        var light = device as LightDevice;
+        var fan = device as FanDevice;
+        var doorLock = device as DoorLocks;
+
+        return new DeviceSnapshot
         {
-            Id = d.Id,
-            Name = d.DeviceName,
-            Location = d.DeviceLocation,
-            Type = d.Type,
-            IsOn = d.IsDeviceOn,
-            DeviceState = null
-        }).ToList();
+            Id = device.Id,
+            Name = device.DeviceName,
+            Location = device.DeviceLocation,
+            Type = device.Type,
+
+            /// <summary>
+            /// Store relevant state information based on device type. For thermostats, we capture the specific sub-state 
+            /// (Idle, Cooling, Heating) since that affects behavior and is not fully captured by the IsOn property.
+            /// </summary>
+            IsOn = thermostat != null
+                ? thermostat.PowerState == DevicePowerState.On
+                : device.IsDeviceOn,
+
+            DeviceState = doorLock != null ? doorLock.LatchState.ToString() :
+                          thermostat != null ? thermostat.CurrentStateType.ToString() :
+                          null,
+
+            ThermostatMode = thermostat?.Mode,
+            TargetTemperature = thermostat?.TargetTemperature,
+
+            LightColor = light?.ColorState,
+            LightBrightness = light?.LightBrightness,
+
+            FanSpeed = fan?.Speed
+        };
     }
 
     /// <summary>
@@ -269,4 +301,26 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
         _locations[location] = temperature;
         SaveToFile();
     }
+
+    private static DeviceRehydrationData MapToRehydrationData(DeviceSnapshot snapshot)
+    {
+        return new DeviceRehydrationData
+        {
+            Id = snapshot.Id,
+            Name = snapshot.Name,
+            Location = snapshot.Location,
+            Type = snapshot.Type,
+            IsOn = snapshot.IsOn,
+            DeviceState = snapshot.DeviceState,
+
+            ThermostatMode = snapshot.ThermostatMode,
+            TargetTemperature = snapshot.TargetTemperature,
+
+            LightColor = snapshot.LightColor,
+            LightBrightness = snapshot.LightBrightness,
+
+            FanSpeed = snapshot.FanSpeed
+        };
+    }
+
 }

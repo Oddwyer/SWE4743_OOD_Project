@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
 
 namespace SmartHome.Api.Devices;
 
@@ -12,14 +11,10 @@ namespace SmartHome.Api.Devices;
 public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
-    private readonly IDeviceFactory _deviceFactory;
-    private readonly ICommandFactory _commandFactory;
 
-    public DevicesController(IDeviceService deviceService, IDeviceFactory deviceFactory, ICommandFactory commandFactory)
+    public DevicesController(IDeviceService deviceService)
     {
         _deviceService = deviceService;
-        _deviceFactory = deviceFactory;
-        _commandFactory = commandFactory;
     }
 
     /// <summary>
@@ -72,23 +67,17 @@ public class DevicesController : ControllerBase
     /// <summary>
     /// POST: api/devices/
     /// </summary>
-    [HttpPost("register-device")]
+    [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
 
-        // Create device via factory.
-        var device = _deviceFactory.CreateDevice(
-        request.DeviceName,
-        request.DeviceLocation,
-        request.Type
-        );
-
+        var registerData = DeviceMapper.MapToRegisterData(request);
         // If Device added, return success status and creation details.
-        _deviceService.RegisterDevice(device);
-        var response = DeviceMapper.ToResponse(device);
+        var device = _deviceService.RegisterDevice(registerData);
 
+        var response = DeviceMapper.ToResponse(device);
         return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
     }
 
@@ -101,12 +90,9 @@ public class DevicesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
-        var device = _deviceService.GetDeviceById(deviceId);
 
-        // TODO: Amber: Replace stub with CommandFactory when concrete commands are implemented.
-        var command = new StubDeviceCommand(device);
-
-        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, command);
+        var context = DeviceMapper.MapToCommandData(request);
+        var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, context);
         var response = DeviceMapper.ToResponse(updatedDevice);
 
         return Ok(response);

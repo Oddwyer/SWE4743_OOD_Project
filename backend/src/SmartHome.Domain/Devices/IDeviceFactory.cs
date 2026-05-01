@@ -1,3 +1,5 @@
+using SmartHome.Domain.Contracts;
+
 namespace SmartHome.Domain.Devices;
 
 /// <summary>
@@ -10,5 +12,5 @@ public interface IDeviceFactory
     public IDevice CreateDevice(string name, string location, DeviceType type);
 
     // For backend device rehydration (reference section 2 in project doc).
-    public IDevice RehydrateDevice(Guid id, string name, string location, DeviceType type, bool isOn, string? deviceState);
+    public IDevice RehydrateDevice(DeviceRehydrationData data);
 }

@@ -1,5 +1,7 @@
 using System.Net;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SmartHome.Api.Middleware;
 
@@ -20,49 +22,58 @@ public class GlobalErrorHandling
         {
             await _next(context);
         }
-        // Catch specific exceptions to return appropriate status codes and messages
-        // 404 Not Found for missing resources
         catch (KeyNotFoundException ex)
         {
             _logger.LogWarning(ex, "Resource not found.");
-            await WriteErrorResponse(context, HttpStatusCode.NotFound, ex.Message);
+            await WriteErrorResponse(context, HttpStatusCode.NotFound, "https://httpstatuses.com/404", "Not Found", ex.Message);
         }
-        // 400 Bad Request for invalid input or operations
+        catch (ArgumentOutOfRangeException ex)
+        {
+            _logger.LogWarning(ex, "Invalid range.");
+            await WriteErrorResponse(context, HttpStatusCode.BadRequest, "https://httpstatuses.com/400", "Invalid request range", ex.Message);
+        }
         catch (ArgumentException ex)
         {
             _logger.LogWarning(ex, "Bad request.");
-            await WriteErrorResponse(context, HttpStatusCode.BadRequest, ex.Message);
+            await WriteErrorResponse(context, HttpStatusCode.BadRequest, "https://httpstatuses.com/400", "Bad Request", ex.Message);
         }
         catch (InvalidOperationException ex)
         {
             _logger.LogWarning(ex, "Invalid operation.");
-            await WriteErrorResponse(context, HttpStatusCode.BadRequest, ex.Message);
+            await WriteErrorResponse(context, HttpStatusCode.BadRequest, "https://httpstatuses.com/400", "Invalid Operation", ex.Message);
         }
-        // 501 Not Implemented for features that are not yet implemented
         catch (NotImplementedException ex)
         {
             _logger.LogWarning(ex, "Feature not implemented.");
-            await WriteErrorResponse(context, HttpStatusCode.NotImplemented, ex.Message);
+            await WriteErrorResponse(context, HttpStatusCode.NotImplemented, "https://httpstatuses.com/501", "Not Implemented", ex.Message);
         }
-        // Catch any other unhandled exceptions to return a generic 500 Internal Server Error
         catch (Exception ex)
         {
             _logger.LogError(ex, "Unexpected error occurred.");
-            await WriteErrorResponse(context, HttpStatusCode.InternalServerError, "An unexpected error occurred. Please try again later.");
+            await WriteErrorResponse(context, HttpStatusCode.InternalServerError, "https://httpstatuses.com/500", "Internal Server Error", "An unexpected error occurred. Please try again later.");
         }
     }
 
-    private static async Task WriteErrorResponse(HttpContext context, HttpStatusCode statusCode, string message)
+    private static async Task WriteErrorResponse(HttpContext context, HttpStatusCode statusCode, string type, string title, string detail)
     {
-        context.Response.ContentType = "application/json";
+        context.Response.ContentType = "application/problem+json";
         context.Response.StatusCode = (int)statusCode;
 
-        var response = new
+        var problemDetails = new ProblemDetails
         {
-            status = context.Response.StatusCode,
-            message
+            Type = type,
+            Title = title,
+            Detail = detail,
+            Status = context.Response.StatusCode,
+            Instance = context.Request.Path
         };
 
-        await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+
+        await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails, options));
     }
 }

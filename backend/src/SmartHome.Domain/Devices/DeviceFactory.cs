@@ -2,27 +2,32 @@ using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
+using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+using SmartHome.Domain.Contracts;
 
 /// <summary>
-/// Creates and rehydrates device instances based on type or persisted data.
-/// Centralizes device creation and hides concrete implementations (Factory Pattern).
+/// Creates and restores domain device instances.
 /// </summary>
 
 namespace SmartHome.Domain.Devices;
 
-// TODO Kataali: This factory belongs to the Domain layer because it creates domain objects.
-// I added this so API endpoints could be tested but we still need thermostat. You're welcome to flush it out!
-
 public class DeviceFactory : IDeviceFactory
 {
+    private IThermostatModeStrategyFactory _thermostatModeStrategyFactory;
+
+    public DeviceFactory(IThermostatModeStrategyFactory factory)
+    {
+        _thermostatModeStrategyFactory = factory;
+    }
 
     /// <summary>
-    /// Creates new specific device based on type entered.
+    /// Creates and restores domain device instances.
     /// </summary>
     public IDevice CreateDevice(string name, string location, DeviceType type)
     {
         Guid id = Guid.NewGuid();
 
+        // TODO: Amber - Modify away from switch for OCP?
         switch (type)
         {
             case DeviceType.Light:
@@ -31,11 +36,10 @@ public class DeviceFactory : IDeviceFactory
             case DeviceType.Fan:
                 return new FanDevice(id, name, location);
 
-            // TODO - Kataali (or I can do it): Add Thermostat creation and rehydration once thermostat constructor/state 
-            // fields are finalized.
-
-            /*case DeviceType.Thermostat:
-                return new Thermostat(name, location);*/
+            case DeviceType.Thermostat:
+                var mode = ThermostatMode.Auto;
+                var strategy = _thermostatModeStrategyFactory.Create(mode);
+                return new ThermostatDevice(id, name, location, mode, strategy);
 
             case DeviceType.DoorLock:
                 return new DoorLocks(id, name, location);
@@ -46,27 +50,103 @@ public class DeviceFactory : IDeviceFactory
     }
 
     /// <summary>
-    /// Rehydrates saved data into device objects.
+    /// Creates and restores domain device instances.
     /// </summary>
-    public IDevice RehydrateDevice(Guid id, string name, string location, DeviceType type, bool isOn, string? deviceState)
+    public IDevice RehydrateDevice(DeviceRehydrationData data)
     {
-        switch (type)
+
+        return data.Type switch
         {
-            case DeviceType.Light:
-                return new LightDevice(id, name ?? "", location ?? "");
+            DeviceType.Light => RehydrateLight(data),
 
-            case DeviceType.Fan:
-                return new FanDevice(id, name ?? "", location ?? "");
+            DeviceType.Fan => RehydrateFan(data),
 
-            case DeviceType.DoorLock:
-                return new DoorLocks(id, name ?? "", location ?? "");
+            DeviceType.DoorLock => RehydrateDoorLock(data),
 
-            /*case DeviceType.Thermostat:
-                return new Thermostat(id, name ?? "", location ?? "");*/
+            DeviceType.Thermostat => RehydrateThermostat(data),
 
-            default:
-                throw new ArgumentException("Unsupported device type.");
-        }
+            _ => throw new ArgumentException("Unsupported device type.")
+        };
     }
+
+    /// <summary>
+    /// Restores a light from persisted values.
+    /// </summary>
+    private IDevice RehydrateLight(DeviceRehydrationData data)
+    {
+
+        var light = new LightDevice(data.Id, data.Name, data.Location);
+
+        var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
+        var lightcolor = data.LightColor ?? LightColor.White;
+        var lightBrightness = data.LightBrightness ?? 100;
+
+        light.RehydrateState(powerState, lightcolor, lightBrightness);
+
+        return light;
+    }
+
+    /// <summary>
+    /// Restores a fan from persisted values.
+    /// </summary>
+    private IDevice RehydrateFan(DeviceRehydrationData data)
+    {
+
+        var fan = new FanDevice(data.Id, data.Name, data.Location);
+
+        var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
+        var fanSpeed = data.FanSpeed ?? FanSpeed.Medium;
+
+        fan.RehydrateState(powerState, fanSpeed);
+
+        return fan;
+    }
+
+    /// <summary>
+    /// Restores a door lock from persisted values.
+    /// </summary>
+    private IDevice RehydrateDoorLock(DeviceRehydrationData data)
+    {
+
+        var doorlock = new DoorLocks(data.Id, data.Name, data.Location);
+
+        var latchState = Enum.TryParse<DeviceLatchState>(data.DeviceState, ignoreCase: true, out var parsedState)
+            ? parsedState
+            : DeviceLatchState.Locked;
+
+        doorlock.RehydrateState(latchState);
+
+        return doorlock;
+    }
+
+    /// <summary>
+    /// Restores a thermostat from persisted values.
+    /// </summary>
+    private IDevice RehydrateThermostat(DeviceRehydrationData data)
+    {
+
+        var mode = data.ThermostatMode ?? ThermostatMode.Auto;
+
+        var strategy = _thermostatModeStrategyFactory.Create(data.ThermostatMode ?? ThermostatMode.Auto);
+
+        var thermostat = new ThermostatDevice(data.Id, data.Name, data.Location, mode, strategy);
+
+        var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
+
+        var stateType = powerState == DevicePowerState.Off ?
+        ThermostatStateType.Off
+        : Enum.TryParse<ThermostatStateType>(data.DeviceState, ignoreCase: true, out var parsedState)
+            ? parsedState
+            : ThermostatStateType.Idle;
+
+        var targetTemp = data.TargetTemperature ?? ThermostatDevice.MinTemperature;
+
+        thermostat.RehydrateState(powerState, strategy, targetTemp, stateType, mode);
+
+        return thermostat;
+    }
+
+
+
 }
 

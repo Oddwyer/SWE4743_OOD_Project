@@ -15,10 +15,11 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     private ILightState _currentState;
 
-
     public LightColor ColorState { get; private set; }
 
     public int LightBrightness { get; private set; }
+
+    public override string StatusMessage { get; protected set; } = string.Empty;
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
     {
@@ -27,7 +28,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
         On = new OnState(this);
         _currentState = Off; // default state
         ColorState = LightColor.White; // default color
-        LightBrightness = 10; // default brightness
+        LightBrightness = 100; // default brightness
     }
 
     /// <summary>
@@ -120,6 +121,16 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
         UpdatedAt = DateTime.UtcNow;
     }
 
+    /// <summary>
+    /// Restores device properties.
+    /// <summary>
+    internal void RehydrateState(DevicePowerState powerState, LightColor color, int brightness)
+    {
+        _powerState = powerState;
+        ColorState = color;
+        LightBrightness = brightness;
+        _currentState = powerState == DevicePowerState.On ? On : Off;
+    }
 
 
 }

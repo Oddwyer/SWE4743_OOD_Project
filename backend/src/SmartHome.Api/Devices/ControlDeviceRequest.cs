@@ -14,7 +14,7 @@ public class ControlDeviceRequest
 {
     // All devices
     [Required]
-    public DeviceCommandType? Command { get; set; }
+    public DeviceCommandType Command { get; set; }
     public int? Brightness { get; set; }
     public LightColor? Color { get; set; }
     public FanSpeed? FanSpeed { get; set; }

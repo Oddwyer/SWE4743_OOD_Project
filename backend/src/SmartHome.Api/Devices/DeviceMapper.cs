@@ -3,6 +3,7 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Api.Devices;
 
@@ -27,31 +28,58 @@ public static class DeviceMapper
             IsDeviceOn = device.IsDeviceOn,
         };
 
-        // TODO - Amber: Waiting on thermostat.
         // Response specifics assigned based on specified device type.
         switch (device)
         {
             case LightDevice light:
-                response.Brightness = light.LightBrightness;
-                response.Color = light.ColorState;
+                response.LightBrightness = light.LightBrightness;
+                response.LightColor = light.ColorState;
                 break;
 
             case FanDevice fan:
-                response.Speed = fan.Speed;
+                response.FanSpeed = fan.Speed;
                 break;
 
-            /*case Thermostat thermostat:
-                response.Mode = thermostat.Mode;
-                response.DesiredTemperature = thermostat.DesiredTemperature;
+            case ThermostatDevice thermostat:
+                response.ThermostatMode = thermostat.Mode;
+                response.TargetTemperature = thermostat.TargetTemperature;
                 break;
-            */
 
             case DoorLocks doorlock:
-                response.IsLocked = doorlock.IsDeviceOn;
+                response.IsLocked = doorlock.LatchState == DeviceLatchState.Locked;
                 break;
+
+            default:
+                throw new ArgumentException($"Unsupported device type: {device.Type}");
         }
 
         return response;
     }
 
+    public static CommandData MapToCommandData(ControlDeviceRequest request)
+    {
+        var context = new CommandData
+        {
+            Command = request.Command,
+            Brightness = request.Brightness,
+            Color = request.Color,
+            FanSpeed = request.FanSpeed,
+            Mode = request.Mode,
+            TargetTemperature = request.DesiredTemperature
+        };
+
+        return context;
+    }
+
+    public static RegisterDeviceData MapToRegisterData(RegisterDeviceRequest request)
+    {
+        var registerData = new RegisterDeviceData
+        {
+            DeviceName = request.DeviceName,
+            DeviceLocation = request.DeviceLocation,
+            DeviceType = request.Type
+        };
+
+        return registerData;
+    }
 }

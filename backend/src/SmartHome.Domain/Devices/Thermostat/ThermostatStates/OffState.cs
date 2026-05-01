@@ -31,7 +31,7 @@ public class OffState : IThermostatState
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
-        _thermostat.UpdateStatusMessage("Cannot set target temperature while thermostat is off.");
+        throw new InvalidOperationException("Cannot set target temperature while thermostat is off.");
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class OffState : IThermostatState
     /// </summary>
     public void Evaluate(int ambientTemperature)
     {
-        _thermostat.UpdateStatusMessage("Thermostat is off. No state evaluation performed.");
+        throw new InvalidOperationException("Cannot evaluate state while thermostat is off.");
     }
 
 }

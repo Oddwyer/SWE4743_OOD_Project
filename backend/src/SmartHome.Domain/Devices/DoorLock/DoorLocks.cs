@@ -8,24 +8,30 @@ namespace SmartHome.Domain.Devices.DoorLock;
 public class DoorLocks : Device, ILatchedDevice
 {
     // States
-    public DeviceLatchState LatchState { get; private set; }
+    private DeviceLatchState _latchState;
     public IDoorState Unlocked { get; private set; }
     public IDoorState Locked { get; private set; }
-
     private IDoorState _currentState;
 
     public DoorLocks(Guid id, string name, string location) : base(id, name, location, DeviceType.DoorLock)
     {
-        LatchState = DeviceLatchState.Locked;
+        _latchState = DeviceLatchState.Locked;
         Unlocked = new UnlockedState(this);
         Locked = new LockedState(this);
         _currentState = Locked;
     }
 
     /// <summary>
+    /// Current latch state of the lock.
+    /// </summary>
+    public override string StatusMessage { get; protected set; } = string.Empty;
+
+    public DeviceLatchState LatchState => _latchState;
+
+    /// <summary>
     /// Indicates whether the door lock is currently locked (on) or unlocked (off).
     /// </summary>
-    public override bool IsDeviceOn => LatchState == DeviceLatchState.Locked;
+    public override bool IsDeviceOn => true; // Always "on" for UI.
 
     /// <summary>
     /// Toggles the lock state of the door. 
@@ -40,7 +46,7 @@ public class DoorLocks : Device, ILatchedDevice
     /// </summary>
     internal void Lock()
     {
-        LatchState = DeviceLatchState.Locked;
+        _latchState = DeviceLatchState.Locked;
         UpdatedAt = DateTime.UtcNow;
 
     }
@@ -50,7 +56,7 @@ public class DoorLocks : Device, ILatchedDevice
     /// </summary>
     internal void Unlock()
     {
-        LatchState = DeviceLatchState.Unlocked;
+        _latchState = DeviceLatchState.Unlocked;
         UpdatedAt = DateTime.UtcNow;
 
     }
@@ -66,11 +72,21 @@ public class DoorLocks : Device, ILatchedDevice
 
     /// <summary>
     /// Updates the status message (used by states). 
-    /// </summary
-    internal void UpdateStausMessage(string message)
+    /// </summary>
+    internal void UpdateStatusMessage(string message)
     {
         StatusMessage = message;
         UpdatedAt = DateTime.UtcNow;
     }
+
+    /// <summary>
+    /// Restores device properties.
+    /// <summary>
+    internal void RehydrateState(DeviceLatchState latchState)
+    {
+        _latchState = latchState;
+        _currentState = latchState == DeviceLatchState.Locked ? Locked : Unlocked;
+    }
+
 
 }

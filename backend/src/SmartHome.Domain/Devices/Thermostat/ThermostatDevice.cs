@@ -5,7 +5,9 @@ namespace SmartHome.Domain.Devices.Thermostat;
 public class ThermostatDevice : Device, IPoweredDevice
 {
     public int TargetTemperature { get; private set; }
-    public IThermostatModeStrategy CurrentMode { get; private set; }
+    public IThermostatModeStrategy CurrentStrategy { get; private set; }
+
+    public ThermostatMode Mode { get; private set; }
 
     public const int MinTemperature = 60; // Minimum allowed temperature
     public const int MaxTemperature = 80; // Maximum allowed temperature
@@ -15,17 +17,37 @@ public class ThermostatDevice : Device, IPoweredDevice
     public IdleState Idle { get; private set; }
     public CoolingState Cooling { get; private set; }
     public HeatingState Heating { get; private set; }
-
     public OffState Off { get; private set; }
 
     private IThermostatState _currentState;
 
-    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) :
+    // Helper property to expose current state type for API responses and persistence.     
+    public ThermostatStateType CurrentStateType
+    {
+        get
+        {
+            if (_currentState == Off)
+                return ThermostatStateType.Off;
+
+            if (_currentState == Cooling)
+                return ThermostatStateType.Cooling;
+
+            if (_currentState == Heating)
+                return ThermostatStateType.Heating;
+
+            return ThermostatStateType.Idle;
+        }
+    }
+
+    public override string StatusMessage { get; protected set; } = string.Empty;
+
+    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :
 
     base(id, deviceName, deviceLocation, DeviceType.Thermostat)
     {
-        CurrentMode = strategy;
-
+        CurrentStrategy = strategy;
+        Mode = mode;
+        TargetTemperature = 72;
         // Initialize states
         _powerState = DevicePowerState.Off; // default state
         Idle = new IdleState(this);
@@ -45,7 +67,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// <summary>
     /// Indicates whether the thermostat is on.
     /// </summary>
-    public override bool IsDeviceOn => _powerState == DevicePowerState.On;
+    public override bool IsDeviceOn => _currentState == Heating || _currentState == Cooling;
 
     /// <summary>
     /// Requests a power toggle. Behavior is determined by the current state.
@@ -103,9 +125,10 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// <summary>
     /// Sets the active mode strategy.
     /// </summary>
-    internal void SetModeStrategy(IThermostatModeStrategy strategy)
+    internal void SetMode(ThermostatMode mode, IThermostatModeStrategy strategy)
     {
-        CurrentMode = strategy;
+        Mode = mode;
+        CurrentStrategy = strategy;
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -123,7 +146,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// </summary>
     internal IThermostatState DetermineNextState(int ambientTemperature)
     {
-        var nextState = CurrentMode.DetermineNextState(this, ambientTemperature);
+        var nextState = CurrentStrategy.DetermineNextState(this, ambientTemperature);
         return nextState;
 
     }
@@ -135,5 +158,26 @@ public class ThermostatDevice : Device, IPoweredDevice
     {
         StatusMessage = message;
     }
+
+    /// <summary>
+    /// Restores device properties.
+    /// </summary>
+    internal void RehydrateState(DevicePowerState powerState, IThermostatModeStrategy strategy, int targetTemperature, ThermostatStateType stateType, ThermostatMode mode)
+    {
+        _powerState = powerState;
+        CurrentStrategy = strategy;
+        Mode = mode;
+        TargetTemperature = targetTemperature;
+        _currentState = powerState == DevicePowerState.Off
+        ? Off
+       : stateType switch
+       {
+           ThermostatStateType.Idle => Idle,
+           ThermostatStateType.Heating => Heating,
+           ThermostatStateType.Cooling => Cooling,
+           _ => Idle
+       };
+    }
+
 
 }

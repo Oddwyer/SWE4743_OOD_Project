@@ -29,8 +29,8 @@ public class OnState : ILightState
 
         if (brightness < LightDevice.MinBrightness || brightness > LightDevice.MaxBrightness)
         {
-            _light.UpdateStatusMessage("Brightness must be between 10 and 100.");
-            return;
+            throw new ArgumentOutOfRangeException(nameof(brightness), "Brightness must be between 10 and 100.");
+
         }
 
         _light.SetLightBrightnessInternal(brightness);
