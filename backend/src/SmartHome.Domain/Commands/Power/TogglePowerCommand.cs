@@ -15,8 +15,7 @@ public class TogglePowerCommand : DeviceCommand
     }
 
     /// <summary>
-    /// Executes the command to toggle the power state of the device. It checks if the device can be toggled
-    /// and performs the toggle operation.
+    /// Executes the command to toggle the power state of the device. 
     /// </summary>
     public override void Execute()
     {

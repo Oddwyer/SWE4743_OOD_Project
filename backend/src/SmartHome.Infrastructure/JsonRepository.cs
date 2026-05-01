@@ -271,8 +271,8 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
         return new DeviceRehydrationData
         {
             Id = snapshot.Id,
-            Name = snapshot.Name ?? string.Empty,
-            Location = snapshot.Location ?? string.Empty,
+            Name = snapshot.Name,
+            Location = snapshot.Location,
             Type = snapshot.Type,
             IsOn = snapshot.IsOn,
             DeviceState = snapshot.DeviceState,

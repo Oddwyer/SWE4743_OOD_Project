@@ -9,9 +9,9 @@ namespace SmartHome.Infrastructure;
 public record DeviceSnapshot
 {
     public Guid Id { get; init; }
-    public string? Name { get; init; }
+    public string Name { get; init; } = string.Empty;
     public DeviceType Type { get; init; }
-    public string? Location { get; init; }
+    public string Location { get; init; } = string.Empty;
     public bool IsOn { get; init; }
     public string? DeviceState { get; init; }
     public ThermostatMode? ThermostatMode { get; init; }

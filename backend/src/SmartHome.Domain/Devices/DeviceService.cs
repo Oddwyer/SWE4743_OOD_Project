@@ -38,6 +38,7 @@ public class DeviceService : IDeviceService
     /// </summary>
     public void RegisterDevice(IDevice device)
     {
+        // TODO - Add in only one thermostat per location logic.
         _deviceRepository.SaveDevice(device);
     }
 

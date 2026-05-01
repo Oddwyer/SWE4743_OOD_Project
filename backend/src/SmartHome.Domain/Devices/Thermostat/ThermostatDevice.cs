@@ -5,7 +5,9 @@ namespace SmartHome.Domain.Devices.Thermostat;
 public class ThermostatDevice : Device, IPoweredDevice
 {
     public int TargetTemperature { get; private set; }
-    public IThermostatModeStrategy CurrentMode { get; private set; }
+    public IThermostatModeStrategy CurrentStrategy { get; private set; }
+
+    public ThermostatMode Mode { get; private set; }
 
     public const int MinTemperature = 60; // Minimum allowed temperature
     public const int MaxTemperature = 80; // Maximum allowed temperature
@@ -19,12 +21,13 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     private IThermostatState _currentState;
 
-    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, IThermostatModeStrategy strategy) :
+    public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :
 
     base(id, deviceName, deviceLocation, DeviceType.Thermostat)
     {
-        CurrentMode = strategy;
-
+        CurrentStrategy = strategy;
+        Mode = mode;
+        TargetTemperature = 72;
         // Initialize states
         _powerState = DevicePowerState.Off; // default state
         Idle = new IdleState(this);
@@ -44,7 +47,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// <summary>
     /// Indicates whether the thermostat is on.
     /// </summary>
-    public override bool IsDeviceOn => _powerState == DevicePowerState.On;
+    public override bool IsDeviceOn => _currentState == Heating || _currentState == Cooling;
 
     /// <summary>
     /// Requests a power toggle. Behavior is determined by the current state.
@@ -102,9 +105,10 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// <summary>
     /// Sets the active mode strategy.
     /// </summary>
-    internal void SetModeStrategy(IThermostatModeStrategy strategy)
+    internal void SetMode(ThermostatMode mode, IThermostatModeStrategy strategy)
     {
-        CurrentMode = strategy;
+        Mode = mode;
+        CurrentStrategy = strategy;
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -122,7 +126,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// </summary>
     internal IThermostatState DetermineNextState(int ambientTemperature)
     {
-        var nextState = CurrentMode.DetermineNextState(this, ambientTemperature);
+        var nextState = CurrentStrategy.DetermineNextState(this, ambientTemperature);
         return nextState;
 
     }
@@ -138,10 +142,11 @@ public class ThermostatDevice : Device, IPoweredDevice
     /// <summary>
     /// Restores device properties.
     /// </summary>
-    internal void RehydrateState(DevicePowerState powerState, IThermostatModeStrategy strategy, int targetTemperature, ThermostatStateType stateType)
+    internal void RehydrateState(DevicePowerState powerState, IThermostatModeStrategy strategy, int targetTemperature, ThermostatStateType stateType, ThermostatMode mode)
     {
         _powerState = powerState;
-        CurrentMode = strategy;
+        CurrentStrategy = strategy;
+        Mode = mode;
         TargetTemperature = targetTemperature;
         _currentState = powerState == DevicePowerState.Off
         ? Off

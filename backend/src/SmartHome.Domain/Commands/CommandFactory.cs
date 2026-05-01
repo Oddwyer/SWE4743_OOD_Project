@@ -3,7 +3,7 @@ using SmartHome.Domain.Commands.Fan;
 using SmartHome.Domain.Commands.Light;
 using SmartHome.Domain.Commands.Lock;
 using SmartHome.Domain.Commands.Power;
-using System.Data;
+using SmartHome.Domain.Commands.Thermostat;
 
 
 namespace SmartHome.Domain.Commands;
@@ -52,8 +52,18 @@ public class CommandFactory : ICommandFactory
                 return new SetFanSpeedCommand(device, context.FanSpeed.Value);
 
             case DeviceCommandType.SetThermostatMode:
+                if (context.Mode is null)
+                {
+                    throw new ArgumentException("A thermostat mode is required to alter current thermostat mode.");
+                }
+                return new SetThermostateModeCommand(device, context.Mode.Value);
 
             case DeviceCommandType.SetDesiredTemperature:
+                if (context.TargetTemperature is null)
+                {
+                    throw new ArgumentException("A target temperature must be provided to alter thermostat mode.");
+                }
+                return new SetTargetTemperatureCommand(device, context.TargetTemperature.Value);
 
             case DeviceCommandType.ToggleLock:
                 return new ToggleLockCommand(device);

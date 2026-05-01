@@ -34,11 +34,10 @@ public class DeviceFactory : IDeviceFactory
             case DeviceType.Fan:
                 return new FanDevice(id, name, location);
 
-            // TODO - Kataali (or I can do it): Add Thermostat creation and rehydration once thermostat constructor/state 
-            // fields are finalized.
-
-            /*case DeviceType.Thermostat:
-                return new Thermostat(name, location);*/
+            case DeviceType.Thermostat:
+                var mode = ThermostatMode.Auto;
+                var strategy = _thermostatModeStrategyFactory.Create(mode);
+                return new ThermostatDevice(id, name, location, mode, strategy);
 
             case DeviceType.DoorLock:
                 return new DoorLocks(id, name, location);
@@ -74,7 +73,7 @@ public class DeviceFactory : IDeviceFactory
     private IDevice RehydrateLight(DeviceRehydrationData data)
     {
 
-        var light = new LightDevice(data.Id, data.Name ?? "", data.Location ?? "");
+        var light = new LightDevice(data.Id, data.Name, data.Location);
 
         var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
         var lightcolor = data.LightColor ?? LightColor.White;
@@ -91,7 +90,7 @@ public class DeviceFactory : IDeviceFactory
     private IDevice RehydrateFan(DeviceRehydrationData data)
     {
 
-        var fan = new FanDevice(data.Id, data.Name ?? "", data.Location ?? "");
+        var fan = new FanDevice(data.Id, data.Name, data.Location);
 
         var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
         var fanSpeed = data.FanSpeed ?? FanSpeed.Medium;
@@ -101,14 +100,13 @@ public class DeviceFactory : IDeviceFactory
         return fan;
     }
 
-
     /// <summary>
     /// Restores a door lock from persisted values.
     /// </summary>
     private IDevice RehydrateDoorLock(DeviceRehydrationData data)
     {
 
-        var doorlock = new DoorLocks(data.Id, data.Name ?? "", data.Location ?? "");
+        var doorlock = new DoorLocks(data.Id, data.Name, data.Location);
 
         var latchState = Enum.TryParse<DeviceLatchState>(data.DeviceState, ignoreCase: true, out var parsedState)
             ? parsedState
@@ -125,9 +123,11 @@ public class DeviceFactory : IDeviceFactory
     private IDevice RehydrateThermostat(DeviceRehydrationData data)
     {
 
+        var mode = data.ThermostatMode ?? ThermostatMode.Auto;
+
         var strategy = _thermostatModeStrategyFactory.Create(data.ThermostatMode ?? ThermostatMode.Auto);
 
-        var thermostat = new ThermostatDevice(data.Id, data.Name ?? "", data.Location ?? "", strategy);
+        var thermostat = new ThermostatDevice(data.Id, data.Name, data.Location, mode, strategy);
 
         var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
 
@@ -139,7 +139,7 @@ public class DeviceFactory : IDeviceFactory
 
         var targetTemp = data.TargetTemperature ?? ThermostatDevice.MinTemperature;
 
-        thermostat.RehydrateState(powerState, strategy, targetTemp, stateType);
+        thermostat.RehydrateState(powerState, strategy, targetTemp, stateType, mode);
 
         return thermostat;
     }

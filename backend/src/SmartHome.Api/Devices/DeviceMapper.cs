@@ -32,19 +32,19 @@ public static class DeviceMapper
         switch (device)
         {
             case LightDevice light:
-                response.Brightness = light.LightBrightness;
-                response.Color = light.ColorState;
+                response.LightBrightness = light.LightBrightness;
+                response.LightColor = light.ColorState;
                 break;
 
             case FanDevice fan:
-                response.Speed = fan.Speed;
+                response.FanSpeed = fan.Speed;
                 break;
 
-            /*case Thermostat thermostat:
-                response.Mode = thermostat.Mode;
-                response.DesiredTemperature = thermostat.DesiredTemperature;
+            case ThermostatDevice thermostat:
+                response.ThermostatMode = thermostat.Mode;
+                response.TargetTemperature = thermostat.TargetTemperature;
                 break;
-            */
+
 
             case DoorLocks doorlock:
                 response.IsLocked = doorlock.IsDeviceOn;

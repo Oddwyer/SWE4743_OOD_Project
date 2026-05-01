@@ -1,5 +1,6 @@
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.Thermostat;
 
 namespace SmartHome.Api.Devices;
 
@@ -19,15 +20,15 @@ public class DeviceResponse : BaseDevice
     public string StatusMessage { get; set; } = string.Empty;
 
     // Lights
-    public int? Brightness { get; set; }
-    public LightColor Color { get; set; }
+    public int? LightBrightness { get; set; }
+    public LightColor LightColor { get; set; }
 
     // Fans
-    public FanSpeed Speed { get; set; }
+    public FanSpeed FanSpeed { get; set; }
 
     // Thermostat
-    public string? Mode { get; set; }
-    public int? DesiredTemperature { get; set; }
+    public ThermostatMode ThermostatMode { get; set; }
+    public int? TargetTemperature { get; set; }
     public int? AmbientTemperature { get; set; }
 
     // Doors

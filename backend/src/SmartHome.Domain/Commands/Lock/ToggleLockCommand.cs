@@ -3,7 +3,7 @@ using SmartHome.Domain.Devices;
 namespace SmartHome.Domain.Commands.Lock;
 
 /// <summary>
-/// Command to lock a device in the smart home system. 
+/// Locks doorlocks in the Smart Home.
 /// </summary> 
 public class ToggleLockCommand : DeviceCommand
 {

@@ -3,19 +3,25 @@ using SmartHome.Domain.Devices.Thermostat;
 
 namespace SmartHome.Domain.Commands.Thermostat;
 
+/// <summary>
+/// Sets the thermostat to the mode requested by the client.
+/// </summary>
 public class SetThermostateModeCommand : DeviceCommand
 {
+    public ThermostatMode Mode { get; }
+
+    private readonly IThermostatModeStrategyFactory _strategyfactory;
     public override string CommandDescription => $"Setting mode for {ManipulatedDevice.DeviceName}.";
 
-    public SetThermostateModeCommand(IDevice device, ThermostatMode mode) : base(device)
+    public SetThermostateModeCommand(IDevice device, ThermostatMode mode, IThermostatModeStrategyFactory factory) : base(device)
     {
-
+        Mode = mode;
+        _strategyfactory = factory;
 
     }
 
     /// <summary>
-    /// Executes the command to toggle the power state of the device. It checks if the device can be toggled
-    /// and performs the toggle operation.
+    /// Executes the command to update the current mode (heat, auto, cool) of the thermostat.
     /// </summary>
     public override void Execute()
     {
@@ -24,7 +30,9 @@ public class SetThermostateModeCommand : DeviceCommand
             throw new InvalidOperationException($"Device '{ManipulatedDevice.DeviceName}' is not a thermostat.");
         }
 
+        var strategy = _strategyfactory.Create(Mode);
 
+        thermostat.SetMode(Mode, strategy);
 
     }
 }

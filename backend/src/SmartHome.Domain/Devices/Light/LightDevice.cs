@@ -26,7 +26,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
         On = new OnState(this);
         _currentState = Off; // default state
         ColorState = LightColor.White; // default color
-        LightBrightness = 10; // default brightness
+        LightBrightness = 100; // default brightness
     }
 
     /// <summary>
