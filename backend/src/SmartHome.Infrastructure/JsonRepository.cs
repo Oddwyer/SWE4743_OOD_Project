@@ -1,10 +1,6 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Locations;
-using SmartHome.Domain.Devices.Light;
-using SmartHome.Domain.Devices.Fan;
-using SmartHome.Domain.Devices.DoorLock;
-using SmartHome.Domain.Devices.Thermostat;
 using System.Text.Json;
 
 namespace SmartHome.Infrastructure;
