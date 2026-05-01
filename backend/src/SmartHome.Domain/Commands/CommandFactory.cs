@@ -4,6 +4,7 @@ using SmartHome.Domain.Commands.Light;
 using SmartHome.Domain.Commands.Lock;
 using SmartHome.Domain.Commands.Power;
 using SmartHome.Domain.Commands.Thermostat;
+using SmartHome.Domain.Devices.Thermostat;
 
 
 namespace SmartHome.Domain.Commands;
@@ -17,7 +18,12 @@ namespace SmartHome.Domain.Commands;
 // I added this temporarily so API endpoints could be tested.
 public class CommandFactory : ICommandFactory
 {
+    private readonly IThermostatModeStrategyFactory _thermostatStrategyFactory;
 
+    public CommandFactory(IThermostatModeStrategyFactory factory)
+    {
+        _thermostatStrategyFactory = factory;
+    }
     public IDeviceCommand CreateCommand(CommandContext context, IDevice device)
     {
         // TODO - Replace placeholder with concrete commands.
@@ -25,7 +31,6 @@ public class CommandFactory : ICommandFactory
 
         switch (context.Command)
         {
-
             case DeviceCommandType.TogglePower:
                 return new TogglePowerCommand(device);
 
@@ -35,7 +40,6 @@ public class CommandFactory : ICommandFactory
                     throw new ArgumentException("Brightness is required for setting brightness.");
                 }
                 return new SetLightBrightnessCommand(device, context.Brightness.Value);
-
 
             case DeviceCommandType.SetColor:
                 if (context.Color is null)
@@ -56,7 +60,8 @@ public class CommandFactory : ICommandFactory
                 {
                     throw new ArgumentException("A thermostat mode is required to alter current thermostat mode.");
                 }
-                return new SetThermostateModeCommand(device, context.Mode.Value);
+                var strategy = _thermostatStrategyFactory.Create(context.Mode.Value);
+                return new SetThermostateModeCommand(device, context.Mode.Value, strategy);
 
             case DeviceCommandType.SetDesiredTemperature:
                 if (context.TargetTemperature is null)

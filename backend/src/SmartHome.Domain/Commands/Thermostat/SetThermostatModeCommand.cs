@@ -9,14 +9,13 @@ namespace SmartHome.Domain.Commands.Thermostat;
 public class SetThermostateModeCommand : DeviceCommand
 {
     public ThermostatMode Mode { get; }
-
-    private readonly IThermostatModeStrategyFactory _strategyfactory;
+    private readonly IThermostatModeStrategy _strategy;
     public override string CommandDescription => $"Setting mode for {ManipulatedDevice.DeviceName}.";
 
-    public SetThermostateModeCommand(IDevice device, ThermostatMode mode, IThermostatModeStrategyFactory factory) : base(device)
+    public SetThermostateModeCommand(IDevice device, ThermostatMode mode, IThermostatModeStrategy strategy) : base(device)
     {
         Mode = mode;
-        _strategyfactory = factory;
+        _strategy = strategy;
 
     }
 
@@ -30,9 +29,8 @@ public class SetThermostateModeCommand : DeviceCommand
             throw new InvalidOperationException($"Device '{ManipulatedDevice.DeviceName}' is not a thermostat.");
         }
 
-        var strategy = _strategyfactory.Create(Mode);
 
-        thermostat.SetMode(Mode, strategy);
+        thermostat.SetMode(Mode, _strategy);
 
     }
 }
