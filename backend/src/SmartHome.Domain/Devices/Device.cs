@@ -10,7 +10,8 @@ public abstract class Device : IDevice
     public string DeviceName { get; protected set; } = string.Empty;
     public string DeviceLocation { get; protected set; } = string.Empty;
     public DeviceType Type { get; protected set; }
-    public string StatusMessage { get; protected set; } = string.Empty; // Added StatusMessage to Device for better error handling and state reporting.
+
+    public abstract string StatusMessage { get; protected set; }
     public abstract bool IsDeviceOn { get; }
 
     //Useful for logging and auditing.

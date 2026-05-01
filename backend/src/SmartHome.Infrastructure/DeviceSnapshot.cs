@@ -6,6 +6,8 @@ using SmartHome.Domain.Devices.Thermostat;
 namespace SmartHome.Infrastructure;
 
 // Stores device-specific values needed for JSON persistence and rehydration.
+
+
 public record DeviceSnapshot
 {
     public Guid Id { get; init; }

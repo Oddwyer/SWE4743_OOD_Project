@@ -25,6 +25,8 @@ public class DoorLocks : Device, ILatchedDevice
     /// <summary>
     /// Current latch state of the lock.
     /// </summary>
+    public override string StatusMessage { get; protected set; } = string.Empty;
+
     public DeviceLatchState LatchState => _latchState;
 
     /// <summary>
@@ -71,8 +73,8 @@ public class DoorLocks : Device, ILatchedDevice
 
     /// <summary>
     /// Updates the status message (used by states). 
-    /// </summary
-    internal void UpdateStausMessage(string message)
+    /// </summary>
+    internal void UpdateStatusMessage(string message)
     {
         StatusMessage = message;
         UpdatedAt = DateTime.UtcNow;

@@ -21,6 +21,8 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     private IThermostatState _currentState;
 
+    public override string StatusMessage { get; protected set; } = string.Empty;
+
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :
 
     base(id, deviceName, deviceLocation, DeviceType.Thermostat)

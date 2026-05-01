@@ -22,7 +22,6 @@ public class OffState : ILightState
 
     public void ChangeColor(LightColor color)
     {
-
         throw new InvalidOperationException("Cannot change color when light is off.");
     }
 

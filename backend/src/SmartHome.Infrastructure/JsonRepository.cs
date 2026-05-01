@@ -1,6 +1,11 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Locations;
+using SmartHome.Domain.Contracts;
+using SmartHome.Domain.Devices.DoorLock;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.Thermostat;
 using System.Text.Json;
 
 namespace SmartHome.Infrastructure;
@@ -210,8 +215,13 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     /// <summary>
     /// Converts all domain device objects into data-only snapshots for persistence.
     /// </summary>
+    /// 
+
     private List<DeviceSnapshot> DehydrateDevices()
     {
+        // TODO: This method is getting a bit unwieldy with all the device-specific properties. 
+        // Consider refactoring to use separate snapshot types per device category or a more 
+        // flexible serialization? 
         return _devices.Select(d => new DeviceSnapshot
         {
             Id = d.Id,
@@ -219,7 +229,16 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
             Location = d.DeviceLocation,
             Type = d.Type,
             IsOn = d.IsDeviceOn,
-            DeviceState = null
+            DeviceState = d is DoorLocks dl ? dl.LatchState.ToString() :
+                          d is ThermostatDevice td ? td.Mode.ToString() :
+                          null,
+            ThermostatMode = d is ThermostatDevice t ? t.Mode : (ThermostatMode?)null,
+            TargetTemperature = d is ThermostatDevice t2 ? t2.TargetTemperature : (int?)null,
+            LightColor = d is LightDevice l ? l.ColorState : null,
+            LightBrightness = d is LightDevice l2 ? l2.LightBrightness : (int?)null,
+            FanSpeed = d is FanDevice f ? f.Speed : (FanSpeed?)null
+
+
         }).ToList();
     }
 

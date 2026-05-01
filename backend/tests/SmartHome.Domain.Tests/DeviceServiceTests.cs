@@ -4,6 +4,7 @@ using System.Linq;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Commands.Lock;
@@ -58,11 +59,33 @@ public class DeviceServiceTests
         }
     }
 
+    private class FakeDeviceFactory : IDeviceFactory
+    {
+        public IDevice CreateDevice(string name, string location, DeviceType type)
+        {
+            return type switch
+            {
+                DeviceType.DoorLock => new DoorLocks(Guid.NewGuid(), name, location),
+                _ => throw new ArgumentException("Unsupported device type for fake factory.")
+            };
+        }
+
+        public IDevice RehydrateDevice(DeviceRehydrationData data)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    private static DeviceService CreateDeviceService(FakeDeviceRepository repository)
+    {
+        return new DeviceService(repository, new FakeDeviceFactory());
+    }
+
     [Fact]
     public void GetDeviceById_ReturnsDevice_WhenFound()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
         var device = new DoorLocks(Guid.NewGuid(), "FrontDoor", "Entrance");
 
         repository.SaveDevice(device);
@@ -76,7 +99,7 @@ public class DeviceServiceTests
     public void GetDeviceById_ThrowsKeyNotFound_WhenNotFound()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
 
         Assert.Throws<KeyNotFoundException>(() => service.GetDeviceById(Guid.NewGuid()));
     }
@@ -85,10 +108,15 @@ public class DeviceServiceTests
     public void RegisterDevice_SavesNewDevice()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
-        var device = new DoorLocks(Guid.NewGuid(), "BackDoor", "Hallway");
+        var service = CreateDeviceService(repository);
+        var register = new RegisterDeviceData
+        {
+            DeviceName = "BackDoor",
+            DeviceLocation = "Hallway",
+            DeviceType = DeviceType.DoorLock
+        };
 
-        service.RegisterDevice(device);
+        var device = service.RegisterDevice(register);
 
         var persisted = repository.FindDeviceById(device.Id);
         Assert.Same(device, persisted);
@@ -98,7 +126,7 @@ public class DeviceServiceTests
     public void ApplyDeviceCommand_SavesDeviceAndHistory()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
         var device = new DoorLocks(Guid.NewGuid(), "GarageDoor", "Garage");
         repository.SaveDevice(device);
 
@@ -116,7 +144,7 @@ public class DeviceServiceTests
     public void ApplyDeviceCommand_ThrowsKeyNotFound_WhenDeviceMissing()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
 
         var command = new ToggleLockCommand(new DoorLocks(Guid.NewGuid(), "SideDoor", "Side"));
 
@@ -127,7 +155,7 @@ public class DeviceServiceTests
     public void RemoveDevice_DeletesDevice_WhenFound()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
         var device = new DoorLocks(Guid.NewGuid(), "PatioDoor", "Patio");
         repository.SaveDevice(device);
 
@@ -140,7 +168,7 @@ public class DeviceServiceTests
     public void GetCommandHistory_ReturnsHistory_WhenDeviceExists()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
         var device = new DoorLocks(Guid.NewGuid(), "FrontDoor", "Entrance");
         repository.SaveDevice(device);
         var entry = new CommandHistoryEntry(device.Id, new ToggleLockCommand(device));
@@ -156,7 +184,7 @@ public class DeviceServiceTests
     public void GetCommandHistory_ThrowsKeyNotFound_WhenDeviceMissing()
     {
         var repository = new FakeDeviceRepository();
-        var service = new DeviceService(repository);
+        var service = CreateDeviceService(repository);
 
         Assert.Throws<KeyNotFoundException>(() => service.GetCommandHistory(Guid.NewGuid()));
     }

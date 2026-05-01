@@ -1,15 +1,18 @@
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
+using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Domain.Devices;
 
 public class DeviceService : IDeviceService
 {
     private readonly IDeviceRepository _deviceRepository;
+    private readonly IDeviceFactory _deviceFactory;
 
-    public DeviceService(IDeviceRepository deviceRepository)
+    public DeviceService(IDeviceRepository deviceRepository, IDeviceFactory factory)
     {
         _deviceRepository = deviceRepository;
+        _deviceFactory = factory;
     }
 
     /// <summary>
@@ -36,10 +39,12 @@ public class DeviceService : IDeviceService
     /// <summary>
     /// Registers new device to repository.
     /// </summary>
-    public void RegisterDevice(IDevice device)
+    public IDevice RegisterDevice(RegisterDeviceData register)
     {
         // TODO - Add in only one thermostat per location logic.
+        var device = _deviceFactory.CreateDevice(register.DeviceName, register.DeviceLocation, register.DeviceType);
         _deviceRepository.SaveDevice(device);
+        return device;
     }
 
     /// <summary>

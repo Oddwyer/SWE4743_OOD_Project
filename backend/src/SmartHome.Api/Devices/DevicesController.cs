@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Commands;
+using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Api.Devices;
 
@@ -78,17 +79,11 @@ public class DevicesController : ControllerBase
     public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
 
-        // Create device via factory.
-        var device = _deviceFactory.CreateDevice(
-        request.DeviceName,
-        request.DeviceLocation,
-        request.Type
-        );
-
+        var registerData = DeviceMapper.MapToRegisterData(request);
         // If Device added, return success status and creation details.
-        _deviceService.RegisterDevice(device);
-        var response = DeviceMapper.ToResponse(device);
+        var device = _deviceService.RegisterDevice(registerData);
 
+        var response = DeviceMapper.ToResponse(device);
         return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
     }
 
@@ -102,7 +97,7 @@ public class DevicesController : ControllerBase
     public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
         var device = _deviceService.GetDeviceById(deviceId);
-        var context = DeviceMapper.MapToContext(request);
+        var context = DeviceMapper.MapToCommandData(request);
 
         var command = _commandFactory.CreateCommand(device, context);
 

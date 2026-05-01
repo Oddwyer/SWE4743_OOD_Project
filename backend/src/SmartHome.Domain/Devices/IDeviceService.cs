@@ -1,5 +1,6 @@
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Commands;
+using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Domain.Devices;
 
@@ -17,7 +18,7 @@ public interface IDeviceService
     IDevice GetDeviceById(Guid deviceId);
 
     // Method to add a new device to the system
-    void RegisterDevice(IDevice device);
+    IDevice RegisterDevice(RegisterDeviceData data);
 
     // Method to remove a device from the system by its ID
     void RemoveDevice(Guid deviceId);

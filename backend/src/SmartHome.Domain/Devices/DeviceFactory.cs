@@ -3,6 +3,7 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+using SmartHome.Domain.Contracts;
 
 /// <summary>
 /// Creates and restores domain device instances.
@@ -26,6 +27,7 @@ public class DeviceFactory : IDeviceFactory
     {
         Guid id = Guid.NewGuid();
 
+        // TODO: Amber - Modify away from switch for OCP.
         switch (type)
         {
             case DeviceType.Light:

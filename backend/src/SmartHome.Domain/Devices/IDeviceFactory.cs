@@ -1,3 +1,5 @@
+using SmartHome.Domain.Contracts;
+
 namespace SmartHome.Domain.Devices;
 
 /// <summary>

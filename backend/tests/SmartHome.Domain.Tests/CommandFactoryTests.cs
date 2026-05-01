@@ -5,7 +5,7 @@ using SmartHome.Domain.Commands.Light;
 using SmartHome.Domain.Commands.Lock;
 using SmartHome.Domain.Commands.Power;
 using SmartHome.Domain.Commands.Thermostat;
-using SmartHome.Domain.Devices;
+using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
@@ -23,7 +23,7 @@ public class CommandFactoryTests
     {
         var device = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
 
-        var command = _factory.CreateCommand(device, new CommandContext
+        var command = _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.TogglePower
         });
@@ -36,7 +36,7 @@ public class CommandFactoryTests
     {
         var device = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
 
-        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandContext
+        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetBrightness
         }));
@@ -49,7 +49,7 @@ public class CommandFactoryTests
     {
         var device = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
 
-        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandContext
+        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetColor
         }));
@@ -62,7 +62,7 @@ public class CommandFactoryTests
     {
         var device = new FanDevice(Guid.NewGuid(), "CeilingFan", "LivingRoom");
 
-        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandContext
+        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetFanSpeed
         }));
@@ -75,7 +75,7 @@ public class CommandFactoryTests
     {
         var device = new ThermostatDevice(Guid.NewGuid(), "Nest", "Bedroom", ThermostatMode.Heat, new HeatModeStrategy());
 
-        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandContext
+        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetThermostatMode
         }));
@@ -88,7 +88,7 @@ public class CommandFactoryTests
     {
         var device = new ThermostatDevice(Guid.NewGuid(), "Nest", "Bedroom", ThermostatMode.Heat, new HeatModeStrategy());
 
-        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandContext
+        var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetDesiredTemperature
         }));
@@ -101,7 +101,7 @@ public class CommandFactoryTests
     {
         var device = new DoorLocks(Guid.NewGuid(), "FrontDoor", "Entrance");
 
-        var command = _factory.CreateCommand(device, new CommandContext
+        var command = _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.ToggleLock
         });
@@ -114,7 +114,7 @@ public class CommandFactoryTests
     {
         var device = new ThermostatDevice(Guid.NewGuid(), "Nest", "Bedroom", ThermostatMode.Heat, new HeatModeStrategy());
 
-        var command = _factory.CreateCommand(device, new CommandContext
+        var command = _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetThermostatMode,
             Mode = ThermostatMode.Cool
@@ -130,7 +130,7 @@ public class CommandFactoryTests
 
         var unsupported = (DeviceCommandType)99;
 
-        Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandContext
+        Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
             Command = unsupported
         }));

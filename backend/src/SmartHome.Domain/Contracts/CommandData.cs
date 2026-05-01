@@ -5,7 +5,6 @@ using SmartHome.Domain.Commands;
 
 namespace SmartHome.Domain.Contracts;
 
-
 /// <summary>
 /// Command request context object to encapsulate request data for Command Factory.
 /// </summary>

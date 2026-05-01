@@ -25,6 +25,7 @@ public class CommandFactory : ICommandFactory
     }
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
+        // TODO - Amber: Modify away from switch for OCP.
         switch (context.Command)
         {
             case DeviceCommandType.TogglePower:

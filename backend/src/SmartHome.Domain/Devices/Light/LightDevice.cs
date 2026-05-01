@@ -19,6 +19,8 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     public int LightBrightness { get; private set; }
 
+    public override string StatusMessage { get; protected set; } = string.Empty;
+
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
     {
         _powerState = DevicePowerState.Off; // default state

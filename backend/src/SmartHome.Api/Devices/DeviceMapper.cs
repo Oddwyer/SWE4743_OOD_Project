@@ -3,7 +3,7 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands;
+using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Api.Devices;
 
@@ -53,10 +53,9 @@ public static class DeviceMapper
         return response;
     }
 
-
-    public static CommandContext MapToContext(ControlDeviceRequest request)
+    public static CommandData MapToCommandData(ControlDeviceRequest request)
     {
-        var context = new CommandContext
+        var context = new CommandData
         {
             Command = request.Command,
             Brightness = request.Brightness,
@@ -67,5 +66,17 @@ public static class DeviceMapper
         };
 
         return context;
+    }
+
+    public static RegisterDeviceData MapToRegisterData(RegisterDeviceRequest request)
+    {
+        var registerData = new RegisterDeviceData
+        {
+            DeviceName = request.DeviceName,
+            DeviceLocation = request.DeviceLocation,
+            DeviceType = request.Type
+        };
+
+        return registerData;
     }
 }
