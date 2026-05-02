@@ -58,23 +58,20 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
+
+builder.Services.AddScoped<ISimulationService, SimulationService>();
+builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
-
-builder.Services.AddSingleton<IDeviceTypeFactory, LightDeviceFactory>();
-builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
-builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
-builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
-
 builder.Services.AddScoped<ICommandFactory, CommandFactory>();
+builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
-
 builder.Services.AddScoped<JsonRepository>();
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
-builder.Services.AddSingleton<ISimulationService, SimulationService>();
-
-builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 
 builder.Services.AddCors(options =>
 {
