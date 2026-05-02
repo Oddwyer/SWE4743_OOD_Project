@@ -115,7 +115,7 @@ public class DeviceService : IDeviceService
             throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
 
-        return _deviceRepository.GetHistoryForDevice(deviceId);
+        return _deviceRepository.GetHistoryForDevice(deviceId).OrderByDescending(entry => entry.Timestamp);
     }
 
 

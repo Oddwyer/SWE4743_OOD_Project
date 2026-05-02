@@ -18,7 +18,7 @@
       "Name": "Master Bedroom Fan",
       "Type": 1,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -1386,6 +1386,96 @@
       "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
       "Timestamp": "2026-05-02T21:22:06.2359596Z",
       "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "255f0da0-600c-4f8e-9cd0-b6f36d679a50",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:02:34.8906441Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "63cac30d-0189-4f4c-916d-b93526054604",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:02:38.2575253Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "97b9114d-12d3-465d-919c-1e78f0ca2471",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:02:41.529994Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "8fe32911-c124-40fb-aed7-bbcdf22d6c73",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:02:42.531617Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "9d99b9eb-7b82-4d8b-8280-0ba0f124e14e",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:02:44.5455732Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "2cc07eaf-9607-4da6-a997-11fd7bd6ef9a",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:03:18.7069132Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "c5c736ac-9f9c-4067-b394-6f4db6f29fe6",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:03:21.3507007Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "57479468-3c0d-41a2-9da3-48e37e0a21d4",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:24:33.8003715Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "fa8df406-a268-4407-940b-c392451c31d1",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:24:34.9278698Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "f0d6e79a-e5f0-4f5a-8c59-f72b82c63453",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:24:36.185918Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "52a19724-d713-4429-a55b-804a7f181654",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:40:41.2302167Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "8f4a34d4-2d07-48d0-9eb4-cca32467fd76",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T22:40:43.3992501Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "57c3ba6f-fb91-4f58-921e-7d6785d21fee",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T22:41:06.707676Z",
+      "Operation": "Powered off Master Bedroom Fan."
+    },
+    {
+      "Id": "704535ed-bb4d-4d88-bdf0-ab11c9408940",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T22:41:08.9437517Z",
+      "Operation": "Powered on Master Bedroom Fan."
+    },
+    {
+      "Id": "bfeb77ea-8bca-45cf-8206-3dd0f9297757",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T22:41:13.7737699Z",
+      "Operation": "Powered off Master Bedroom Fan."
     }
   ],
   "Locations": [
