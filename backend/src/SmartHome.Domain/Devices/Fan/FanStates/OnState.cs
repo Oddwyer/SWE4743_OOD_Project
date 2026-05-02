@@ -27,7 +27,6 @@ public class OnState : IFanState
     public void SetFanSpeed(FanSpeed speed)
     {
         _fan.SetFanSpeedInternal(speed);
-
     }
 
 }

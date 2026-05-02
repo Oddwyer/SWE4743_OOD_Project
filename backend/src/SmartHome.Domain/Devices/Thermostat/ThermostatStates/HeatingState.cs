@@ -29,7 +29,7 @@ public class HeatingState : IThermostatState
     {
         if (temp < ThermostatDevice.MinTemperature || temp > ThermostatDevice.MaxTemperature)
         {
-            throw new ArgumentOutOfRangeException(nameof(temp), $"Target temperature must be between {ThermostatDevice.MinTemperature} and {ThermostatDevice.MaxTemperature} degrees.");
+            throw new ArgumentOutOfRangeException(nameof(temp), $"Target temperature must be between {ThermostatDevice.MinTemperature}°F and {ThermostatDevice.MaxTemperature}°F.");
         }
         _thermostat.SetTargetTemperatureInternal(temp);
 

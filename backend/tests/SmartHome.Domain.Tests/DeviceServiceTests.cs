@@ -7,7 +7,6 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Commands.Lock;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
@@ -82,7 +81,7 @@ public class DeviceServiceTests
         {
             return context.Command switch
             {
-                DeviceCommandType.ToggleLock => new ToggleLockCommand(device),
+                DeviceCommandType.ToggleLock when device is DoorLocks doorLock => new ToggleLockCommand(doorLock),
                 _ => throw new ArgumentException("Unsupported command type for fake command factory.")
             };
         }

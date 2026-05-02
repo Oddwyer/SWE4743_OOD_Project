@@ -9,9 +9,11 @@ public class TogglePowerCommand : DeviceCommand
 {
     public override string CommandDescription => $"Toggled power of {ManipulatedDevice.DeviceName}.";
 
-    public TogglePowerCommand(IDevice device) : base(device)
-    {
+    private IPoweredDevice _poweredDevice;
 
+    public TogglePowerCommand(IDevice device, IPoweredDevice poweredDevice) : base(device)
+    {
+        _poweredDevice = poweredDevice;
     }
 
     /// <summary>
@@ -19,12 +21,8 @@ public class TogglePowerCommand : DeviceCommand
     /// </summary>
     public override void Execute()
     {
-        if (ManipulatedDevice is not IPoweredDevice poweredDevice)
-        {
-            throw new InvalidOperationException($"Device '{ManipulatedDevice.DeviceName}' does not support power control.");
-        }
 
-        poweredDevice.TogglePower();
+        _poweredDevice.TogglePower();
 
     }
 }

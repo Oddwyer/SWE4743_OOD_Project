@@ -1,0 +1,106 @@
+using System;
+using FluentValidation;
+using SmartHome.Api.Devices;
+using SmartHome.Api.Locations;
+using SmartHome.Api.Simulations;
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Simulations;
+using Xunit;
+
+namespace SmartHome.Domain.Tests;
+
+public class ValidationTests
+{
+    [Fact]
+    public void RegisterDeviceRequestValidator_MissingRequiredFields_FailsValidation()
+    {
+        var validator = new RegisterDeviceRequestValidator();
+        var request = new RegisterDeviceRequest();
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(RegisterDeviceRequest.DeviceName));
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(RegisterDeviceRequest.DeviceLocation));
+    }
+
+    [Fact]
+    public void ControlDeviceRequestValidator_InvalidCommandValue_FailsValidation()
+    {
+        var validator = new ControlDeviceRequestValidator();
+        var request = new ControlDeviceRequest
+        {
+            Command = (DeviceCommandType)999
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.Command));
+    }
+
+    [Fact]
+    public void ControlDeviceRequestValidator_OutOfRangeBrightness_FailsValidation()
+    {
+        var validator = new ControlDeviceRequestValidator();
+        var request = new ControlDeviceRequest
+        {
+            Command = DeviceCommandType.SetBrightness,
+            Brightness = 5
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.Brightness));
+    }
+
+    [Fact]
+    public void ControlDeviceRequestValidator_OutOfRangeTargetTemperature_FailsValidation()
+    {
+        var validator = new ControlDeviceRequestValidator();
+        var request = new ControlDeviceRequest
+        {
+            Command = DeviceCommandType.SetTargetTemperature,
+            TargetTemperature = 59
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.TargetTemperature));
+    }
+
+    [Fact]
+    public void SetAmbientTemperatureRequestValidator_OutOfRange_FailsValidation()
+    {
+        var validator = new SetAmbientTemperatureRequestValidator();
+        var request = new SetAmbientTemperatureRequest
+        {
+            Temperature = 200
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(SetAmbientTemperatureRequest.Temperature));
+    }
+
+    [Fact]
+    public void SetSimulationSpeedRequestValidator_InvalidValue_FailsValidation()
+    {
+        var validator = new SetSimulationSpeedRequestValidator();
+        var request = new SetSimulationSpeedRequest
+        {
+            SpeedMultiplier = (SimulationSpeed)999
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(SetSimulationSpeedRequest.SpeedMultiplier));
+    }
+}

@@ -1,7 +1,8 @@
+using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat;
 
-namespace SmartHome.Domain.Commands.Thermostat;
+namespace SmartHome.Domain.Commands;
 
 /// <summary>
 /// Sets the target (desired) temperature for the thermostat.
@@ -10,11 +11,14 @@ public class SetTargetTemperatureCommand : DeviceCommand
 {
     public int TargetTemperature { get; }
 
-    public override string CommandDescription => $"Setting mode for {ManipulatedDevice.DeviceName}.";
+    private readonly ThermostatDevice _thermostatDevice;
 
-    public SetTargetTemperatureCommand(IDevice device, int targetTemperature) : base(device)
+    public override string CommandDescription => $"Setting {TargetTemperature}°F for {_thermostatDevice.DeviceName}.";
+
+    public SetTargetTemperatureCommand(ThermostatDevice device, int targetTemperature) : base(device)
     {
         TargetTemperature = targetTemperature;
+        _thermostatDevice = device;
     }
 
     /// <summary>
@@ -22,12 +26,8 @@ public class SetTargetTemperatureCommand : DeviceCommand
     /// </summary>
     public override void Execute()
     {
-        if (ManipulatedDevice is not ThermostatDevice thermostat)
-        {
-            throw new InvalidOperationException($"Device '{ManipulatedDevice.DeviceName}' is not a thermostat.");
-        }
 
-        thermostat.SetTargetTemperature(TargetTemperature);
+        _thermostatDevice.SetTargetTemperature(TargetTemperature);
 
     }
 }

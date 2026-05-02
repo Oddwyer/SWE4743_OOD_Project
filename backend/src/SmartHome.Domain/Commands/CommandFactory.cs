@@ -1,10 +1,9 @@
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Commands.Fan;
-using SmartHome.Domain.Commands.Light;
-using SmartHome.Domain.Commands.Lock;
-using SmartHome.Domain.Commands.Power;
-using SmartHome.Domain.Commands.Thermostat;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Commands.Power;
 using SmartHome.Domain.Contracts;
 
 
@@ -15,6 +14,7 @@ namespace SmartHome.Domain.Commands;
 /// Encapsulates actions and provides descriptions for audit logging (Command Pattern).
 /// </summary>
 
+// TODO - Refactor to avoid switch statement and improve OCP adherence if time permits.
 public class CommandFactory : ICommandFactory
 {
     private readonly IThermostatModeStrategyFactory _thermostatStrategyFactory;
@@ -25,58 +25,114 @@ public class CommandFactory : ICommandFactory
     }
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
-        // TODO - Amber: Modify away from switch for OCP? Creation branching is centralized inside factories 
-        // so controllers/services remain closed to device-specific branching. Future improvement could be
-        // provider registration per device type.
-        switch (context.Command)
+        return context.Command switch
         {
-            case DeviceCommandType.TogglePower:
-                return new TogglePowerCommand(device);
+            DeviceCommandType.TogglePower => CreateTogglePowerCommand(device, context),
 
-            case DeviceCommandType.SetBrightness:
-                if (context.Brightness is null)
-                {
-                    throw new ArgumentException("Brightness is required for setting brightness.");
-                }
-                return new SetLightBrightnessCommand(device, context.Brightness.Value);
+            DeviceCommandType.SetBrightness => CreateSetBrightnessCommand(device, context),
 
-            case DeviceCommandType.SetColor:
-                if (context.Color is null)
-                {
-                    throw new ArgumentException("Color is required for changing light color.");
-                }
-                return new SetLightColorCommand(device, context.Color.Value);
+            DeviceCommandType.SetColor => CreateSetColorCommand(device, context),
 
-            case DeviceCommandType.SetFanSpeed:
-                if (context.FanSpeed is null)
-                {
-                    throw new ArgumentException("Fan speed is required to alter fan speed.");
-                }
-                return new SetFanSpeedCommand(device, context.FanSpeed.Value);
+            DeviceCommandType.SetFanSpeed => CreateSetFanSpeedCommand(device, context),
 
-            case DeviceCommandType.SetThermostatMode:
-                if (context.Mode is null)
-                {
-                    throw new ArgumentException("A thermostat mode is required to alter current thermostat mode.");
-                }
-                var strategy = _thermostatStrategyFactory.Create(context.Mode.Value);
-                return new SetThermostateModeCommand(device, context.Mode.Value, strategy);
+            DeviceCommandType.SetThermostatMode => CreateSetThermostatModeCommand(device, context),
 
-            case DeviceCommandType.SetDesiredTemperature:
-                if (context.TargetTemperature is null)
-                {
-                    throw new ArgumentException("A target temperature must be provided to alter thermostat mode.");
-                }
-                return new SetTargetTemperatureCommand(device, context.TargetTemperature.Value);
+            DeviceCommandType.SetTargetTemperature => CreateSetTargetTemperatureCommand(device, context),
 
-            case DeviceCommandType.ToggleLock:
-                return new ToggleLockCommand(device);
+            DeviceCommandType.ToggleLock => CreateToggleLockCommand(device, context),
 
-            default:
-                throw new ArgumentException($"Unsupported command type.");
+            _ => throw new ArgumentException($"Unsupported command type.")
 
-
-
-        }
+        };
     }
+
+    private IDeviceCommand CreateTogglePowerCommand(IDevice device, CommandData context)
+    {
+
+        if (device is not IPoweredDevice poweredDevice)
+        {
+            throw new InvalidOperationException("This device does not support power control.");
+        }
+        return new TogglePowerCommand(device, poweredDevice);
+    }
+
+    private IDeviceCommand CreateSetBrightnessCommand(IDevice device, CommandData context)
+    {
+        if (device is not LightDevice lightDevice)
+        {
+            throw new InvalidOperationException("This device does not have a brightness setting.");
+        }
+        if (context.Brightness is null)
+        {
+            throw new ArgumentException("Brightness is required for setting brightness.");
+        }
+        return new SetLightBrightnessCommand(lightDevice, context.Brightness.Value);
+    }
+
+    private IDeviceCommand CreateSetColorCommand(IDevice device, CommandData context)
+    {
+        if (device is not LightDevice colorLightDevice)
+        {
+            throw new InvalidOperationException("This device does not have a color setting.");
+        }
+        if (context.Color is null)
+        {
+            throw new ArgumentException("Color is required for changing light color.");
+        }
+        return new SetLightColorCommand(colorLightDevice, context.Color);
+    }
+
+    private IDeviceCommand CreateSetFanSpeedCommand(IDevice device, CommandData context)
+    {
+        if (device is not FanDevice fanDevice)
+        {
+            throw new InvalidOperationException("This device does not have a speed setting.");
+        }
+        if (context.FanSpeed is null)
+        {
+            throw new ArgumentException("Fan speed is required to alter fan speed.");
+        }
+        return new SetFanSpeedCommand(fanDevice, context.FanSpeed.Value);
+    }
+
+    private IDeviceCommand CreateSetThermostatModeCommand(IDevice device, CommandData context)
+    {
+        if (device is not ThermostatDevice setModeThermostat)
+        {
+            throw new InvalidOperationException("This device does not have a thermostat mode setting.");
+        }
+        if (context.Mode is null)
+        {
+            throw new ArgumentException("A thermostat mode is required to alter current thermostat mode.");
+        }
+        var strategy = _thermostatStrategyFactory.Create(context.Mode.Value);
+        return new SetThermostatModeCommand(setModeThermostat, context.Mode.Value, strategy);
+    }
+
+    private IDeviceCommand CreateSetTargetTemperatureCommand(IDevice device, CommandData context)
+    {
+        if (device is not ThermostatDevice targetTempThermostat)
+        {
+            throw new InvalidOperationException("This device does not have a target temperature setting.");
+        }
+        if (context.TargetTemperature is null)
+        {
+            throw new ArgumentException("A target temperature must be provided to set the desired temperature.");
+        }
+        return new SetTargetTemperatureCommand(targetTempThermostat, context.TargetTemperature.Value);
+    }
+
+    private IDeviceCommand CreateToggleLockCommand(IDevice device, CommandData context)
+    {
+
+        if (device is not DoorLocks doorLock)
+        {
+            throw new InvalidOperationException("This device does not have a lock setting.");
+        }
+        return new ToggleLockCommand(doorLock);
+    }
+
+
+
+
 }

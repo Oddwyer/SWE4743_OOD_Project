@@ -1,22 +1,22 @@
 using SmartHome.Domain.Devices.Fan.FanStates;
 
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Domain.Devices.Fan;
 
 public class FanDevice : Device, IPoweredDevice
 {
     // States
-    private DevicePowerState _powerState;
+    private DevicePowerState _powerState = DevicePowerState.Off; // default state
     public IFanState Off { get; private set; }
     public IFanState On { get; private set; }
     private IFanState _currentState;
 
-    public override string StatusMessage { get; protected set; } = string.Empty;
 
-    public FanSpeed Speed { get; private set; } = FanSpeed.Medium;
+    public FanSpeed Speed { get; private set; } = FanSpeed.Medium; // Default speed
 
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan)
     {
-        _powerState = DevicePowerState.Off;
         Off = new OffState(this);
         On = new OnState(this);
         _currentState = Off;
@@ -83,14 +83,6 @@ public class FanDevice : Device, IPoweredDevice
         UpdatedAt = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Updates the status message (used by states). 
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
-        UpdatedAt = DateTime.UtcNow;
-    }
 
     /// <summary>
     /// Restores device properties.

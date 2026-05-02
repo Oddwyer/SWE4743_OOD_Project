@@ -20,7 +20,7 @@ public class OffState : ILightState
         light.SetState(light.On);
     }
 
-    public void ChangeColor(LightColor color)
+    public void ChangeColor(string color)
     {
         throw new InvalidOperationException("Cannot change color when light is off.");
     }

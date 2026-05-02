@@ -1,5 +1,7 @@
 using SmartHome.Domain.Devices.Light.LightStates;
 
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
@@ -8,27 +10,23 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     public const int MaxBrightness = 100; // Maximum allowed brightness percentage
 
     // States
-    private DevicePowerState _powerState; // Forward declaration of power state. 
+    private DevicePowerState _powerState = DevicePowerState.Off; // Default state
     public OffState Off { get; private set; }
-
     public OnState On { get; private set; }
 
     private ILightState _currentState;
 
-    public LightColor ColorState { get; private set; }
+    public string Color { get; private set; } = "#FFFFFF"; // Default color (white)
 
-    public int LightBrightness { get; private set; }
+    public int LightBrightness { get; private set; } = 100; // Default brightness (100%)
 
-    public override string StatusMessage { get; protected set; } = string.Empty;
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
     {
-        _powerState = DevicePowerState.Off; // default state
+
         Off = new OffState(this);
         On = new OnState(this);
         _currentState = Off; // default state
-        ColorState = LightColor.White; // default color
-        LightBrightness = 100; // default brightness
     }
 
     /// <summary>
@@ -72,7 +70,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     /// <summary>
     /// Requests a color change. The current state decides if it is allowed.
     /// </summary>
-    public void ChangeColor(LightColor newColor)
+    public void ChangeColor(string newColor)
     {
         _currentState.ChangeColor(newColor);
     }
@@ -80,9 +78,9 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     /// <summary>
     /// Applies a color change (used by states).
     /// </summary>
-    internal void ChangeColorInternal(LightColor newColor)
+    internal void ChangeColorInternal(string newColor)
     {
-        ColorState = newColor;
+        Color = newColor;
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -113,21 +111,12 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     }
 
     /// <summary>
-    /// Updates the status message (used by states).
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
     /// Restores device properties.
     /// <summary>
-    internal void RehydrateState(DevicePowerState powerState, LightColor color, int brightness)
+    internal void RehydrateState(DevicePowerState powerState, string color, int brightness)
     {
         _powerState = powerState;
-        ColorState = color;
+        Color = color;
         LightBrightness = brightness;
         _currentState = powerState == DevicePowerState.On ? On : Off;
     }

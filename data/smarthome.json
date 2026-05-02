@@ -6,7 +6,12 @@
       "Type": 1,
       "Location": "Living Room",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": 2
     },
     {
       "Id": "6bac8a57-3997-4669-9848-bd88a13e8855",
@@ -14,7 +19,12 @@
       "Type": 1,
       "Location": "Master Bedroom",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": 2
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
@@ -22,7 +32,12 @@
       "Type": 0,
       "Location": "Master Bedroom",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
@@ -30,7 +45,12 @@
       "Type": 0,
       "Location": "Master Bedroom",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "69360665-1e86-4d3c-9511-a683767a68b7",
@@ -38,7 +58,12 @@
       "Type": 0,
       "Location": "Living Room",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "214b015d-78b3-4b57-b49d-47768871907a",
@@ -46,7 +71,12 @@
       "Type": 0,
       "Location": "Living Room",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
@@ -54,7 +84,12 @@
       "Type": 2,
       "Location": "Living Room",
       "IsOn": true,
-      "DeviceState": null
+      "DeviceState": "Locked",
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": null
     },
     {
       "Id": "5589731f-a375-4692-8680-0684c13f3e9d",
@@ -62,7 +97,12 @@
       "Type": 0,
       "Location": "Entryway",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
@@ -70,137 +110,28 @@
       "Type": 2,
       "Location": "Entryway",
       "IsOn": true,
-      "DeviceState": null
+      "DeviceState": "Locked",
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": null
+    },
+    {
+      "Id": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Name": "Living Room Thermostat",
+      "Type": 3,
+      "Location": "Living Room",
+      "IsOn": false,
+      "DeviceState": "Off",
+      "ThermostatMode": 3,
+      "TargetTemperature": 72,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": null
     }
   ],
-  "CommandHistory": [
-    {
-      "Id": "06d4da06-8f2f-447c-887c-c66885064e9b",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T01:27:49.2813069Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "05660806-b663-4c3a-9460-d1762dd16249",
-      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
-      "Timestamp": "2026-04-29T01:47:15.8382863Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "0cea3c0c-6288-4558-8a18-06502373b05b",
-      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
-      "Timestamp": "2026-04-29T01:49:09.2021062Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "622bcd24-cfb8-465f-b6a2-c73e2c820f81",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T01:49:23.3338564Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "30edf22a-a5cb-42e2-bfcf-68977bc974d5",
-      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
-      "Timestamp": "2026-04-29T01:49:33.713222Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "c44cbe43-b5b8-4ccf-bb8d-54b5fa366827",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T01:49:37.2761466Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "7586aa07-f169-4ce6-b97b-61d9025d9c4e",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:03:46.3774245Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "5ad182bb-7dcf-47d2-96ae-131397cdfa8f",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:04:05.4713348Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "b4d14ebb-ecf2-4f2a-bfad-3306e306e895",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:04:11.3140299Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "702635f5-b9ed-4d5f-8383-a319c4a1d841",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:04:16.9675343Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "3b260f9a-7a10-436f-a2b4-c1d46c67116c",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:04:58.1261249Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "7c0cb7fd-913b-44f9-b74a-5353a2d278b9",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:05:54.7663563Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "3b3c3ad7-d3a5-4aa1-8b5b-36cb32b36b00",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:20:32.3999772Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "1befb8cd-b67a-4368-acf8-12c3b87af0e6",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:20:37.6366597Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "0f36f40b-ac02-4195-9866-0fa10b304f9e",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T02:20:39.5485297Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "ff086b91-af93-450d-8466-b1973e9acfd5",
-      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
-      "Timestamp": "2026-04-29T02:22:05.1357522Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "713c2b47-ac55-45b0-81eb-587308e14fe5",
-      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
-      "Timestamp": "2026-04-29T14:27:30.1188387Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "c0743763-fc35-4322-a029-8296c7ae6a12",
-      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
-      "Timestamp": "2026-04-29T14:27:30.1611615Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "cd221a4a-d61e-4fa0-b86b-cf6500e4c445",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T14:27:30.1948342Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "9283c3bf-f15a-4e4d-9e31-18a41e8fbc79",
-      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
-      "Timestamp": "2026-04-29T14:27:30.2361733Z",
-      "Operation": "Stub command executed"
-    },
-    {
-      "Id": "54d2e97e-3376-4a35-8bf1-2dbbf06a50b5",
-      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Timestamp": "2026-04-29T14:27:30.2470548Z",
-      "Operation": "Stub command executed"
-    }
-  ],
+  "CommandHistory": [],
   "Locations": [
     {
       "Location": "living room",

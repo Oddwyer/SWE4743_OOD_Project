@@ -1,9 +1,12 @@
 using SmartHome.Domain;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
-using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Infrastructure;
 using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
@@ -55,14 +58,22 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-builder.Services.AddSingleton<IDeviceService, DeviceService>();
-builder.Services.AddSingleton<ISimulationService, SimulationService>();
-builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
-builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
-builder.Services.AddSingleton<JsonRepository>();
-builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+// TODO - Amber: Add singletons for shared state (e.g. simulation ticker, speed) and ensure thread safety as needed.
+
+builder.Services.AddScoped<ISimulationService, SimulationService>();
+builder.Services.AddScoped<IDeviceService, DeviceService>();
+
+builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
+builder.Services.AddScoped<ICommandFactory, CommandFactory>();
+builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
+builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+
+builder.Services.AddScoped<JsonRepository>();
+builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 builder.Services.AddCors(options =>
 {
@@ -77,20 +88,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartHome API V1");
-        c.DocumentTitle = "SmartHome API Docs";
-    });
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseMiddleware<GlobalErrorHandling>();
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.UseCors("AllowFrontend");
+app.UseAuthorization();
+
 app.MapControllers();
 app.Run();

@@ -1,7 +1,8 @@
+using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Fan;
 
-namespace SmartHome.Domain.Commands.Fan;
+namespace SmartHome.Domain.Commands;
 
 /// <summary>
 /// Sets the speed of a fan device.
@@ -9,11 +10,14 @@ namespace SmartHome.Domain.Commands.Fan;
 public class SetFanSpeedCommand : DeviceCommand
 {
     public FanSpeed NewSpeed { get; }
-    public override string CommandDescription => $"Set fan speed to {NewSpeed} for {ManipulatedDevice.DeviceName}.";
 
-    public SetFanSpeedCommand(IDevice device, FanSpeed newSpeed) : base(device)
+    private readonly FanDevice _fanDevice;
+    public override string CommandDescription => $"Set fan speed to {NewSpeed} for {_fanDevice.DeviceName}.";
+
+    public SetFanSpeedCommand(FanDevice device, FanSpeed newSpeed) : base(device)
     {
         NewSpeed = newSpeed;
+        _fanDevice = device;
     }
 
     /// <summary>
@@ -21,12 +25,8 @@ public class SetFanSpeedCommand : DeviceCommand
     /// </summary>
     public override void Execute()
     {
-        if (ManipulatedDevice is not FanDevice fanDevice)
-        {
-            throw new InvalidOperationException("This device does not have a speed setting.");
-        }
 
-        fanDevice.SetFanSpeed(NewSpeed);
+        _fanDevice.SetFanSpeed(NewSpeed);
 
     }
 

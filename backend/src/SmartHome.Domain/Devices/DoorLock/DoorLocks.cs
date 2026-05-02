@@ -1,3 +1,4 @@
+using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.DoorLock.DoorStates;
 
 namespace SmartHome.Domain.Devices.DoorLock;
@@ -8,24 +9,21 @@ namespace SmartHome.Domain.Devices.DoorLock;
 public class DoorLocks : Device, ILatchedDevice
 {
     // States
-    private DeviceLatchState _latchState;
+    private DeviceLatchState _latchState = DeviceLatchState.Locked; // Default to locked state.
     public IDoorState Unlocked { get; private set; }
     public IDoorState Locked { get; private set; }
     private IDoorState _currentState;
 
     public DoorLocks(Guid id, string name, string location) : base(id, name, location, DeviceType.DoorLock)
     {
-        _latchState = DeviceLatchState.Locked;
         Unlocked = new UnlockedState(this);
         Locked = new LockedState(this);
-        _currentState = Locked;
+        _currentState = Locked; // Default state is locked.
     }
 
     /// <summary>
     /// Current latch state of the lock.
     /// </summary>
-    public override string StatusMessage { get; protected set; } = string.Empty;
-
     public DeviceLatchState LatchState => _latchState;
 
     /// <summary>
@@ -67,15 +65,6 @@ public class DoorLocks : Device, ILatchedDevice
     internal void SetState(IDoorState newState)
     {
         _currentState = newState;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Updates the status message (used by states). 
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
         UpdatedAt = DateTime.UtcNow;
     }
 

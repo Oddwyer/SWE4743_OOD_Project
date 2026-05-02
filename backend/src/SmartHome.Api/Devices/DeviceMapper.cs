@@ -26,6 +26,8 @@ public static class DeviceMapper
             DeviceLocation = device.DeviceLocation,
             Type = device.Type,
             IsDeviceOn = device.IsDeviceOn,
+            CreatedAt = device.CreatedAt,
+            UpdatedAt = device.UpdatedAt
         };
 
         // Response specifics assigned based on specified device type.
@@ -33,7 +35,7 @@ public static class DeviceMapper
         {
             case LightDevice light:
                 response.LightBrightness = light.LightBrightness;
-                response.LightColor = light.ColorState;
+                response.LightColor = light.Color;
                 break;
 
             case FanDevice fan:
@@ -65,7 +67,7 @@ public static class DeviceMapper
             Color = request.Color,
             FanSpeed = request.FanSpeed,
             Mode = request.Mode,
-            TargetTemperature = request.DesiredTemperature
+            TargetTemperature = request.TargetTemperature
         };
 
         return context;

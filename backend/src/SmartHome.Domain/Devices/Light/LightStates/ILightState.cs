@@ -8,7 +8,7 @@ namespace SmartHome.Domain.Devices.Light.LightStates;
 public interface ILightState
 {
     void TogglePower();
-    void ChangeColor(LightColor color);
+    void ChangeColor(string color);
     void SetLightBrightness(int brightness);
 
 }

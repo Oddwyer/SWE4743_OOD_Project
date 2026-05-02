@@ -4,8 +4,8 @@ namespace SmartHome.Domain.Simulations;
 
 public enum SimulationSpeed
 {
-    [Description("1x")] x1 = 1,
-    [Description("2x")] x2 = 2,
-    [Description("5x")] x5 = 5,
-    [Description("10x")] x10 = 10
+    [Description("1x")] OneX = 1,
+    [Description("2x")] TwoX = 2,
+    [Description("5x")] FiveX = 5,
+    [Description("10x")] TenX = 10
 }
