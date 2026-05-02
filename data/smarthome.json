@@ -35,7 +35,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": 1,
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -48,7 +48,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": 1,
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -61,7 +61,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": 1,
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -74,7 +74,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": 1,
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -100,7 +100,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": 1,
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
