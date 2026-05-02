@@ -1,4 +1,5 @@
 using FluentValidation;
+using SmartHome.Domain.Devices.Thermostat;
 
 namespace SmartHome.Api.Locations;
 
@@ -10,7 +11,7 @@ public class SetAmbientTemperatureRequestValidator : AbstractValidator<SetAmbien
     public SetAmbientTemperatureRequestValidator()
     {
         RuleFor(x => x.Temperature)
-            .InclusiveBetween(0, 120)
-            .WithMessage("Ambient temperature must be between 0 and 120."); // Example range, adjust as needed
+            .InclusiveBetween(ThermostatDevice.MinTemperature, ThermostatDevice.MaxTemperature)
+            .WithMessage($"Ambient temperature must be between {ThermostatDevice.MinTemperature}°F and {ThermostatDevice.MaxTemperature}°F.");
     }
 }
