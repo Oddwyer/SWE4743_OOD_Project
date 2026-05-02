@@ -6,7 +6,7 @@ namespace SmartHome.Domain.Commands.Thermostat;
 /// <summary>
 /// Sets the thermostat to the mode requested by the client.
 /// </summary>
-public class SetThermostateModeCommand : DeviceCommand
+public class SetThermostatModeCommand : DeviceCommand
 {
     public ThermostatMode Mode { get; }
     private readonly IThermostatModeStrategy _strategy;
@@ -14,7 +14,7 @@ public class SetThermostateModeCommand : DeviceCommand
     private readonly ThermostatDevice thermostat;
     public override string CommandDescription => $"Setting mode for {ManipulatedDevice.DeviceName}.";
 
-    public SetThermostateModeCommand(ThermostatDevice device, ThermostatMode mode, IThermostatModeStrategy strategy) : base(device)
+    public SetThermostatModeCommand(ThermostatDevice device, ThermostatMode mode, IThermostatModeStrategy strategy) : base(device)
     {
         Mode = mode;
         _strategy = strategy;
