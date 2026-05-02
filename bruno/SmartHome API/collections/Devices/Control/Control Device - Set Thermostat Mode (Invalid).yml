@@ -1,7 +1,7 @@
 info:
-  name: Control Device - Toggle Power (Thermostat)
+  name: Control Device - Set Thermostat Mode (Invalid)
   type: http
-  seq: 14
+  seq: 10
 
 http:
   method: PUT
@@ -10,7 +10,8 @@ http:
     type: json
     data: |-
       {
-        "command": "TogglePower"
+        "command": "SetThermostatMode",
+        "mode": "Warm"
       }
   auth: inherit
 

@@ -1,7 +1,7 @@
 info:
-  name: Control Device - Set Desired Temperature
+  name: Control Device - Set Thermostat Mode (Valid)
   type: http
-  seq: 3
+  seq: 9
 
 http:
   method: PUT
@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "command": "setTargetTemperature",
-        "targetTemperature": 68
+        "command": "SetThermostatMode",
+        "mode": "Cool"
       }
   auth: inherit
 

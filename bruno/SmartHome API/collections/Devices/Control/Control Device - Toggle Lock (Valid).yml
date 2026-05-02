@@ -1,16 +1,16 @@
 info:
-  name: Control Device - Toggle Power (Thermostat)
+  name: Control Device - Toggle Lock (Valid)
   type: http
-  seq: 14
+  seq: 11
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
+  url: "{{baseUrl}}/api/Devices/5acb1dc6-b92c-4ff7-9f65-a32999b07887/commands"
   body:
     type: json
     data: |-
       {
-        "command": "TogglePower"
+        "command": "ToggleLock"
       }
   auth: inherit
 

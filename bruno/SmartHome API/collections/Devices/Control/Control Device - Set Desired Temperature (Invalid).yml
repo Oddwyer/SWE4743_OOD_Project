@@ -1,17 +1,17 @@
 info:
-  name: Control Device - Set Fan Speed
+  name: Control Device - Set Desired Temperature (Invalid)
   type: http
-  seq: 4
+  seq: 6
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/6bac8a57-3997-4669-9848-bd88a13e8855/commands"
+  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
   body:
     type: json
     data: |-
       {
-        "command": "SetFanSpeed",
-        "fanSpeed": "High"
+        "command": "setTargetTemperature",
+        "targetTemperature": 59
       }
   auth: inherit
 

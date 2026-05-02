@@ -1,7 +1,7 @@
 info:
-  name: Control Device - Set Brightness
+  name: Control Device - Set Brightness (Invalid)
   type: http
-  seq: 1
+  seq: 2
 
 http:
   method: PUT
@@ -11,7 +11,7 @@ http:
     data: |-
       {
         "command": "SetBrightness",
-        "brightness": 75
+        "brightness": 101
       }
   auth: inherit
 

@@ -1,17 +1,16 @@
 info:
-  name: Control Device - Set Color
+  name: Control Device - Toggle Lock (Invalid)
   type: http
-  seq: 2
+  seq: 12
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/5589731f-a375-4692-8680-0684c13f3e9d/commands"
+  url: "{{baseUrl}}/api/Devices/5acb1dc6-b92c-4ff7-9f65-a32999b07887/commands"
   body:
     type: json
     data: |-
       {
-        "command": "SetColor",
-        "color": "#FFFFFF"
+        "command": "TogglePower"
       }
   auth: inherit
 

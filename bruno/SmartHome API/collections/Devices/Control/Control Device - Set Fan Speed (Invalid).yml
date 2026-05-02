@@ -1,16 +1,17 @@
 info:
-  name: Control Device - Toggle Power (Thermostat)
+  name: Control Device - Set Fan Speed (Invalid)
   type: http
-  seq: 14
+  seq: 8
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
+  url: "{{baseUrl}}/api/Devices/6bac8a57-3997-4669-9848-bd88a13e8855/commands"
   body:
     type: json
     data: |-
       {
-        "command": "TogglePower"
+        "command": "SetFanSpeed",
+        "fanSpeed": "VeryLow"
       }
   auth: inherit
 

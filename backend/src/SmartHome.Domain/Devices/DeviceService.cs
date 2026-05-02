@@ -1,21 +1,28 @@
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Contracts;
+using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Locations;
+using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Domain.Devices;
 
 public class DeviceService : IDeviceService
 {
     private readonly IDeviceRepository _deviceRepository;
+    private readonly ILocationRepository _locationRepository;
     private readonly IDeviceFactory _deviceFactory;
 
     private readonly ICommandFactory _commandFactory;
+    private readonly ISimulationService _simulationService;
 
-    public DeviceService(IDeviceRepository deviceRepository, IDeviceFactory factory, ICommandFactory commandFactory)
+    public DeviceService(ISimulationService simulationService, IDeviceRepository deviceRepository, IDeviceFactory factory, ICommandFactory commandFactory, ILocationRepository locationRepository)
     {
         _deviceRepository = deviceRepository;
         _deviceFactory = factory;
         _commandFactory = commandFactory;
+        _locationRepository = locationRepository;
+        _simulationService = simulationService;
     }
 
     /// <summary>
@@ -69,6 +76,11 @@ public class DeviceService : IDeviceService
         var command = _commandFactory.CreateCommand(device, commandData);
         command.Execute();
 
+        if (device is ThermostatDevice thermostat && thermostat.PowerState == DevicePowerState.On)
+        {
+            var ambient = _simulationService.GetAmbientTemperature(thermostat.DeviceLocation);
+            thermostat.Evaluate(ambient);
+        }
         _deviceRepository.SaveDevice(device);
         _deviceRepository.SaveHistoryEntry(new CommandHistoryEntry(device.Id, command));
 

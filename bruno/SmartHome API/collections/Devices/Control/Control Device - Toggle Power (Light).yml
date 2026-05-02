@@ -1,7 +1,7 @@
 info:
   name: Control Device - Toggle Power (Light)
   type: http
-  seq: 7
+  seq: 13
 
 http:
   method: PUT
