@@ -5,13 +5,13 @@ info:
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/7a420ebf-e710-4d03-9079-132323754a2c/commands"
+  url: "{{baseUrl}}/api/Devices/6bac8a57-3997-4669-9848-bd88a13e8855/commands"
   body:
     type: json
     data: |-
       {
-        "command": 3,
-        "fanSpeed": 1
+        "command": "SetFanSpeed",
+        "fanSpeed": "High"
       }
   auth: inherit
 

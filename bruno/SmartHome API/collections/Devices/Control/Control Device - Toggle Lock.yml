@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "command": 6
+        "command": "ToggleLock"
       }
   auth: inherit
 

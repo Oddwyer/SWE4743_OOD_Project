@@ -45,6 +45,7 @@ public static class DeviceMapper
             case ThermostatDevice thermostat:
                 response.ThermostatMode = thermostat.Mode;
                 response.TargetTemperature = thermostat.TargetTemperature;
+                response.ThermostatState = thermostat.CurrentStateType; // Convert enum to string for API response
                 break;
 
             case DoorLocks doorlock:

@@ -5,14 +5,14 @@ info:
 
 http:
   method: POST
-  url: "{{baseUrl}}/api/Devices/register-device"
+  url: "{{baseUrl}}/api/Devices/"
   body:
     type: json
     data: |-
       {
         "deviceName": "Thermostat 1",
         "deviceLocation": "Living Room",
-        "type": 3
+        "type": "Thermostat"
       }
   auth: inherit
 

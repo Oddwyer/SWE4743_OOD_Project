@@ -1,17 +1,16 @@
 info:
-  name: Control Device - Set Desired Temperature
+  name: Control Device - Toggle Power (Light)
   type: http
-  seq: 3
+  seq: 7
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
+  url: "{{baseUrl}}/api/Devices/5589731f-a375-4692-8680-0684c13f3e9d/commands"
   body:
     type: json
     data: |-
       {
-        "command": "setTargetTemperature",
-        "targetTemperature": 68
+        "command": "TogglePower"
       }
   auth: inherit
 

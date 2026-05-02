@@ -5,13 +5,13 @@ info:
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/{deviceId}/commands"
+  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
   body:
     type: json
     data: |-
       {
-        "command": 4,
-        "mode": "Auto"
+        "command": "SetThermostatMode",
+        "mode": "Cooling"
       }
   auth: inherit
 

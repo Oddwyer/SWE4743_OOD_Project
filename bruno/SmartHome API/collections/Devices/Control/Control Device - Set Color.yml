@@ -5,13 +5,13 @@ info:
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/0ae336e9-f22f-47b4-bb0f-868f69cfaecd/commands"
+  url: "{{baseUrl}}/api/Devices/5589731f-a375-4692-8680-0684c13f3e9d/commands"
   body:
     type: json
     data: |-
       {
-        "command": 2,
-        "color": 1
+        "command": "SetColor",
+        "color": "#FFFFFF"
       }
   auth: inherit
 
