@@ -22,7 +22,6 @@ public class LocationsController : ControllerBase
     /// </summary>
     [HttpGet("{location}/ambient-temperature")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetAmbientTemperature(string location)
     {
         var temperature = _simulationService.GetAmbientTemperature(location);
