@@ -57,7 +57,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddSingleton<IDeviceService, DeviceService>();
 builder.Services.AddSingleton<ISimulationService, SimulationService>();
-builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
+builder.Services.AddSingleton<IDeviceFactory, LightDeviceFactory>();
 builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
 builder.Services.AddSingleton<JsonRepository>();
 builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());

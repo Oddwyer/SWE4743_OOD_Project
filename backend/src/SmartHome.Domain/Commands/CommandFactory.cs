@@ -18,6 +18,7 @@ namespace SmartHome.Domain.Commands;
 /// Encapsulates actions and provides descriptions for audit logging (Command Pattern).
 /// </summary>
 
+// TODO - Refactor to provider registration per device type OR builder mapybe? (To avoid switch statement and improve OCP adherence if time permits.)
 public class CommandFactory : ICommandFactory
 {
     private readonly IThermostatModeStrategyFactory _thermostatStrategyFactory;

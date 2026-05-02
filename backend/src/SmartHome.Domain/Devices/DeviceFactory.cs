@@ -11,11 +11,11 @@ using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Domain.Devices;
 
-public class DeviceFactory : IDeviceFactory
+public class LightDeviceFactory : IDeviceFactory
 {
     private IThermostatModeStrategyFactory _thermostatModeStrategyFactory;
 
-    public DeviceFactory(IThermostatModeStrategyFactory factory)
+    public LightDeviceFactory(IThermostatModeStrategyFactory factory)
     {
         _thermostatModeStrategyFactory = factory;
     }
