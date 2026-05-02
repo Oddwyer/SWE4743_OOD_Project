@@ -1,17 +1,17 @@
 info:
-  name: Control Device - Set Color (Valid)
+  name: Control Device - Set Target Temperature (Invalid - Low)
   type: http
-  seq: 10
+  seq: 14
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/5589731f-a375-4692-8680-0684c13f3e9d/commands"
+  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
   body:
     type: json
     data: |-
       {
-        "command": "SetColor",
-        "color": "#FFFFFF"
+        "command": "setTargetTemperature",
+        "targetTemperature": 59
       }
   auth: inherit
 

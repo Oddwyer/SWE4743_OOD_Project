@@ -1,7 +1,7 @@
 info:
   name: Control Device - Set Fan Speed (Invalid)
   type: http
-  seq: 14
+  seq: 16
 
 http:
   method: PUT

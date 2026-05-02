@@ -101,7 +101,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 60,
+      "LightBrightness": 75,
       "FanSpeed": null
     },
     {
@@ -1242,12 +1242,18 @@
       "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
       "Timestamp": "2026-05-02T18:30:11.9125014Z",
       "Operation": "Set fan speed to High for Master Bedroom Fan."
+    },
+    {
+      "Id": "26c19309-e2f5-417e-b991-56a202433cdd",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-02T18:37:34.8662383Z",
+      "Operation": "Set light brightness to 75% for Entryway Overhead Light."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 72
+      "AmbientTemperature": 70
     }
   ]
 }

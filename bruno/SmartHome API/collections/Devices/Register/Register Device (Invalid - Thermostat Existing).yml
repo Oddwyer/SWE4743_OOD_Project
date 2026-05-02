@@ -1,5 +1,5 @@
 info:
-  name: "Register Device (Domain: Invalid)"
+  name: Register Device (Invalid - Thermostat Existing)
   type: http
   seq: 3
 

@@ -1,17 +1,17 @@
 info:
-  name: Control Device - Set Target Temperature (Invalid)
+  name: Control Device - Set Brightness (Invalid - Low)
   type: http
-  seq: 12
+  seq: 8
 
 http:
   method: PUT
-  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
+  url: "{{baseUrl}}/api/Devices/5589731f-a375-4692-8680-0684c13f3e9d/commands"
   body:
     type: json
     data: |-
       {
-        "command": "setTargetTemperature",
-        "targetTemperature": 59
+        "command": "SetBrightness",
+        "brightness": 0
       }
   auth: inherit
 

@@ -1,7 +1,7 @@
 info:
-  name: Control Device - Set Color (Valid)
+  name: Control Device - Set Brightness (Invalid - High)
   type: http
-  seq: 10
+  seq: 9
 
 http:
   method: PUT
@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "command": "SetColor",
-        "color": "#FFFFFF"
+        "command": "SetBrightness",
+        "brightness": 101
       }
   auth: inherit
 
