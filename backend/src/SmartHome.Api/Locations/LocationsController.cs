@@ -25,7 +25,7 @@ public class LocationsController : ControllerBase
     public IActionResult GetAmbientTemperature(string location)
     {
         var temperature = _simulationService.GetAmbientTemperature(location);
-        return Ok(new
+        return Ok(new AmbientTemperatureResponse
         {
             Location = location,
             AmbientTemperature = temperature
@@ -37,7 +37,7 @@ public class LocationsController : ControllerBase
     /// PUT: api/locations/{location}/ambient-temperature
     /// </summary>
     [HttpPut("{location}/ambient-temperature")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AmbientTemperatureResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult SetAmbientTemperature(string location, [FromBody] SetAmbientTemperatureRequest request)
     {

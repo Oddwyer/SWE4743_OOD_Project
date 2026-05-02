@@ -58,20 +58,22 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
+// TODO - Amber: Add singletons for shared state (e.g. simulation ticker, speed) and ensure thread safety as needed.
 
 builder.Services.AddScoped<ISimulationService, SimulationService>();
+builder.Services.AddScoped<IDeviceService, DeviceService>();
+
 builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<ICommandFactory, CommandFactory>();
 builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+
 builder.Services.AddScoped<JsonRepository>();
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
-
 
 builder.Services.AddCors(options =>
 {

@@ -21,13 +21,13 @@ public class DeviceResponse : BaseDevice
 
     // Lights
     public int? LightBrightness { get; set; }
-    public LightColor LightColor { get; set; }
+    public LightColor? LightColor { get; set; }
 
     // Fans
-    public FanSpeed FanSpeed { get; set; }
+    public FanSpeed? FanSpeed { get; set; }
 
     // Thermostat
-    public ThermostatMode ThermostatMode { get; set; }
+    public ThermostatMode? ThermostatMode { get; set; }
     public int? TargetTemperature { get; set; }
     public int? AmbientTemperature { get; set; }
 
