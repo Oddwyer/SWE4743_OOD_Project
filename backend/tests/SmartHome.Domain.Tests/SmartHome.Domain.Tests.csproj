@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/SmartHome.Domain/SmartHome.Domain.csproj" />
+    <ProjectReference Include="../../src/SmartHome.Api/SmartHome.Api.csproj" />
   </ItemGroup>
 
 </Project>

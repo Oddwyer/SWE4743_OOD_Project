@@ -72,7 +72,6 @@ builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<Jso
 builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddSingleton<ISimulationService, SimulationService>();
 
-
 builder.Services.AddCors(options =>
 {
     // TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
@@ -86,20 +85,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartHome API V1");
-        c.DocumentTitle = "SmartHome API Docs";
-    });
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseMiddleware<GlobalErrorHandling>();
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.UseCors("AllowFrontend");
+app.UseAuthorization();
+
 app.MapControllers();
 app.Run();
