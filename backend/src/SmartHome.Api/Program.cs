@@ -1,9 +1,12 @@
 using SmartHome.Domain;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
-using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Infrastructure;
 using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
@@ -55,14 +58,20 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-builder.Services.AddSingleton<IDeviceService, DeviceService>();
-builder.Services.AddSingleton<ISimulationService, SimulationService>();
-builder.Services.AddSingleton<IDeviceFactory, LightDeviceFactory>();
-builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
+builder.Services.AddScoped<IDeviceService, DeviceService>();
+builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
+builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
+builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
+builder.Services.AddScoped<ICommandFactory, CommandFactory>();
+builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+
 builder.Services.AddSingleton<JsonRepository>();
 builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+builder.Services.AddSingleton<ISimulationService, SimulationService>();
+
 
 builder.Services.AddCors(options =>
 {
