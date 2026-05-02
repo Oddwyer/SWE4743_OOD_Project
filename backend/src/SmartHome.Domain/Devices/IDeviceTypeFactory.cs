@@ -3,9 +3,8 @@ using SmartHome.Domain.Contracts;
 namespace SmartHome.Domain.Devices;
 
 /// <summary>
-/// Defines a contract for creating and rehydrating device instances without exposing concrete device types.
+/// Factory interface for creating devices of different types.
 /// </summary>
-
 public interface IDeviceTypeFactory
 {
     public DeviceType DeviceType { get; }

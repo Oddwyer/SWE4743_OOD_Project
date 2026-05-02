@@ -1,7 +1,7 @@
 using SmartHome.Domain.Contracts;
 
 /// <summary>
-/// Creates and restores domain device instances.
+/// Factory for creating and rehydrating device instances without exposing concrete device types.
 /// </summary>
 
 namespace SmartHome.Domain.Devices;
@@ -12,7 +12,7 @@ public class DeviceFactory : IDeviceFactory
 
     public DeviceFactory(IEnumerable<IDeviceTypeFactory> factories)
     {
-        _factories = factories.ToDictionary(f => f.DeviceType);
+        _factories = factories.ToDictionary(factory => factory.DeviceType);
     }
 
     /// <summary>
