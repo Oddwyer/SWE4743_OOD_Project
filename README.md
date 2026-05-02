@@ -173,8 +173,10 @@ GET    /api/devices/{id}/history
 
 /bruno
 /data
+
+TODO: /frontend
 ```
-// TODO: FrontEnd
+
 ---
 
 
