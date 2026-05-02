@@ -1,7 +1,7 @@
 info:
   name: Control Device - Toggle Power (Thermostat)
   type: http
-  seq: 14
+  seq: 4
 
 http:
   method: PUT

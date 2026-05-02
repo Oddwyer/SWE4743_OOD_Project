@@ -1,5 +1,5 @@
 info:
-  name: Get Device By ID - Invalid
+  name: Get Device By ID (Invalid)
   type: http
   seq: 5
 

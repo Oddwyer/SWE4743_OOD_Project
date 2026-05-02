@@ -1,5 +1,5 @@
 info:
-  name: Location - Get Ambient Temp
+  name: Location - Get Ambient Temp (Valid)
   type: http
   seq: 3
 

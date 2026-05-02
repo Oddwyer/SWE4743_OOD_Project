@@ -1,7 +1,7 @@
 info:
-  name: Register Device - Invalid (Domain)
+  name: Register Device (Valid)
   type: http
-  seq: 3
+  seq: 2
 
 http:
   method: POST
@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "deviceName": "Thermostat 1",
+        "deviceName": "Living Room Light",
         "deviceLocation": "Living Room",
-        "type": "Thermostat"
+        "type": "Light"
       }
   auth: inherit
 
@@ -22,4 +22,4 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: Verifies that valid input violating business rules is rejected by the service layer.
+docs: Verifies that a device can be successfully registered with valid input data.

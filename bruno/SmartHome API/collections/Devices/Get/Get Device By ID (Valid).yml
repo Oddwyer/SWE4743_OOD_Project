@@ -1,5 +1,5 @@
 info:
-  name: Get Device By ID - Valid
+  name: Get Device By ID (Valid)
   type: http
   seq: 1
 

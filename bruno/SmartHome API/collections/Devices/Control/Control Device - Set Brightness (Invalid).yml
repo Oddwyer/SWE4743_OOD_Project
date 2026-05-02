@@ -1,7 +1,7 @@
 info:
   name: Control Device - Set Brightness (Invalid)
   type: http
-  seq: 2
+  seq: 8
 
 http:
   method: PUT

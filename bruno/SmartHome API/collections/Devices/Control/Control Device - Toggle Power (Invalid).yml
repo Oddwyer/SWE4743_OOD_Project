@@ -1,7 +1,7 @@
 info:
   name: Control Device - Toggle Power (Invalid)
   type: http
-  seq: 16
+  seq: 3
 
 http:
   method: PUT

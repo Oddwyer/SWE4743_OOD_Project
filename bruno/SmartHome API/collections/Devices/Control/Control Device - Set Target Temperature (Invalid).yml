@@ -1,7 +1,7 @@
 info:
-  name: Control Device - Set Desired Temperature (Invalid)
+  name: Control Device - Set Target Temperature (Invalid)
   type: http
-  seq: 6
+  seq: 12
 
 http:
   method: PUT

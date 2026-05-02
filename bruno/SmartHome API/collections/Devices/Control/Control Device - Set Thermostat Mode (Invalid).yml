@@ -1,7 +1,7 @@
 info:
   name: Control Device - Set Thermostat Mode (Invalid)
   type: http
-  seq: 10
+  seq: 16
 
 http:
   method: PUT

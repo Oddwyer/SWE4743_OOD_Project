@@ -1,5 +1,5 @@
 info:
-  name: Register Device - Invalid (FluentValidation)
+  name: Register Device - FluentValidation (Invalid)
   type: http
   seq: 1
 
