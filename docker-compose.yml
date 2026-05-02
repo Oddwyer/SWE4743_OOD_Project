@@ -7,6 +7,12 @@ services:
       - "5000:8080"
     environment:
       - ASPNETCORE_URLS=http://+:8080
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
     volumes:
-      - ./data:/app/data
+      - ./data:/data
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/swagger/index.html || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped

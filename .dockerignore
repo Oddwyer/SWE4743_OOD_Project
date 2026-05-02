@@ -1,0 +1,16 @@
+.git
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.suo
+**/*.userprefs
+**/*.ntvs_analysis.dat
+**/*.db
+**/*.log
+**/*.swp
+**/*.tmp
+**/*.cache
+*.DS_Store
+data/

@@ -14,7 +14,7 @@ namespace SmartHome.Domain.Commands;
 /// Encapsulates actions and provides descriptions for audit logging (Command Pattern).
 /// </summary>
 
-// TODO - Refactor to provider registration per device type OR builder mapybe? (To avoid switch statement and improve OCP adherence if time permits.)
+// TODO - Refactor to avoid switch statement and improve OCP adherence if time permits.
 public class CommandFactory : ICommandFactory
 {
     private readonly IThermostatModeStrategyFactory _thermostatStrategyFactory;
@@ -25,9 +25,6 @@ public class CommandFactory : ICommandFactory
     }
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
-        // TODO - Amber: Modify away from switch for OCP? Creation branching is centralized inside factories 
-        // so controllers/services remain closed to device-specific branching. Future improvement could be
-        // provider registration per device type.
         return context.Command switch
         {
             DeviceCommandType.TogglePower => CreateTogglePowerCommand(device, context),
