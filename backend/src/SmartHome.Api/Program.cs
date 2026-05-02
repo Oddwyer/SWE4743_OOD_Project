@@ -59,6 +59,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddScoped<IDeviceService, DeviceService>();
+
 builder.Services.AddSingleton<IDeviceTypeFactory, LightDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
@@ -67,11 +68,13 @@ builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 builder.Services.AddScoped<ICommandFactory, CommandFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
-builder.Services.AddSingleton<JsonRepository>();
-builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddScoped<JsonRepository>();
+builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+
 builder.Services.AddSingleton<ISimulationService, SimulationService>();
-builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
+
+builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 
 builder.Services.AddCors(options =>
 {
