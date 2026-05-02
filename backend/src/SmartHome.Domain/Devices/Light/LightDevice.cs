@@ -20,7 +20,6 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     public int LightBrightness { get; private set; } = 100; // Default brightness (100%)
 
-    public override string StatusMessage { get; protected set; } = string.Empty;
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
     {
@@ -108,15 +107,6 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     internal void SetState(ILightState newState)
     {
         _currentState = newState;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Updates the status message (used by states).
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
         UpdatedAt = DateTime.UtcNow;
     }
 

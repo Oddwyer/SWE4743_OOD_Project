@@ -18,14 +18,12 @@ public class DoorLocks : Device, ILatchedDevice
     {
         Unlocked = new UnlockedState(this);
         Locked = new LockedState(this);
-        _currentState = Locked;
+        _currentState = Locked; // Default state is locked.
     }
 
     /// <summary>
     /// Current latch state of the lock.
     /// </summary>
-    public override string StatusMessage { get; protected set; } = string.Empty;
-
     public DeviceLatchState LatchState => _latchState;
 
     /// <summary>
@@ -67,15 +65,6 @@ public class DoorLocks : Device, ILatchedDevice
     internal void SetState(IDoorState newState)
     {
         _currentState = newState;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Updates the status message (used by states). 
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
         UpdatedAt = DateTime.UtcNow;
     }
 

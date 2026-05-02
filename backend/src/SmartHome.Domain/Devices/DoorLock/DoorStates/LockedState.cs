@@ -21,7 +21,6 @@ public class LockedState : IDoorState
     {
         _doorLock.Unlock();
         _doorLock.SetState(_doorLock.Unlocked);
-        _doorLock.UpdateStatusMessage("Door unlocked.");
     }
 
 }

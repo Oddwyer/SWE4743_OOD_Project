@@ -12,7 +12,6 @@ public class FanDevice : Device, IPoweredDevice
     public IFanState On { get; private set; }
     private IFanState _currentState;
 
-    public override string StatusMessage { get; protected set; } = string.Empty;
 
     public FanSpeed Speed { get; private set; } = FanSpeed.Medium; // Default speed
 
@@ -84,14 +83,6 @@ public class FanDevice : Device, IPoweredDevice
         UpdatedAt = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Updates the status message (used by states). 
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
-        UpdatedAt = DateTime.UtcNow;
-    }
 
     /// <summary>
     /// Restores device properties.

@@ -11,7 +11,6 @@ public abstract class Device : IDevice
     public string DeviceLocation { get; protected set; } = string.Empty;
     public DeviceType Type { get; protected set; }
 
-    public abstract string StatusMessage { get; protected set; }
     public abstract bool IsDeviceOn { get; }
 
     //Useful for logging and auditing.

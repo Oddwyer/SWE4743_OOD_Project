@@ -6,7 +6,7 @@ namespace SmartHome.Domain.Devices.Thermostat;
 
 public class ThermostatDevice : Device, IPoweredDevice
 {
-    public int TargetTemperature { get; private set; }
+    public int TargetTemperature { get; private set; } = 72; // Default target temperature
     public IThermostatModeStrategy CurrentStrategy { get; private set; }
 
     public ThermostatMode Mode { get; private set; }
@@ -15,7 +15,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     public const int MaxTemperature = 80; // Maximum allowed temperature
 
     // States
-    private DevicePowerState _powerState; // Forward declaration of power state. On has three sub-states: Idle, Cooling, Heating.
+    private DevicePowerState _powerState = DevicePowerState.Off; // Default power state; has sub-states for Idle, Heating, Cooling.
     public IdleState Idle { get; private set; }
     public CoolingState Cooling { get; private set; }
     public HeatingState Heating { get; private set; }
@@ -41,17 +41,14 @@ public class ThermostatDevice : Device, IPoweredDevice
         }
     }
 
-    public override string StatusMessage { get; protected set; } = string.Empty;
-
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :
 
     base(id, deviceName, deviceLocation, DeviceType.Thermostat)
     {
         CurrentStrategy = strategy;
         Mode = mode;
-        TargetTemperature = 72;
+
         // Initialize states
-        _powerState = DevicePowerState.Off; // default state
         Idle = new IdleState(this);
         Cooling = new CoolingState(this);
         Heating = new HeatingState(this);
@@ -151,14 +148,6 @@ public class ThermostatDevice : Device, IPoweredDevice
         var nextState = CurrentStrategy.DetermineNextState(this, ambientTemperature);
         return nextState;
 
-    }
-
-    /// <summary>
-    /// Updates the status message (used by states). The status message can be used for logging, debugging, or providing user feedback through the API.
-    /// </summary>
-    internal void UpdateStatusMessage(string message)
-    {
-        StatusMessage = message;
     }
 
     /// <summary>
