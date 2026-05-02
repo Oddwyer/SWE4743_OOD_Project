@@ -49,6 +49,10 @@ Key patterns used:
 ```bash
 docker compose up --build
 ```
+### Stop the application
+
+```bash
+docker compose down
 
 ---
 
