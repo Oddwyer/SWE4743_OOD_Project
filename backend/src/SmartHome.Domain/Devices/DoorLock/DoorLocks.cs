@@ -9,14 +9,13 @@ namespace SmartHome.Domain.Devices.DoorLock;
 public class DoorLocks : Device, ILatchedDevice
 {
     // States
-    private DeviceLatchState _latchState;
+    private DeviceLatchState _latchState = DeviceLatchState.Locked; // Default to locked state.
     public IDoorState Unlocked { get; private set; }
     public IDoorState Locked { get; private set; }
     private IDoorState _currentState;
 
     public DoorLocks(Guid id, string name, string location) : base(id, name, location, DeviceType.DoorLock)
     {
-        _latchState = DeviceLatchState.Locked;
         Unlocked = new UnlockedState(this);
         Locked = new LockedState(this);
         _currentState = Locked;

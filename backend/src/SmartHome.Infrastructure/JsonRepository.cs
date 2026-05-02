@@ -250,7 +250,7 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
             ThermostatMode = thermostat?.Mode,
             TargetTemperature = thermostat?.TargetTemperature,
 
-            LightColor = light?.ColorState,
+            LightColor = light?.Color,
             LightBrightness = light?.LightBrightness,
 
             FanSpeed = fan?.Speed

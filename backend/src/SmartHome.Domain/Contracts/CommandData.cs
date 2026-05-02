@@ -13,7 +13,7 @@ public class CommandData
 {
     public required DeviceCommandType Command { get; init; }
     public int? Brightness { get; init; }
-    public LightColor? Color { get; init; }
+    public string? Color { get; init; }
     public FanSpeed? FanSpeed { get; init; }
     public ThermostatMode? Mode { get; init; }
     public int? TargetTemperature { get; init; }

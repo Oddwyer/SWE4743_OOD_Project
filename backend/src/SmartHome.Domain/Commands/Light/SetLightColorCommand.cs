@@ -9,12 +9,12 @@ namespace SmartHome.Domain.Commands;
 /// </summary>
 public class SetLightColorCommand : DeviceCommand
 {
-    public LightColor Color { get; }
+    public string Color { get; }
 
     private readonly LightDevice _lightDevice;
     public override string CommandDescription => $"Set light color to {Color} for {_lightDevice.DeviceName}.";
 
-    public SetLightColorCommand(LightDevice device, LightColor color) : base(device)
+    public SetLightColorCommand(LightDevice device, string color) : base(device)
     {
         _lightDevice = device;
         Color = color;

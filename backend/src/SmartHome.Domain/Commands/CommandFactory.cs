@@ -79,7 +79,7 @@ public class CommandFactory : ICommandFactory
         {
             throw new ArgumentException("Color is required for changing light color.");
         }
-        return new SetLightColorCommand(colorLightDevice, context.Color.Value);
+        return new SetLightColorCommand(colorLightDevice, context.Color);
     }
 
     private IDeviceCommand CreateSetFanSpeedCommand(IDevice device, CommandData context)

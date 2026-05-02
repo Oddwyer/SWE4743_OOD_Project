@@ -35,7 +35,7 @@ public static class DeviceMapper
         {
             case LightDevice light:
                 response.LightBrightness = light.LightBrightness;
-                response.LightColor = light.ColorState;
+                response.LightColor = light.Color;
                 break;
 
             case FanDevice fan:

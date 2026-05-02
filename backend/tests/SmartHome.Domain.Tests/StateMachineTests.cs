@@ -52,7 +52,7 @@ public class StateMachineTests
     {
         var light = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
 
-        Assert.Throws<InvalidOperationException>(() => light.ChangeColor(LightColor.Blue));
+        Assert.Throws<InvalidOperationException>(() => light.ChangeColor("Blue"));
     }
 
     [Fact]
@@ -61,10 +61,10 @@ public class StateMachineTests
         var light = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
 
         light.TogglePower();
-        light.ChangeColor(LightColor.Red);
+        light.ChangeColor("Red");
         light.SetLightBrightness(25);
 
-        Assert.Equal(LightColor.Red, light.ColorState);
+        Assert.Equal("Red", light.Color);
         Assert.Equal(25, light.LightBrightness);
 
         light.TogglePower();
@@ -72,7 +72,7 @@ public class StateMachineTests
 
         light.TogglePower();
         Assert.True(light.IsDeviceOn);
-        Assert.Equal(LightColor.Red, light.ColorState);
+        Assert.Equal("Red", light.Color);
         Assert.Equal(25, light.LightBrightness);
     }
 

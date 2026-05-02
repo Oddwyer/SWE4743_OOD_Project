@@ -19,7 +19,7 @@ public class OnState : ILightState
         _light.SetState(_light.Off);
     }
 
-    public void ChangeColor(LightColor color)
+    public void ChangeColor(string color)
     {
         _light.ChangeColorInternal(color);
     }

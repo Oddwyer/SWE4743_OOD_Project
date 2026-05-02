@@ -19,7 +19,7 @@ public record DeviceSnapshot
     public ThermostatMode? ThermostatMode { get; init; }
     public int? TargetTemperature { get; init; }
 
-    public LightColor? LightColor { get; init; }
+    public string? LightColor { get; init; }
 
     public int? LightBrightness { get; init; }
 

@@ -35,7 +35,7 @@ public class LightDeviceFactory : IDeviceTypeFactory
         var light = new LightDevice(data.Id, data.Name, data.Location);
 
         var powerState = data.IsOn ? DevicePowerState.On : DevicePowerState.Off;
-        var lightcolor = data.LightColor ?? LightColor.White;
+        var lightcolor = data.LightColor ?? "#FFFFFF"; // Default to white if no color is provided
         var lightBrightness = data.LightBrightness ?? 100;
 
         light.RehydrateState(powerState, lightcolor, lightBrightness);

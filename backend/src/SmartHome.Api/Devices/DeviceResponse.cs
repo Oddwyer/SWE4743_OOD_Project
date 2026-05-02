@@ -21,7 +21,7 @@ public class DeviceResponse : BaseDevice
 
     // Lights
     public int? LightBrightness { get; set; }
-    public LightColor? LightColor { get; set; }
+    public string? LightColor { get; set; }
 
     // Fans
     public FanSpeed? FanSpeed { get; set; }
