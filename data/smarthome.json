@@ -6,7 +6,12 @@
       "Type": 1,
       "Location": "Living Room",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": 2
     },
     {
       "Id": "6bac8a57-3997-4669-9848-bd88a13e8855",
@@ -14,7 +19,12 @@
       "Type": 1,
       "Location": "Master Bedroom",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": 2
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
@@ -22,7 +32,12 @@
       "Type": 0,
       "Location": "Master Bedroom",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
@@ -30,7 +45,12 @@
       "Type": 0,
       "Location": "Master Bedroom",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "69360665-1e86-4d3c-9511-a683767a68b7",
@@ -38,7 +58,12 @@
       "Type": 0,
       "Location": "Living Room",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "214b015d-78b3-4b57-b49d-47768871907a",
@@ -46,7 +71,12 @@
       "Type": 0,
       "Location": "Living Room",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
@@ -54,7 +84,12 @@
       "Type": 2,
       "Location": "Living Room",
       "IsOn": true,
-      "DeviceState": null
+      "DeviceState": "Locked",
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": null
     },
     {
       "Id": "5589731f-a375-4692-8680-0684c13f3e9d",
@@ -62,7 +97,12 @@
       "Type": 0,
       "Location": "Entryway",
       "IsOn": false,
-      "DeviceState": null
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": 1,
+      "LightBrightness": 100,
+      "FanSpeed": null
     },
     {
       "Id": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
@@ -70,7 +110,25 @@
       "Type": 2,
       "Location": "Entryway",
       "IsOn": true,
-      "DeviceState": null
+      "DeviceState": "Locked",
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": null
+    },
+    {
+      "Id": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Name": "Living Room Thermostat",
+      "Type": 3,
+      "Location": "Living Room",
+      "IsOn": false,
+      "DeviceState": "Off",
+      "ThermostatMode": 3,
+      "TargetTemperature": 72,
+      "LightColor": null,
+      "LightBrightness": null,
+      "FanSpeed": null
     }
   ],
   "CommandHistory": [],
