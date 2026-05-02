@@ -7,21 +7,14 @@ COPY backend/src/SmartHome.Infrastructure/SmartHome.Infrastructure.csproj backen
 
 RUN dotnet restore backend/src/SmartHome.Api/SmartHome.Api.csproj
 
-COPY backend/src/SmartHome.Api/ backend/src/SmartHome.Api/
-COPY backend/src/SmartHome.Domain/ backend/src/SmartHome.Domain/
-COPY backend/src/SmartHome.Infrastructure/ backend/src/SmartHome.Infrastructure/
+COPY . .
 
-RUN dotnet publish backend/src/SmartHome.Api/SmartHome.Api.csproj -c Release -o /app/publish --no-restore
+RUN dotnet publish backend/src/SmartHome.Api/SmartHome.Api.csproj -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
-RUN addgroup --system app && adduser --system --ingroup app app && \
-    apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
-
 COPY --from=build /app/publish .
-
-USER app
 
 EXPOSE 8080
 
