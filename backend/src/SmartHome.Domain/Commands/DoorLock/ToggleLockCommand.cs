@@ -1,7 +1,7 @@
 using SmartHome.Domain.Commands;
+using SmartHome.Domain.Devices.DoorLock;
 
-
-namespace SmartHome.Domain.Devices.DoorLock;
+namespace SmartHome.Domain.Commands;
 
 /// <summary>
 /// Locks doorlocks in the Smart Home.

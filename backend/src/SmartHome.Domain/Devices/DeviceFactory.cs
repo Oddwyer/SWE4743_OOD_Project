@@ -20,7 +20,6 @@ public class DeviceFactory : IDeviceFactory
     /// </summary>
     public IDevice CreateDevice(string name, string location, DeviceType type)
     {
-        Guid id = Guid.NewGuid();
 
         if (!_factories.TryGetValue(type, out var factory))
         {

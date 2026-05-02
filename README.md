@@ -174,7 +174,7 @@ GET    /api/devices/{id}/history
 /bruno
 /data
 ```
-
+// TODO: FrontEnd
 ---
 
 

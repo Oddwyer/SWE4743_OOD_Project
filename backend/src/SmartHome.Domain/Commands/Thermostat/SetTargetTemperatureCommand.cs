@@ -2,7 +2,7 @@ using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat;
 
-namespace SmartHome.Domain.Devices.Thermostat;
+namespace SmartHome.Domain.Commands;
 
 /// <summary>
 /// Sets the target (desired) temperature for the thermostat.
