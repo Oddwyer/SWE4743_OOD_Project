@@ -10,9 +10,9 @@ public class TogglePowerCommand : DeviceCommand
 
     private IPoweredDevice _poweredDevice;
 
-    public TogglePowerCommand(IDevice device) : base(device)
+    public TogglePowerCommand(IDevice device, IPoweredDevice poweredDevice) : base(device)
     {
-        _poweredDevice = device as IPoweredDevice ?? throw new ArgumentException("Device must implement IPoweredDevice interface.");
+        _poweredDevice = poweredDevice;
     }
 
     /// <summary>
