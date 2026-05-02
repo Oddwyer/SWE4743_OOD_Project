@@ -20,7 +20,7 @@ public class DoorLockFactory : IDeviceTypeFactory
     /// <summary>
     /// Creates door lock device instances.
     /// </summary>
-    public IDevice CreateDevice(string name, string location, DeviceType type)
+    public IDevice CreateDevice(string name, string location)
     {
         Guid id = Guid.NewGuid();
 

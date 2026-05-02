@@ -49,7 +49,7 @@ public class CommandFactory : ICommandFactory
         };
     }
 
-    public IDeviceCommand CreateTogglePowerCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateTogglePowerCommand(IDevice device, CommandData context)
     {
 
         if (device is not IPoweredDevice poweredDevice)
@@ -59,7 +59,7 @@ public class CommandFactory : ICommandFactory
         return new TogglePowerCommand(device, poweredDevice);
     }
 
-    public IDeviceCommand CreateSetBrightnessCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateSetBrightnessCommand(IDevice device, CommandData context)
     {
         if (device is not LightDevice lightDevice)
         {
@@ -72,7 +72,7 @@ public class CommandFactory : ICommandFactory
         return new SetLightBrightnessCommand(lightDevice, context.Brightness.Value);
     }
 
-    public IDeviceCommand CreateSetColorCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateSetColorCommand(IDevice device, CommandData context)
     {
         if (device is not LightDevice colorLightDevice)
         {
@@ -85,7 +85,7 @@ public class CommandFactory : ICommandFactory
         return new SetLightColorCommand(colorLightDevice, context.Color.Value);
     }
 
-    public IDeviceCommand CreateSetFanSpeedCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateSetFanSpeedCommand(IDevice device, CommandData context)
     {
         if (device is not FanDevice fanDevice)
         {
@@ -98,7 +98,7 @@ public class CommandFactory : ICommandFactory
         return new SetFanSpeedCommand(fanDevice, context.FanSpeed.Value);
     }
 
-    public IDeviceCommand CreateSetThermostatModeCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateSetThermostatModeCommand(IDevice device, CommandData context)
     {
         if (device is not ThermostatDevice setModeThermostat)
         {
@@ -112,7 +112,7 @@ public class CommandFactory : ICommandFactory
         return new SetThermostatModeCommand(setModeThermostat, context.Mode.Value, strategy);
     }
 
-    public IDeviceCommand CreateSetTargetTemperatureCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateSetTargetTemperatureCommand(IDevice device, CommandData context)
     {
         if (device is not ThermostatDevice targetTempThermostat)
         {
@@ -120,12 +120,12 @@ public class CommandFactory : ICommandFactory
         }
         if (context.TargetTemperature is null)
         {
-            throw new ArgumentException("A target temperature must be provided to alter thermostat mode.");
+            throw new ArgumentException("A target temperature must be provided to set the desired temperature.");
         }
         return new SetTargetTemperatureCommand(targetTempThermostat, context.TargetTemperature.Value);
     }
 
-    public IDeviceCommand CreateToggleLockCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateToggleLockCommand(IDevice device, CommandData context)
     {
 
         if (device is not DoorLocks doorLock)

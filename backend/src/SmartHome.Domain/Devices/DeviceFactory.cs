@@ -27,7 +27,7 @@ public class DeviceFactory : IDeviceFactory
             throw new ArgumentException($"Unsupported device type: {type}");
         }
 
-        return factory.CreateDevice(name, location, type);
+        return factory.CreateDevice(name, location);
 
     }
 

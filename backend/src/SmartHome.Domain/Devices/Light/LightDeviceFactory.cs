@@ -19,7 +19,7 @@ public class LightDeviceFactory : IDeviceTypeFactory
     /// <summary>
     /// Creates light device instances.
     /// </summary>
-    public IDevice CreateDevice(string name, string location, DeviceType type)
+    public IDevice CreateDevice(string name, string location)
     {
         Guid id = Guid.NewGuid();
 

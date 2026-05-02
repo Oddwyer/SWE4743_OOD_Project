@@ -40,7 +40,6 @@ public class LocationsController : ControllerBase
     [HttpPut("{location}/ambient-temperature")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult SetAmbientTemperature(string location, [FromBody] SetAmbientTemperatureRequest request)
     {
         _simulationService.SetAmbientTemperature(location, request.Temperature);

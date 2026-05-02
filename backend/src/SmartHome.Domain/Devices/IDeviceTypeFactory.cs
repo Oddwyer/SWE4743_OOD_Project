@@ -10,7 +10,7 @@ public interface IDeviceTypeFactory
     public DeviceType DeviceType { get; }
 
     // For frontend device creation.
-    public IDevice CreateDevice(string name, string location, DeviceType type);
+    public IDevice CreateDevice(string name, string location);
 
     // For backend device rehydration (reference section 2 in project doc).
     public IDevice RehydrateDevice(DeviceRehydrationData data);

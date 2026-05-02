@@ -19,7 +19,7 @@ public class FanDeviceFactory : IDeviceTypeFactory
     /// <summary>
     /// Creates a fan device instances.
     /// </summary>
-    public IDevice CreateDevice(string name, string location, DeviceType type)
+    public IDevice CreateDevice(string name, string location)
     {
         Guid id = Guid.NewGuid();
 
