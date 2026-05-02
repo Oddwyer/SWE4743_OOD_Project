@@ -19,17 +19,23 @@ public class OnState : ILightState
         _light.SetState(_light.Off);
     }
 
+    /// <summary>
+    /// Changes the color of the light. Valid color values are expected to be in HEX format (e.g., #FF8800).
+    /// </summary>
     public void ChangeColor(string color)
     {
         _light.ChangeColorInternal(color);
     }
 
+    /// <summary>
+    /// Sets the brightness of the light. Valid brightness values are between 10% and 100%.
+    /// </summary>
     public void SetLightBrightness(int brightness)
     {
 
         if (brightness < LightDevice.MinBrightness || brightness > LightDevice.MaxBrightness)
         {
-            throw new ArgumentOutOfRangeException(nameof(brightness), "Brightness must be between 10 and 100.");
+            throw new ArgumentOutOfRangeException(nameof(brightness), $"Brightness must be between {LightDevice.MinBrightness}% and {LightDevice.MaxBrightness}%.");
 
         }
 

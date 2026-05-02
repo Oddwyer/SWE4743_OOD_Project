@@ -10,7 +10,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     public const int MaxBrightness = 100; // Maximum allowed brightness percentage
 
     // States
-    private DevicePowerState _powerState = DevicePowerState.Off; // default state
+    private DevicePowerState _powerState = DevicePowerState.Off; // Default state
     public OffState Off { get; private set; }
     public OnState On { get; private set; }
 

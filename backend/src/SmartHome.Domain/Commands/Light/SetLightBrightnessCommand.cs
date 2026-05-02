@@ -12,7 +12,7 @@ public class SetLightBrightnessCommand : DeviceCommand
     public int Brightness { get; }
 
     private readonly LightDevice _lightDevice;
-    public override string CommandDescription => $"Set light brightness to {Brightness} for {_lightDevice.DeviceName}.";
+    public override string CommandDescription => $"Set light brightness to {Brightness}% for {_lightDevice.DeviceName}.";
 
     public SetLightBrightnessCommand(LightDevice device, int brightness) : base(device)
     {
