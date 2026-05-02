@@ -35,10 +35,10 @@ public class ControlDeviceRequestValidator : AbstractValidator<ControlDeviceRequ
             .When(x => x.Command == DeviceCommandType.SetFanSpeed)
             .WithMessage("Fan speed is required and must be valid.");
 
-        RuleFor(x => x.DesiredTemperature)
+        RuleFor(x => x.TargetTemperature)
             .NotNull()
             .InclusiveBetween(60, 80)
-            .When(x => x.Command == DeviceCommandType.SetDesiredTemperature)
+            .When(x => x.Command == DeviceCommandType.SetTargetTemperature)
             .WithMessage("Desired temperature is required and must be between 60 and 80.");
 
         RuleFor(x => x.Mode)

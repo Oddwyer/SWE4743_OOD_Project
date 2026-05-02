@@ -8,4 +8,7 @@ public interface IDevice
    public DeviceType Type { get; }
    public bool IsDeviceOn { get; }
 
+   public DateTime CreatedAt { get; }
+   public DateTime UpdatedAt { get; }
+
 }

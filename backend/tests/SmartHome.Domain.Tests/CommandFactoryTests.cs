@@ -86,7 +86,7 @@ public class CommandFactoryTests
 
         var exception = Assert.Throws<ArgumentException>(() => _factory.CreateCommand(device, new CommandData
         {
-            Command = DeviceCommandType.SetDesiredTemperature
+            Command = DeviceCommandType.SetTargetTemperature
         }));
 
         Assert.Contains("target temperature must be provided", exception.Message, StringComparison.OrdinalIgnoreCase);

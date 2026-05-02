@@ -59,19 +59,19 @@ public class ValidationTests
     }
 
     [Fact]
-    public void ControlDeviceRequestValidator_OutOfRangeDesiredTemperature_FailsValidation()
+    public void ControlDeviceRequestValidator_OutOfRangeTargetTemperature_FailsValidation()
     {
         var validator = new ControlDeviceRequestValidator();
         var request = new ControlDeviceRequest
         {
-            Command = DeviceCommandType.SetDesiredTemperature,
-            DesiredTemperature = 59
+            Command = DeviceCommandType.SetTargetTemperature,
+            TargetTemperature = 59
         };
 
         var result = validator.Validate(request);
 
         Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.DesiredTemperature));
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.TargetTemperature));
     }
 
     [Fact]

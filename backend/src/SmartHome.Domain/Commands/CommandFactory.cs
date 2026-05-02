@@ -40,7 +40,7 @@ public class CommandFactory : ICommandFactory
 
             DeviceCommandType.SetThermostatMode => CreateSetThermostatModeCommand(device, context),
 
-            DeviceCommandType.SetDesiredTemperature => CreateSetTargetTemperatureCommand(device, context),
+            DeviceCommandType.SetTargetTemperature => CreateSetTargetTemperatureCommand(device, context),
 
             DeviceCommandType.ToggleLock => CreateToggleLockCommand(device, context),
 

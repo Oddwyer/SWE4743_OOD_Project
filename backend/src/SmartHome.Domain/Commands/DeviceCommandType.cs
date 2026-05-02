@@ -10,6 +10,6 @@ public enum DeviceCommandType
     SetColor = 2,
     SetFanSpeed = 3,
     SetThermostatMode = 4,
-    SetDesiredTemperature = 5,
+    SetTargetTemperature = 5,
     ToggleLock = 6
 }
