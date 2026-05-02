@@ -13,7 +13,6 @@ public class SetTargetTemperatureCommand : DeviceCommand
 
     private readonly ThermostatDevice _thermostatDevice;
 
-    public override string CommandDescription => $"Setting {TargetTemperature}°F for {_thermostatDevice.DeviceName}.";
 
     public SetTargetTemperatureCommand(ThermostatDevice device, int targetTemperature) : base(device)
     {
@@ -28,6 +27,7 @@ public class SetTargetTemperatureCommand : DeviceCommand
     {
 
         _thermostatDevice.SetTargetTemperature(TargetTemperature);
+        _commandDescription = $"Set target temperature to {TargetTemperature}°F for {_thermostatDevice.DeviceName}.";
 
     }
 }

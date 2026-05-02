@@ -7,13 +7,12 @@ namespace SmartHome.Domain.Commands.Power;
 /// </summary>
 public class TogglePowerCommand : DeviceCommand
 {
-    public override string CommandDescription => $"Toggled power of {ManipulatedDevice.DeviceName}.";
 
     private IPoweredDevice _poweredDevice;
 
-    public TogglePowerCommand(IDevice device, IPoweredDevice poweredDevice) : base(device)
+    public TogglePowerCommand(IDevice device) : base(device)
     {
-        _poweredDevice = poweredDevice;
+        _poweredDevice = device as IPoweredDevice ?? throw new ArgumentException("Device must implement IPoweredDevice interface.");
     }
 
     /// <summary>
@@ -23,6 +22,9 @@ public class TogglePowerCommand : DeviceCommand
     {
 
         _poweredDevice.TogglePower();
+        _commandDescription = _poweredDevice.PowerState == DevicePowerState.On
+       ? $"Powered on {ManipulatedDevice.DeviceName}."
+       : $"Powered off {ManipulatedDevice.DeviceName}.";
 
     }
 }

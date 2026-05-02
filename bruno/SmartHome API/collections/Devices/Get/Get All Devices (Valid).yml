@@ -1,7 +1,7 @@
 info:
   name: Get All Devices (Valid)
   type: http
-  seq: 3
+  seq: 1
 
 http:
   method: GET

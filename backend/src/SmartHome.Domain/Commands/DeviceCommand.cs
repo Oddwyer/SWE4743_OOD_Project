@@ -10,7 +10,9 @@ public abstract class DeviceCommand : IDeviceCommand
 {
     public Guid Id { get; } = Guid.NewGuid();
     public IDevice ManipulatedDevice { get; }
-    public abstract string CommandDescription { get; }
+    protected string _commandDescription = string.Empty;
+
+    public string CommandDescription => _commandDescription;
 
     protected DeviceCommand(IDevice device)
     {

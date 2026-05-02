@@ -100,8 +100,8 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#FFFFFF",
-      "LightBrightness": 75,
+      "LightColor": "#FF8800",
+      "LightBrightness": 60,
       "FanSpeed": null
     },
     {
@@ -124,7 +124,7 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Cooling",
-      "ThermostatMode": 2,
+      "ThermostatMode": 3,
       "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
@@ -1248,6 +1248,144 @@
       "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
       "Timestamp": "2026-05-02T18:37:34.8662383Z",
       "Operation": "Set light brightness to 75% for Entryway Overhead Light."
+    },
+    {
+      "Id": "ba1ae302-9b0d-48c4-9643-1a42e47c5490",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:12:51.8860247Z",
+      "Operation": "Setting 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "c220efa8-a21e-47b5-a36d-54fdc32c72c2",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:13:01.4287922Z",
+      "Operation": "Setting 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "23828929-3038-49c9-a80e-3ecbdec0dbf0",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:13:47.022753Z",
+      "Operation": "Setting mode for Living Room Thermostat."
+    },
+    {
+      "Id": "16e1eba2-199e-4d51-b67b-cd1c461059fd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:13:56.5384594Z",
+      "Operation": "Setting 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "b1646021-195a-4373-b39e-31dc042737e9",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:14:14.8728575Z",
+      "Operation": "Setting mode for Living Room Thermostat."
+    },
+    {
+      "Id": "7e29b5c7-e933-41b6-ab2e-4024a7496cde",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:14:22.2873355Z",
+      "Operation": "Setting mode for Living Room Thermostat."
+    },
+    {
+      "Id": "f0037695-cc57-4796-83f9-65a014c6fa2b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:14:32.5243495Z",
+      "Operation": "Setting 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "44f803d6-d37b-4829-962b-87bdbe537a47",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-02T21:15:26.0750382Z",
+      "Operation": "Setting 68\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "1baf0e4b-929b-4007-8c4f-668e66b097a1",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T21:15:54.678864Z",
+      "Operation": "Toggled power of Master Bedroom Fan."
+    },
+    {
+      "Id": "7b111f6c-664b-44bd-9d33-6c7f86df6409",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T21:15:59.0596466Z",
+      "Operation": "Toggled power of Master Bedroom Fan."
+    },
+    {
+      "Id": "479fd3f8-50e6-4105-b1ad-ae531bb9ae5a",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T21:16:07.3712022Z",
+      "Operation": "Set fan speed to High for Master Bedroom Fan."
+    },
+    {
+      "Id": "47b66b7a-cbc1-4104-991c-010d6a9c29ba",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T21:16:20.417964Z",
+      "Operation": "Toggled power of Master Bedroom Fan."
+    },
+    {
+      "Id": "a8a7562d-785a-4f51-ab21-07a7e3a58ad1",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T21:16:33.0763208Z",
+      "Operation": "Toggled power of Master Bedroom Fan."
+    },
+    {
+      "Id": "0e72a8c8-b7d8-4462-8d64-575b7353e5c7",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-02T21:16:38.0214446Z",
+      "Operation": "Set fan speed to High for Master Bedroom Fan."
+    },
+    {
+      "Id": "25af0e6d-2811-4016-bb96-eb5a2d4b928e",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-02T21:16:48.3142265Z",
+      "Operation": "Toggled power of Entryway Overhead Light."
+    },
+    {
+      "Id": "8f05d1e9-b569-4a00-b85e-658490a4813d",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-02T21:17:07.9373958Z",
+      "Operation": "Toggled power of Entryway Overhead Light."
+    },
+    {
+      "Id": "f29e5db3-bfad-4aac-a9f5-52cf00481154",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-02T21:17:11.9125134Z",
+      "Operation": "Set light brightness to 75% for Entryway Overhead Light."
+    },
+    {
+      "Id": "830d0cd7-7c28-4eea-ad64-6e3f474f073e",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-02T21:17:19.292443Z",
+      "Operation": "Set light brightness to 60% for Entryway Overhead Light."
+    },
+    {
+      "Id": "edc03977-a439-47a6-b4c4-7e282e0f9b74",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-02T21:17:30.2160952Z",
+      "Operation": "Set light color to #FF8800 for Entryway Overhead Light."
+    },
+    {
+      "Id": "39f8be5a-e017-4c1b-a364-92f89a6722b6",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T21:22:00.699587Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "5ca640bd-2650-475e-b737-27046373217a",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T21:22:03.0298938Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "35dc49d6-15fb-4f41-b082-22865a4c7cb5",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T21:22:05.3161705Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "454c5a9c-3371-4517-9783-d697d6b2eafc",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-02T21:22:06.2359596Z",
+      "Operation": "Locked Back Door Lock."
     }
   ],
   "Locations": [
