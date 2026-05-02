@@ -1,4 +1,5 @@
 using SmartHome.Domain.Contracts;
+using SmartHome.Domain.Devices;
 
 /// <summary>
 /// Creates and restores light device instances.

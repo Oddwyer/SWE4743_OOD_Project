@@ -1,7 +1,8 @@
+using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Light;
 
-namespace SmartHome.Domain.Commands.Light;
+namespace SmartHome.Domain.Devices.Light;
 
 /// <summary>
 /// Sets the brightness of a light device.

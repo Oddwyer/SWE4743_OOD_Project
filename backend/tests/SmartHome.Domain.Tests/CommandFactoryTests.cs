@@ -1,15 +1,11 @@
 using System;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain.Commands.Fan;
-using SmartHome.Domain.Commands.Light;
-using SmartHome.Domain.Commands.Lock;
-using SmartHome.Domain.Commands.Power;
-using SmartHome.Domain.Commands.Thermostat;
-using SmartHome.Domain.Contracts;
-using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
+using SmartHome.Domain.Devices.DoorLock;
+using SmartHome.Domain.Commands.Power;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Contracts;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
@@ -120,7 +116,7 @@ public class CommandFactoryTests
             Mode = ThermostatMode.Cool
         });
 
-        Assert.IsType<SetThermostateModeCommand>(command);
+        Assert.IsType<SetThermostatModeCommand>(command);
     }
 
     [Fact]

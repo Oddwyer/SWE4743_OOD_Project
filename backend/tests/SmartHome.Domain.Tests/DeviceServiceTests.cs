@@ -7,7 +7,6 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Commands.Lock;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;

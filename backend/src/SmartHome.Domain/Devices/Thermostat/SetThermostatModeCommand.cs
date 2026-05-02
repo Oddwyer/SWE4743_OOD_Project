@@ -1,7 +1,8 @@
+using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat;
 
-namespace SmartHome.Domain.Commands.Thermostat;
+namespace SmartHome.Domain.Devices.Thermostat;
 
 /// <summary>
 /// Sets the thermostat to the mode requested by the client.

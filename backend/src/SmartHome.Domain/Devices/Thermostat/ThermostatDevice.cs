@@ -1,5 +1,7 @@
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Domain.Devices.Thermostat;
 
 public class ThermostatDevice : Device, IPoweredDevice

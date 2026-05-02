@@ -3,11 +3,7 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Commands.Fan;
-using SmartHome.Domain.Commands.Light;
-using SmartHome.Domain.Commands.Lock;
 using SmartHome.Domain.Commands.Power;
-using SmartHome.Domain.Commands.Thermostat;
 using SmartHome.Domain.Contracts;
 
 

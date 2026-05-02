@@ -1,5 +1,7 @@
 using SmartHome.Domain.Devices.Fan.FanStates;
 
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Domain.Devices.Fan;
 
 public class FanDevice : Device, IPoweredDevice

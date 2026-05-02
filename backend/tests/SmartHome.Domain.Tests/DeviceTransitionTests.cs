@@ -28,16 +28,16 @@ public class DeviceTransitionTests
     }
 
     [Fact]
-    public void LightSetBrightness_InvalidRange_DoesNotChangeBrightness()
+    public void LightSetBrightness_InvalidRange_ThrowsArgumentOutOfRangeException()
     {
         var light = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
         light.TogglePower();
 
         var originalValue = light.LightBrightness;
-        light.SetLightBrightness(5);
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => light.SetLightBrightness(5));
 
         Assert.Equal(originalValue, light.LightBrightness);
-        Assert.Contains("Brightness must be between", light.StatusMessage);
+        Assert.Contains("Brightness must be between", exception.Message);
     }
 
     [Fact]
@@ -57,15 +57,15 @@ public class DeviceTransitionTests
     }
 
     [Fact]
-    public void FanSetSpeedWhileOff_DoesNotChangeSpeed()
+    public void FanSetSpeedWhileOff_ThrowsInvalidOperationException()
     {
         var fan = new FanDevice(Guid.NewGuid(), "DeskFan", "Office");
         var originalSpeed = fan.Speed;
 
-        fan.SetFanSpeed(FanSpeed.High);
+        var exception = Assert.Throws<InvalidOperationException>(() => fan.SetFanSpeed(FanSpeed.High));
 
         Assert.Equal(originalSpeed, fan.Speed);
-        Assert.Contains("Cannot set fan speed when fan is off", fan.StatusMessage);
+        Assert.Contains("Cannot set fan speed when fan is off", exception.Message);
     }
 
     [Fact]

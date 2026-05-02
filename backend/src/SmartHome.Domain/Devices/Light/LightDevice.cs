@@ -1,5 +1,7 @@
 using SmartHome.Domain.Devices.Light.LightStates;
 
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights

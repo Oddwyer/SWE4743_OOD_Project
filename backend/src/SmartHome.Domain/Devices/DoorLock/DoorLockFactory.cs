@@ -4,6 +4,8 @@ using SmartHome.Domain.Contracts;
 /// Creates and restores door lock device instances.
 /// </summary>
 
+using SmartHome.Domain.Devices;
+
 namespace SmartHome.Domain.Devices.DoorLock;
 
 public class DoorLockFactory : IDeviceTypeFactory
