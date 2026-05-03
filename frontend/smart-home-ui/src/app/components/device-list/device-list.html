@@ -2,8 +2,38 @@
 
 <ul>
     <li *ngFor="let device of devices">
-        {{ device.deviceName }} -
-        {{ device.type.charAt(0).toUpperCase() + device.type.slice(1) }} -
-        {{ device.deviceLocation }}
+        <strong>{{ device.deviceName }}</strong>
+        <div>Type: {{ device.type }}</div>
+        <div>Location: {{ device.deviceLocation }}</div>
+        <div>Status: {{ device.isDeviceOn ? 'On' : 'Off' }}</div>
+
+        <div *ngIf="device.lightBrightness !== null">
+            Brightness: {{ device.lightBrightness }}%
+        </div>
+
+        <div *ngIf="device.lightColor">
+            Color: {{ device.lightColor }}
+        </div>
+
+        <div *ngIf="device.fanSpeed">
+            Speed: {{ device.fanSpeed }}
+        </div>
+
+        <div *ngIf="device.thermostatMode">
+            Mode: {{ device.thermostatMode }}
+        </div>
+
+        <div *ngIf="device.targetTemperature !== null">
+            Target: {{ device.targetTemperature }}°F
+        </div>
+
+        <div *ngIf="device.ambientTemperature !== null">
+            Ambient: {{ device.ambientTemperature }}°F
+        </div>
+
+        <div *ngIf="device.isLocked !== null">
+            Lock: {{ device.isLocked ? 'Locked' : 'Unlocked' }}
+        </div>
+
     </li>
 </ul>
