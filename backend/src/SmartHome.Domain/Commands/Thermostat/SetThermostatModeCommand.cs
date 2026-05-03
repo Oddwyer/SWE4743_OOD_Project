@@ -13,7 +13,6 @@ public class SetThermostatModeCommand : DeviceCommand
     private readonly IThermostatModeStrategy _strategy;
 
     private readonly ThermostatDevice thermostat;
-    public override string CommandDescription => $"Setting mode for {ManipulatedDevice.DeviceName}.";
 
     public SetThermostatModeCommand(ThermostatDevice device, ThermostatMode mode, IThermostatModeStrategy strategy) : base(device)
     {
@@ -30,6 +29,7 @@ public class SetThermostatModeCommand : DeviceCommand
     {
 
         thermostat.SetMode(Mode, _strategy);
+        _commandDescription = $"Set mode to {Mode} for {ManipulatedDevice.DeviceName}.";
 
     }
 }

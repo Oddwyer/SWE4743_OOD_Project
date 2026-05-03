@@ -13,7 +13,8 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
-using System.IO;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,9 +76,18 @@ builder.Services.AddScoped<JsonRepository>();
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
+// Configure JSON serialization to use camelCase and serialize enums as strings.
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false)
+        );
+    });
+
+// TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
 builder.Services.AddCors(options =>
 {
-    // TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy.AllowAnyOrigin()

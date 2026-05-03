@@ -17,7 +17,8 @@ public static class DeviceMapper
     /// <summary>
     /// Converts a Device into a DeviceResponse.
     /// </summary>
-    public static DeviceResponse ToResponse(IDevice device)
+
+    public static DeviceResponse ToResponse(IDevice device, int ambientTemperature)
     {
         var response = new DeviceResponse
         {
@@ -45,6 +46,8 @@ public static class DeviceMapper
             case ThermostatDevice thermostat:
                 response.ThermostatMode = thermostat.Mode;
                 response.TargetTemperature = thermostat.TargetTemperature;
+                response.AmbientTemperature = ambientTemperature;
+                response.ThermostatState = thermostat.CurrentStateType; // Convert enum to string for API response
                 break;
 
             case DoorLocks doorlock:

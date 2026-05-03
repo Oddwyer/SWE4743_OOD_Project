@@ -10,6 +10,8 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+using SmartHome.Domain.Locations;
+using SmartHome.Domain.Simulations;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
@@ -39,9 +41,17 @@ public class DeviceFactoryAndServiceTests
         }
     }
 
+    private class FakeSimulationService : ISimulationService
+    {
+        public void SetAmbientTemperature(string location, int temperature) { }
+        public int GetAmbientTemperature(string location) => 70;
+        public void SetSimulationSpeed(SimulationSpeed speedMultiplier) { }
+        public void ResetSimulation() { }
+    }
+
     private static DeviceService CreateDeviceService(FakeDeviceRepository repository)
     {
-        return new DeviceService(repository, TestHelper.CreateDeviceFactory(), new FakeCommandFactory());
+        return new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), new FakeCommandFactory(), repository);
     }
 
     [Fact]

@@ -27,7 +27,7 @@ public class CommandFactory : ICommandFactory
     {
         return context.Command switch
         {
-            DeviceCommandType.TogglePower => CreateTogglePowerCommand(device, context),
+            DeviceCommandType.TogglePower => CreateTogglePowerCommand(device),
 
             DeviceCommandType.SetBrightness => CreateSetBrightnessCommand(device, context),
 
@@ -39,14 +39,14 @@ public class CommandFactory : ICommandFactory
 
             DeviceCommandType.SetTargetTemperature => CreateSetTargetTemperatureCommand(device, context),
 
-            DeviceCommandType.ToggleLock => CreateToggleLockCommand(device, context),
+            DeviceCommandType.ToggleLock => CreateToggleLockCommand(device),
 
             _ => throw new ArgumentException($"Unsupported command type.")
 
         };
     }
 
-    private IDeviceCommand CreateTogglePowerCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateTogglePowerCommand(IDevice device)
     {
 
         if (device is not IPoweredDevice poweredDevice)
@@ -122,7 +122,7 @@ public class CommandFactory : ICommandFactory
         return new SetTargetTemperatureCommand(targetTempThermostat, context.TargetTemperature.Value);
     }
 
-    private IDeviceCommand CreateToggleLockCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateToggleLockCommand(IDevice device)
     {
 
         if (device is not DoorLocks doorLock)

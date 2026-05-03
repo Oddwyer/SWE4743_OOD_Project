@@ -8,6 +8,7 @@ using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Locations;
 
 namespace SmartHome.Domain.Tests;
 
@@ -25,10 +26,11 @@ internal static class TestHelper
     }
 }
 
-internal class FakeDeviceRepository : IDeviceRepository
+internal class FakeDeviceRepository : IDeviceRepository, ILocationRepository
 {
     private readonly Dictionary<Guid, IDevice> _devices = new();
     private readonly List<CommandHistoryEntry> _history = new();
+    private readonly Dictionary<string, int> _ambientTemperatures = new();
 
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
@@ -67,5 +69,15 @@ internal class FakeDeviceRepository : IDeviceRepository
     public void SaveHistoryEntry(CommandHistoryEntry entry)
     {
         _history.Add(entry);
+    }
+
+    public int? GetAmbientTemperature(string location)
+    {
+        return _ambientTemperatures.TryGetValue(location, out var temperature) ? temperature : 70;
+    }
+
+    public void SaveAmbientTemperature(string location, int temperature)
+    {
+        _ambientTemperatures[location] = temperature;
     }
 }

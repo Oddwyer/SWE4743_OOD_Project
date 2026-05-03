@@ -8,7 +8,8 @@ namespace SmartHome.Domain.Simulations;
 /// </summary>
 public class SimulationService : ISimulationService
 {
-    private const int DefaultAmbientTemperature = 72;
+    private int defaultAmbientTemperature = 72;
+
     private readonly ILocationRepository _locationRepository;
 
     public SimulationService(ILocationRepository locationRepository)
@@ -31,7 +32,7 @@ public class SimulationService : ISimulationService
             throw new ArgumentOutOfRangeException(nameof(temperature), "Temperature must be between 0 and 120.");
         }
 
-        _locationRepository.SaveAmbientTemperature(location, temperature);
+        _locationRepository.SaveAmbientTemperature(Normalize(location), temperature);
 
     }
 
@@ -45,7 +46,9 @@ public class SimulationService : ISimulationService
             throw new ArgumentException("No location provided.");
         }
 
-        return _locationRepository.GetAmbientTemperature(location) ?? DefaultAmbientTemperature;
+        var ambientTemperature = _locationRepository.GetAmbientTemperature(Normalize(location));
+
+        return ambientTemperature ?? defaultAmbientTemperature;
     }
 
     public void SetSimulationSpeed(SimulationSpeed speedMultiplier)
@@ -59,4 +62,6 @@ public class SimulationService : ISimulationService
         throw new NotImplementedException(
             "Simulation reset is pending reset behavior implementation.");
     }
+
+    private static string Normalize(string location) => location.Trim().ToLowerInvariant();
 }

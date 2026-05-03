@@ -1,0 +1,17 @@
+info:
+  name: Get Device History - Valid (Thermostat)
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/history"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies retrieval of command history for an existing device.

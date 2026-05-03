@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Api.Devices;
 
@@ -11,10 +12,12 @@ namespace SmartHome.Api.Devices;
 public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
+    private readonly ISimulationService _simulationService;
 
-    public DevicesController(IDeviceService deviceService)
+    public DevicesController(IDeviceService deviceService, ISimulationService simulationService)
     {
         _deviceService = deviceService;
+        _simulationService = simulationService;
     }
 
     /// <summary>
@@ -43,8 +46,9 @@ public class DevicesController : ControllerBase
 
         // Retrieve device to validate existence before operation.
         var device = _deviceService.GetDeviceById(deviceId);
+        var ambient = _simulationService.GetAmbientTemperature(device.DeviceLocation); // Get ambient temperature for device location
 
-        var response = DeviceMapper.ToResponse(device);
+        var response = DeviceMapper.ToResponse(device, ambient); // Example ambient temperature
 
         return Ok(response);
     }
@@ -76,8 +80,8 @@ public class DevicesController : ControllerBase
         var registerData = DeviceMapper.MapToRegisterData(request);
         // If Device added, return success status and creation details.
         var device = _deviceService.RegisterDevice(registerData);
-
-        var response = DeviceMapper.ToResponse(device);
+        var ambient = _simulationService.GetAmbientTemperature(device.DeviceLocation); // Get ambient temperature for device location
+        var response = DeviceMapper.ToResponse(device, ambient);
         return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
     }
 
@@ -93,7 +97,8 @@ public class DevicesController : ControllerBase
 
         var context = DeviceMapper.MapToCommandData(request);
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, context);
-        var response = DeviceMapper.ToResponse(updatedDevice);
+        var ambient = _simulationService.GetAmbientTemperature(updatedDevice.DeviceLocation); // Get ambient temperature for device location
+        var response = DeviceMapper.ToResponse(updatedDevice, ambient);
 
         return Ok(response);
 
