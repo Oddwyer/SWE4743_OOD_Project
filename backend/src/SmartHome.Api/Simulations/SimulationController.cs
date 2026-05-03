@@ -23,11 +23,11 @@ public class SimulationController : ControllerBase
     /// </summary>
     [HttpPost("reset")]
     //[ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status501NotImplemented)] // TODO: Implement this endpoint in the service layer and remove this response type.
+    [ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status501NotImplemented)] // TODO: Implement this endpoint in the service layer and remove this response type.
     public IActionResult ResetSimulation()
     {
         _simulationService.ResetSimulation();
-        return Ok(new
+        return Ok(new SimulationResponse
         {
             Message = "Simulation reset successfully."
         });
