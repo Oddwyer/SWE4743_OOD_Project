@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DeviceService } from '../../services/device.service';
+import { DeviceApiService } from '../../services/device.api.service';
 
 // This component displays a list of all devices with their current status and controls.
 import { CardModule } from 'primeng/card';
@@ -20,7 +20,7 @@ export class DeviceList implements OnInit {
   isLoading = true;
 
   constructor(
-    private deviceService: DeviceService,
+    private deviceService: DeviceApiService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -43,5 +43,20 @@ export class DeviceList implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  getDeviceIcon(type: string): string {
+    switch (type?.toLowerCase()) {
+      case 'thermostat':
+        return 'pi pi-gauge';
+      case 'fan':
+        return 'pi pi-sync';
+      case 'doorlock':
+        return 'pi pi-lock';
+      case 'light':
+        return 'pi pi-lightbulb';
+      default:
+        return 'pi pi-home';
+    }
   }
 }

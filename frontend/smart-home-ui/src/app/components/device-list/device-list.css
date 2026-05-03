@@ -2,13 +2,10 @@
     padding: 2rem;
 }
 
+/* HEADER */
 .dashboard-header {
-    margin: 0;
-    padding: 1.25rem 1.5rem;
-    width: fit-content;
-    border-radius: 16px;
+    margin-bottom: 1.5rem;
     color: #ffffff;
-    font-size: x-large;
 }
 
 .dashboard-header h1 {
@@ -16,11 +13,34 @@
     color: #FFFFFF;
 }
 
+.dashboard-header p {
+    margin: 0.25rem 0 0 0;
+    color: #FFFFFF;
+}
+
+/* HEADER CONTENT (LOGO + TEXT) */
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* LOGO (FIXED SIZE) */
+.app-logo {
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* MAIN LAYOUT */
 .dashboard-content {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 1.5rem;
     align-items: start;
+    padding-bottom: 0.5rem;
 }
 
 /* SIMULATION CARD */
@@ -29,22 +49,40 @@
     background: rgba(52, 61, 76, 0.75);
     border-left: 6px solid #343D4C;
     border-radius: 14px;
+    padding: 0.5rem;
     color: #FFFFFF;
-    height: auto;
+}
+
+.simulation-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.simulation-card-header h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    /* controls spacing */
 }
 
 
-/* GRID */
+/* DEVICE GRID */
 .device-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
 }
 
-/* CARD */
+/* DEVICE CARD */
 .device-card {
     background: rgba(223, 231, 251, 0.9);
-    /* slight transparency */
     border-left: 6px solid #343D4C;
     border-radius: 12px;
     padding: 0.5rem;
@@ -55,6 +93,10 @@
     color: #343D4C;
 }
 
+/* ACTIVE DEVICE ACCENT */
+.device-card.active {
+    border-left: 6px solid #a1683a;
+}
 
 /* CARD HEADER */
 .device-card-header {
@@ -68,14 +110,20 @@
     font-weight: 600;
 }
 
-
 /* DETAILS */
 .device-details {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 18px;
+    line-height: 24px;
 }
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 900px) {
     .dashboard {
@@ -83,7 +131,6 @@
     }
 
     .dashboard-header {
-        margin: 0 0 1rem 0;
         width: auto;
     }
 
@@ -126,19 +173,9 @@
         gap: 0.75rem;
     }
 
-    .header-content {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
+    /* slightly smaller logo on phones */
     .app-logo {
-        width: 30px;
-        height: 30px;
-        border-radius: 12px;
-        object-fit: contain;
-        transform: scale(0.8);
-        background: rgba(255, 255, 255, 0.15);
-        padding: 6px;
+        width: 150px;
+        height: 150px;
     }
 }

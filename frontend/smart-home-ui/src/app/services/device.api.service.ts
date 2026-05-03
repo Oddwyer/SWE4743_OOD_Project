@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class DeviceService {
+export class DeviceApiService {
 
   constructor(private http: HttpClient) { }
 
