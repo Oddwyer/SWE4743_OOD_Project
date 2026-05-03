@@ -3,20 +3,36 @@
 }
 
 .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    width: fit-content;
+    border-radius: 16px;
+    color: #ffffff;
+    font-size: x-large;
 }
 
 .dashboard-header h1 {
     margin: 0;
+    color: #FFFFFF;
 }
 
-.dashboard-header p {
-    margin: 0.25rem 0 0 0;
-    color: #343D4C;
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    align-items: start;
 }
+
+/* SIMULATION CARD */
+.simulation-card {
+    min-height: 330px;
+    background: rgba(52, 61, 76, 0.75);
+    border-left: 6px solid #343D4C;
+    border-radius: 14px;
+    color: #FFFFFF;
+    height: auto;
+}
+
 
 /* GRID */
 .device-grid {
@@ -27,10 +43,18 @@
 
 /* CARD */
 .device-card {
-    background: #D1D5DB;
+    background: rgba(223, 231, 251, 0.9);
+    /* slight transparency */
+    border-left: 6px solid #343D4C;
     border-radius: 12px;
     padding: 0.5rem;
+    color: #343D4C;
 }
+
+.device-card * {
+    color: #343D4C;
+}
+
 
 /* CARD HEADER */
 .device-card-header {
@@ -41,12 +65,9 @@
 
 .device-card-header h3 {
     margin: 0;
+    font-weight: 600;
 }
 
-.device-card-header p {
-    margin: 0;
-    font-size: 0.85rem;
-}
 
 /* DETAILS */
 .device-details {
@@ -54,4 +75,70 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+}
+
+@media (max-width: 900px) {
+    .dashboard {
+        padding: 1rem;
+    }
+
+    .dashboard-header {
+        margin: 0 0 1rem 0;
+        width: auto;
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+
+    .simulation-card {
+        min-height: auto;
+    }
+
+    .device-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .dashboard {
+        padding: 0.75rem;
+    }
+
+    .dashboard-header {
+        padding: 1rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-header p {
+        font-size: 0.9rem;
+    }
+
+    .device-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .device-card-header {
+        gap: 0.75rem;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .app-logo {
+        width: 30px;
+        height: 30px;
+        border-radius: 12px;
+        object-fit: contain;
+        transform: scale(0.8);
+        background: rgba(255, 255, 255, 0.15);
+        padding: 6px;
+    }
 }
