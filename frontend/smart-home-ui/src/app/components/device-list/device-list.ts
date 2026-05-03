@@ -15,6 +15,9 @@ import { ButtonModule } from 'primeng/button';
   styleUrls: ['./device-list.css']
 })
 
+// The DeviceList component is responsible for fetching and displaying all devices in the smart home system.
+// It uses the DeviceApiService to retrieve device data and organizes it by location for better user experience.
+
 export class DeviceList implements OnInit {
   devices: any[] = [];
   isLoading = true;
@@ -29,6 +32,7 @@ export class DeviceList implements OnInit {
     this.loadDevices();
   }
 
+  // Load all devices from the API and handle loading state.
   loadDevices() {
     this.deviceService.getAllDevices().subscribe({
       next: (data) => {
@@ -45,6 +49,27 @@ export class DeviceList implements OnInit {
     });
   }
 
+  // Group devices by location for better UI organization.
+  get groupedDevices(): { location: string; devices: any[] }[] {
+    const groups = new Map<string, any[]>();
+
+    for (const device of this.devices) {
+      const location = device.deviceLocation || 'Unknown Location';
+
+      if (!groups.has(location)) {
+        groups.set(location, []);
+      }
+
+      groups.get(location)!.push(device);
+    }
+
+    return Array.from(groups, ([location, devices]) => ({
+      location,
+      devices
+    }));
+  }
+
+  // Helper method to get icon class based on device type.
   getDeviceIcon(type: string): string {
     switch (type?.toLowerCase()) {
       case 'thermostat':
@@ -58,5 +83,15 @@ export class DeviceList implements OnInit {
       default:
         return 'pi pi-home';
     }
+  }
+  // Helper method to get icon class based on device location.
+  getLocationIcon(location: string): string {
+    const loc = location?.toLowerCase();
+
+    if (loc.includes('living')) return 'pi pi-home';
+    if (loc.includes('bedroom')) return 'pi pi-moon';
+    if (loc.includes('entry')) return 'pi pi-sign-in';
+
+    return 'pi pi-map-marker'; // fallback
   }
 }
