@@ -1,1 +1,9 @@
-<p>device-list works!</p>
+<h2>Devices</h2>
+
+<ul>
+    <li *ngFor="let device of devices">
+        {{ device.deviceName }} -
+        {{ device.type.charAt(0).toUpperCase() + device.type.slice(1) }} -
+        {{ device.deviceLocation }}
+    </li>
+</ul>

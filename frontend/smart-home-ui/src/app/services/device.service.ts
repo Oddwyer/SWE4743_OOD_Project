@@ -8,16 +8,29 @@ export class DeviceService {
 
   constructor(private http: HttpClient) { }
 
-  getDevices() {
-    return this.http.get<any[]>('/api/devices');
+  getAllDevices() {
+    return this.http.get<any[]>(`http://localhost:5000/api/devices`);
   }
 
-  getDevice(id: string) {
-    return this.http.get(`/api/devices/${id}`);
+  getDeviceById(id: string) {
+    return this.http.get(`http://localhost:5000/api/devices/${id}`);
   }
 
-  updateDevice(id: string, data: any) {
-    return this.http.put(`/api/devices/${id}`, data);
+  controlDevice(id: string, data: any) {
+    return this.http.put(`http://localhost:5000/api/devices/${id}/commands`, data);
   }
+
+  getDeviceHistory(id: string) {
+    return this.http.get(`http://localhost:5000/api/devices/${id}/history`);
+  }
+
+  registerDevice(data: any) {
+    return this.http.post(`http://localhost:5000/api/devices`, data);
+  }
+
+  removeDevice(id: string) {
+    return this.http.delete(`http://localhost:5000/api/devices/${id}`);
+  }
+
 
 }
