@@ -20,10 +20,19 @@ export class DeviceList implements OnInit {
     this.loadDevices();
   }
 
+  isLoading = true;
+
   loadDevices() {
     this.deviceService.getAllDevices().subscribe({
-      next: (data) => { this.devices = data; console.log('Devices loaded:', data); },
-      error: (err) => { console.error('Error loading devices:', err); alert('Failed to load devices. Please try again later.'); }
+      next: (data) => {
+        this.devices = data;
+        this.isLoading = false;
+        console.log('Devices loaded:', data);
+      },
+      error: (err) => {
+        console.error('Error loading devices:', err);
+        this.isLoading = false;
+      }
     });
   }
 }

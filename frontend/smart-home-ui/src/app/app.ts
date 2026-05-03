@@ -5,6 +5,7 @@ import { DeviceList } from './components/device-list/device-list';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, DeviceList],
+  standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
