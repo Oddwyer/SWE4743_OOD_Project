@@ -2,8 +2,7 @@
 
 <p *ngIf="isLoading">Loading devices...</p>
 
-<p *ngIf="!isLoading">Total: {{ devices.length }}</p>
-<ul>
+<ul *ngIf="!isLoading">
     <li *ngFor="let device of devices">
         <strong>{{ device.deviceName }}</strong>
         <div>Type: {{ device.type }}</div>

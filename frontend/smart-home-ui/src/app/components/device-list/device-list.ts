@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceService } from '../../services/device.service';
 
@@ -11,16 +11,18 @@ import { DeviceService } from '../../services/device.service';
 })
 
 export class DeviceList implements OnInit {
-
   devices: any[] = [];
+  isLoading = true;
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(
+    private deviceService: DeviceService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
+    console.log('DeviceList INIT');
     this.loadDevices();
   }
-
-  isLoading = true;
 
   loadDevices() {
     this.deviceService.getAllDevices().subscribe({
@@ -28,10 +30,12 @@ export class DeviceList implements OnInit {
         this.devices = data;
         this.isLoading = false;
         console.log('Devices loaded:', data);
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Error loading devices:', err);
         this.isLoading = false;
+        this.cdr.detectChanges();
       }
     });
   }

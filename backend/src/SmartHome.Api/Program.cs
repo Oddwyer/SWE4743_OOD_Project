@@ -103,7 +103,7 @@ app.UseSwaggerUI();
 
 app.UseMiddleware<GlobalErrorHandling>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
 
