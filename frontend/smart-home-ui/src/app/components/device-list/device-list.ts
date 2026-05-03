@@ -2,11 +2,16 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceService } from '../../services/device.service';
 
+// This component displays a list of all devices with their current status and controls.
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
+
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardModule, TagModule, ButtonModule],
   styleUrls: ['./device-list.css']
 })
 

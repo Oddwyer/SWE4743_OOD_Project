@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+:root {
+    --app-bg: #ffffff;
+    --card-surface: #d1d5db;
+    --text-primary: #343d4c;
+    --action-primary: #134ecd;
+    --state-accent: #a1683a;
+}
+
+body {
+    margin: 0;
+    background: var(--app-bg);
+    color: var(--text-primary);
+    font-family: Arial, sans-serif;
+}
