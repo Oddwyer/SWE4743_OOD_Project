@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { SliderModule } from 'primeng/slider';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @Component({
   selector: 'app-device-card',
@@ -23,6 +24,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     ToggleSwitch,
     SliderModule,
     ColorPickerModule,
+    SelectButtonModule,
   ],
   templateUrl: './device-card.html',
   styleUrl: './device-card.css',

@@ -25,11 +25,10 @@
             [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
             (click)="toggleLatch()"
           ></button>
-         
-            <span class="device-status-text">
-              {{ getDeviceStatus() }}
-            </span>
-        
+
+          <span class="device-status-text">
+            {{ getDeviceStatus() }}
+          </span>
         </div>
       </div>
       <h3>{{ device.deviceName }}</h3>
@@ -103,6 +102,15 @@
     >
       <div class="control-header">
         <span class="control-label">Fan Speed:</span>
+        <p-selectbutton
+          [options]="fanSpeedOptions"
+          [ngModel]="device.fanSpeed"
+          optionLabel="label"
+          optionValue="value"
+          [disabled]="!device.isDeviceOn"
+          (onChange)="setFanSpeed($event.value)"
+        ></p-selectbutton>
+
         <span class="control-value">{{ device.fanSpeed | titlecase }}</span>
       </div>
     </div>

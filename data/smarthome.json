@@ -3924,6 +3924,18 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-04T15:58:48.8722588Z",
       "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "e10e8e5b-ae3e-4b43-83c0-7ed893ff5ce5",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T15:59:34.5082619Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "44de80be-25dd-4b37-8d09-4de3b9da390f",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T15:59:35.1315909Z",
+      "Operation": "Powered on Right Side Table Lamp."
     }
   ],
   "Locations": [
