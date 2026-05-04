@@ -98,22 +98,23 @@
 
     <div
       *ngIf="device.fanSpeed !== null"
-      class="control-row inline-control-row"
+      class="control-row speed-row"
       [class.control-disabled]="!device.isDeviceOn"
     >
       <span class="control-label">Fan Speed:</span>
-
-      <p-selectButton
-        styleClass="fan-speed-buttons"
-        [options]="fanSpeedOptions"
-        [(ngModel)]="device.fanSpeed"
-        optionLabel="label"
-        optionValue="value"
-        [disabled]="!device.isDeviceOn"
-        (onChange)="setFanSpeed($event.value)"
-      ></p-selectButton>
+      <div class="fan-speed-buttons">
+        <button
+          type="button"
+          *ngFor="let option of fanSpeedOptions"
+          class="fan-speed-button"
+          [class.selected]="device.fanSpeed === option.value"
+          [disabled]="!device.isDeviceOn"
+          (click)="setFanSpeed(option.value)"
+        >
+          {{ option.label }}
+        </button>
+      </div>
     </div>
-
     <div
       *ngIf="device.thermostatMode !== null"
       class="control-row mode-row"

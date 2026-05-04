@@ -309,24 +309,43 @@
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .speed-row .control-label {
   white-space: nowrap;
 }
 
-:host ::ng-deep .fan-speed-buttons {
+.fan-speed-buttons {
+  display: flex;
   width: 100%;
+  gap: 0.15rem;
   min-width: 0;
 }
 
-:host ::ng-deep .fan-speed-buttons .p-togglebutton {
+.fan-speed-button {
+  flex: 1;
   min-width: 0;
-  padding: 0.2rem 0.15rem;
+  padding: 0.25rem 0.2rem;
   font-size: 0.7rem;
-  justify-content: center;
+  border: 1px solid rgba(52, 61, 76, 0.35);
+  background: rgba(255, 255, 255, 0.45);
+  color: #343d4c;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
+.fan-speed-button.selected {
+  background: #28a745;
+  border-color: #28a745;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.fan-speed-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 /* =========================
    RESPONSIVE
    ========================= */

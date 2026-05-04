@@ -71,7 +71,6 @@ export class DeviceCardComponent {
     // Send the control command to the API and refresh the device list on success.
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
       next: (updatedDevice: any) => {
-        Object.assign(this.device, updatedDevice);
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
@@ -97,12 +96,11 @@ export class DeviceCardComponent {
     // Send the control command to the API and refresh the device list on success.
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
       next: (updatedDevice: any) => {
-        Object.assign(this.device, updatedDevice);
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
-        console.error('Could not toggle door lock.', err);
         this.device.isLocked = previousLatchState;
+        console.error('Could not toggle door lock.', err);
       },
     });
   }
@@ -125,16 +123,17 @@ export class DeviceCardComponent {
   setBrightness(brightness: number): void {
     const previousBrightness = this.device.lightBrightness;
 
+    this.device.lightBrightness = brightness;
+
     const request = { command: 'setBrightness', brightness };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
       next: (updatedDevice: any) => {
-        Object.assign(this.device, updatedDevice);
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
-        console.error('Failed to set brightness', err);
         this.device.lightBrightness = previousBrightness;
+        console.error('Failed to set brightness', err);
       },
     });
   }
@@ -145,29 +144,34 @@ export class DeviceCardComponent {
 
     const normalizedColor = color.startsWith('#') ? color : `#${color}`;
 
+    this.device.lightColor = normalizedColor;
+
     const request = { command: 'setColor', color: normalizedColor };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
       next: (updatedDevice: any) => {
-        Object.assign(this.device, updatedDevice);
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
-        console.error('Failed to change color', err);
         this.device.lightColor = previousColor;
+        console.error('Failed to change color', err);
       },
     });
   }
 
   setFanSpeed(speed: string): void {
+    const previousSpeed = this.device.fanSpeed;
+
+    this.device.fanSpeed = speed;
+
     const request = { command: 'setFanSpeed', fanSpeed: speed };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        Object.assign(this.device, updatedDevice);
+      next: (updatedDevice) => {
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
+        this.device.fanSpeed = previousSpeed;
         console.error('Failed to set fan speed', err);
       },
     });
