@@ -33,9 +33,9 @@ export class DeviceCardComponent {
   @Input({ required: true }) device!: any;
 
   fanSpeedOptions = [
-    { label: 'Lo', value: 'low' },
+    { label: 'Low', value: 'low' },
     { label: 'Med', value: 'medium' },
-    { label: 'Hi', value: 'high' },
+    { label: 'High', value: 'high' },
   ];
 
   constructor(private deviceApiService: DeviceApiService) {}

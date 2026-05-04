@@ -61,8 +61,8 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#757573",
-      "LightBrightness": 75,
+      "LightColor": "#adad84",
+      "LightBrightness": 55,
       "FanSpeed": null
     },
     {
@@ -5238,6 +5238,102 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-04T21:29:07.3365974Z",
       "Operation": "Set light color to #757573 for Left Side Table Lamp."
+    },
+    {
+      "Id": "3e7b4080-eb3b-4e1f-a94d-d5f23db06348",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T21:47:14.2009521Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "4cf4f9c4-6ea1-43b4-8cb8-2bd595d0282c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T21:47:15.1595407Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "298db26b-2a86-447e-b108-ddee384079d5",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T21:47:15.8298861Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "7efbe347-d3a4-44f7-bc28-7b3e2cdf0523",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T21:47:16.4699394Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "30751c3e-daa5-413c-ad63-750599389e8b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T21:47:17.7641121Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "4c821a6a-4ade-4a72-b981-90adf4f1df28",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T21:47:18.2448329Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "c7c97cb4-e9f1-4417-bc8d-6fe21bd3e130",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T21:47:20.9682898Z",
+      "Operation": "Set light brightness to 55% for Left Side Table Lamp."
+    },
+    {
+      "Id": "e20667fd-479e-4281-a8f2-19f59d26dc87",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T21:47:22.9565902Z",
+      "Operation": "Set light color to #b0b054 for Left Side Table Lamp."
+    },
+    {
+      "Id": "a346c486-c7d8-4ece-b86b-73c45830e2f9",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T21:47:24.4742551Z",
+      "Operation": "Set light color to #adad84 for Left Side Table Lamp."
+    },
+    {
+      "Id": "90841836-a1b2-4a00-af8a-28da357c5c51",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T21:47:30.4300544Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "ff63f4ac-96d8-47d4-b624-63c073ffe459",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T21:47:31.3800489Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "297ba6a2-e526-4f31-922a-b3b1bd7a7c86",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T21:47:36.6874413Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "b74fc7b2-0894-4424-98d0-2fb341bd8040",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T21:47:37.9472496Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "36e393a6-9515-49a7-b15d-6ca9ae396581",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T21:47:38.8563794Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "250181b7-948e-440e-9d4e-7d1ce0127868",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T22:01:25.8626888Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "6803c72f-1dc1-4f4f-b511-7392f425efe0",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T22:01:27.6789354Z",
+      "Operation": "Powered on Ceiling Fan."
     }
   ],
   "Locations": [
