@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-
 namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 /// <summary>

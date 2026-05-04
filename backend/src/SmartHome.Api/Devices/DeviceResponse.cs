@@ -1,6 +1,7 @@
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 
 namespace SmartHome.Api.Devices;
 
@@ -28,6 +29,7 @@ public class DeviceResponse : BaseDevice
 
     // Thermostat
     public ThermostatMode? ThermostatMode { get; set; }
+    public ThermostatStateType? ThermostatState { get; set; }
     public int? TargetTemperature { get; set; }
     public int? AmbientTemperature { get; set; }
 

@@ -7,7 +7,6 @@ namespace SmartHome.Domain.Commands.Power;
 /// </summary>
 public class TogglePowerCommand : DeviceCommand
 {
-    public override string CommandDescription => $"Toggled power of {ManipulatedDevice.DeviceName}.";
 
     private IPoweredDevice _poweredDevice;
 
@@ -23,6 +22,9 @@ public class TogglePowerCommand : DeviceCommand
     {
 
         _poweredDevice.TogglePower();
+        _commandDescription = _poweredDevice.PowerState == DevicePowerState.On
+       ? $"Powered on {ManipulatedDevice.DeviceName}."
+       : $"Powered off {ManipulatedDevice.DeviceName}.";
 
     }
 }

@@ -1,5 +1,6 @@
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices.DoorLock;
+using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Commands;
 
@@ -8,7 +9,6 @@ namespace SmartHome.Domain.Commands;
 /// </summary> 
 public class ToggleLockCommand : DeviceCommand
 {
-    public override string CommandDescription => $"Locked {_doorLock.DeviceName}.";
 
     private readonly DoorLocks _doorLock;
 
@@ -24,6 +24,9 @@ public class ToggleLockCommand : DeviceCommand
     {
 
         _doorLock.ToggleLock();
+        _commandDescription = _doorLock.LatchState == DeviceLatchState.Locked
+             ? $"Locked {_doorLock.DeviceName}."
+             : $"Unlocked {_doorLock.DeviceName}.";
 
     }
 

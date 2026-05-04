@@ -21,11 +21,9 @@ public class DoorLocks : Device, ILatchedDevice
         _currentState = Locked; // Default state is locked.
     }
 
-    /// <summary>
-    /// Current latch state of the lock.
-    /// </summary>
-    public DeviceLatchState LatchState => _latchState;
 
+    // Helper property to expose current state type for API responses and persistence.     
+    public DeviceLatchState LatchState => _latchState;
     /// <summary>
     /// Indicates whether the door lock is currently locked (on) or unlocked (off).
     /// </summary>

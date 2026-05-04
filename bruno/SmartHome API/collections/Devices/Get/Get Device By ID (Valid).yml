@@ -1,0 +1,17 @@
+info:
+  name: Get Device By ID (Valid)
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/Devices/6bac8a57-3997-4669-9848-bd88a13e8855"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies retrieval of an existing device by valid ID.

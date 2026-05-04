@@ -12,8 +12,6 @@ public class SetFanSpeedCommand : DeviceCommand
     public FanSpeed NewSpeed { get; }
 
     private readonly FanDevice _fanDevice;
-    public override string CommandDescription => $"Set fan speed to {NewSpeed} for {_fanDevice.DeviceName}.";
-
     public SetFanSpeedCommand(FanDevice device, FanSpeed newSpeed) : base(device)
     {
         NewSpeed = newSpeed;
@@ -27,6 +25,7 @@ public class SetFanSpeedCommand : DeviceCommand
     {
 
         _fanDevice.SetFanSpeed(NewSpeed);
+        _commandDescription = $"Set fan speed to {NewSpeed} for {_fanDevice.DeviceName}.";
 
     }
 

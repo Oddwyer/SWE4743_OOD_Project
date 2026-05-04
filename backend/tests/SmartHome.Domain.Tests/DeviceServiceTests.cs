@@ -4,19 +4,22 @@ using System.Linq;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Locations;
+using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.DoorLock;
-using SmartHome.Domain.Devices.Thermostat;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
 
 public class DeviceServiceTests
 {
-    private class FakeDeviceRepository : IDeviceRepository
+    private class FakeDeviceRepository : IDeviceRepository, ILocationRepository
     {
         private readonly Dictionary<Guid, IDevice> _devices = new();
         private readonly List<CommandHistoryEntry> _history = new();
+        private readonly Dictionary<string, int> _ambientTemperatures = new();
 
         public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
         {
@@ -56,6 +59,16 @@ public class DeviceServiceTests
         {
             _history.Add(entry);
         }
+
+        public int? GetAmbientTemperature(string location)
+        {
+            return _ambientTemperatures.TryGetValue(location, out var temperature) ? temperature : 70;
+        }
+
+        public void SaveAmbientTemperature(string location, int temperature)
+        {
+            _ambientTemperatures[location] = temperature;
+        }
     }
 
     private class FakeDeviceFactory : IDeviceFactory
@@ -87,9 +100,32 @@ public class DeviceServiceTests
         }
     }
 
+    private class FakeSimulationService : ISimulationService
+    {
+        private readonly Dictionary<string, int> _ambientTemperatures = new();
+
+        public void SetAmbientTemperature(string location, int temperature)
+        {
+            _ambientTemperatures[location] = temperature;
+        }
+
+        public int GetAmbientTemperature(string location)
+        {
+            return _ambientTemperatures.TryGetValue(location, out var temperature) ? temperature : 70;
+        }
+
+        public void SetSimulationSpeed(SimulationSpeed speedMultiplier)
+        {
+        }
+
+        public void ResetSimulation()
+        {
+        }
+    }
+
     private static DeviceService CreateDeviceService(FakeDeviceRepository repository)
     {
-        return new DeviceService(repository, new FakeDeviceFactory(), new FakeCommandFactory());
+        return new DeviceService(new FakeSimulationService(), repository, new FakeDeviceFactory(), new FakeCommandFactory(), repository);
     }
 
     [Fact]

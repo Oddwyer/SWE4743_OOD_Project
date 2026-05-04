@@ -9,6 +9,8 @@ using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+using SmartHome.Domain.Locations;
+using SmartHome.Domain.Simulations;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
@@ -20,7 +22,7 @@ public class CommandHistoryTests
     {
         var repository = new FakeDeviceRepository();
         var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
-        var service = new DeviceService(repository, TestHelper.CreateDeviceFactory(), commandFactory);
+        var service = new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), commandFactory, repository);
 
         var light = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
         repository.SaveDevice(light);
@@ -40,7 +42,7 @@ public class CommandHistoryTests
     {
         var repository = new FakeDeviceRepository();
         var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
-        var service = new DeviceService(repository, TestHelper.CreateDeviceFactory(), commandFactory);
+        var service = new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), commandFactory, repository);
 
         var fan = new FanDevice(Guid.NewGuid(), "DeskFan", "Office");
         repository.SaveDevice(fan);
@@ -59,8 +61,16 @@ public class CommandHistoryTests
     {
         var repository = new FakeDeviceRepository();
         var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
-        var service = new DeviceService(repository, TestHelper.CreateDeviceFactory(), commandFactory);
+        var service = new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), commandFactory, repository);
 
         Assert.Throws<KeyNotFoundException>(() => service.ApplyDeviceCommand(Guid.NewGuid(), new CommandData { Command = DeviceCommandType.TogglePower }));
+    }
+
+    private class FakeSimulationService : ISimulationService
+    {
+        public void SetAmbientTemperature(string location, int temperature) { }
+        public int GetAmbientTemperature(string location) => 70;
+        public void SetSimulationSpeed(SimulationSpeed speedMultiplier) { }
+        public void ResetSimulation() { }
     }
 }

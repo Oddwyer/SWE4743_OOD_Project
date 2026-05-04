@@ -12,7 +12,7 @@ public class SimulationService : ISimulationService
 {
     private readonly Dictionary<string, int> _ambientTemperatures = new();
     private readonly Dictionary<string, ThermostatDevice> _registeredThermostats = new Dictionary<string, ThermostatDevice>();
-    private const int DefaultAmbientTemperature = 72;
+    private int defaultAmbientTemperature = 72;
     private readonly ILocationRepository _locationRepository;
     private readonly SimulationTicker _ticker;
 
@@ -43,8 +43,8 @@ public class SimulationService : ISimulationService
             throw new ArgumentOutOfRangeException(nameof(temperature), "Temperature must be between 0 and 120.");
         }
 
-        _locationRepository.SaveAmbientTemperature(location, temperature);
-        _ambientTemperatures[location] = temperature;
+        _locationRepository.SaveAmbientTemperature(Normalize(location), temperature);
+
     }
 
     /// <summary>
@@ -57,7 +57,9 @@ public class SimulationService : ISimulationService
             throw new ArgumentException("No location provided.");
         }
 
-        return _locationRepository.GetAmbientTemperature(location) ?? DefaultAmbientTemperature;
+        var ambientTemperature = _locationRepository.GetAmbientTemperature(Normalize(location));
+
+        return ambientTemperature ?? defaultAmbientTemperature;
     }
 
     public void UpdateAmbientTemperature()
@@ -117,8 +119,8 @@ public class SimulationService : ISimulationService
 
         foreach (var location in _ambientTemperatures.Keys.ToList())
         {
-            _ambientTemperatures[location] = DefaultAmbientTemperature;
-            _locationRepository.SaveAmbientTemperature(location, DefaultAmbientTemperature);
+            _ambientTemperatures[location] = defaultAmbientTemperature;
+            _locationRepository.SaveAmbientTemperature(location, defaultAmbientTemperature);
         }
     }
 
@@ -130,7 +132,7 @@ public class SimulationService : ISimulationService
 
             if (!_ambientTemperatures.ContainsKey(thermostat.DeviceLocation))
             {
-                SetAmbientTemperature(thermostat.DeviceLocation, DefaultAmbientTemperature);
+                SetAmbientTemperature(thermostat.DeviceLocation, defaultAmbientTemperature);
             }
         }
         
@@ -151,4 +153,6 @@ public class SimulationService : ISimulationService
             throw new InvalidOperationException("Thermostat is not registered.");
         }
     }
+
+    private static string Normalize(string location) => location.Trim().ToLowerInvariant();
 }
