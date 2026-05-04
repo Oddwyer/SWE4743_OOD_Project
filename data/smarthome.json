@@ -124,7 +124,7 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Cooling",
-      "ThermostatMode": 3,
+      "ThermostatMode": 2,
       "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
@@ -5334,6 +5334,18 @@
       "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
       "Timestamp": "2026-05-04T22:01:27.6789354Z",
       "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "65e6fc40-3b10-4db4-b484-e3b5a1c77126",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:08:00.6572122Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "f7aae35f-e139-4d7a-8f90-afa47e1f1f7f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:08:10.1772711Z",
+      "Operation": "Set mode to Cool for Thermostat."
     }
   ],
   "Locations": [

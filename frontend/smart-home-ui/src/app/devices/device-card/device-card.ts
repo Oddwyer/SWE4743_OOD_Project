@@ -74,7 +74,7 @@ export class DeviceCardComponent {
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
-        console.error('Failed to toggle power', err);
+        console.error('Failed to toggle power.', err);
         this.device.isDeviceOn = previousPowerState;
       },
     });
@@ -100,7 +100,7 @@ export class DeviceCardComponent {
       },
       error: (err) => {
         this.device.isLocked = previousLatchState;
-        console.error('Could not toggle door lock.', err);
+        console.error('Failed to toggle door lock.', err);
       },
     });
   }
@@ -133,7 +133,7 @@ export class DeviceCardComponent {
       },
       error: (err) => {
         this.device.lightBrightness = previousBrightness;
-        console.error('Failed to set brightness', err);
+        console.error('Failed to set brightness.', err);
       },
     });
   }
@@ -154,7 +154,7 @@ export class DeviceCardComponent {
       },
       error: (err) => {
         this.device.lightColor = previousColor;
-        console.error('Failed to change color', err);
+        console.error('Failed to set color.', err);
       },
     });
   }
@@ -172,8 +172,29 @@ export class DeviceCardComponent {
       },
       error: (err) => {
         this.device.fanSpeed = previousSpeed;
-        console.error('Failed to set fan speed', err);
+        console.error('Failed to set fan speed.', err);
       },
     });
   }
+
+  // Set mode for thermostat.
+  setThermostatMode(mode: string): void {
+    const previousMode = this.device.mode;
+
+    this.device.mode = mode;
+
+    const request = { command: 'setThermostatMode', mode: mode };
+
+    this.deviceApiService.controlDevice(this.device.id, request).subscribe({
+      next: (updatedDevice) => {
+        console.log('FROM API:', updatedDevice);
+      },
+      error: (err) => {
+        this.device.mode = previousMode;
+        console.error('Failed to set thermostat mode.', err);
+      },
+    });
+  }
+
+  // SetTargetTemperature
 }
