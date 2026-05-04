@@ -9,13 +9,14 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { SliderModule } from 'primeng/slider';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
   imports: [CommonModule, CardModule, TagModule, ButtonModule, FormsModule,
-    ToggleSwitch, SliderModule],
+    ToggleSwitch, SliderModule, ColorPickerModule],
   styleUrls: ['./device-list.css']
 })
 

@@ -95,7 +95,17 @@
                                     (onSlideEnd)="setBrightness(device, device.lightBrightness)">
                                 </p-slider>
                             </div>
-                            <div *ngIf="device.lightColor !== null">Color: {{ device.lightColor }}</div>
+                            <div *ngIf="device.lightColor !== null" class="control-row color-row"
+                                [class.control-disabled]="!device.isDeviceOn">
+                                <div class="control-header">
+                                    <span class="control-label">Color: </span>
+                                    <span>{{ device.lightColor }}</span>
+                                </div>
+
+                                <p-colorpicker [(ngModel)]="device.lightColor" [disabled]="!device.isDeviceOn"
+                                    (onColorSelect)="changeColor(device, device.lightColor)">
+                                </p-colorpicker>
+                            </div>
                             <div *ngIf="device.fanSpeed !== null">Speed: {{ device.fanSpeed }}</div>
                             <div *ngIf="device.thermostatMode !== null">Mode: {{ device.thermostatMode | titlecase }}
                             </div>
