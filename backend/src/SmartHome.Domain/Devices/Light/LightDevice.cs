@@ -70,7 +70,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     /// <summary>
     /// Requests a color change. The current state decides if it is allowed.
     /// </summary>
-    public void ChangeColor(string newColor)
+    public void SetColor(string newColor)
     {
         _currentState.ChangeColor(newColor);
     }

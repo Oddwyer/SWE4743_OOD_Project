@@ -20,7 +20,7 @@ public class DeviceTransitionTests
 
         Assert.True(light.IsDeviceOn);
 
-        light.ChangeColor("Blue");
+        light.SetColor("Blue");
         light.SetLightBrightness(50);
 
         Assert.Equal("Blue", light.Color);

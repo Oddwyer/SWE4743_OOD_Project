@@ -13,6 +13,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 
 @Component({
   selector: 'app-device-card',
+  standalone: true,
   imports: [
     CommonModule,
     CardModule,
@@ -131,7 +132,7 @@ export class DeviceCardComponent {
   }
 
   // Select color for light devices.
-  changeColor(color: string): void {
+  setColor(color: string): void {
     const previousColor = this.device.lightColor;
 
     const normalizedColor = color.startsWith('#') ? color : `#${color}`;

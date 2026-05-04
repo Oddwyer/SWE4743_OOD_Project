@@ -26,16 +26,14 @@
         <span class="icon">🌡</span>
         <div class="simulation-header">
           <span class="simulation-label">Ambient Temperature:</span>
-         
         </div>
-        
       </div>
 
       <div class="setting-row">
         <i class="pi pi-bolt"></i>
         <div class="simulation-header">
-        <span class="simulation-label">Speed:</span>
-        <span>1x</span>
+          <span class="simulation-label">Speed:</span>
+          <span>1x</span>
         </div>
       </div>
     </p-card>
@@ -49,142 +47,11 @@
             <i [class]="getLocationIcon(group.location)"></i>
             {{ group.location }}
           </h2>
-
           <div class="location-divider"></div>
-
           <div class="device-grid">
-            <p-card *ngFor="let device of group.devices" styleClass="device-card">
-              <!-- Card header with device name, location, and power toggle -->
-              <ng-template pTemplate="header">
-                <div class="device-card-header">
-                  <div class="device-header-top">
-                    <i [class]="getDeviceIcon(device.type)"></i>
-
-                    <div class="device-status-inline">
-                      <!-- Powered Devices -->
-                      <button
-                        *ngIf="canTogglePower(device)"
-                        pButton
-                        icon="pi pi-power-off"
-                        class="p-button-text p-button-sm"
-                        [ngClass]="device.isDeviceOn ? 'power-on' : 'power-off'"
-                        (click)="toggleDevicePower(device)"
-                      ></button>
-
-                      <!-- Latched Devices -->
-                      <button
-                        *ngIf="canToggleLatch(device)"
-                        pButton
-                        [icon]="device.isLocked ? 'pi pi-lock' : 'pi pi-lock-open'"
-                        class="p-button-text p-button-sm latch-button"
-                        [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
-                        (click)="toggleLatch(device)"
-                      ></button>
-                      <span class="device-status-text">
-                        <span class="device-status-text">
-                          {{ getDeviceStatus(device) }}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                  <h3>{{ device.deviceName }}</h3>
-                  <h4>{{ device.type | titlecase }}</h4>
-                </div>
-              </ng-template>
-
-              <!-- Device card contents -->
-              <div class="device-details">
-                <div class="power-row" *ngIf="canTogglePower(device)">
-                  <span class="power-label">Power</span>
-
-                  <p-toggleswitch
-                    [ngModel]="device.isDeviceOn"
-                    (onChange)="toggleDevicePower(device)"
-                  ></p-toggleswitch>
-                </div>
-
-                <div class="power-row" *ngIf="canToggleLatch(device)">
-                  <span class="lock-label">Lock</span>
-
-                  <p-toggleswitch
-                    [ngModel]="device.isLocked"
-                    (onChange)="toggleLatch(device)"
-                  ></p-toggleswitch>
-                </div>
-
-                <div
-                  *ngIf="device.lightBrightness !== null"
-                  class="control-row brightness-row"
-                  [class.control-disabled]="!device.isDeviceOn"
-                >
-                  <div class="control-header">
-                    <span class="control-label">Brightness:</span>
-                    <span>{{ device.lightBrightness }}%</span>
-                  </div>
-
-                  <p-slider
-                    [(ngModel)]="device.lightBrightness"
-                    [min]="10"
-                    [max]="100"
-                    [disabled]="!device.isDeviceOn"
-                    (onSlideEnd)="setBrightness(device, device.lightBrightness)"
-                  ></p-slider>
-                </div>
-                <div
-                  *ngIf="device.lightColor !== null"
-                  class="control-row color-row"
-                  [class.control-disabled]="!device.isDeviceOn"
-                >
-                  <div class="control-header">
-                    <span class="control-label">Color:</span>
-                    <div class="color-display">
-                      <p-colorpicker
-                        [(ngModel)]="device.lightColor"
-                        [disabled]="!device.isDeviceOn"
-                        (onChange)="changeColor(device, device.lightColor)"
-                        styleClass="color-picker-square"
-                      ></p-colorpicker>
-
-                      <span class="color-value">
-                        {{ device.lightColor | uppercase }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  *ngIf="device.fanSpeed !== null"
-                  class="control-row speed-row"
-                  [class.control-disabled]="!device.isDeviceOn"
-                >
-                  <div class="control-header">
-                    <span class="control-label">Fan Speed:</span>
-                    <span>{{ device.fanSpeed | titlecase }}</span>
-                  </div>
-                </div>
-                <div
-                  *ngIf="device.thermostatMode !== null"
-                  class="control-row mode-row"
-                  [class.control-disabled]="!device.isDeviceOn"
-                >
-                  <div class="control-header">
-                    <span class="control-label">Mode:</span>
-                    <span>{{ device.thermostatMode | titlecase }}</span>
-                  </div>
-                </div>
-                <div *ngIf="device.targetTemperature !== null">
-                  <div class="control-header">
-                    <span class="control-label">Target:</span>
-                    <span>{{ device.targetTemperature }}°F</span>
-                  </div>
-                </div>
-                <div *ngIf="device.isLocked !== null">
-                  <div class="control-header">
-                    <span class="control-label">Latch:</span>
-                    <span>{{ device.isLocked ? 'Locked' : 'Unlocked' }}</span>
-                  </div>
-                </div>
-              </div>
-            </p-card>
+            @for (device of group.devices; track device.id) {
+              <app-device-card [device]="device"></app-device-card>
+            }
           </div>
         </section>
       }

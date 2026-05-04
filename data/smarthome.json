@@ -35,7 +35,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#FFFFFF",
+      "LightColor": "#ffffff",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -57,11 +57,11 @@
       "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#f2f1ae",
+      "LightColor": "#b5b5a5",
       "LightBrightness": 75,
       "FanSpeed": null
     },
@@ -74,7 +74,7 @@
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#FFFFFF",
+      "LightColor": "#c79dc7",
       "LightBrightness": 65,
       "FanSpeed": null
     },
@@ -3168,6 +3168,402 @@
       "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
       "Timestamp": "2026-05-04T13:10:38.9915218Z",
       "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "659c86fd-b9e4-433c-9c3c-735bdf8fabeb",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:23.9167419Z",
+      "Operation": "Set light color to #d173d1 for Left Sconce."
+    },
+    {
+      "Id": "eaa0ab27-9087-4a43-9f52-8f7f29d8f8cf",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:35.9885775Z",
+      "Operation": "Set light color to #deafde for Left Sconce."
+    },
+    {
+      "Id": "35272a99-16e2-402c-9ec3-c158656da275",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:46.0088645Z",
+      "Operation": "Set light color to #dedaaf for Left Sconce."
+    },
+    {
+      "Id": "4c707aed-cd73-4749-a890-a29772e06226",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:48.8964536Z",
+      "Operation": "Set light color to #dbd8b6 for Left Sconce."
+    },
+    {
+      "Id": "504c9e31-6dff-41ff-bc70-f44cdcb1225a",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:48.9574323Z",
+      "Operation": "Set light color to #dbd9ba for Left Sconce."
+    },
+    {
+      "Id": "e88ae711-9ac9-46c1-865f-80cdba96caa6",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:48.9902615Z",
+      "Operation": "Set light color to #dbd8b8 for Left Sconce."
+    },
+    {
+      "Id": "87402909-8948-426d-ab55-3669b5f9f741",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.0047104Z",
+      "Operation": "Set light color to #dbd9bd for Left Sconce."
+    },
+    {
+      "Id": "3a542d30-aa91-4710-9097-60fbdba40158",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.0135692Z",
+      "Operation": "Set light color to #d9d6b8 for Left Sconce."
+    },
+    {
+      "Id": "d5a584e3-68af-493e-942d-17aff1b81646",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.0290669Z",
+      "Operation": "Set light color to #d9d7c3 for Left Sconce."
+    },
+    {
+      "Id": "20a54051-6ed7-4b88-9686-57a77981d410",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.0570808Z",
+      "Operation": "Set light color to #d9d7ca for Left Sconce."
+    },
+    {
+      "Id": "2232df4c-e5d6-4e6c-8a8b-e33fd3201b45",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.0881357Z",
+      "Operation": "Set light color to #dbdbdb for Left Sconce."
+    },
+    {
+      "Id": "bcd604fe-76f5-410c-bd7c-60e2ed828889",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1014028Z",
+      "Operation": "Set light color to #dedede for Left Sconce."
+    },
+    {
+      "Id": "43222544-9aee-4563-a858-f2254a845e6b",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1152686Z",
+      "Operation": "Set light color to #e0e0e0 for Left Sconce."
+    },
+    {
+      "Id": "6cb7bd4c-ee33-443f-8602-b557dc0aac92",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1235513Z",
+      "Operation": "Set light color to #e0e0e0 for Left Sconce."
+    },
+    {
+      "Id": "ff7a33a2-1bd1-4038-a84d-a416c82b36d0",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1326439Z",
+      "Operation": "Set light color to #e3e3e3 for Left Sconce."
+    },
+    {
+      "Id": "2aede091-242c-49fa-9630-9ab97fd08edd",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1416171Z",
+      "Operation": "Set light color to #e6e6e6 for Left Sconce."
+    },
+    {
+      "Id": "66550dd9-9f4b-4523-874e-3518b39922c0",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1515742Z",
+      "Operation": "Set light color to #e8e8e8 for Left Sconce."
+    },
+    {
+      "Id": "75f5a20d-a276-4447-b1f7-63a98cbb85ea",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1556676Z",
+      "Operation": "Set light color to #e8e8e8 for Left Sconce."
+    },
+    {
+      "Id": "dbb8cfc5-ef9d-4acc-852f-1a559ce7a7dd",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1627253Z",
+      "Operation": "Set light color to #e8e8e8 for Left Sconce."
+    },
+    {
+      "Id": "304381f0-8e84-4ecd-8310-b2fa94288b2c",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.1734457Z",
+      "Operation": "Set light color to #ebebeb for Left Sconce."
+    },
+    {
+      "Id": "cdf56cf0-6eab-4710-9242-4459aeec264b",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3428393Z",
+      "Operation": "Set light color to #ededed for Left Sconce."
+    },
+    {
+      "Id": "16429249-649b-4d28-a2bb-c2c876dabbc7",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3508369Z",
+      "Operation": "Set light color to #ededed for Left Sconce."
+    },
+    {
+      "Id": "ed656df6-c2a4-4a17-9156-8b9d5c29309a",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3612784Z",
+      "Operation": "Set light color to #f0f0f0 for Left Sconce."
+    },
+    {
+      "Id": "87514f6f-37f6-4a50-a927-eb40a774f797",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3681278Z",
+      "Operation": "Set light color to #f2f2f2 for Left Sconce."
+    },
+    {
+      "Id": "d41d2e3b-4dac-4f1d-b617-e5780388d2da",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3758613Z",
+      "Operation": "Set light color to #f2f2f2 for Left Sconce."
+    },
+    {
+      "Id": "83811cc9-8251-406a-b8cf-2af4b8ba4ff0",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3843348Z",
+      "Operation": "Set light color to #fcfcfc for Left Sconce."
+    },
+    {
+      "Id": "77a7087a-50f0-4c91-94c4-0a3701211b20",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.3981095Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "4c7e20f3-2537-462f-9fae-b850e9c0145c",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4083227Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "0233566b-40e4-42ef-a45f-6db36dd81d2d",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4152928Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "41673126-0b1a-41ae-ae52-9ef138d09e7b",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4309429Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "eb4132e9-8b0a-4b0b-9671-816367fc318d",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4415532Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "5b27e7aa-a897-4899-8938-5373c2ffa56c",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4531886Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "37840236-2baf-452d-9dd8-c6178b67e568",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4668471Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "9b1e8e87-5ffa-4a3d-8b48-79c6c7c9a64a",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.4855328Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "fa85c3ac-a1c3-4c02-9a35-208eaa3efe82",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T14:32:49.5620154Z",
+      "Operation": "Set light color to #ffffff for Left Sconce."
+    },
+    {
+      "Id": "a5c02d0f-bf8e-4c1b-9b6c-bfc02077a2d0",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:26.9408782Z",
+      "Operation": "Set light color to #c9c98b for Left Side Table Lamp."
+    },
+    {
+      "Id": "c7e1988c-77ff-4a8d-8239-cefbb42f3f96",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:26.9991114Z",
+      "Operation": "Set light color to #c9c989 for Left Side Table Lamp."
+    },
+    {
+      "Id": "15eccc0d-7906-49cf-98a9-dd2394945289",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:28.0113715Z",
+      "Operation": "Set light color to #73725e for Left Side Table Lamp."
+    },
+    {
+      "Id": "6d17716a-1c74-41a5-b0a4-a65a82421d2c",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:28.897318Z",
+      "Operation": "Set light color to #4d4c30 for Left Side Table Lamp."
+    },
+    {
+      "Id": "f178b0db-8879-48ef-8b8a-c14b5d5ca180",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:49.16621Z",
+      "Operation": "Set light color to #525118 for Left Side Table Lamp."
+    },
+    {
+      "Id": "43deaf9c-2b72-4ed0-be5b-b708906ca1f2",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:52.2604158Z",
+      "Operation": "Set light color to #c7c7b7 for Left Side Table Lamp."
+    },
+    {
+      "Id": "bf68ffe9-e928-474e-bd1b-805acf1aa01b",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:52.3674035Z",
+      "Operation": "Set light color to #c7c6ab for Left Side Table Lamp."
+    },
+    {
+      "Id": "aabb4eae-aa73-4483-849d-c391aab085a0",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:53.8308854Z",
+      "Operation": "Set light color to #949365 for Left Side Table Lamp."
+    },
+    {
+      "Id": "6242ff87-9e87-4e4c-ba24-30daf5a78faf",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:53.8792647Z",
+      "Operation": "Set light color to #94936c for Left Side Table Lamp."
+    },
+    {
+      "Id": "9ea2b070-5e3e-414f-af65-e14cc8e06114",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:53.9221404Z",
+      "Operation": "Set light color to #94936a for Left Side Table Lamp."
+    },
+    {
+      "Id": "73b43119-21e8-4098-b23d-ccb1c7d02688",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:53.9417317Z",
+      "Operation": "Set light color to #94936a for Left Side Table Lamp."
+    },
+    {
+      "Id": "15a1edc5-b949-44b7-aef9-9ae57624994b",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:54.4450828Z",
+      "Operation": "Set light color to #6b6a3a for Left Side Table Lamp."
+    },
+    {
+      "Id": "6fa7edab-10fe-4077-9e5d-47e72150cc40",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:54.4791853Z",
+      "Operation": "Set light color to #6b6a38 for Left Side Table Lamp."
+    },
+    {
+      "Id": "88cf80de-bba1-4e02-b2af-82ce9d4c408f",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:54.5132645Z",
+      "Operation": "Set light color to #696837 for Left Side Table Lamp."
+    },
+    {
+      "Id": "84dfdf0c-5e0b-4b55-9538-4062aa1c8450",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:54.5463648Z",
+      "Operation": "Set light color to #69683b for Left Side Table Lamp."
+    },
+    {
+      "Id": "d851bd18-aa42-4a07-8930-1ebfb8dff1ba",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:54.9604126Z",
+      "Operation": "Set light color to #707051 for Left Side Table Lamp."
+    },
+    {
+      "Id": "6df556bb-cbe7-4d74-87ad-d28797438078",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:55.0711069Z",
+      "Operation": "Set light color to #707053 for Left Side Table Lamp."
+    },
+    {
+      "Id": "04de7326-d681-4848-a6d0-df4f6a253095",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:55.5176101Z",
+      "Operation": "Set light color to #9e9d3c for Left Side Table Lamp."
+    },
+    {
+      "Id": "9ca701de-ec7b-4a26-ade1-22371b297eb8",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:55.6212667Z",
+      "Operation": "Set light color to #9e9d34 for Left Side Table Lamp."
+    },
+    {
+      "Id": "cac007d0-0dfe-4fb3-a886-687f8bad9d30",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:56.192372Z",
+      "Operation": "Set light color to #cfcc2b for Left Side Table Lamp."
+    },
+    {
+      "Id": "4a510e8e-59d6-4695-bbbd-c3fd59517394",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:56.6523772Z",
+      "Operation": "Set light color to #1a190e for Left Side Table Lamp."
+    },
+    {
+      "Id": "761b152a-e240-4d7b-8d9e-2f885a1f3fcb",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:58.9480492Z",
+      "Operation": "Set light color to #b5b5a7 for Left Side Table Lamp."
+    },
+    {
+      "Id": "819171a8-8aa1-419d-a195-228c29ad2d5a",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T14:38:59.0560081Z",
+      "Operation": "Set light color to #b5b5a5 for Left Side Table Lamp."
+    },
+    {
+      "Id": "c7cbf94c-06d2-4945-b806-0c8474a6681c",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T14:53:48.6361878Z",
+      "Operation": "Set light color to #c79dc7 for Right Side Table Lamp."
+    },
+    {
+      "Id": "9932dbe7-3b7e-452e-afe4-8c7490bc2f40",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:49.7391781Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "4b5ff536-0e1d-4a2b-af25-ffccc3ae5b9c",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:51.477006Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "9855b489-f20c-4a5b-a51d-cdbba9103dea",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:52.1427177Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "8e43fc29-7fee-4e67-b1a5-13343c48cb0d",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:53.5634944Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "152ef772-4ad9-47aa-9c22-a94b91e680e5",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:54.040276Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "a3a221f1-2118-46c1-a247-839e162d9783",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:55.3482852Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "3302c627-3e02-4ebb-9f46-42fc5ef78d33",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T15:07:56.2907752Z",
+      "Operation": "Powered off Left Side Table Lamp."
     }
   ],
   "Locations": [

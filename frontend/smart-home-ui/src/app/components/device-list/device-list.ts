@@ -1,30 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceApiService } from '../../services/device.api.service';
-
-// This component displays a list of all devices with their current status and controls.
+import { DeviceCardComponent } from '../../devices/device-card/device-card';
 import { CardModule } from 'primeng/card';
-import { TagModule } from 'primeng/tag';
-import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
-import { ToggleSwitch } from 'primeng/toggleswitch';
-import { SliderModule } from 'primeng/slider';
-import { ColorPickerModule } from 'primeng/colorpicker';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
-  imports: [
-    CommonModule,
-    CardModule,
-    TagModule,
-    ButtonModule,
-    FormsModule,
-    ToggleSwitch,
-    SliderModule,
-    ColorPickerModule,
-  ],
+  imports: [CommonModule, DeviceCardComponent, CardModule],
   styleUrls: ['./device-list.css'],
 })
 
@@ -82,25 +66,6 @@ export class DeviceListComponent implements OnInit {
     }));
   }
 
-  // Helper method to get icon class based on device type.
-  getDeviceIcon(type: string): string {
-    switch (type?.toLowerCase()) {
-      case 'thermostat':
-        return 'pi pi-gauge';
-
-      case 'fan':
-        return 'pi pi-sync';
-
-      case 'doorlock':
-        return 'pi pi-sign-in';
-
-      case 'light':
-        return 'pi pi-lightbulb';
-
-      default:
-        return 'pi pi-home';
-    }
-  }
   // Helper method to get icon class based on device location.
   getLocationIcon(location: string): string {
     const loc = location?.toLowerCase();
@@ -112,106 +77,5 @@ export class DeviceListComponent implements OnInit {
     if (loc.includes('entry')) return 'pi pi-sign-in';
 
     return 'pi pi-map-marker'; // fallback
-  }
-
-  // Device commands (e.g., toggle power) are sent to the API, and the device list is refreshed upon success.
-
-  // Toggle the power state of a device and refresh the device list to reflect changes.
-  toggleDevicePower(device: any): void {
-    const previousPowerState = device.isDeviceOn;
-
-    device.isDeviceOn = !device.isDeviceOn;
-
-    const request = { command: 'togglePower' };
-
-    // Send the control command to the API and refresh the device list on success.
-    this.deviceApiService.controlDevice(device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        Object.assign(device, updatedDevice);
-        console.log('FROM API:', updatedDevice);
-      },
-      error: (err) => {
-        console.error('Failed to toggle power', err);
-        device.isDeviceOn = previousPowerState;
-      },
-    });
-  }
-
-  // Determine if the power toggle button should be shown for a device (e.g., not for door locks).
-  canTogglePower(device: any): boolean {
-    return device.type?.toLowerCase() !== 'doorlock';
-  }
-
-  // Toggle the power state of a device and refresh the device list to reflect changes.
-  toggleLatch(device: any): void {
-    const previousLatchState = device.isLocked;
-
-    device.isLocked = !device.isLocked;
-
-    const request = { command: 'toggleLock' };
-
-    // Send the control command to the API and refresh the device list on success.
-    this.deviceApiService.controlDevice(device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        Object.assign(device, updatedDevice);
-        console.log('FROM API:', updatedDevice);
-      },
-      error: (err) => {
-        console.error('Could not toggle door lock.', err);
-        device.isLocked = previousLatchState;
-      },
-    });
-  }
-
-  // Determine if the power toggle button should be shown for a device (e.g., not for door locks).
-  canToggleLatch(device: any): boolean {
-    return device.type?.toLowerCase() == 'doorlock';
-  }
-
-  // Set brightness for light devices.
-  setBrightness(device: any, brightness: number): void {
-    const previousBrightness = device.lightBrightness;
-
-    const request = { command: 'setBrightness', brightness };
-
-    this.deviceApiService.controlDevice(device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        Object.assign(device, updatedDevice);
-        console.log('FROM API:', updatedDevice);
-      },
-      error: (err) => {
-        console.error('Failed to set brightness', err);
-        device.lightBrightness = previousBrightness;
-      },
-    });
-  }
-
-  // Get the display status of a device, showing "ON"/"OFF" for regular devices and "Locked"/"Unlocked" for door locks.
-  getDeviceStatus(device: any): string {
-    if (this.canToggleLatch(device)) {
-      return device.isLocked ? 'ON' : 'OFF';
-    }
-
-    return device.isDeviceOn ? 'ON' : 'OFF';
-  }
-
-  // Select color for light devices.
-  changeColor(device: any, color: string): void {
-    const previousColor = device.lightColor;
-
-    const normalizedColor = color.startsWith('#') ? color : `#${color}`;
-
-    const request = { command: 'setColor', color: normalizedColor };
-
-    this.deviceApiService.controlDevice(device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        Object.assign(device, updatedDevice);
-        console.log('FROM API:', updatedDevice);
-      },
-      error: (err) => {
-        console.error('Failed to change color', err);
-        device.lightColor = previousColor;
-      },
-    });
   }
 }
