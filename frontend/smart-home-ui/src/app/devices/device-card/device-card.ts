@@ -38,6 +38,12 @@ export class DeviceCardComponent {
     { label: 'High', value: 'high' },
   ];
 
+  thermostatModeOptions = [
+    { label: 'Cool', value: 'cool' },
+    { label: 'Auto', value: 'auto' },
+    { label: 'Heat', value: 'heat' },
+  ];
+
   constructor(private deviceApiService: DeviceApiService) {}
 
   // Helper method to get icon class based on device type.

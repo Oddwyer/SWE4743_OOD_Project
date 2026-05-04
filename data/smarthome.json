@@ -124,7 +124,7 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Cooling",
-      "ThermostatMode": 2,
+      "ThermostatMode": 3,
       "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
@@ -5346,6 +5346,114 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-04T22:08:10.1772711Z",
       "Operation": "Set mode to Cool for Thermostat."
+    },
+    {
+      "Id": "9919a45c-dfc8-41fc-b476-48d4fd781bde",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:23:17.2307789Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "5651f1fb-588e-40eb-b1e1-99d125e7df17",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:23:18.1168438Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "cb21a1be-b1cf-4cc5-ab4a-85ab4e9a6bbc",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:23:18.9846538Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "25b7b123-d02e-48c9-ba26-f6c5644800bd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:23:19.5375148Z",
+      "Operation": "Set mode to Cool for Thermostat."
+    },
+    {
+      "Id": "ae265e3c-86ea-4169-95a6-688b98d42bea",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:23:20.0991253Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "a16aa5f1-a2f8-44fc-a173-b3be97211100",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:23:20.4494391Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "c112001b-9ac1-4c15-b99f-d010cf82fa3e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:24:53.0400737Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "ddb2783a-8e78-4dd0-9f67-a6737b9780ab",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:25:01.7207919Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "b141f59e-677e-4dba-9d8e-8ad11f92bb91",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:25:07.2449798Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "7b24fe22-e09a-4d70-94d1-af732a0806d2",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:27:07.6685Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "76dc9fe2-1b01-4db0-adde-47281000eed9",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:27:08.3421038Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "73e83a62-06df-4635-9298-6f3e9ca4cb35",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:27:11.759066Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "b45fda8d-94ed-40ce-b74b-1b96086417ed",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:29:05.5515807Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "ea984948-cd4a-40a7-9e14-f79ebe6972ab",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T22:29:20.6792529Z",
+      "Operation": "Set mode to Auto for Thermostat."
+    },
+    {
+      "Id": "ab7420dd-4da8-4d5c-82e0-857968964bb5",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T23:52:17.6618447Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "01fb6be5-5fea-45a0-ade8-af083d6c4e7c",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T23:52:18.7769494Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "937ca924-5fec-4bb2-9d5c-e8c0018d8469",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T23:52:21.2371659Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "98f7ebbc-2928-41a9-8608-1542dcec5e16",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T23:52:22.1974801Z",
+      "Operation": "Powered on Left Side Table Lamp."
     }
   ],
   "Locations": [

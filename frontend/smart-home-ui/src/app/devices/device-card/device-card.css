@@ -347,6 +347,55 @@
   opacity: 0.55;
   cursor: not-allowed;
 }
+
+/* =========================
+   FAN SPEED
+   ========================= */
+
+.thermostat-mode-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.thermostat-mode-row .control-label {
+  white-space: nowrap;
+}
+
+.thermostat-mode-buttons {
+  display: flex;
+  width: 100%;
+  gap: 0.15rem;
+  min-width: 0;
+  
+}
+
+.thermostat-mode-button {
+  flex: 1;
+  min-width: 0;
+  padding: 0.25rem 0.25rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(52, 61, 76, 0.35);
+  background: rgba(255, 255, 255, 0.801);
+  color: #343d4c;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.thermostat-mode-button.selected {
+  background: #343d4c;
+  border-color: #343d4c;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.thermostat-mode-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 /* =========================
    RESPONSIVE
    ========================= */

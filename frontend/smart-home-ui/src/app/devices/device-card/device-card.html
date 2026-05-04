@@ -117,12 +117,21 @@
     </div>
     <div
       *ngIf="device.thermostatMode !== null"
-      class="control-row mode-row"
+      class="control-row thermostat-mode-row"
       [class.control-disabled]="!device.isDeviceOn"
     >
-      <div class="control-header">
-        <span class="control-label">Mode:</span>
-        <span class="control-value">{{ device.thermostatMode | titlecase }}</span>
+      <span class="control-label">Mode:</span>
+      <div class="thermostat-mode-buttons">
+        <button
+          type="button"
+          *ngFor="let option of thermostatModeOptions"
+          class="thermostat-mode-button"
+          [class.selected]="device.thermostatMode === option.value"
+          [disabled]="!device.isDeviceOn"
+          (click)="setThermostatMode(option.value)"
+        >
+          {{ option.label }}
+        </button>
       </div>
     </div>
     <div *ngIf="device.targetTemperature !== null">
