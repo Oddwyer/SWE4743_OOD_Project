@@ -31,7 +31,7 @@
       "Name": "Left Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -44,7 +44,7 @@
       "Name": "Right Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -57,12 +57,12 @@
       "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 69,
+      "LightBrightness": 75,
       "FanSpeed": null
     },
     {
@@ -75,7 +75,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 100,
+      "LightBrightness": 65,
       "FanSpeed": null
     },
     {
@@ -96,11 +96,11 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Entryway",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#FF8800",
+      "LightColor": "#FFFFFF",
       "LightBrightness": 75,
       "FanSpeed": null
     },
@@ -140,7 +140,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 82,
+      "LightBrightness": 44,
       "FanSpeed": null
     }
   ],
@@ -1980,6 +1980,270 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-04T01:41:22.209658Z",
       "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "4cf5b671-c8ff-483e-aad5-d6cd3e8f6fe0",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:48:27.9738622Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "61a7f0fb-25ef-48a1-9675-1bf7ab67c290",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:48:29.1104335Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "c894b11d-982b-4f38-8e48-d37d25a961b8",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:48:30.7614333Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "3a45d698-4ee8-412e-9b7a-6fb278b0930d",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:48:31.6372877Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "84de5a17-c603-492b-b52d-4f0e34ee9c21",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T01:58:01.760738Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "872b6e3e-5644-4bdf-9799-abe2cb39c894",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T01:58:03.1939496Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "a6bc3c72-43c8-4a67-8364-c3fcd7fdc45e",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:58:04.7548413Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "a1ad21f7-402d-4d2b-a733-aa385466c909",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:58:05.7651275Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "2f1e5e9a-dd41-4add-84bd-fc5dece91b81",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T01:58:09.3974312Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "6da8417d-054b-4d19-9bab-e46f15d06917",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T01:58:10.8453486Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "f1b08512-3af7-403e-b084-c2b4c67766df",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T01:58:11.7796124Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "b4188d49-fce3-4093-ae1e-c778c878474a",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T01:58:12.574464Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "6dc5ed06-420e-486d-bf0a-41d63becfecc",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:58:14.2739405Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "14131478-0881-49b6-844d-4208a8c76f99",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:58:14.978579Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "1c35d6f8-6f69-4d48-9c36-c200fa92e7b5",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:58:15.7242543Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "d0974caf-0598-4d16-81a3-d30a5fefa1b0",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T01:59:18.2614379Z",
+      "Operation": "Set light brightness to 58% for Overhead Light."
+    },
+    {
+      "Id": "4ce202a0-76bf-4780-9a58-2082962d16f3",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:59:20.244528Z",
+      "Operation": "Set light brightness to 52% for Left Side Table Lamp."
+    },
+    {
+      "Id": "75336b26-0b1b-4926-8a7b-2b68124df467",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T01:59:21.7932952Z",
+      "Operation": "Set light brightness to 75% for Left Side Table Lamp."
+    },
+    {
+      "Id": "cb596fd2-8ba9-4dd0-8b94-9d4e735cea50",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T02:07:17.5395884Z",
+      "Operation": "Set light brightness to 88% for Overhead Light."
+    },
+    {
+      "Id": "4eb418b7-977f-4701-84c2-dd87cc922911",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T02:07:18.9206968Z",
+      "Operation": "Set light brightness to 79% for Overhead Light."
+    },
+    {
+      "Id": "1667dacb-9d42-4744-ac9b-647b75bbd617",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:11:32.6891073Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "27264049-34e4-450a-a535-bda16936a368",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:11:34.2389442Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "826aa779-bc90-4d1f-b693-b2716ba9f434",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:11:35.6588182Z",
+      "Operation": "Set light brightness to 71% for Right Side Table Lamp."
+    },
+    {
+      "Id": "b46494ec-692e-4ded-aa92-dc802fa7f285",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:05.866194Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "460f8a9d-9db5-471b-9233-23148fde9800",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:07.2141486Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "5d1b1e2a-09a0-4666-8cc0-15bf84812af9",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:08.0902543Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "701d95ae-1965-4703-aec2-6875fb1a5d71",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:13.5945752Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "5141e7f1-6283-48f9-bcf6-d18ba6610fec",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:15.2166468Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "aab24f69-72ea-4311-b418-eb0963edb3d8",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:18.1683707Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "7daf817e-2c52-497b-bb32-1b40ee24ab93",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:12:55.1321667Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "fccc9de9-2625-416a-8298-effea211add4",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T02:28:29.8530901Z",
+      "Operation": "Set light brightness to 40% for Overhead Light."
+    },
+    {
+      "Id": "c68d85bd-c347-40f7-b189-269f7524ee6f",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:28:33.4444784Z",
+      "Operation": "Set light brightness to 27% for Right Side Table Lamp."
+    },
+    {
+      "Id": "cc2af240-092c-4b8c-9478-df283b7a5320",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T02:30:26.8038009Z",
+      "Operation": "Set light brightness to 45% for Overhead Light."
+    },
+    {
+      "Id": "ac19c8df-7158-463a-a759-851205d3605c",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:30:29.4500197Z",
+      "Operation": "Set light brightness to 37% for Right Side Table Lamp."
+    },
+    {
+      "Id": "ccd9faa9-e65a-4b54-9aec-c560d9dcec64",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:30:31.7434242Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "7d47f63b-63a8-4905-8d8e-826f1b7e6834",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:30:32.5223335Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "13a5255d-5d16-43ca-bd7a-ef6015deb50f",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:31:44.6852066Z",
+      "Operation": "Set light brightness to 81% for Right Side Table Lamp."
+    },
+    {
+      "Id": "f24124ef-8836-436e-a579-d412e31a3a0d",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T02:31:47.3605422Z",
+      "Operation": "Set light brightness to 44% for Overhead Light."
+    },
+    {
+      "Id": "dffd8920-ceb0-4e1d-9ac8-de791e7aebd4",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T02:32:39.3070856Z",
+      "Operation": "Set light brightness to 65% for Right Side Table Lamp."
+    },
+    {
+      "Id": "f2984bb2-c607-4c67-92a3-b6d9354329f1",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T02:35:37.3669511Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "32e1f711-1ce9-4c18-b9c8-83e94b16bff2",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-04T02:35:39.9163321Z",
+      "Operation": "Powered on Left Sconce."
+    },
+    {
+      "Id": "b021151e-b79f-47a5-af05-50a1d394f723",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-04T02:35:41.0747608Z",
+      "Operation": "Powered on Right Sconce."
+    },
+    {
+      "Id": "a5182fb4-e7a7-4d05-9897-d5d7b74dda08",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-04T02:35:42.8923966Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "bd7aab7d-405a-4214-82d1-b6a4d315b79c",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-04T02:35:44.7010415Z",
+      "Operation": "Set light color to #FFFFFF for Overhead Light."
     }
   ],
   "Locations": [

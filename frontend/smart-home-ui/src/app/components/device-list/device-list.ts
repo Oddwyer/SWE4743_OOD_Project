@@ -130,7 +130,7 @@ export class DeviceList implements OnInit {
     return device.type?.toLowerCase() !== 'doorlock';
   }
 
-  // Set brightness for a device.
+  // Set brightness for light devices.
   setBrightness(device: any, brightness: number): void {
 
     const previousBrightness = device.lightBrightness;
@@ -145,6 +145,26 @@ export class DeviceList implements OnInit {
       error: (err) => {
         console.error('Failed to set brightness', err);
         device.lightBrightness = previousBrightness;
+        console.log('AFTER MERGE (UI):', device);
+      }
+    });
+  }
+
+  // Select color for light devices.
+  changeColor(device: any, color: string): void {
+
+    const previousColor = device.lightColor;
+
+    const request = { command: 'setColor', color };
+
+    this.deviceApiService.controlDevice(device.id, request).subscribe({
+      next: (updatedDevice: any) => {
+        Object.assign(device, updatedDevice);
+        console.log('FROM API:', updatedDevice);
+      },
+      error: (err) => {
+        console.error('Failed to change color', err);
+        device.lightColor = previousColor;
         console.log('AFTER MERGE (UI):', device);
       }
     });
