@@ -70,7 +70,7 @@
       "Name": "Right Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -3083,6 +3083,48 @@
       "Id": "a1e61f47-8dc9-4750-bb2c-4dcf9a8bbed1",
       "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
       "Timestamp": "2026-05-04T04:39:49.0413986Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "9baa98b5-7bc4-46a1-95e2-682f593252db",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:58:33.7674815Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "63eb5ef7-eefd-4def-9cc2-be57c2b2796b",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:58:34.9745816Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "b6f4a383-bc05-4a45-8812-6c330e6b08e3",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T04:58:37.5604103Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "bdd685bd-ac28-4292-8fee-823e8845415b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T04:58:39.6949065Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "82777f37-bc7c-4f24-9d12-fe95947d282a",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T04:58:41.6763402Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "c331931f-3066-46a9-9008-04a66fe64a2c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T04:58:42.3472622Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "6fcedfa6-4d76-4f78-b046-17fb22ba60ff",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T04:58:57.9622706Z",
       "Operation": "Powered on Ceiling Fan."
     }
   ],
