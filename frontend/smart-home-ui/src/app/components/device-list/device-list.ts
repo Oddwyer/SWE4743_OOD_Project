@@ -8,13 +8,14 @@ import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { ToggleSwitch } from 'primeng/toggleswitch';
+import { SliderModule } from 'primeng/slider';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
   imports: [CommonModule, CardModule, TagModule, ButtonModule, FormsModule,
-    ToggleSwitch],
+    ToggleSwitch, SliderModule],
   styleUrls: ['./device-list.css']
 })
 
@@ -113,9 +114,11 @@ export class DeviceList implements OnInit {
       next: (updatedDevice: any) => {
 
         Object.assign(device, updatedDevice);
+        console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
         console.error('Failed to toggle power', err);
+        console.log('AFTER MERGE (UI):', device);
         device.isDeviceOn = previousPowerState;
       }
 
@@ -125,5 +128,25 @@ export class DeviceList implements OnInit {
   // Determine if the power toggle button should be shown for a device (e.g., not for door locks).
   canTogglePower(device: any): boolean {
     return device.type?.toLowerCase() !== 'doorlock';
+  }
+
+  // Set brightness for a device.
+  setBrightness(device: any, brightness: number): void {
+
+    const previousBrightness = device.lightBrightness;
+
+    const request = { command: 'setBrightness', brightness };
+
+    this.deviceApiService.controlDevice(device.id, request).subscribe({
+      next: (updatedDevice: any) => {
+        Object.assign(device, updatedDevice);
+        console.log('FROM API:', updatedDevice);
+      },
+      error: (err) => {
+        console.error('Failed to set brightness', err);
+        device.lightBrightness = previousBrightness;
+        console.log('AFTER MERGE (UI):', device);
+      }
+    });
   }
 }

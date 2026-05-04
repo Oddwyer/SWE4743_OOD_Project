@@ -234,6 +234,14 @@
     letter-spacing: 0.5px;
 }
 
+.device-status-text {
+    display: inline-block;
+    width: 2.5rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+
 /* =========================
    CONTROLS
    ========================= */
@@ -273,9 +281,7 @@
     color: #343D4C;
 }
 
-/* =========================
-   PRIME TOGGLE (must use ::ng-deep)
-   ========================= */
+/* PrimeNG ToggleSwitch */
 
 :host ::ng-deep .power-row .p-toggleswitch {
     width: 3.25rem;
@@ -310,6 +316,84 @@
 :host ::ng-deep .power-row .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-handle {
     transform: translateX(2rem) translateY(-50%) !important;
 }
+
+
+/* =========================
+   BRIGHTNESS SLIDER
+   ========================= */
+
+/* BRIGHTNESS SLIDER */
+.control-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 0.75rem;
+}
+
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-label {
+    font-weight: 600;
+}
+
+
+/* PrimeNG slider needs deep styling inside this component */
+:host ::ng-deep .brightness-row .p-slider {
+    width: 90%;
+    height: 0.4rem;
+    background: #b8c0cc !important;
+    border-radius: 999px;
+    margin-top: 0.35rem;
+}
+
+/* Filled part of slider */
+:host ::ng-deep .brightness-row .p-slider-range {
+    background: #134ecd !important;
+    border-radius: 999px;
+}
+
+/* Slider handle/dot */
+:host ::ng-deep .brightness-row .p-slider-handle {
+    width: 1rem;
+    height: 1rem;
+    background: #134ecd !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 50%;
+    margin-top: -0.35rem;
+}
+
+.control-disabled {
+    color: #343D4C;
+    opacity: 0.6;
+}
+
+/* Label text */
+.control-disabled .control-label,
+.control-disabled span {
+    color: #343D4C;
+}
+
+/* Slider track */
+:host ::ng-deep .control-disabled .p-slider {
+    background: #343D4C !important;
+}
+
+/* Filled portion */
+:host ::ng-deep .control-disabled .p-slider-range {
+    background: #343D4C !important;
+}
+
+/* Slider handle (dot) */
+:host ::ng-deep .control-disabled .p-slider-handle {
+    background: #343D4C !important;
+    border: 2px solid #ffffff !important;
+    cursor: not-allowed;
+}
+
 
 /* =========================
    RESPONSIVE
