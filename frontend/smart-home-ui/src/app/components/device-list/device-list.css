@@ -96,6 +96,16 @@
   flex-shrink: 0;
 }
 
+.simulation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.simulation-label {
+  font-weight: 600;
+}
+
 /* =========================
    LOCATION SECTIONS
    ========================= */
@@ -278,6 +288,19 @@
   font-weight: 600;
   font-size: 0.95rem;
   color: #343d4c;
+}
+
+
+:host ::ng-deep .latch-button .p-button-icon {
+  font-size: 1.4rem;
+}
+
+.latch-on {
+  color: #28a745;
+}
+
+.latch-off {
+  color: #dc3545;
 }
 
 .lock-label {

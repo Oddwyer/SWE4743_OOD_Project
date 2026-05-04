@@ -70,7 +70,7 @@
       "Name": "Right Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -84,7 +84,7 @@
       "Type": 2,
       "Location": "Living Room",
       "IsOn": true,
-      "DeviceState": "Unlocked",
+      "DeviceState": "Locked",
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": null,
@@ -2556,6 +2556,534 @@
       "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
       "Timestamp": "2026-05-04T03:45:02.8650708Z",
       "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "e8a9c187-849a-4031-bf5a-bbb7a515ab6d",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:48:35.1488533Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "23170e75-b802-4d45-b38d-63f6f01d6f72",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:48:36.3077895Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "06cb14b0-97ff-4832-b6a9-e263759145ed",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:48:37.417243Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "8a2e344f-6d07-403d-8341-8caa90769a39",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:49:04.7337114Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "309f27b2-a83b-4a78-a734-af74342d7ed1",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:49:06.5596148Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "79e0e2ab-ebcc-4985-8259-94c9e3c9fcd7",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:49:07.6108024Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "cf8263c3-10dd-4bdf-89dc-46bbfaf8197a",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:49:08.614668Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "971bfd60-be81-4d13-b4c0-0de487f9a045",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:49:09.4579877Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "6eedd22a-9db3-4e2a-a2bb-f2321765d36e",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:55:04.5723974Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "9869389d-6eb6-4dc7-941a-f81d46a16b72",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T03:55:06.6437296Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "49785e9b-a4db-426d-bb00-3b4ff2f776ae",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:18.0015789Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "0df4dff2-2ddc-49ee-9336-cb0593e97677",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:19.5619283Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "f6ee8b72-ce48-4ffd-9a3c-8c6e4e04537c",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:21.1421399Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "7bd4224a-f941-42d9-940d-c3cec51cc7ae",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:22.3111567Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "3c3f4c37-4ed2-480f-83da-4c0e39375de4",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:48.68247Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "147a3777-868d-40eb-9465-0bbd0dffde3b",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:53.0146692Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "0483d042-7c08-40ef-95aa-d5b960698d5d",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:56.5941531Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "581d2167-1cc8-45c5-ae18-d3149423b3ae",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:02:59.8728816Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "2d9ff4ef-508b-4779-a071-9fab0b2488d2",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:01.720557Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "d69ef074-b0f5-42dd-9f5f-706fa69b34e9",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:15.3272989Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "5d2e46f5-89e4-46aa-8356-d84d8a6c3c56",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:16.9191545Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "60eb8901-59d7-466d-aa5b-44176102e85e",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:37.1567733Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "e22ca536-165d-4a32-9156-3f1f87f612ab",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:40.045768Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "fad31c82-0d83-4653-9890-a9ec898f0bff",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:42.6415143Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "7b7a3419-6bab-421a-843c-eb7aa8a0befc",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:44.0712877Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "83c089c1-56c8-4670-af3f-8524d30626e6",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:03:46.0356661Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "8cc21b45-64a7-42a8-a99e-04476bbfbe81",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:04:42.5994828Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "fd451f81-1a44-4a0d-a158-2fd289728cba",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:04:44.5114237Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "4f54e1ab-734d-4e81-a85b-d6454402a9e0",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:05:30.0754595Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "bfa00637-eb5c-4ea4-b3aa-dd9b9697c22f",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:05:31.8720793Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "fc5803a9-152b-4099-a8e8-bad3ff790c93",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:05:33.8419974Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "d9ea10f9-a010-4541-add0-d4953b452f5b",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:05:41.0337905Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "eff7593d-340b-4498-82be-cac65f67e3c0",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:07:19.9225852Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "285bfcb0-e617-4243-9472-2bf897d6faff",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:07:21.9383739Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "1b9d67f2-d633-4310-805c-76d32f505941",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:07:23.1402849Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "d2e2da28-6a23-4bf4-9aed-f6db7672141c",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:06.5236911Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "db92de6b-03f8-4bc7-a93b-4802b68a7a93",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:07.9241984Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "f0483d91-1abf-483f-9ded-ea12cdf9d7da",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:09.2995841Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "746ae95b-f7df-4168-be6f-2a48ca2fe118",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:10.2039695Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "afeaf6ef-81c9-490a-83dc-21feef6bb145",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:10.8999731Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "c19cb125-3691-4525-8125-dfceb4cc0c50",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:16.0330636Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "290e7217-d76b-4ee5-bce4-763252d82063",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:51.7420025Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "555bca5f-4eea-47e2-9867-4df2341a6b99",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:53.5392256Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "506e93ec-4771-446d-af26-ef424840e673",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:54.5411728Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "eb8ed182-eac5-4a5d-a564-4d23a2d07cc0",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:55.493363Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "fb50d3e3-1895-428e-ac93-7141677d5122",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:08:56.377045Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "354fadc9-94a2-4e19-8dec-d70814cac755",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:13:56.7176759Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "401dc980-35a5-4706-911b-81370e8d99a4",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:18:18.41922Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "48d6413e-da47-402c-9c2a-b2c04117fbcc",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:18:19.6082009Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "4ebcc593-e29a-41ea-a7dd-4b881ed587bd",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:18:24.1693073Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "612a2d1c-d9ec-4f2a-bf5f-35be12a747bf",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:19:36.3011314Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "53b3457b-71e6-45c3-98a0-1fd96a3b1015",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:19:36.8661121Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "83eebdb8-ac1f-4ca6-a5bf-47e7815bdef0",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:27:37.9272066Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "f65fefdb-1eb8-4a6b-b721-6db674795083",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:27:38.7690287Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "35df6ee6-b062-4b8e-9aee-1b79b74e06fe",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:27:39.5729047Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "f258787c-b625-4db6-8d91-7cee1fd5d886",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T04:29:54.5523788Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "734be741-917a-41f1-a99a-8a634767e24c",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T04:30:00.1894Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "d8578fe9-76a0-4e30-9df1-e8b0197c6a8e",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T04:30:02.7498271Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "4d77880a-e8fd-4c36-a06a-ba31dc1df2ae",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T04:30:04.449666Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "6c96515e-245c-43a3-aacb-9a67b59e69ef",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T04:30:12.2744192Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "aea93202-9473-42c5-981a-9e236318e07f",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T04:30:30.5307847Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "ffa13ed5-77a1-426f-988c-10df30502fa8",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T04:30:31.6021986Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "09753b17-8c3c-4584-aae1-1f2fef0365a2",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T04:30:32.6136021Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "1466d3cc-bf4b-4652-9e93-afb6620815a9",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T04:30:33.7274555Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "d27d82e2-d6e7-4a5e-8cb8-5467345a9e54",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T04:30:36.7114196Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "d87aba31-2cb9-45c8-b423-99f5accbd511",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T04:30:37.6209681Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "517f5c22-3481-40a5-abe2-9dfb4b0c3260",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:30:41.8013025Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "d2874d82-e816-4eae-9163-e4ecadac8f32",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:30:42.7660852Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "0a15726e-6230-4916-b447-3dd5b717e0e6",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:30:44.8813228Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "137bb3b6-4730-4bfc-baaa-cc5068b6c9b8",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:30:45.5954675Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "02de6d8d-f6d2-4292-8a49-cdcdf9c14e66",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:32:30.7543743Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "860d03e0-425b-4ded-94e4-1f1ca8cd4ba4",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:32:32.2840891Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "6954ee7a-5950-4dce-8029-c30c7d390478",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:32:35.0322353Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "af8c21c5-6dd9-407a-9631-03baece5685e",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:32:35.9768353Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "6febba44-2889-4597-a332-2d5f32cd7c9b",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:33:51.7144105Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "44b79e8d-536c-4798-a959-7a7f8b488d03",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:33:53.4934244Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "c5c78868-1e5e-4e3b-95ca-a41ea68b17d5",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:33:55.9623352Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "cf0793b1-42bb-45cd-aedc-ee86700e1e71",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:33:57.8046175Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "cc5bb57f-23fa-47f3-be6c-019daf938b51",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:34:00.2115745Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "9a17cb09-01c3-44c1-98e8-3fdc78dce547",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:34:01.8943681Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "ea6ff6ff-5548-4fe8-8ccf-6adb6ebba8b1",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:34:08.3961899Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "12ee57d2-bf8a-4747-9c1d-bde689798ca3",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T04:34:09.953936Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "6f9d28be-615a-4cc8-94ee-429382bca32e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T04:34:59.9283606Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "d4a7b410-e3a8-4d44-b8a9-5e120fe99ee6",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T04:35:01.8050053Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "00e693e8-3a96-4956-9aa1-aa7de125e7d7",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-04T04:35:41.0492122Z",
+      "Operation": "Powered off Right Sconce."
+    },
+    {
+      "Id": "33d09683-aad4-4d40-99e6-5bf82a39da9a",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-04T04:35:43.5253617Z",
+      "Operation": "Powered on Right Sconce."
+    },
+    {
+      "Id": "301257b4-9f55-46ce-ab6c-0929cb613a76",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T04:39:47.4278546Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "a1e61f47-8dc9-4750-bb2c-4dcf9a8bbed1",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T04:39:49.0413986Z",
+      "Operation": "Powered on Ceiling Fan."
     }
   ],
   "Locations": [

@@ -143,9 +143,9 @@ export class DeviceList implements OnInit {
 
   // Toggle the power state of a device and refresh the device list to reflect changes.
   toggleLatch(device: any): void {
-    const previousLatchState = device.isDeviceOn;
+    const previousLatchState = device.isLocked;
 
-    device.isDeviceOn = !device.isDeviceOn;
+    device.isLocked = !device.isLocked;
 
     const request = { command: 'toggleLock' };
 
@@ -156,8 +156,8 @@ export class DeviceList implements OnInit {
         console.log('FROM API:', updatedDevice);
       },
       error: (err) => {
-        console.error('Could not lock door.', err);
-        device.isDeviceOn = previousLatchState;
+        console.error('Could not toggle door lock.', err);
+        device.isLocked = previousLatchState;
       },
     });
   }
@@ -183,6 +183,15 @@ export class DeviceList implements OnInit {
         device.lightBrightness = previousBrightness;
       },
     });
+  }
+
+  // Get the display status of a device, showing "ON"/"OFF" for regular devices and "Locked"/"Unlocked" for door locks.
+  getDeviceStatus(device: any): string {
+    if (this.canToggleLatch(device)) {
+      return device.isLocked ? 'ON' : 'OFF';
+    }
+
+    return device.isDeviceOn ? 'ON' : 'OFF';
   }
 
   // Select color for light devices.

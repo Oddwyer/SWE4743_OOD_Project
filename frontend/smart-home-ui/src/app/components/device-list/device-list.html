@@ -24,12 +24,19 @@
 
       <div class="setting-row">
         <span class="icon">🌡</span>
-        <span>Ambient temperature</span>
+        <div class="simulation-header">
+          <span class="simulation-label">Ambient Temperature:</span>
+         
+        </div>
+        
       </div>
 
       <div class="setting-row">
         <i class="pi pi-bolt"></i>
-        <span>Speed: 1x</span>
+        <div class="simulation-header">
+        <span class="simulation-label">Speed:</span>
+        <span>1x</span>
+        </div>
       </div>
     </p-card>
 
@@ -69,11 +76,14 @@
                         *ngIf="canToggleLatch(device)"
                         pButton
                         [icon]="device.isLocked ? 'pi pi-lock' : 'pi pi-lock-open'"
-                        class="p-button-text p-button-sm"
+                        class="p-button-text p-button-sm latch-button"
+                        [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
                         (click)="toggleLatch(device)"
                       ></button>
                       <span class="device-status-text">
-                        {{ device.isDeviceOn ? 'ON' : 'OFF' }}
+                        <span class="device-status-text">
+                          {{ getDeviceStatus(device) }}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -97,7 +107,7 @@
                   <span class="lock-label">Lock</span>
 
                   <p-toggleswitch
-                    [ngModel]="device.isDeviceOn"
+                    [ngModel]="device.isLocked"
                     (onChange)="toggleLatch(device)"
                   ></p-toggleswitch>
                 </div>
@@ -141,15 +151,37 @@
                     </div>
                   </div>
                 </div>
-                <div *ngIf="device.fanSpeed !== null">Speed: {{ device.fanSpeed }}</div>
-                <div *ngIf="device.thermostatMode !== null">
-                  Mode: {{ device.thermostatMode | titlecase }}
+                <div
+                  *ngIf="device.fanSpeed !== null"
+                  class="control-row speed-row"
+                  [class.control-disabled]="!device.isDeviceOn"
+                >
+                  <div class="control-header">
+                    <span class="control-label">Fan Speed:</span>
+                    <span>{{ device.fanSpeed | titlecase }}</span>
+                  </div>
+                </div>
+                <div
+                  *ngIf="device.thermostatMode !== null"
+                  class="control-row mode-row"
+                  [class.control-disabled]="!device.isDeviceOn"
+                >
+                  <div class="control-header">
+                    <span class="control-label">Mode:</span>
+                    <span>{{ device.thermostatMode | titlecase }}</span>
+                  </div>
                 </div>
                 <div *ngIf="device.targetTemperature !== null">
-                  Target: {{ device.targetTemperature }}°F
+                  <div class="control-header">
+                    <span class="control-label">Target:</span>
+                    <span>{{ device.targetTemperature }}°F</span>
+                  </div>
                 </div>
                 <div *ngIf="device.isLocked !== null">
-                  Lock: {{ device.isLocked ? 'Locked' : 'Unlocked' }}
+                  <div class="control-header">
+                    <span class="control-label">Latch:</span>
+                    <span>{{ device.isLocked ? 'Locked' : 'Unlocked' }}</span>
+                  </div>
                 </div>
               </div>
             </p-card>
