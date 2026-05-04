@@ -30,7 +30,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 
 // The DeviceList component is responsible for fetching and displaying all devices in the smart home system.
 // It uses the DeviceApiService to retrieve device data and organizes it by location for better user experience.
-export class DeviceList implements OnInit {
+export class DeviceListComponent implements OnInit {
   devices: any[] = [];
   isLoading = true;
 
@@ -39,12 +39,13 @@ export class DeviceList implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {}
 
+  // On component initialization, load all devices from the API.
   ngOnInit(): void {
     console.log('DeviceList INIT');
     this.loadDevices();
   }
 
-  // Load all devices from the API and handle loading state.
+  // Helper: Load all devices from the API and handle loading state.
   loadDevices() {
     this.deviceApiService.getAllDevices().subscribe({
       next: (data) => {

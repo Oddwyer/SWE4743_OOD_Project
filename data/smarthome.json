@@ -18,13 +18,13 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Master Bedroom",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 3
+      "FanSpeed": 2
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
@@ -3126,6 +3126,48 @@
       "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
       "Timestamp": "2026-05-04T04:58:57.9622706Z",
       "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "c1292632-897b-433e-abb6-b5da9d08ba94",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T13:06:20.1510501Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "a32a643d-8a59-40c6-be17-ccf647386138",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T13:06:22.9500305Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "7cbd8b5c-53d7-4410-931f-80f29e222e20",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T13:06:27.4510809Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "cfbf3b5a-d9ff-4b7a-ab69-87134bf5d734",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-04T13:06:28.9896049Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "ce048ca9-c7e7-48ba-9a67-dfdcc34597b3",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T13:10:28.7203614Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "aaa9409d-4862-44b7-8e31-f89e1da73ad0",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T13:10:31.1625672Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "f15aba45-94ad-4cc8-bcc8-48d620b66d58",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T13:10:38.9915218Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
     }
   ],
   "Locations": [
