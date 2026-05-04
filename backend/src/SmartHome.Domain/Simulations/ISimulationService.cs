@@ -22,5 +22,4 @@ public interface ISimulationService
     // simulation control
     void startSimulation();
     void ResetSimulation();
-    double elapsedSimulationSeconds();
 }
