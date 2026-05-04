@@ -25,11 +25,11 @@
             [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
             (click)="toggleLatch()"
           ></button>
-          <span class="device-status-text">
+         
             <span class="device-status-text">
               {{ getDeviceStatus() }}
             </span>
-          </span>
+        
         </div>
       </div>
       <h3>{{ device.deviceName }}</h3>

@@ -30,6 +30,12 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 export class DeviceCardComponent {
   @Input({ required: true }) device!: any;
 
+  fanSpeedOptions = [
+    { label: 'Low', value: 'low' },
+    { label: 'Medium', value: 'medium' },
+    { label: 'High', value: 'high' },
+  ];
+
   constructor(private deviceApiService: DeviceApiService) {}
 
   // Helper method to get icon class based on device type.
@@ -147,6 +153,23 @@ export class DeviceCardComponent {
       error: (err) => {
         console.error('Failed to change color', err);
         this.device.lightColor = previousColor;
+      },
+    });
+  }
+
+  setFanSpeed(speed: string): void {
+    const previousSpeed = this.device.fanSpeed;
+
+    const request = { command: 'setFanSpeed', speed: speed };
+
+    this.deviceApiService.controlDevice(this.device.id, request).subscribe({
+      next: (updatedDevice: any) => {
+        Object.assign(this.device, updatedDevice);
+        console.log('FROM API:', updatedDevice);
+      },
+      error: (err) => {
+        console.error('Failed to set fan speed', err);
+        this.device.fanSpeed = previousSpeed;
       },
     });
   }

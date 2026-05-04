@@ -13,6 +13,7 @@
   border-left: 6px solid #343d4c;
   border-radius: 12px;
   color: #343d4c;
+  
 }
 
 :host ::ng-deep .device-card .p-card {
@@ -49,17 +50,28 @@
 }
 
 .device-status-inline {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.6rem 2.4rem;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: end;
+  column-gap: 0.25rem;
+  width: 4.75rem;
   white-space: nowrap;
+}
+
+.device-status-inline button {
+  width: 1.6rem;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  justify-self: center;
 }
 
 .device-status-text {
   display: inline-block;
-  width: 4.5rem;
-  text-align: left;
-  font-size: 1rem;
+  width: 2.4rem;
+  text-align: right;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   color: #343d4c;
@@ -90,7 +102,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  padding: 0 0.5rem 0.5rem;
+  padding: 0 1rem 1rem;
   font-size: 0.95rem;
   line-height: 1.4;
 }
@@ -100,10 +112,14 @@
    ========================= */
 
 .power-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 4.75rem;
   align-items: center;
-  justify-content: space-between;
   gap: 0.75rem;
+}
+
+.power-row .p-toggleswitch {
+  justify-self: end;
 }
 
 .power-label,
@@ -186,6 +202,7 @@
 }
 
 .control-value {
+  width: 4.75rem;
   min-width: 4.75rem;
   text-align: right;
   font-size: 0.95rem;
@@ -209,11 +226,13 @@
    ========================= */
 
 :host ::ng-deep .brightness-row .p-slider {
-  width: 90%;
+  width: 100%;
   height: 0.25rem;
   background: #343d4c99 !important;
   border-radius: 999px;
   margin-top: 0.35rem;
+  position: relative;
+   
 }
 
 :host ::ng-deep .brightness-row .p-slider-range {
@@ -228,7 +247,9 @@
   background: #134ecd !important;
   border-radius: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+  max-width: 0.9rem;
+  max-height: 0.9rem;
 }
 
 :host ::ng-deep .brightness-row.control-disabled .p-slider,
@@ -248,10 +269,12 @@
    ========================= */
 
 .color-display {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.25rem 4.75rem;
   align-items: center;
-  justify-content: flex-end;
-  min-width: 5.75rem;
+  justify-content: end;
+  column-gap: 0.35rem;
+  width: 6.35rem;
   font-size: 1rem;
 }
 
