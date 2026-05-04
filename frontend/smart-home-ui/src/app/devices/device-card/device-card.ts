@@ -33,9 +33,9 @@ export class DeviceCardComponent {
   @Input({ required: true }) device!: any;
 
   fanSpeedOptions = [
-    { label: 'Low', value: 'low' },
-    { label: 'Medium', value: 'medium' },
-    { label: 'High', value: 'high' },
+    { label: 'Lo', value: 'low' },
+    { label: 'Med', value: 'medium' },
+    { label: 'Hi', value: 'high' },
   ];
 
   constructor(private deviceApiService: DeviceApiService) {}
@@ -112,6 +112,15 @@ export class DeviceCardComponent {
     return this.device.type?.toLowerCase() == 'doorlock';
   }
 
+  // Get the display status of a device, showing "ON"/"OFF" for regular devices and "Locked"/"Unlocked" for door locks.
+  getDeviceStatus(): string {
+    if (this.canToggleLatch()) {
+      return this.device.isLocked ? 'ON' : 'OFF';
+    }
+
+    return this.device.isDeviceOn ? 'ON' : 'OFF';
+  }
+
   // Set brightness for light devices.
   setBrightness(brightness: number): void {
     const previousBrightness = this.device.lightBrightness;
@@ -128,15 +137,6 @@ export class DeviceCardComponent {
         this.device.lightBrightness = previousBrightness;
       },
     });
-  }
-
-  // Get the display status of a device, showing "ON"/"OFF" for regular devices and "Locked"/"Unlocked" for door locks.
-  getDeviceStatus(): string {
-    if (this.canToggleLatch()) {
-      return this.device.isLocked ? 'ON' : 'OFF';
-    }
-
-    return this.device.isDeviceOn ? 'ON' : 'OFF';
   }
 
   // Select color for light devices.
@@ -160,9 +160,7 @@ export class DeviceCardComponent {
   }
 
   setFanSpeed(speed: string): void {
-    const previousSpeed = this.device.fanSpeed;
-
-    const request = { command: 'setFanSpeed', speed: speed };
+    const request = { command: 'setFanSpeed', fanSpeed: speed };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
       next: (updatedDevice: any) => {
@@ -171,7 +169,6 @@ export class DeviceCardComponent {
       },
       error: (err) => {
         console.error('Failed to set fan speed', err);
-        this.device.fanSpeed = previousSpeed;
       },
     });
   }

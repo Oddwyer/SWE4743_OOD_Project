@@ -190,6 +190,13 @@
   transition: opacity 0.2s ease;
 }
 
+.inline-control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .control-header {
   display: flex;
   justify-content: space-between;
@@ -291,6 +298,33 @@
   font-size: 0.95rem;
   color: #343d4c;
   font-weight: 600;
+}
+
+/* =========================
+   FAN SPEED
+   ========================= */
+
+.speed-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.speed-row .control-label {
+  white-space: nowrap;
+}
+
+:host ::ng-deep .fan-speed-buttons {
+  width: 100%;
+  min-width: 0;
+}
+
+:host ::ng-deep .fan-speed-buttons .p-togglebutton {
+  min-width: 0;
+  padding: 0.2rem 0.15rem;
+  font-size: 0.7rem;
+  justify-content: center;
 }
 
 /* =========================

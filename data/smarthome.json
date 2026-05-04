@@ -24,7 +24,7 @@
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 2
+      "FanSpeed": 1
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
@@ -3936,6 +3936,180 @@
       "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
       "Timestamp": "2026-05-04T15:59:35.1315909Z",
       "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "667b55b8-848d-4e82-b7a2-1b7b7487cb77",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T16:08:39.0324751Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "d66b6e46-ef97-4b65-b18e-5ba2ee16ac09",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:12:09.4366901Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "7f0edd7f-abc8-4b44-8504-cbe4fabf326e",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:12:18.198524Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "e18f2e2c-f6fe-4630-9f4d-e7d43985328b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:12:37.1736227Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "af84f934-ed9d-46cf-ab88-e2c2a8f9bdda",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:14:03.5834634Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "70ae011b-46f8-4cea-a7c9-36cefdde7737",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:14:06.9377959Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "1e3ed08d-9c82-4006-ae39-86ec0cdde961",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:15:02.0476619Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "ff393475-deb7-4c3b-98c6-e12f121c3382",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:15:51.4500479Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "c9bf1641-9ecd-40d2-a670-fb4b35a6c5aa",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:15:55.8330564Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "11c7dcf9-fab0-4b5d-9c32-ce3c8d8004b1",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:17:09.9807496Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "2ec2b55a-b05d-4b9b-a999-48737a0db27c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:17:38.5072749Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "0b91f089-8d56-4b9f-b40b-5ea6d7302c8f",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:17:40.6781296Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "24d827cc-120c-4350-b9ca-dd809049d79c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:21:17.209346Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "dfc1b450-e661-452b-8d8d-21e514fbb5cd",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:21:23.8724994Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "8487e1b4-9b2f-4df6-9a90-d3c9d745a465",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:09.1202429Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "f2a0c376-991f-488e-9a61-ddf85c3dff21",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:12.7761815Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "b191861d-6af2-4b40-915b-9ba476c7a8a0",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:14.3122568Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "b6be5bbf-81ce-46f2-92c6-8ffc0a663701",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:22.0735333Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "85d4a295-1eea-4730-b2a2-74295f089f4b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:25.8930681Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "67452d54-0d21-4784-a474-483c19e58aae",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:46.8233036Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "400fd4b3-498d-4d9b-92a4-55cc07657f75",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:22:48.5905263Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "36746580-9083-48b2-9213-2df289d372ab",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:25:07.0824819Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "094b0b36-b598-44e5-b3b3-353a4c0a1c56",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:25:08.525121Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "8f36d7e1-ae6b-4613-826c-76fda21754e0",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:25:09.8589202Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "0c47ee97-5b0f-4ea2-8476-fbb8dd1b74fd",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:27:58.13249Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "96474193-9920-47fe-a6a9-d919bbd07221",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:28:03.3956362Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "9cabec07-76c0-4382-9b0b-8e599cf62ebd",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:40:57.025247Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "fd993cac-ab7d-4ba9-bf01-27d1fe2ade08",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:40:57.6879794Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "3d7ebd69-3c38-4141-9ca2-2f416bd0a413",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T16:40:58.3494733Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
     }
   ],
   "Locations": [
