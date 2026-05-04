@@ -1,5 +1,10 @@
+/* =========================
+   DEVICE LIST COMPONENT
+   ========================= */
+
 .dashboard {
     padding: 2rem;
+    font-size: 1rem;
 }
 
 /* HEADER */
@@ -11,11 +16,16 @@
 .dashboard-header h1 {
     margin: 0;
     color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .dashboard-header p {
     margin: 0.25rem 0 0 0;
     color: #FFFFFF;
+    font-size: 1rem;
+    line-height: 1.4;
 }
 
 /* HEADER CONTENT (LOGO + TEXT) */
@@ -25,7 +35,7 @@
     gap: 1rem;
 }
 
-/* LOGO (FIXED SIZE) */
+/* LOGO */
 .app-logo {
     width: 200px;
     height: 200px;
@@ -43,37 +53,42 @@
     padding-bottom: 0.5rem;
 }
 
-/* SIMULATION CARD */
+/* =========================
+   SIMULATION CARD
+   ========================= */
+
 .simulation-card {
     min-height: 330px;
     background: rgba(52, 61, 76, 0.75);
     border-left: 6px solid #343D4C;
     border-radius: 14px;
-    padding: 0.5rem;
+    padding: 0.75rem;
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
 .simulation-card-header {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .simulation-card-header h2 {
     margin: 0;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.25;
 }
 
 .setting-row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding-bottom: 1rem;
-    /* controls spacing */
+    padding-bottom: 0.75rem;
+    font-size: 1.05rem;
 }
 
-/* THIS is the key fix */
 .setting-row i,
 .setting-row .icon {
     width: 1.5rem;
@@ -81,7 +96,10 @@
     flex-shrink: 0;
 }
 
-/* LOCATION SECTION */
+/* =========================
+   LOCATION SECTIONS
+   ========================= */
+
 .location-section {
     margin-bottom: 1.5rem;
 }
@@ -91,13 +109,14 @@
     align-items: center;
     gap: 0.5rem;
     margin: 0 0 0.75rem;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700;
+    line-height: 1.25;
     color: #FFFFFF;
 }
 
 .location-heading i {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     opacity: 0.9;
 }
 
@@ -107,7 +126,10 @@
     margin-bottom: 1rem;
 }
 
-/* DEVICE GRID */
+/* =========================
+   DEVICE GRID
+   ========================= */
+
 .devices-column {
     display: flex;
     flex-direction: column;
@@ -120,7 +142,10 @@
     gap: 1rem;
 }
 
-/* DEVICE CARD */
+/* =========================
+   DEVICE CARD
+   ========================= */
+
 .device-card {
     background: rgba(223, 231, 251, 0.9);
     border-left: 6px solid #343D4C;
@@ -129,34 +154,65 @@
     color: #343D4C;
 }
 
-.device-card * {
-    color: #343D4C;
-}
-
-/* ACTIVE DEVICE ACCENT */
 .device-card.active {
     border-left: 6px solid #a1683a;
 }
 
-/* CARD HEADER */
 .device-card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+}
+
+.device-header-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    min-height: 1.6rem;
+}
+
+.device-header-top>i {
+    font-size: 1.35rem;
+    color: #343D4C;
+    opacity: 0.85;
+}
+
+.device-status-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+}
+
+.device-status-text {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #343D4C;
 }
 
 .device-card-header h3 {
-    margin: 0;
-    font-weight: 550;
-    line-height: 24px;
-    padding-bottom: 0.25rem;
+    margin: 0.25rem 0 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding-top: 1rem;
 }
 
 .device-card-header h4 {
-    margin: 0;
-    padding-bottom: 0.25rem;
-    line-height: 24px;
+    margin: 0.15rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.2;
     font-style: italic;
+}
+
+.device-actions {
+    width: 4.75rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
 }
 
 /* DETAILS */
@@ -166,13 +222,98 @@
     flex-direction: column;
     gap: 0.25rem;
     padding-bottom: 0.25rem;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* STATUS TAG */
+.device-status {
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0.25rem 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+/* =========================
+   CONTROLS
+   ========================= */
+
+.power-on {
+    color: #28a745;
+    font-size: 1.4rem;
+}
+
+.power-off {
+    color: #dc3545;
+    font-size: 1.4rem;
+}
+
+.device-actions .power-on .p-button-icon {
+    color: #28a745 !important;
+    font-size: 1.4rem;
+}
+
+.device-actions .power-off .p-button-icon {
+    color: #dc3545 !important;
+    font-size: 1.4rem;
+}
+
+/* POWER ROW INSIDE DEVICE CARD */
+.power-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.power-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #343D4C;
+}
+
+/* =========================
+   PRIME TOGGLE (must use ::ng-deep)
+   ========================= */
+
+:host ::ng-deep .power-row .p-toggleswitch {
+    width: 3.25rem;
+    height: 1.6rem;
+}
+
+/* track */
+:host ::ng-deep .power-row .p-toggleswitch-slider {
+    background: #2a2b2c !important;
+    border-radius: 999px !important;
+    border: none !important;
+    transition: background 0.2s ease;
+}
+
+/* OFF knob position */
+:host ::ng-deep .power-row .p-toggleswitch-handle {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* ON state */
+:host ::ng-deep .power-row .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
+    background: #28a745 !important;
+}
+
+/* Move knob to the right when ON */
+:host ::ng-deep .power-row .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-handle {
+    transform: translateX(2rem) translateY(-50%) !important;
 }
 
 /* =========================
    RESPONSIVE
-========================= */
+   ========================= */
 
 @media (max-width: 900px) {
     .dashboard {
@@ -202,15 +343,32 @@
     }
 
     .dashboard-header {
-        padding: 1rem;
+        padding: 1rem 0;
     }
 
     .dashboard-header h1 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 
     .dashboard-header p {
         font-size: 0.9rem;
+    }
+
+    .header-content {
+        gap: 0.75rem;
+    }
+
+    .app-logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .simulation-card-header h2 {
+        font-size: 1.15rem;
+    }
+
+    .location-heading {
+        font-size: 1.2rem;
     }
 
     .device-grid {
@@ -222,9 +380,19 @@
         gap: 0.75rem;
     }
 
-    /* slightly smaller logo on phones */
-    .app-logo {
-        width: 150px;
-        height: 150px;
+    .device-card-header h3 {
+        font-size: 1rem;
+    }
+
+    .device-card-header h4 {
+        font-size: 0.8rem;
+    }
+
+    .device-details {
+        font-size: 0.9rem;
+    }
+
+    .device-status {
+        font-size: 0.8rem;
     }
 }

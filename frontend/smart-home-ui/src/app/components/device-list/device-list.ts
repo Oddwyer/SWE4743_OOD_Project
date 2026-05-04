@@ -6,12 +6,15 @@ import { DeviceApiService } from '../../services/device.api.service';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
+import { ToggleSwitch } from 'primeng/toggleswitch';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
-  imports: [CommonModule, CardModule, TagModule, ButtonModule],
+  imports: [CommonModule, CardModule, TagModule, ButtonModule, FormsModule,
+    ToggleSwitch],
   styleUrls: ['./device-list.css']
 })
 
@@ -23,7 +26,7 @@ export class DeviceList implements OnInit {
   isLoading = true;
 
   constructor(
-    private deviceService: DeviceApiService,
+    private deviceApiService: DeviceApiService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -34,7 +37,7 @@ export class DeviceList implements OnInit {
 
   // Load all devices from the API and handle loading state.
   loadDevices() {
-    this.deviceService.getAllDevices().subscribe({
+    this.deviceApiService.getAllDevices().subscribe({
       next: (data) => {
         this.devices = data;
         this.isLoading = false;
@@ -93,5 +96,34 @@ export class DeviceList implements OnInit {
     if (loc.includes('entry')) return 'pi pi-sign-in';
 
     return 'pi pi-map-marker'; // fallback
+  }
+
+  // Device commands (e.g., toggle power) are sent to the API, and the device list is refreshed upon success.
+
+  // Toggle the power state of a device and refresh the device list to reflect changes.
+  toggleDevicePower(device: any): void {
+
+    const previousPowerState = device.isDeviceOn;
+    device.isDeviceOn = !device.isDeviceOn;
+
+    const request = { command: 'togglePower' };
+
+    // Send the control command to the API and refresh the device list on success.
+    this.deviceApiService.controlDevice(device.id, request).subscribe({
+      next: (updatedDevice: any) => {
+
+        Object.assign(device, updatedDevice);
+      },
+      error: (err) => {
+        console.error('Failed to toggle power', err);
+        device.isDeviceOn = previousPowerState;
+      }
+
+    });
+  }
+
+  // Determine if the power toggle button should be shown for a device (e.g., not for door locks).
+  canTogglePower(device: any): boolean {
+    return device.type?.toLowerCase() !== 'doorlock';
   }
 }

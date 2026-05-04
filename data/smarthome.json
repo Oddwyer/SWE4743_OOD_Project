@@ -2,7 +2,7 @@
   "Devices": [
     {
       "Id": "7a420ebf-e710-4d03-9079-132323754a2c",
-      "Name": "Living Room Ceiling Fan",
+      "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Living Room",
       "IsOn": true,
@@ -15,7 +15,7 @@
     },
     {
       "Id": "6bac8a57-3997-4669-9848-bd88a13e8855",
-      "Name": "Master Bedroom Fan",
+      "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Master Bedroom",
       "IsOn": false,
@@ -28,7 +28,7 @@
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
-      "Name": "Master Bedroom Left Sconce",
+      "Name": "Left Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
       "IsOn": false,
@@ -41,7 +41,7 @@
     },
     {
       "Id": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
-      "Name": "Master Bedroom Right Sconce",
+      "Name": "Right Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
       "IsOn": false,
@@ -54,10 +54,10 @@
     },
     {
       "Id": "69360665-1e86-4d3c-9511-a683767a68b7",
-      "Name": "Living Room Left Side Table Lamp",
+      "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -67,10 +67,10 @@
     },
     {
       "Id": "214b015d-78b3-4b57-b49d-47768871907a",
-      "Name": "Living Room Right Side Table Lamp",
+      "Name": "Right Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -93,7 +93,7 @@
     },
     {
       "Id": "5589731f-a375-4692-8680-0684c13f3e9d",
-      "Name": "Entryway Overhead Light",
+      "Name": "Overhead Light",
       "Type": 0,
       "Location": "Entryway",
       "IsOn": true,
@@ -119,7 +119,7 @@
     },
     {
       "Id": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
-      "Name": "Living Room Thermostat",
+      "Name": "Thermostat",
       "Type": 3,
       "Location": "Living Room",
       "IsOn": true,
@@ -132,7 +132,7 @@
     },
     {
       "Id": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
-      "Name": "Living Room Light",
+      "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
       "IsOn": false,
@@ -1320,6 +1320,450 @@
       "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
       "Timestamp": "2026-05-02T22:41:13.7737699Z",
       "Operation": "Powered off Master Bedroom Fan."
+    },
+    {
+      "Id": "67267e51-956e-4daa-bc81-ab4781a72921",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T22:34:23.957875Z",
+      "Operation": "Powered on Living Room Left Side Table Lamp."
+    },
+    {
+      "Id": "3cbaf736-499c-46e2-bf57-5fc18e15c69a",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T22:34:25.2430613Z",
+      "Operation": "Powered off Living Room Left Side Table Lamp."
+    },
+    {
+      "Id": "d02ac147-94d2-40da-b9f9-3edeeb79176d",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T22:44:06.3283284Z",
+      "Operation": "Powered on Living Room Right Side Table Lamp."
+    },
+    {
+      "Id": "9cd4c1fc-061c-4ab2-99b0-a9adc79ea8f2",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T22:44:07.1277173Z",
+      "Operation": "Powered off Living Room Right Side Table Lamp."
+    },
+    {
+      "Id": "95c0c51a-87b7-4f67-bc4c-436bd3b0ddf7",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T22:44:07.947336Z",
+      "Operation": "Powered on Living Room Right Side Table Lamp."
+    },
+    {
+      "Id": "c3824d76-2d21-456b-a6da-a16399b016a7",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T22:57:39.7468449Z",
+      "Operation": "Powered off Living Room Right Side Table Lamp."
+    },
+    {
+      "Id": "d19ca09e-c4e4-4e1f-9f72-5f61b6b10fd0",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T22:57:40.5165409Z",
+      "Operation": "Powered on Living Room Right Side Table Lamp."
+    },
+    {
+      "Id": "7baaebad-9253-4ede-9603-8c588af36e10",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T22:57:41.912219Z",
+      "Operation": "Powered off Living Room Right Side Table Lamp."
+    },
+    {
+      "Id": "3331d5ea-1040-448d-a76a-35747d14edd3",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:49:07.2235797Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "2f39b1a4-4dc4-4f39-b1e1-4f8efca91ee2",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:49:08.1245468Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "022771fc-4795-4dc4-a85d-124414f828e2",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:49:14.45875Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "f4999b45-1b15-4be5-9aed-ef3193be2d46",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:49:15.4346379Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "a95173ab-dea3-47e1-8490-00aea3dbc731",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T23:51:31.3763815Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "b5a08835-4a53-4e84-818e-680dc543c7af",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T23:51:32.2844894Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "a12ccf80-b721-4c62-b517-20aa5678e95b",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T23:51:33.5888921Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "d78c53d3-3d14-475a-8ce4-0a8de9ea440e",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-03T23:51:34.8662562Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "02c82d2a-e86c-46c6-acdb-ccd63e868e87",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:53:06.2483887Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "11812ad6-7c24-4375-9ae4-b88ff678b93c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:53:07.0040779Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "94e45b64-c6ec-426b-b7c6-483607bdf54d",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:56:06.9436094Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "6929b857-ab26-4954-b203-0cd0a74711ec",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:56:08.1628698Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "8ab00a59-7121-4a21-8a08-2d688caa9a6b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:56:09.8997229Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "8df702bc-9c0e-469b-a49a-ba070c4e1761",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:56:10.5050071Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "0b0fd30f-0146-452f-b49b-fd30e9c476fd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-03T23:56:14.9609405Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "32c6e6d7-7d93-450b-b4d2-f54ac9b7a6b9",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:19.2417311Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "f4f4381c-f45a-4e47-becb-8bad8f863e13",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:20.0432499Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "97455f20-6ba1-44f1-909b-0863a04137f4",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:24.3969001Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "4974fbbe-1a76-44a8-902d-c94cdef8c61d",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:50.5240505Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "b0721ebc-618b-4cd5-a852-b81130543de4",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:51.4751917Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "e4d2f824-fd8b-4a7f-9f15-ff4eb003d850",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:52.8832119Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "51b5b388-5279-4a8b-bb12-e99f312c3237",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:54.1507896Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "ded7e0f1-3ce4-4c39-8bf3-44dd20e31dbf",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:56.4358647Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "94c60e04-a44f-4555-a14e-472d214c1325",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:58:58.8733138Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "bb891f5c-fb5a-4b7c-a3bc-591fd7bf22fa",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-03T23:59:00.4215434Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "10ff429c-2bed-47d7-8fdd-65d8b50668e9",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:04.6939718Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "531782a5-ed88-4368-8378-119b29ceccce",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:48.0337322Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "3d8e1cd3-4e57-4017-9216-5e365d57f344",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:49.377706Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "aaf69e00-c7e9-44e3-91f2-b60a8c6d6681",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:50.7893875Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "c339d089-1c5a-4d43-9b29-c69c57247a7d",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:51.8677438Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "9e099875-8888-480b-9e71-b91f5edf552f",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:52.9547725Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "b31622df-9f66-417f-b84e-7cf6778b6d1c",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:54.176557Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "26b61bba-6b0a-46f9-a3af-f3d1089b47db",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:55.0752062Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "e506793f-4f49-4fb6-afb0-fd2f014d90b7",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:56.2363939Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "d8e27841-a971-429c-8c52-65eadb4c1d32",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-03T23:59:56.9155199Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "49f26016-6436-4506-ae3d-956aeeed858f",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T00:05:34.4225889Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "6435c0d3-02ae-4340-b6a3-5e979eb7035b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T00:05:35.323572Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "d59673cd-2ae5-4609-9b76-e9c9cb1ed11f",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:05:36.2746257Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "0fcc376d-28cb-4393-9fcb-437be58ca237",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:05:37.4317988Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "c335dd0d-e2ea-4222-9456-9683ce6707b8",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:05:38.2283519Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "fac93d90-3374-479f-89de-bafc1e0a9ec5",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:05:40.3424866Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "a7520c4d-09d7-441d-9f76-33001d3e3b41",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:05:53.5176045Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "02405362-a18f-4d3a-82fc-4d26b1ca06a0",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:09:11.6870926Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "11b81b9a-4554-4ebf-93d8-e0c0bee64b81",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:09:12.9493102Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "4bd35b73-3b64-469d-a997-c0c65e2e70d0",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:09:13.3900723Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "01299d8b-e32e-41c3-b57c-aaa65fad3d3c",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:09:15.8495204Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "5723a5ed-91fb-458c-81a7-f147bde50052",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:09:16.3483261Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "6f628cfa-6a4d-4a2b-84cb-e61cdcd67a13",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T00:09:23.9756593Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "4a54a91d-0271-491d-a4af-fccab79f93b7",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-04T00:09:24.8689372Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "8005482f-4df8-4b5e-a0d3-afef341481e4",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:10:00.1167282Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "b2b5f454-7e72-43f8-a946-7bbeebcb5528",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:10:00.7493667Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "36fab4ff-6197-4d7f-bb12-6d870f1c3430",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-04T00:20:06.5540581Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "fc813628-66e1-496c-9579-f8d53398807d",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T00:20:07.8785966Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "5567c684-915a-4868-9688-ee42c46f0f24",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T00:20:09.3499753Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "076f047d-c41a-4581-a606-73fec5e0548d",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T00:20:10.4412986Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "207bba96-61e3-4afd-a852-fe15e285d4ea",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-04T00:20:11.9117934Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "097b4741-b300-4540-8e4b-5afd64c6d5d9",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T00:20:48.2163786Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "384f440f-5796-4a9f-b69d-86a93e1f5e8f",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T00:20:50.291812Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "fe5a0d75-b6b8-4a6c-8b9b-fc8864873006",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T00:20:51.0632891Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "391df067-dadc-43fa-8f3b-1f8736ca4a82",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T00:20:51.7482578Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "3e4190b9-c249-4166-b3a3-91fcfec2866c",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T00:20:54.4661941Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "4f7890b1-f5c1-4b72-b41b-ae454f59d113",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-04T00:20:55.1841639Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "23dd2d55-6749-41da-a010-0b09e45f1923",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T00:27:35.5879876Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "9dedce89-cef2-4e72-8157-00218ee07bf4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-04T00:27:39.9070784Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "510f75ae-6cc7-4207-a61f-b095d2555b98",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T00:27:49.1471528Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "b4cf8c24-ba71-4b02-8b51-589372044900",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-04T00:27:52.2932991Z",
+      "Operation": "Powered on Right Side Table Lamp."
     }
   ],
   "Locations": [
