@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SmartHome.Domain.Commands;
+using SmartHome.Domain.Commands.Latched;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
@@ -33,9 +34,15 @@ public class DeviceFactoryAndServiceTests
     {
         public IDeviceCommand CreateCommand(IDevice device, CommandData context)
         {
+            if (device is not ILatchedDevice latchedDevice)
+            {
+                throw new InvalidOperationException("This device does not support latch control.");
+            }
+
             return context.Command switch
             {
-                DeviceCommandType.ToggleLock when device is DoorLocks doorLock => new ToggleLockCommand(doorLock),
+
+                DeviceCommandType.ToggleLock when latchedDevice is DoorLocks doorLock => new ToggleLockCommand(doorLock, latchedDevice),
                 _ => throw new ArgumentException("Unsupported command type for fake command factory.")
             };
         }

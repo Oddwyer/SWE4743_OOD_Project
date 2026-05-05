@@ -21,7 +21,7 @@ public class CommandHistoryTests
     public void ApplyDeviceCommand_SavesHistoryEntry()
     {
         var repository = new FakeDeviceRepository();
-        var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
+        var commandFactory = new CommandFactory();
         var service = new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), commandFactory, repository);
 
         var light = new LightDevice(Guid.NewGuid(), "DeskLamp", "Office");
@@ -33,7 +33,7 @@ public class CommandHistoryTests
 
         Assert.Single(history);
         Assert.Equal(light.Id, history[0].DeviceId);
-        Assert.Contains("Toggled power", history[0].Operation);
+        Assert.Contains("Powered on", history[0].Operation);
         Assert.True(history[0].Timestamp <= DateTime.UtcNow);
     }
 
@@ -41,7 +41,7 @@ public class CommandHistoryTests
     public void GetCommandHistory_ReturnsHistoryEntriesForDevice()
     {
         var repository = new FakeDeviceRepository();
-        var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
+        var commandFactory = new CommandFactory();
         var service = new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), commandFactory, repository);
 
         var fan = new FanDevice(Guid.NewGuid(), "DeskFan", "Office");
@@ -52,7 +52,7 @@ public class CommandHistoryTests
         var history = service.GetCommandHistory(fan.Id).ToList();
 
         Assert.Equal(2, history.Count);
-        Assert.Contains(history, entry => entry.Operation.Contains("Toggled power"));
+        Assert.Contains(history, entry => entry.Operation.Contains("Powered on"));
         Assert.Contains(history, entry => entry.Operation.Contains("Set fan speed"));
     }
 
@@ -60,7 +60,7 @@ public class CommandHistoryTests
     public void ApplyDeviceCommand_ToMissingDevice_ThrowsKeyNotFoundException()
     {
         var repository = new FakeDeviceRepository();
-        var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
+        var commandFactory = new CommandFactory();
         var service = new DeviceService(new FakeSimulationService(), repository, TestHelper.CreateDeviceFactory(), commandFactory, repository);
 
         Assert.Throws<KeyNotFoundException>(() => service.ApplyDeviceCommand(Guid.NewGuid(), new CommandData { Command = DeviceCommandType.TogglePower }));

@@ -1,6 +1,7 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Commands.Powered;
 
 namespace SmartHome.Domain.Commands.Thermostat;
 
@@ -20,40 +21,55 @@ public class ThermostatCommandFactory : IDeviceCommandFactory
 
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
+        if (device is not ThermostatDevice thermostat)
+        {
+            throw new InvalidOperationException($"{device.DeviceName} is not a thermostat and does not support thermostat commands.");
+        }
+
         return context.Command switch
         {
-            DeviceCommandType.SetThermostatMode => CreateSetThermostatModeCommand(device, context),
+            DeviceCommandType.TogglePower => CreateTogglePowerCommand(thermostat),
 
-            DeviceCommandType.SetTargetTemperature => CreateSetTargetTemperatureCommand(device, context),
+            DeviceCommandType.SetThermostatMode => CreateSetThermostatModeCommand(thermostat, context),
+
+            DeviceCommandType.SetTargetTemperature => CreateSetTargetTemperatureCommand(thermostat, context),
+
             _ => throw new ArgumentException($"Unsupported command type.")
         };
     }
 
-    private IDeviceCommand CreateSetThermostatModeCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateTogglePowerCommand(ThermostatDevice thermostat)
     {
-        if (device is not ThermostatDevice setModeThermostat)
+        if (thermostat is not IPoweredDevice poweredDevice)
         {
-            throw new InvalidOperationException("This device does not have a thermostat mode setting.");
+            throw new InvalidOperationException("This device does not support power control.");
         }
+
+        return new TogglePowerCommand(thermostat, poweredDevice);
+    }
+
+    private IDeviceCommand CreateSetThermostatModeCommand(ThermostatDevice thermostat, CommandData context)
+    {
+
         if (context.Mode is null)
         {
             throw new ArgumentException("A thermostat mode is required to alter current thermostat mode.");
         }
+
         var strategy = _thermostatStrategyFactory.Create(context.Mode.Value);
-        return new SetThermostatModeCommand(setModeThermostat, context.Mode.Value, strategy);
+
+        return new SetThermostatModeCommand(thermostat, context.Mode.Value, strategy);
     }
 
-    private IDeviceCommand CreateSetTargetTemperatureCommand(IDevice device, CommandData context)
+    private IDeviceCommand CreateSetTargetTemperatureCommand(ThermostatDevice thermostat, CommandData context)
     {
-        if (device is not ThermostatDevice targetTempThermostat)
-        {
-            throw new InvalidOperationException("This device does not have a target temperature setting.");
-        }
+
         if (context.TargetTemperature is null)
         {
             throw new ArgumentException("A target temperature must be provided to set the desired temperature.");
         }
-        return new SetTargetTemperatureCommand(targetTempThermostat, context.TargetTemperature.Value);
+
+        return new SetTargetTemperatureCommand(thermostat, context.TargetTemperature.Value);
     }
 
 }

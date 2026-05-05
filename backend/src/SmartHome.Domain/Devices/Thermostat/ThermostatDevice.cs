@@ -1,6 +1,5 @@
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
-
-using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands.Thermostat;
 
 namespace SmartHome.Domain.Devices.Thermostat;
 
@@ -43,7 +42,7 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :
 
-    base(id, deviceName, deviceLocation, DeviceType.Thermostat)
+    base(id, deviceName, deviceLocation, DeviceType.Thermostat, new ThermostatCommandFactory())
     {
         CurrentStrategy = strategy;
         Mode = mode;

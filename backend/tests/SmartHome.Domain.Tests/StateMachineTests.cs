@@ -1,6 +1,6 @@
 using System;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain.Commands.Power;
+using SmartHome.Domain.Commands.Powered;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.DoorLock;
@@ -189,7 +189,7 @@ public class StateMachineTests
         thermostat.Evaluate(70);
         Assert.True(thermostat.IsDeviceOn);
 
-        var commandFactory = new CommandFactory(new ThermostatStrategyFactory());
+        var commandFactory = new CommandFactory();
         var command = commandFactory.CreateCommand(thermostat, new CommandData
         {
             Command = DeviceCommandType.SetThermostatMode,

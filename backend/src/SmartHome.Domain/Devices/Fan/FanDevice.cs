@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices.Fan.FanStates;
 using SmartHome.Domain.Commands.Fan;
-using SmartHome.Domain.Devices;
+
 
 namespace SmartHome.Domain.Devices.Fan;
 

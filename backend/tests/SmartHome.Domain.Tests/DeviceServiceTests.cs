@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SmartHome.Domain.Commands;
+using SmartHome.Domain.Commands.Latched;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat;
@@ -92,11 +93,21 @@ public class DeviceServiceTests
     {
         public IDeviceCommand CreateCommand(IDevice device, CommandData context)
         {
-            return context.Command switch
+
             {
-                DeviceCommandType.ToggleLock when device is DoorLocks doorLock => new ToggleLockCommand(doorLock),
-                _ => throw new ArgumentException("Unsupported command type for fake command factory.")
-            };
+                if (device is not ILatchedDevice latchedDevice)
+                {
+                    throw new InvalidOperationException("This device does not support latch control.");
+                }
+
+                return context.Command switch
+                {
+
+                    DeviceCommandType.ToggleLock when latchedDevice is DoorLocks doorLock => new ToggleLockCommand(doorLock, latchedDevice),
+                    _ => throw new ArgumentException("Unsupported command type for fake command factory.")
+                };
+            }
+
         }
     }
 
@@ -206,7 +217,7 @@ public class DeviceServiceTests
         Assert.Equal(DeviceLatchState.Unlocked, device.LatchState);
         var history = repository.GetHistoryForDevice(device.Id).ToList();
         Assert.Single(history);
-        Assert.Equal($"Locked {device.DeviceName}.", history[0].Operation);
+        Assert.Equal($"Unlocked {device.DeviceName}.", history[0].Operation);
     }
 
     [Fact]
@@ -243,7 +254,8 @@ public class DeviceServiceTests
         var service = CreateDeviceService(repository);
         var device = new DoorLocks(Guid.NewGuid(), "FrontDoor", "Entrance");
         repository.SaveDevice(device);
-        var entry = new CommandHistoryEntry(device.Id, new ToggleLockCommand(device));
+        var latchedDevice = device;
+        var entry = new CommandHistoryEntry(device.Id, new ToggleLockCommand(device, latchedDevice));
         repository.SaveHistoryEntry(entry);
 
         var history = service.GetCommandHistory(device.Id).ToList();
