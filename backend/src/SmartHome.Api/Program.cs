@@ -72,9 +72,14 @@ builder.Services.AddScoped<ICommandFactory, CommandFactory>();
 builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
-builder.Services.AddScoped<JsonRepository>();
+builder.Services.AddScoped<JsonRepository>(); // gets replaced for ORM and sqlite
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+
+/// this will be commented out while I build out the rest of the ORM components
+// builder.Services.AddScoped<SqliteRepository>();
+// builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
+// builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
 
 // Configure JSON serialization to use camelCase and serialize enums as strings.
 builder.Services.AddControllers()
