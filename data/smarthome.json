@@ -5550,6 +5550,30 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-05T19:23:50.7040254Z",
       "Operation": "Set light brightness to 74% for Left Side Table Lamp."
+    },
+    {
+      "Id": "4b44d1bf-9f0e-42e4-bf88-932a212393b3",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-05T19:32:22.5628284Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "7f576b4f-e02b-4fd6-bdc9-c2438c77358d",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-05T19:32:26.3548698Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "53187af0-bf92-4d4e-8940-85e342777198",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-05T19:32:29.2910153Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "c5b18989-efe2-4a28-8b59-de968a392f97",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-05T19:32:30.2511945Z",
+      "Operation": "Powered on Right Side Table Lamp."
     }
   ],
   "Locations": [

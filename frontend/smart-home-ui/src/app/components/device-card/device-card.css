@@ -93,6 +93,22 @@
   font-style: italic;
 }
 
+.material-symbols-outlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  font-size: 2rem;
+  vertical-align: middle;
+  color: #343d4c;
+
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
 /* =========================
    DETAILS
    ========================= */
@@ -125,7 +141,7 @@
 .power-label,
 .lock-label {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #343d4c;
 }
 
@@ -205,14 +221,14 @@
 
 .control-label {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .control-value {
   width: 4.75rem;
   min-width: 4.75rem;
   text-align: right;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #343d4c;
 }

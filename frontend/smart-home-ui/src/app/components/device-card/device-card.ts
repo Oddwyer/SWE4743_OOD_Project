@@ -49,23 +49,18 @@ export class DeviceCardComponent {
   // Helper method to get icon class based on device type.
   getDeviceIcon(type: string): string {
     switch (type?.toLowerCase()) {
-      case 'thermostat':
-        return 'pi pi-gauge';
-
-      case 'fan':
-        return 'pi pi-sync';
-
-      case 'doorlock':
-        return 'pi pi-sign-in';
-
       case 'light':
-        return 'pi pi-lightbulb';
-
+        return 'emoji_objects';
+      case 'fan':
+        return 'mode_fan';
+      case 'doorlock':
+        return 'sensor_door';
+      case 'thermostat':
+        return 'thermostat';
       default:
-        return 'pi pi-home';
+        return 'devices';
     }
   }
-
   // Toggle the power state of a device and refresh the device list to reflect changes.
   toggleDevicePower(): void {
     const previousPowerState = this.device.isDeviceOn;
