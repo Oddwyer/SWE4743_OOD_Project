@@ -202,5 +202,23 @@ export class DeviceCardComponent {
     });
   }
 
-  // SetTargetTemperature
+  // Set target temperature for thermostat.
+  setTargetTemperature(temperature: number): void {
+    const previousTarget = this.device.targetTemperature;
+
+    this.device.targetTemperature = temperature;
+
+    const request = { command: 'setTargetTemperature', targetTemperature: temperature };
+
+    this.deviceApiService.controlDevice(this.device.id, request).subscribe({
+      next: (updatedDevice: any) => {
+        console.log('FROM API:', updatedDevice);
+      },
+      error: (err) => {
+        this.device.targetTemperature = previousTarget;
+        console.error('Failed to set target temperature.', err);
+      },
+    });
+  }
 }
+0;

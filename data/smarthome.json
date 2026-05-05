@@ -62,7 +62,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#adad84",
-      "LightBrightness": 55,
+      "LightBrightness": 74,
       "FanSpeed": null
     },
     {
@@ -123,9 +123,9 @@
       "Type": 3,
       "Location": "Living Room",
       "IsOn": true,
-      "DeviceState": "Cooling",
+      "DeviceState": "Heating",
       "ThermostatMode": 3,
-      "TargetTemperature": 68,
+      "TargetTemperature": 73,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -140,7 +140,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 44,
+      "LightBrightness": 10,
       "FanSpeed": null
     }
   ],
@@ -5496,6 +5496,60 @@
       "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
       "Timestamp": "2026-05-05T16:18:29.7292861Z",
       "Operation": "Set light color to #FFFFFF for Overhead Light."
+    },
+    {
+      "Id": "491c5c47-90e9-4864-85c0-b9975221cdf2",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-05T18:38:42.5934296Z",
+      "Operation": "Set light brightness to 100% for Left Side Table Lamp."
+    },
+    {
+      "Id": "18de5056-e016-476f-8527-e8a192def3b0",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-05T18:38:44.0427634Z",
+      "Operation": "Set light brightness to 10% for Left Side Table Lamp."
+    },
+    {
+      "Id": "00980a3f-4481-4698-a6c7-4d162b5bc5d5",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-05T18:38:57.7443821Z",
+      "Operation": "Set light brightness to 10% for Left Side Table Lamp."
+    },
+    {
+      "Id": "2310cfbe-3926-4245-bd40-e531b614d3a9",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-05T18:39:01.9409965Z",
+      "Operation": "Set light brightness to 10% for Overhead Light."
+    },
+    {
+      "Id": "6b9ce54c-2b26-45a4-96c3-493530de9b85",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-05T19:06:35.0023772Z",
+      "Operation": "Set light brightness to 63% for Left Side Table Lamp."
+    },
+    {
+      "Id": "bdf2aabf-aa30-40b8-89c9-ab897f3e2f0a",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-05T19:16:36.6095728Z",
+      "Operation": "Set target temperature to 60\u00B0F for Thermostat."
+    },
+    {
+      "Id": "b2a6b1cb-6c42-4de8-b903-22ef76854e1e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-05T19:22:10.8880579Z",
+      "Operation": "Set target temperature to 65\u00B0F for Thermostat."
+    },
+    {
+      "Id": "d3659791-3789-4e89-85d1-1d0d4e20d66f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-05T19:22:18.9648693Z",
+      "Operation": "Set target temperature to 73\u00B0F for Thermostat."
+    },
+    {
+      "Id": "4db34a9d-5a4f-4cf5-91fb-bc47f309c351",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-05T19:23:50.7040254Z",
+      "Operation": "Set light brightness to 74% for Left Side Table Lamp."
     }
   ],
   "Locations": [

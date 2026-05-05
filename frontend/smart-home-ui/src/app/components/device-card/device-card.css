@@ -393,6 +393,50 @@
   cursor: not-allowed;
 }
 
+
+/* =========================
+   BRIGHTNESS SLIDER
+   ========================= */
+
+:host ::ng-deep .temperature-row .p-slider {
+  width: 100%;
+  height: 0.25rem;
+  background: #343d4c99 !important;
+  border-radius: 999px;
+  margin-top: 0.35rem;
+  position: relative;
+
+}
+
+:host ::ng-deep .temperature-row .p-slider-range {
+  height: 0.25rem !important;
+  background: transparent !important;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .temperature-row .p-slider-handle {
+  width: 1rem;
+  height: 1rem;
+  background: #134ecd !important;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 0.9rem;
+  max-height: 0.9rem;
+}
+
+:host ::ng-deep .temperature-row.control-disabled .p-slider,
+:host ::ng-deep .temperature-row.control-disabled .p-slider-range {
+  background: #343d4c !important;
+  opacity: 0.5;
+  height: 0.25rem;
+}
+
+:host ::ng-deep .temperature-row.control-disabled .p-slider-handle {
+  background: #343d4c !important;
+  cursor: not-allowed;
+}
+
 /* =========================
    RESPONSIVE
    ========================= */
