@@ -1,5 +1,6 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.DoorLock.DoorStates;
+using SmartHome.Domain.Commands.DoorLock;
 
 namespace SmartHome.Domain.Devices.DoorLock;
 
@@ -14,7 +15,7 @@ public class DoorLocks : Device, ILatchedDevice
     public IDoorState Locked { get; private set; }
     private IDoorState _currentState;
 
-    public DoorLocks(Guid id, string name, string location) : base(id, name, location, DeviceType.DoorLock)
+    public DoorLocks(Guid id, string name, string location) : base(id, name, location, DeviceType.DoorLock, new DoorLockCommandFactory())
     {
         Unlocked = new UnlockedState(this);
         Locked = new LockedState(this);
@@ -74,6 +75,7 @@ public class DoorLocks : Device, ILatchedDevice
         _latchState = latchState;
         _currentState = latchState == DeviceLatchState.Locked ? Locked : Unlocked;
     }
+
 
 
 }
