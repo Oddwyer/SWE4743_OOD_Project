@@ -5454,6 +5454,48 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-04T23:52:22.1974801Z",
       "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "8162f910-93a5-4ea4-b6b1-673aa175e916",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-05T16:18:02.8451813Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "9f53ae87-3ef9-48bc-b833-edd084375314",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-05T16:18:06.5275542Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "8a34fc0a-41c5-4ebb-b151-5599bb01817d",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-05T16:18:11.6020449Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "4a7919fa-844a-411b-92d5-391d8f7f9b22",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-05T16:18:13.1185148Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "33fd2b14-7352-4256-83fc-3168d758dcc0",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-05T16:18:17.0193789Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "6877ad2e-eff1-4cdb-8842-1cdeaa23ea24",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-05T16:18:26.8503256Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "2f92e91e-b818-4386-8375-6542e5147d34",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-05T16:18:29.7292861Z",
+      "Operation": "Set light color to #FFFFFF for Overhead Light."
     }
   ],
   "Locations": [

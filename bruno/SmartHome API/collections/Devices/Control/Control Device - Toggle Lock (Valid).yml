@@ -1,7 +1,7 @@
 info:
   name: Control Device - Toggle Lock (Valid)
   type: http
-  seq: 2
+  seq: 1
 
 http:
   method: PUT

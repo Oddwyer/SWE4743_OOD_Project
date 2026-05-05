@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceApiService } from '../../services/device.api.service';
-import { DeviceCardComponent } from '../../devices/device-card/device-card';
+import { DeviceCardComponent } from '../device-card/device-card';
 import { CardModule } from 'primeng/card';
 
 @Component({
