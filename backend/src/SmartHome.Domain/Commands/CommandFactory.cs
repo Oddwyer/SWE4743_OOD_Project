@@ -15,7 +15,7 @@ namespace SmartHome.Domain.Commands;
 /// </summary>
 
 // TODO - Refactor to avoid switch statement and improve OCP adherence if time permits.
-public class CommandFactory : ICommandFactory
+public class CommandFactory : IDeviceCommandFactory
 {
     private readonly IThermostatModeStrategyFactory _thermostatStrategyFactory;
 

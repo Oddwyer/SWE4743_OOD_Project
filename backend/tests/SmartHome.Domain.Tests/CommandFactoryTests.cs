@@ -12,7 +12,7 @@ namespace SmartHome.Domain.Tests;
 
 public class CommandFactoryTests
 {
-    private readonly ICommandFactory _factory = new CommandFactory(new ThermostatStrategyFactory());
+    private readonly IDeviceCommandFactory _factory = new CommandFactory(new ThermostatStrategyFactory());
 
     [Fact]
     public void CreateCommand_ReturnsTogglePowerCommand()

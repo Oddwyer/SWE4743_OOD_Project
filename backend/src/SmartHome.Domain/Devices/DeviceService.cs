@@ -13,10 +13,10 @@ public class DeviceService : IDeviceService
     private readonly ILocationRepository _locationRepository;
     private readonly IDeviceFactory _deviceFactory;
 
-    private readonly ICommandFactory _commandFactory;
+    private readonly IDeviceCommandFactory _commandFactory;
     private readonly ISimulationService _simulationService;
 
-    public DeviceService(ISimulationService simulationService, IDeviceRepository deviceRepository, IDeviceFactory factory, ICommandFactory commandFactory, ILocationRepository locationRepository)
+    public DeviceService(ISimulationService simulationService, IDeviceRepository deviceRepository, IDeviceFactory factory, IDeviceCommandFactory commandFactory, ILocationRepository locationRepository)
     {
         _deviceRepository = deviceRepository;
         _deviceFactory = factory;

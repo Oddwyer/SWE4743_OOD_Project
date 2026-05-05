@@ -29,7 +29,7 @@ public class DeviceFactoryAndServiceTests
         });
     }
 
-    private class FakeCommandFactory : ICommandFactory
+    private class FakeCommandFactory : IDeviceCommandFactory
     {
         public IDeviceCommand CreateCommand(IDevice device, CommandData context)
         {
