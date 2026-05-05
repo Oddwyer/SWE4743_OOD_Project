@@ -101,7 +101,7 @@
       class="control-row speed-row"
       [class.control-disabled]="!device.isDeviceOn"
     >
-      <span class="control-label">Fan Speed:</span>
+      <span class="control-label">Speed:</span>
       <div class="fan-speed-buttons">
         <button
           type="button"
@@ -139,6 +139,13 @@
         <span class="control-label">Target:</span>
         <span class="control-value">{{ device.targetTemperature }}°F</span>
       </div>
+          <p-slider
+        [(ngModel)]="device.targetTemperature"
+        [min]="device.min"
+        [max]="80"
+        [disabled]="!device.isDeviceOn"
+        (onSlideEnd)="setBrightness(device.lightBrightness)"
+      ></p-slider>
     </div>
     <div *ngIf="device.isLocked !== null">
       <div class="control-header">

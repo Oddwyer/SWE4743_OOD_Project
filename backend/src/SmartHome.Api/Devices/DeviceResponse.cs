@@ -19,6 +19,8 @@ public class DeviceResponse : BaseDevice
 
     // Lights
     public int? LightBrightness { get; set; }
+    public int? MinBrightness { get; set; }
+    public int? MaxBrightness { get; set; }
     public string? LightColor { get; set; }
 
     // Fans
@@ -27,6 +29,9 @@ public class DeviceResponse : BaseDevice
     // Thermostat
     public ThermostatMode? ThermostatMode { get; set; }
     public ThermostatStateType? ThermostatState { get; set; }
+
+    public int? MinTemperature { get; set; }
+    public int? MaxTemperature { get; set; }
     public int? TargetTemperature { get; set; }
     public int? AmbientTemperature { get; set; } // For bruno testing only. Frontend displayed via SimulationResponse.
 

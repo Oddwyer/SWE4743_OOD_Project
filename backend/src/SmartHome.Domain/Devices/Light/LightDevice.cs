@@ -5,8 +5,8 @@ namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
-    public const int MinBrightness = 10; // Minimum allowed brightness percentage
-    public const int MaxBrightness = 100; // Maximum allowed brightness percentage
+    public int MinBrightness => 10; // Minimum allowed brightness percentage
+    public int MaxBrightness => 100; // Maximum allowed brightness percentage
 
     // States
     private DevicePowerState _powerState = DevicePowerState.Off; // Default state

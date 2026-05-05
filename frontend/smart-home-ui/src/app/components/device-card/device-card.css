@@ -13,7 +13,7 @@
   border-left: 6px solid #343d4c;
   border-radius: 12px;
   color: #343d4c;
-  
+
 }
 
 :host ::ng-deep .device-card .p-card {
@@ -33,7 +33,7 @@
 .device-card-header {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem 0;
 }
 
 .device-header-top {
@@ -43,7 +43,7 @@
   min-height: 1.6rem;
 }
 
-.device-header-top > i {
+.device-header-top>i {
   font-size: 1.35rem;
   color: #343d4c;
   opacity: 0.85;
@@ -78,18 +78,18 @@
 }
 
 .device-card-header h3 {
-  margin: 0.25rem 0 0;
-  padding-top: 1rem;
+  margin: 1rem 0 0.25rem;
+  padding-top: 0;
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .device-card-header h4 {
-  margin: 0.15rem 0 0;
-  font-size: 0.95rem;
+  margin: 0;
+  font-size: 0.9rem;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.1;
   font-style: italic;
 }
 
@@ -113,7 +113,7 @@
 
 .power-row {
   display: grid;
-  grid-template-columns: 1fr 4.75rem;
+  grid-template-columns: 4.75rem 1fr;
   align-items: center;
   gap: 0.75rem;
 }
@@ -147,7 +147,7 @@
   font-size: 1.4rem;
 }
 
-/* PrimeNG ToggleSwitch */
+/* ToggleSwitch */
 
 :host ::ng-deep .power-row .p-toggleswitch {
   width: 3.25rem;
@@ -224,8 +224,17 @@
 
 .control-disabled .control-label,
 .control-disabled span {
-  color: #6b7280; 
+  color: #6b7280;
   opacity: 1;
+}
+
+.speed-row,
+.thermostat-mode-row {
+  display: grid;
+  grid-template-columns: 3.75rem 1fr;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
 }
 
 /* =========================
@@ -239,7 +248,7 @@
   border-radius: 999px;
   margin-top: 0.35rem;
   position: relative;
-   
+
 }
 
 :host ::ng-deep .brightness-row .p-slider-range {
@@ -304,14 +313,6 @@
    FAN SPEED
    ========================= */
 
-.speed-row {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 0;
-}
-
 .speed-row .control-label {
   white-space: nowrap;
 }
@@ -321,19 +322,21 @@
   width: 100%;
   gap: 0.15rem;
   min-width: 0;
-  
+
 }
 
 .fan-speed-button {
   flex: 1;
   min-width: 0;
-  padding: 0.25rem 0.25rem;
+  padding: 0.3rem 0.25rem;
   font-size: 0.85rem;
   border: 1px solid rgba(52, 61, 76, 0.35);
   background: rgba(255, 255, 255, 0.801);
   color: #343d4c;
   border-radius: 6px;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .fan-speed-button.selected {
@@ -349,16 +352,8 @@
 }
 
 /* =========================
-   FAN SPEED
+   THERMOSTAT MODE
    ========================= */
-
-.thermostat-mode-row {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 0;
-}
 
 .thermostat-mode-row .control-label {
   white-space: nowrap;
@@ -369,19 +364,21 @@
   width: 100%;
   gap: 0.15rem;
   min-width: 0;
-  
+
 }
 
 .thermostat-mode-button {
   flex: 1;
   min-width: 0;
-  padding: 0.25rem 0.25rem;
+  padding: 0.3rem 0.25rem;
   font-size: 0.85rem;
   border: 1px solid rgba(52, 61, 76, 0.35);
   background: rgba(255, 255, 255, 0.801);
   color: #343d4c;
   border-radius: 6px;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .thermostat-mode-button.selected {
@@ -401,16 +398,15 @@
    ========================= */
 
 @media (max-width: 500px) {
-  .device-card-header {
-    gap: 0.75rem;
-  }
 
   .device-card-header h3 {
-    font-size: 1rem;
+    font-size: 1.35rem;
+    margin: 0.35rem 0 0 0.05rem;
   }
 
   .device-card-header h4 {
-    font-size: 0.8rem;
+    font-size: 1rem;
+    margin-top: 0;
   }
 
   .device-details {
@@ -418,6 +414,6 @@
   }
 
   .device-status-text {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
 }

@@ -37,6 +37,8 @@ public static class DeviceMapper
             case LightDevice light:
                 response.LightBrightness = light.LightBrightness;
                 response.LightColor = light.Color;
+                response.MaxBrightness = light.MaxBrightness;
+                response.MinBrightness = light.MinBrightness;
                 break;
 
             case FanDevice fan:
@@ -46,6 +48,8 @@ public static class DeviceMapper
             case ThermostatDevice thermostat:
                 response.ThermostatMode = thermostat.Mode;
                 response.TargetTemperature = thermostat.TargetTemperature;
+                response.MaxTemperature = thermostat.MaxTemperature;
+                response.MinTemperature = thermostat.MinTemperature;
                 response.AmbientTemperature = ambientTemperature;
                 response.ThermostatState = thermostat.CurrentStateType; // Convert enum to string for API response
                 break;
