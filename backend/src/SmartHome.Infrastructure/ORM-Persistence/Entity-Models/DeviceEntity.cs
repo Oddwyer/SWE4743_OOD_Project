@@ -1,6 +1,7 @@
 public class DeviceEntity
 {
-    public Guid Id { get; set; }
+    // shared properties
+    public Guid Id { get; set; } // our table's PK
     public string Name { get; set; } = string.Empty;
     public string Location { get; set; } = string.Empty;
     public DeviceType Type { get; set; }
