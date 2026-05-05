@@ -132,6 +132,11 @@ public class DeviceServiceTests
         public void ResetSimulation()
         {
         }
+
+        public void RegisterThermostat(ThermostatDevice thermostat) { }
+        public void UnregisterThermostat(ThermostatDevice thermostat) { }
+        public void UpdateAmbientTemperature() { }
+        public void startSimulation() { }
     }
 
     private static DeviceService CreateDeviceService(FakeDeviceRepository repository)

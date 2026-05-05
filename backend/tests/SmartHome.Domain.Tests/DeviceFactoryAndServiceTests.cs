@@ -54,6 +54,10 @@ public class DeviceFactoryAndServiceTests
         public int GetAmbientTemperature(string location) => 70;
         public void SetSimulationSpeed(SimulationSpeed speedMultiplier) { }
         public void ResetSimulation() { }
+        public void RegisterThermostat(ThermostatDevice thermostat) { }
+        public void UnregisterThermostat(ThermostatDevice thermostat) { }
+        public void UpdateAmbientTemperature() { }
+        public void startSimulation() { }
     }
 
     private static DeviceService CreateDeviceService(FakeDeviceRepository repository)
