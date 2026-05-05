@@ -23,11 +23,11 @@ public class SimulationController : ControllerBase
     /// </summary>
     [HttpPost("reset")]
     //[ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status501NotImplemented)] // TODO: Implement this endpoint in the service layer and remove this response type.
+    [ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status501NotImplemented)] // TODO: Implement this endpoint in the service layer and remove this response type.
     public IActionResult ResetSimulation()
     {
         _simulationService.ResetSimulation();
-        return Ok(new
+        return Ok(new SimulationResponse
         {
             Message = "Simulation reset successfully."
         });
@@ -39,13 +39,14 @@ public class SimulationController : ControllerBase
     [HttpPut("speed")]
     //[ProducesResponseType(typeof(SimulationSpeedResponse), StatusCodes.Status200OK)]
     //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status501NotImplemented)] // TODO: Implement this endpoint in the service layer and remove this response type.
+    [ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status501NotImplemented)] // TODO: Implement this endpoint in the service layer and remove this response type.
     public IActionResult SetSimulationSpeed([FromBody] SetSimulationSpeedRequest request)
     {
         _simulationService.SetSimulationSpeed(request.SpeedMultiplier);
-        return Ok(new
+        return Ok(new SimulationResponse
         {
-            Message = $"Simulation speed set to {request.SpeedMultiplier}x."
+            Message = $"Simulation speed set to {request.SpeedMultiplier}x.",
+            SpeedMultiplier = request.SpeedMultiplier
         });
     }
 }

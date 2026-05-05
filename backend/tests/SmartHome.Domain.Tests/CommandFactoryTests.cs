@@ -1,9 +1,9 @@
-using System;
+using SmartHome.Domain.Commands.Latched;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.DoorLock;
-using SmartHome.Domain.Commands.Power;
+using SmartHome.Domain.Commands.Powered;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Contracts;
 using Xunit;
@@ -12,7 +12,7 @@ namespace SmartHome.Domain.Tests;
 
 public class CommandFactoryTests
 {
-    private readonly ICommandFactory _factory = new CommandFactory(new ThermostatStrategyFactory());
+    private readonly IDeviceCommandFactory _factory = new CommandFactory();
 
     [Fact]
     public void CreateCommand_ReturnsTogglePowerCommand()

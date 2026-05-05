@@ -42,37 +42,6 @@ public class ValidationTests
         Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.Command));
     }
 
-    [Fact]
-    public void ControlDeviceRequestValidator_OutOfRangeBrightness_FailsValidation()
-    {
-        var validator = new ControlDeviceRequestValidator();
-        var request = new ControlDeviceRequest
-        {
-            Command = DeviceCommandType.SetBrightness,
-            Brightness = 5
-        };
-
-        var result = validator.Validate(request);
-
-        Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.Brightness));
-    }
-
-    [Fact]
-    public void ControlDeviceRequestValidator_OutOfRangeTargetTemperature_FailsValidation()
-    {
-        var validator = new ControlDeviceRequestValidator();
-        var request = new ControlDeviceRequest
-        {
-            Command = DeviceCommandType.SetTargetTemperature,
-            TargetTemperature = 59
-        };
-
-        var result = validator.Validate(request);
-
-        Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.TargetTemperature));
-    }
 
     [Fact]
     public void SetAmbientTemperatureRequestValidator_OutOfRange_FailsValidation()
@@ -102,5 +71,36 @@ public class ValidationTests
 
         Assert.False(result.IsValid);
         Assert.Contains(result.Errors, error => error.PropertyName == nameof(SetSimulationSpeedRequest.SpeedMultiplier));
+    }
+
+    [Fact]
+    public void ControlDeviceRequestValidator_MissingBrightness_FailsValidation()
+    {
+        var validator = new ControlDeviceRequestValidator();
+        var request = new ControlDeviceRequest
+        {
+            Command = DeviceCommandType.SetBrightness,
+            Brightness = null
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.Brightness));
+    }
+    [Fact]
+    public void ControlDeviceRequestValidator_MissingTargetTemperature_FailsValidation()
+    {
+        var validator = new ControlDeviceRequestValidator();
+        var request = new ControlDeviceRequest
+        {
+            Command = DeviceCommandType.SetTargetTemperature,
+            TargetTemperature = null
+        };
+
+        var result = validator.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(ControlDeviceRequest.TargetTemperature));
     }
 }

@@ -1,0 +1,23 @@
+@import "primeicons/primeicons.css";
+
+:root {
+    --app-bg: #ffffff;
+    --card-surface: #d1d5db;
+    --text-primary: #343d4c;
+    --action-primary: #134ecd;
+    --state-accent: #a1683a;
+}
+
+body {
+    margin: 0;
+    color: var(--text-primary);
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(rgba(44, 41, 41, 0.5), rgba(44, 41, 41, 0.85)),
+        url('/assets/SmartHome.svg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}

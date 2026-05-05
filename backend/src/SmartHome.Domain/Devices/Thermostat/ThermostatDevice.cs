@@ -1,6 +1,5 @@
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
-
-using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands.Thermostat;
 
 namespace SmartHome.Domain.Devices.Thermostat;
 
@@ -8,11 +7,10 @@ public class ThermostatDevice : Device, IPoweredDevice
 {
     public int TargetTemperature { get; private set; } = 72; // Default target temperature
     public IThermostatModeStrategy CurrentStrategy { get; private set; }
-
     public ThermostatMode Mode { get; private set; }
 
-    public const int MinTemperature = 60; // Minimum allowed temperature
-    public const int MaxTemperature = 80; // Maximum allowed temperature
+    public int MinTemperature => 60; // Minimum allowed temperature
+    public int MaxTemperature => 80; // Maximum allowed temperature
 
     // States
     private DevicePowerState _powerState = DevicePowerState.Off; // Default power state; has sub-states for Idle, Heating, Cooling.
@@ -43,7 +41,7 @@ public class ThermostatDevice : Device, IPoweredDevice
 
     public ThermostatDevice(Guid id, string deviceName, string deviceLocation, ThermostatMode mode, IThermostatModeStrategy strategy) :
 
-    base(id, deviceName, deviceLocation, DeviceType.Thermostat)
+    base(id, deviceName, deviceLocation, DeviceType.Thermostat, new ThermostatCommandFactory())
     {
         CurrentStrategy = strategy;
         Mode = mode;

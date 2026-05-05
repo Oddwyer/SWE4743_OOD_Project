@@ -17,11 +17,10 @@ public class DeviceResponse : BaseDevice
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    // Common status message for all devices, can be used to provide additional information about the device's current state or any errors.
-    public string StatusMessage { get; set; } = string.Empty;
-
     // Lights
     public int? LightBrightness { get; set; }
+    public int? MinBrightness { get; set; }
+    public int? MaxBrightness { get; set; }
     public string? LightColor { get; set; }
 
     // Fans
@@ -30,8 +29,11 @@ public class DeviceResponse : BaseDevice
     // Thermostat
     public ThermostatMode? ThermostatMode { get; set; }
     public ThermostatStateType? ThermostatState { get; set; }
+
+    public int? MinTemperature { get; set; }
+    public int? MaxTemperature { get; set; }
     public int? TargetTemperature { get; set; }
-    public int? AmbientTemperature { get; set; }
+    public int? AmbientTemperature { get; set; } // For bruno testing only. Frontend displayed via SimulationResponse.
 
     // Doors
     public bool? IsLocked { get; set; }

@@ -1,13 +1,12 @@
 using SmartHome.Domain.Devices.Light.LightStates;
-
-using SmartHome.Domain.Devices;
+using SmartHome.Domain.Commands.Light;
 
 namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
-    public const int MinBrightness = 10; // Minimum allowed brightness percentage
-    public const int MaxBrightness = 100; // Maximum allowed brightness percentage
+    public int MinBrightness => 10; // Minimum allowed brightness percentage
+    public int MaxBrightness => 100; // Maximum allowed brightness percentage
 
     // States
     private DevicePowerState _powerState = DevicePowerState.Off; // Default state
@@ -21,7 +20,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     public int LightBrightness { get; private set; } = 100; // Default brightness (100%)
 
 
-    public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light)
+    public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light, new LightCommandFactory())
     {
 
         Off = new OffState(this);
@@ -70,7 +69,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     /// <summary>
     /// Requests a color change. The current state decides if it is allowed.
     /// </summary>
-    public void ChangeColor(string newColor)
+    public void SetColor(string newColor)
     {
         _currentState.ChangeColor(newColor);
     }

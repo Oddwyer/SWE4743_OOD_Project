@@ -1,3 +1,8 @@
+using System.Runtime.InteropServices;
+using System.Windows.Input;
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Contracts;
+
 namespace SmartHome.Domain.Devices;
 
 /// <summary>
@@ -17,12 +22,18 @@ public abstract class Device : IDevice
     public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; protected set; } = DateTime.UtcNow;
 
-    protected Device(Guid id, string name, string location, DeviceType type)
+    private IDeviceCommandFactory CommandFactory { get; }
+
+    protected Device(Guid id, string name, string location, DeviceType type, IDeviceCommandFactory commandFactory)
     {
         Id = id;
         DeviceName = name;
         DeviceLocation = location;
         Type = type;
+        CommandFactory = commandFactory;
+
     }
+
+    public IDeviceCommand CreateCommand(IDevice device, CommandData data) => CommandFactory.CreateCommand(device, data);
 
 }

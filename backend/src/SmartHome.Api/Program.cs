@@ -68,7 +68,7 @@ builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<ICommandFactory, CommandFactory>();
+builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
@@ -103,7 +103,7 @@ app.UseSwaggerUI();
 
 app.UseMiddleware<GlobalErrorHandling>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
 

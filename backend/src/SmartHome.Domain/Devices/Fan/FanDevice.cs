@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices.Fan.FanStates;
+using SmartHome.Domain.Commands.Fan;
 
-using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Devices.Fan;
 
@@ -15,7 +15,7 @@ public class FanDevice : Device, IPoweredDevice
 
     public FanSpeed Speed { get; private set; } = FanSpeed.Medium; // Default speed
 
-    public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan)
+    public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan, new FanCommandFactory())
     {
         Off = new OffState(this);
         On = new OnState(this);

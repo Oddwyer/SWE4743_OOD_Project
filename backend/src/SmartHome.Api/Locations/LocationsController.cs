@@ -28,7 +28,9 @@ public class LocationsController : ControllerBase
         return Ok(new AmbientTemperatureResponse
         {
             Location = location,
-            AmbientTemperature = temperature
+            AmbientTemperature = temperature,
+            MinTemperature = SimulationService.MinAmbientTemperature,
+            MaxTemperature = SimulationService.MaxAmbientTemperature
         });
 
     }

@@ -13,10 +13,10 @@ public class DeviceService : IDeviceService
     private readonly ILocationRepository _locationRepository;
     private readonly IDeviceFactory _deviceFactory;
 
-    private readonly ICommandFactory _commandFactory;
+    private readonly IDeviceCommandFactory _commandFactory;
     private readonly ISimulationService _simulationService;
 
-    public DeviceService(ISimulationService simulationService, IDeviceRepository deviceRepository, IDeviceFactory factory, ICommandFactory commandFactory, ILocationRepository locationRepository)
+    public DeviceService(ISimulationService simulationService, IDeviceRepository deviceRepository, IDeviceFactory factory, IDeviceCommandFactory commandFactory, ILocationRepository locationRepository)
     {
         _deviceRepository = deviceRepository;
         _deviceFactory = factory;
@@ -57,7 +57,14 @@ public class DeviceService : IDeviceService
             throw new InvalidOperationException($"A thermostat already exists in location {register.DeviceLocation}.");
         }
         var device = _deviceFactory.CreateDevice(register.DeviceName, register.DeviceLocation, register.DeviceType);
+
         _deviceRepository.SaveDevice(device);
+
+        if (device is ThermostatDevice thermostat)
+        {
+            _simulationService.RegisterThermostat(thermostat);
+        }
+
         return device;
     }
 
@@ -99,6 +106,13 @@ public class DeviceService : IDeviceService
         {
             throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
         }
+
+
+        if (device is ThermostatDevice thermostat)
+        {
+            _simulationService.UnregisterThermostat(thermostat);
+        }
+
 
         _deviceRepository.DeleteDevice(deviceId);
     }

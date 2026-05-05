@@ -1,6 +1,6 @@
 using SmartHome.Domain.Devices;
 
-namespace SmartHome.Domain.Commands.Power;
+namespace SmartHome.Domain.Commands.Powered;
 
 /// <summary>
 /// Toggles the power state of the device.
