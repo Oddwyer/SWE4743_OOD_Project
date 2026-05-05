@@ -33,9 +33,9 @@ public class OnState : ILightState
     public void SetLightBrightness(int brightness)
     {
 
-        if (brightness < LightDevice.MinBrightness || brightness > LightDevice.MaxBrightness)
+        if (brightness < _light.MinBrightness || brightness > _light.MaxBrightness)
         {
-            throw new ArgumentOutOfRangeException(nameof(brightness), $"Brightness must be between {LightDevice.MinBrightness}% and {LightDevice.MaxBrightness}%.");
+            throw new ArgumentOutOfRangeException(nameof(brightness), $"Brightness must be between {_light.MinBrightness}% and {_light.MaxBrightness}%.");
 
         }
 

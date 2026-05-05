@@ -6,5 +6,8 @@ namespace SmartHome.Api.Locations;
 public class AmbientTemperatureResponse
 {
     public string Location { get; set; } = string.Empty;
-    public double AmbientTemperature { get; set; }
+    public int AmbientTemperature { get; set; }
+    public int MinTemperature { get; set; }
+    public int MaxTemperature { get; set; }
+
 }

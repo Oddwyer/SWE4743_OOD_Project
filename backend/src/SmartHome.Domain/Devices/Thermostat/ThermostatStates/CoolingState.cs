@@ -28,9 +28,9 @@ public class CoolingState : IThermostatState
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
-        if (temp < ThermostatDevice.MinTemperature || temp > ThermostatDevice.MaxTemperature)
+        if (temp < _thermostat.MinTemperature || temp > _thermostat.MaxTemperature)
         {
-            throw new ArgumentOutOfRangeException(nameof(temp), $"Target temperature must be between {ThermostatDevice.MinTemperature}°F and {ThermostatDevice.MaxTemperature}°F.");
+            throw new ArgumentOutOfRangeException(nameof(temp), $"Target temperature must be between {_thermostat.MinTemperature}°F and {_thermostat.MaxTemperature}°F.");
         }
         _thermostat.SetTargetTemperatureInternal(temp);
 
