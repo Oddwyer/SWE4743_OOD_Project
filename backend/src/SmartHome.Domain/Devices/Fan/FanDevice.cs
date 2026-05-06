@@ -94,6 +94,16 @@ public class FanDevice : Device, IPoweredDevice
         _currentState = powerState == DevicePowerState.On ? On : Off;
     }
 
+    /// <summary>
+    /// Resets device properties to default settings.
+    /// </summary>
+    public override void ResetToDefault()
+    {
+        _powerState = DevicePowerState.Off;
+        _currentState = Off;
+        SetFanSpeed(FanSpeed.Medium);
+
+    }
 
 }
 
