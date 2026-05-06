@@ -1,36 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeviceApiService {
+  private readonly baseUrl = `${environment.apiBaseUrl}/devices`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
-  getAllDevices() {
-    return this.http.get<any[]>(`http://localhost:5000/api/devices`);
+  getDevices(): Observable<DeviceResponse[]> {
+    return this.http.get<DeviceResponse[]>(this.baseUrl);
   }
 
-  getDeviceById(id: string) {
-    return this.http.get(`http://localhost:5000/api/devices/${id}`);
+  getDeviceById(deviceId: string): Observable<DeviceResponse> {
+    return this.http.get<DeviceResponse>(`${this.baseUrl}/${deviceId}`);
   }
 
-  controlDevice(id: string, data: any) {
-    return this.http.put(`http://localhost:5000/api/devices/${id}/commands`, data);
+  registerDevice(request: RegisterDeviceRequest): Observable<DeviceResponse> {
+    return this.http.post<DeviceResponse>(this.baseUrl, request);
   }
 
-  getDeviceHistory(id: string) {
-    return this.http.get(`http://localhost:5000/api/devices/${id}/history`);
+  deleteDevice(deviceId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${deviceId}`);
   }
 
-  registerDevice(data: any) {
-    return this.http.post(`http://localhost:5000/api/devices`, data);
+  controlDevice(deviceId: string, request: ControlDeviceRequest): Observable<DeviceResponse> {
+    return this.http.put<DeviceResponse>(`${this.baseUrl}/${deviceId}/commands`, request);
   }
 
-  removeDevice(id: string) {
-    return this.http.delete(`http://localhost:5000/api/devices/${id}`);
+  getCommandHistory(deviceId: string): Observable<CommandHistoryResponse[]> {
+    return this.http.get<CommandHistoryResponse[]>(`${this.baseUrl}/${deviceId}/history`);
   }
-
-
 }
