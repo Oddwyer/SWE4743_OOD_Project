@@ -35,7 +35,6 @@ public class SimulationRuntime
         if (!_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
         {
             _registeredThermostats[thermostat.Id.ToString()] = thermostat;
-
         }
 
         else

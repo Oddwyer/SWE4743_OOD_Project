@@ -21,7 +21,7 @@ public class SimulationTicker
         _timer = new System.Timers.Timer(baseTimerInterval);
         _timer.Elapsed += OnTimerElapsed;
         _timer.AutoReset = true;
-        setSimulationTickerSpeed(_defaultSpeed);
+        SetSimulationTickerSpeed(_defaultSpeed);
     }
 
     private void OnTimerElapsed(object? sender, ElapsedEventArgs e)
@@ -29,7 +29,7 @@ public class SimulationTicker
         OnTick?.Invoke();
     }
 
-    public void setSimulationTickerSpeed(SimulationSpeed speed)
+    public void SetSimulationTickerSpeed(SimulationSpeed speed)
     {
         _defaultSpeed = speed;
         double newInterval = baseTimerInterval / (int)speed;

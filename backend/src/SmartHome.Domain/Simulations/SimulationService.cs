@@ -1,6 +1,8 @@
 using SmartHome.Domain.Locations;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+using System.Collections;
+using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Simulations;
 
@@ -14,12 +16,15 @@ public class SimulationService : ISimulationService
     public const int MaxAmbientTemperature = 100; // Maximum allowed ambient temperature (°F).
 
     private readonly ILocationRepository _locationRepository;
+
+    private readonly IDeviceRepository _deviceRepository;
     private readonly SimulationRuntime _runtime;
 
 
-    public SimulationService(ILocationRepository locationRepository, SimulationRuntime runtime)
+    public SimulationService(ILocationRepository locationRepository, IDeviceRepository deviceRepository, SimulationRuntime runtime)
     {
         _locationRepository = locationRepository;
+        _deviceRepository = deviceRepository;
         _runtime = runtime;
         _runtime.Ticker.OnTick += OnSimulationTick;
     }
@@ -87,11 +92,16 @@ public class SimulationService : ISimulationService
             {
                 locationTemperature++;
                 _locationRepository.SaveAmbientTemperature(location, locationTemperature);
+                thermostat.Evaluate(locationTemperature);
+                _deviceRepository.SaveDevice(thermostat);
+
             }
             else if (currentState is ThermostatStateType.Cooling && locationTemperature > desiredTemperature)
             {
                 locationTemperature--;
                 _locationRepository.SaveAmbientTemperature(location, locationTemperature);
+                thermostat.Evaluate(locationTemperature);
+                _deviceRepository.SaveDevice(thermostat);
             }
             else if (currentState is ThermostatStateType.Idle)
             {
@@ -112,23 +122,30 @@ public class SimulationService : ISimulationService
     /// </summary>
     public void SetSimulationSpeed(SimulationSpeed speedMultiplier)
     {
-        _runtime.Ticker.setSimulationTickerSpeed(speedMultiplier);
+        _runtime.Ticker.SetSimulationTickerSpeed(speedMultiplier);
     }
 
     /// <summary>
     /// Starts the simulation ticker.
     /// </summary>
-    public void startSimulation()
+    public void StartSimulation()
     {
         _runtime.Ticker.Start();
     }
 
     /// <summary>
-    /// Resets the simulation by stopping the ticker.
+    /// Resets the simulation by stopping the ticker and sets all devices to default settings.
     /// </summary>
     public void ResetSimulation()
     {
         _runtime.Ticker.Stop();
+
+        var devices = _deviceRepository.FindAllDevices(new DeviceFilter());
+
+        foreach (var device in devices)
+        {
+            device.ResetToDefault();
+        }
 
     }
 

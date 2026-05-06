@@ -16,4 +16,6 @@ public interface IDevice
 
    public IDeviceCommand CreateCommand(IDevice device, CommandData data);
 
+   public void ResetToDefault();
+
 }
