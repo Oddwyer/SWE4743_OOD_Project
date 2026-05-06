@@ -9,19 +9,31 @@
 
         <div class="device-status-inline">
           <!-- Powered Devices -->
-          <button *ngIf="canTogglePower()" pButton icon="pi pi-power-off" class="p-button-text p-button-sm"
-            [ngClass]="device.isDeviceOn ? 'power-on' : 'power-off'" (click)="toggleDevicePower()"></button>
+          <button
+            *ngIf="canTogglePower()"
+            pButton
+            icon="pi pi-power-off"
+            class="p-button-text p-button-sm"
+            [ngClass]="device.isDeviceOn ? 'power-on' : 'power-off'"
+            (click)="toggleDevicePower()">
+          </button>
 
           <!-- Latched Devices -->
-          <button *ngIf="canToggleLatch()" pButton [icon]="device.isLocked ? 'pi pi-lock' : 'pi pi-lock-open'"
-            class="p-button-text p-button-sm latch-button" [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
-            (click)="toggleLatch()"></button>
+          <button
+            *ngIf="canToggleLatch()"
+            pButton
+            [icon]="device.isLocked ? 'pi pi-lock' : 'pi pi-lock-open'"
+            class="p-button-text p-button-sm latch-button"
+            [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
+            (click)="toggleLatch()">
+          </button>
 
           <span class="device-status-text">
             {{ getDeviceStatus() }}
           </span>
         </div>
       </div>
+
       <h3>{{ device.deviceName }}</h3>
       <h4>{{ device.type | titlecase }}</h4>
     </div>
@@ -29,50 +41,72 @@
 
   <!-- Device Card Contents -->
   <div class="device-details">
+
+    <!-- Power -->
     <div class="power-row" *ngIf="canTogglePower()">
       <span class="power-label">Power</span>
-
-      <p-toggleswitch [ngModel]="device.isDeviceOn" (onChange)="toggleDevicePower()"></p-toggleswitch>
+      <p-toggleswitch
+        [ngModel]="device.isDeviceOn"
+        (onChange)="toggleDevicePower()">
+      </p-toggleswitch>
     </div>
 
-    <!-- Power / Lock Controls -->
+    <!-- Lock -->
     <div class="power-row" *ngIf="canToggleLatch()">
       <span class="lock-label">Lock</span>
-
-      <p-toggleswitch [ngModel]="device.isLocked" (onChange)="toggleLatch()"></p-toggleswitch>
+      <p-toggleswitch
+        [ngModel]="device.isLocked"
+        (onChange)="toggleLatch()">
+      </p-toggleswitch>
     </div>
 
     <div *ngIf="device.isLocked !== null">
       <div class="control-header">
         <span class="control-label">Latch:</span>
-        <span class="control-value">{{ device.isLocked ? 'Locked' : 'Unlocked' }}</span>
+        <span class="control-value">
+          {{ device.isLocked ? 'Locked' : 'Unlocked' }}
+        </span>
       </div>
     </div>
 
     <!-- Light Brightness -->
-    <div *ngIf="
-        device.lightBrightness !== null &&
-        device.minBrightness !== null &&
-        device.maxBrightness !== null
-      " class="control-row brightness-row" [class.control-disabled]="!device.isDeviceOn">
+    <div
+      *ngIf="device.lightBrightness !== null && device.minBrightness !== null && device.maxBrightness !== null"
+      class="control-row brightness-row"
+      [class.control-disabled]="!device.isDeviceOn">
+
       <div class="control-header">
         <span class="control-label">Brightness:</span>
         <span class="control-value">{{ device.lightBrightness }}%</span>
       </div>
 
-      <p-slider [(ngModel)]="device.lightBrightness" [min]="device.minBrightness" [max]="device.maxBrightness"
-        [disabled]="!device.isDeviceOn" (onSlideEnd)="setBrightness(device.lightBrightness)"></p-slider>
+      <p-slider
+        [(ngModel)]="device.lightBrightness"
+        [min]="device.minBrightness"
+        [max]="device.maxBrightness"
+        [disabled]="!device.isDeviceOn"
+        (onSlideEnd)="setBrightness(device.lightBrightness ?? 100)">
+      </p-slider>
     </div>
 
     <!-- Light Color -->
-    <div *ngIf="device.lightColor !== null" class="control-row color-row" [class.control-disabled]="!device.isDeviceOn">
+    <div
+      *ngIf="device.lightColor !== null"
+      class="control-row color-row"
+      [class.control-disabled]="!device.isDeviceOn">
+
       <div class="control-header">
         <span class="control-label">Color:</span>
 
         <div class="color-display">
-          <p-colorpicker [(ngModel)]="device.lightColor" [disabled]="!device.isDeviceOn" [appendTo]="'body'"
-            styleClass="color-picker-square" panelStyleClass="color-picker-overlay"
-            (onChange)="setColor(device.lightColor)"></p-colorpicker>
+          <p-colorpicker
+            [(ngModel)]="device.lightColor"
+            [disabled]="!device.isDeviceOn"
+            [appendTo]="'body'"
+            styleClass="color-picker-square"
+            panelStyleClass="color-picker-overlay"
+            (onChange)="setColor(device.lightColor ?? '#FFFFFF')">
+          </p-colorpicker>
 
           <span class="color-value">
             {{ device.lightColor | uppercase }}
@@ -82,11 +116,20 @@
     </div>
 
     <!-- Fan Speed -->
-    <div *ngIf="device.fanSpeed !== null" class="control-row speed-row" [class.control-disabled]="!device.isDeviceOn">
+    <div
+      *ngIf="device.fanSpeed !== null"
+      class="control-row speed-row"
+      [class.control-disabled]="!device.isDeviceOn">
+
       <span class="control-label">Speed:</span>
+
       <div class="fan-speed-buttons">
-        <button type="button" *ngFor="let option of fanSpeedOptions" class="fan-speed-button"
-          [class.selected]="device.fanSpeed === option.value" [disabled]="!device.isDeviceOn"
+        <button
+          type="button"
+          *ngFor="let option of fanSpeedOptions"
+          class="fan-speed-button"
+          [class.selected]="device.fanSpeed === option.value"
+          [disabled]="!device.isDeviceOn"
           (click)="setFanSpeed(option.value)">
           {{ option.label }}
         </button>
@@ -94,12 +137,20 @@
     </div>
 
     <!-- Thermostat Mode -->
-    <div *ngIf="device.thermostatMode !== null" class="control-row thermostat-mode-row"
+    <div
+      *ngIf="device.thermostatMode !== null"
+      class="control-row thermostat-mode-row"
       [class.control-disabled]="!device.isDeviceOn">
+
       <span class="control-label">Mode:</span>
+
       <div class="thermostat-mode-buttons">
-        <button type="button" *ngFor="let option of thermostatModeOptions" class="thermostat-mode-button"
-          [class.selected]="device.thermostatMode === option.value" [disabled]="!device.isDeviceOn"
+        <button
+          type="button"
+          *ngFor="let option of thermostatModeOptions"
+          class="thermostat-mode-button"
+          [class.selected]="device.thermostatMode === option.value"
+          [disabled]="!device.isDeviceOn"
           (click)="setThermostatMode(option.value)">
           {{ option.label }}
         </button>
@@ -107,17 +158,26 @@
     </div>
 
     <!-- Thermostat Desired Temperature -->
-    <div *ngIf="
-        device.targetTemperature !== null &&
-        device.minTemperature !== null &&
-        device.maxTemperature !== null
-      " class="control-row temperature-row" [class.control-disabled]="!device.isDeviceOn">
+    <div
+      *ngIf="device.targetTemperature !== null && device.minTemperature !== null && device.maxTemperature !== null"
+      class="control-row temperature-row"
+      [class.control-disabled]="!device.isDeviceOn">
+
       <div class="control-header">
         <span class="control-label">Desired Temperature:</span>
-        <span class="control-value">{{ device.targetTemperature }}°F</span>
+        <span class="control-value">
+          {{ device.targetTemperature }}°F
+        </span>
       </div>
-      <p-slider [(ngModel)]="device.targetTemperature" [min]="device.minTemperature" [max]="device.maxTemperature"
-        [disabled]="!device.isDeviceOn" (onSlideEnd)="setTargetTemperature(device.targetTemperature)"></p-slider>
+
+      <p-slider
+        [(ngModel)]="device.targetTemperature"
+        [min]="device.minTemperature"
+        [max]="device.maxTemperature"
+        [disabled]="!device.isDeviceOn"
+        (onSlideEnd)="setTargetTemperature(device.targetTemperature ?? 72)">
+      </p-slider>
     </div>
+
   </div>
 </p-card>

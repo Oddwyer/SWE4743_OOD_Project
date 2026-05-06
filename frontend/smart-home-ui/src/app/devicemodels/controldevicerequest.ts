@@ -3,11 +3,11 @@ import { ThermostatMode } from '../types/thermostatmode';
 import { DeviceCommandType } from '../types/devicecommandtype';
 
 export interface ControlDeviceRequest {
-  type: DeviceCommandType;
+  command: DeviceCommandType;
 
-  lightBrightness?: number | null;
+  brightness?: number | null;
 
-  lightColor?: string | null;
+  color?: string | null;
 
   fanSpeed?: FanSpeed | null;
 

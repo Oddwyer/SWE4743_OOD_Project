@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+import { DeviceResponse } from '../devicemodels/deviceresponse';
+import { RegisterDeviceRequest } from '../devicemodels/registerdevicerequest';
+import { ControlDeviceRequest } from '../devicemodels/controldevicerequest';
+import { CommandHistoryResponse } from '../historymodels/commandhistoryresponse';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +16,7 @@ export class DeviceApiService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getDevices(): Observable<DeviceResponse[]> {
+  getAllDevices(): Observable<DeviceResponse[]> {
     return this.http.get<DeviceResponse[]>(this.baseUrl);
   }
 
@@ -23,7 +28,7 @@ export class DeviceApiService {
     return this.http.post<DeviceResponse>(this.baseUrl, request);
   }
 
-  deleteDevice(deviceId: string): Observable<void> {
+  removeDevice(deviceId: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${deviceId}`);
   }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DeviceApiService } from '../../services/device.api.service';
 import { DeviceCardComponent } from '../device-card/device-card';
 import { CardModule } from 'primeng/card';
+import { DeviceResponse } from '../../devicemodels/deviceresponse';
 
 @Component({
   selector: 'app-device-list',
@@ -32,13 +33,13 @@ export class DeviceListComponent implements OnInit {
   // Helper: Load all devices from the API and handle loading state.
   loadDevices() {
     this.deviceApiService.getAllDevices().subscribe({
-      next: (data) => {
+      next: (data: DeviceResponse[]) => {
         this.devices = data;
         this.isLoading = false;
         console.log('Devices loaded:', data);
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: (err: unknown) => {
         console.error('Error loading devices:', err);
         this.isLoading = false;
         this.cdr.detectChanges();

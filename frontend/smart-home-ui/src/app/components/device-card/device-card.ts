@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceApiService } from '../../services/device.api.service';
 
-// This component displays a list of all devices with their current status and controls.
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
@@ -11,6 +10,11 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
 import { SliderModule } from 'primeng/slider';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { SelectButtonModule } from 'primeng/selectbutton';
+
+import { DeviceResponse } from '../../devicemodels/deviceresponse';
+import { ControlDeviceRequest } from '../../devicemodels/controldevicerequest';
+import { FanSpeed } from '../../types/fanspeed';
+import { ThermostatMode } from '../../types/thermostatmode';
 
 @Component({
   selector: 'app-device-card',
@@ -30,23 +34,22 @@ import { SelectButtonModule } from 'primeng/selectbutton';
   styleUrl: './device-card.css',
 })
 export class DeviceCardComponent {
-  @Input({ required: true }) device!: any;
+  @Input({ required: true }) device!: DeviceResponse;
 
-  fanSpeedOptions = [
-    { label: 'Low', value: 'low' },
-    { label: 'Med', value: 'medium' },
-    { label: 'High', value: 'high' },
+  fanSpeedOptions: { label: string; value: FanSpeed }[] = [
+    { label: 'Low', value: 'Low' },
+    { label: 'Med', value: 'Medium' },
+    { label: 'High', value: 'High' },
   ];
 
-  thermostatModeOptions = [
-    { label: 'Cool', value: 'cool' },
-    { label: 'Auto', value: 'auto' },
-    { label: 'Heat', value: 'heat' },
+  thermostatModeOptions: { label: string; value: ThermostatMode }[] = [
+    { label: 'Cool', value: 'Cool' },
+    { label: 'Auto', value: 'Auto' },
+    { label: 'Heat', value: 'Heat' },
   ];
 
-  constructor(private deviceApiService: DeviceApiService) {}
+  constructor(private readonly deviceApiService: DeviceApiService) {}
 
-  // Helper method to get icon class based on device type.
   getDeviceIcon(type: string): string {
     switch (type?.toLowerCase()) {
       case 'light':
@@ -61,57 +64,53 @@ export class DeviceCardComponent {
         return 'devices';
     }
   }
-  // Toggle the power state of a device and refresh the device list to reflect changes.
+
   toggleDevicePower(): void {
     const previousPowerState = this.device.isDeviceOn;
-
     this.device.isDeviceOn = !this.device.isDeviceOn;
 
-    const request = { command: 'togglePower' };
+    const request: ControlDeviceRequest = {
+      command: 'TogglePower',
+    };
 
-    // Send the control command to the API and refresh the device list on success.
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
+      error: (err: unknown) => {
         console.error('Failed to toggle power.', err);
         this.device.isDeviceOn = previousPowerState;
       },
     });
   }
 
-  // Determine if the power toggle button should be shown for a device (e.g., not for door locks).
   canTogglePower(): boolean {
     return this.device.type?.toLowerCase() !== 'doorlock';
   }
 
-  // Toggle the power state of a device and refresh the device list to reflect changes.
   toggleLatch(): void {
     const previousLatchState = this.device.isLocked;
-
     this.device.isLocked = !this.device.isLocked;
 
-    const request = { command: 'toggleLock' };
+    const request: ControlDeviceRequest = {
+      command: 'ToggleLock',
+    };
 
-    // Send the control command to the API and refresh the device list on success.
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
-        this.device.isLocked = previousLatchState;
+      error: (err: unknown) => {
         console.error('Failed to toggle door lock.', err);
+        this.device.isLocked = previousLatchState;
       },
     });
   }
 
-  // Determine if the power toggle button should be shown for a device (e.g., not for door locks).
   canToggleLatch(): boolean {
-    return this.device.type?.toLowerCase() == 'doorlock';
+    return this.device.type?.toLowerCase() === 'doorlock';
   }
 
-  // Get the display status of a device, showing "ON"/"OFF" for regular devices and "Locked"/"Unlocked" for door locks.
   getDeviceStatus(): string {
     if (this.canToggleLatch()) {
       return this.device.isLocked ? 'ON' : 'OFF';
@@ -120,100 +119,105 @@ export class DeviceCardComponent {
     return this.device.isDeviceOn ? 'ON' : 'OFF';
   }
 
-  // Set brightness for light devices.
   setBrightness(brightness: number): void {
     const previousBrightness = this.device.lightBrightness;
-
     this.device.lightBrightness = brightness;
 
-    const request = { command: 'setBrightness', brightness };
+    const request: ControlDeviceRequest = {
+      command: 'SetBrightness',
+      brightness,
+    };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
-        this.device.lightBrightness = previousBrightness;
+      error: (err: unknown) => {
         console.error('Failed to set brightness.', err);
+        this.device.lightBrightness = previousBrightness;
       },
     });
   }
 
-  // Select color for light devices.
   setColor(color: string): void {
     const previousColor = this.device.lightColor;
-
     const normalizedColor = color.startsWith('#') ? color : `#${color}`;
 
     this.device.lightColor = normalizedColor;
 
-    const request = { command: 'setColor', color: normalizedColor };
+    const request: ControlDeviceRequest = {
+      command: 'SetColor',
+      color: normalizedColor,
+    };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
-        this.device.lightColor = previousColor;
+      error: (err: unknown) => {
         console.error('Failed to set color.', err);
+        this.device.lightColor = previousColor;
       },
     });
   }
 
-  setFanSpeed(speed: string): void {
+  setFanSpeed(speed: FanSpeed): void {
     const previousSpeed = this.device.fanSpeed;
-
     this.device.fanSpeed = speed;
 
-    const request = { command: 'setFanSpeed', fanSpeed: speed };
+    const request: ControlDeviceRequest = {
+      command: 'SetFanSpeed',
+      fanSpeed: speed,
+    };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
-        this.device.fanSpeed = previousSpeed;
+      error: (err: unknown) => {
         console.error('Failed to set fan speed.', err);
+        this.device.fanSpeed = previousSpeed;
       },
     });
   }
 
-  // Set mode for thermostat.
-  setThermostatMode(mode: string): void {
-    const previousMode = this.device.mode;
+  setThermostatMode(mode: ThermostatMode): void {
+    const previousMode = this.device.thermostatMode;
+    this.device.thermostatMode = mode;
 
-    this.device.mode = mode;
-
-    const request = { command: 'setThermostatMode', mode: mode };
+    const request: ControlDeviceRequest = {
+      command: 'SetThermostatMode',
+      thermostatMode: mode,
+    };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
-        this.device.mode = previousMode;
+      error: (err: unknown) => {
         console.error('Failed to set thermostat mode.', err);
+        this.device.thermostatMode = previousMode;
       },
     });
   }
 
-  // Set target temperature for thermostat.
   setTargetTemperature(temperature: number): void {
     const previousTarget = this.device.targetTemperature;
-
     this.device.targetTemperature = temperature;
 
-    const request = { command: 'setTargetTemperature', targetTemperature: temperature };
+    const request: ControlDeviceRequest = {
+      command: 'SetTargetTemperature',
+      targetTemperature: temperature,
+    };
 
     this.deviceApiService.controlDevice(this.device.id, request).subscribe({
-      next: (updatedDevice: any) => {
-        console.log('FROM API:', updatedDevice);
+      next: (updatedDevice: DeviceResponse) => {
+        this.device = updatedDevice;
       },
-      error: (err) => {
-        this.device.targetTemperature = previousTarget;
+      error: (err: unknown) => {
         console.error('Failed to set target temperature.', err);
+        this.device.targetTemperature = previousTarget;
       },
     });
   }
 }
-0;
