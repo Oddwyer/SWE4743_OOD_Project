@@ -5574,6 +5574,18 @@
       "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
       "Timestamp": "2026-05-05T19:32:30.2511945Z",
       "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "bc37c640-0c6d-4884-91e6-d84d4f0ab397",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T00:24:11.6288813Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "405c4e18-79ec-4ea9-b02a-af9589363ef5",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T00:24:12.4225672Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
     }
   ],
   "Locations": [
