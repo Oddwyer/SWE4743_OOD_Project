@@ -17,7 +17,7 @@
   <div class="dashboard-content" *ngIf="!isLoading">
     <!-- Left side of dashboard: simulation controls. -->
 
-    <app-simulation-card></app-simulation-card>
+    <app-simulation-card [locations]="thermostatLocations"></app-simulation-card>
     
     <!-- Right side of dashboard: device list, grouped by location. -->
 

@@ -1,25 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
+import { SliderModule } from 'primeng/slider';
+import { FormsModule } from '@angular/forms';
+
 import { SimulationApiService } from '../../services/simulation.api.service';
+import { AmbientTemperatureResponse } from '../../locationmodels/ambienttemperatureresponse';
 
 @Component({
   selector: 'app-simulation-card',
   standalone: true,
-  imports: [CardModule],
+  imports: [CommonModule, CardModule, SliderModule, FormsModule],
   templateUrl: './simulation-card.html',
   styleUrl: './simulation-card.css',
 })
-export class SimulationCard {
-  ambientTemp = 72; // default
+export class SimulationCard implements OnChanges {
+  @Input() locations: string[] = [];
 
-  constructor(private simulationApiService: SimulationApiService) {}
+  ambientTemps: Record<string, number> = {};
+  minTemp = 60;
+  maxTemp = 80;
 
-  setAmbientTemp(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const value = Number(input.value);
+  constructor(private readonly simulationApiService: SimulationApiService) {}
 
-    this.ambientTemp = value;
+  ngOnChanges(): void {
+    this.loadAmbientTemperatures();
+  }
 
-    this.simulationApiService.setAmbientTemperature('Living Room', value).subscribe();
+  /**
+   * Load ambient temperature for each thermostat location.
+   */
+  loadAmbientTemperatures(): void {
+    this.locations.forEach((location) => {
+      if (this.ambientTemps[location] !== undefined) {
+        return;
+      }
+
+      this.simulationApiService.getAmbientTemperature(location).subscribe({
+        next: (response: AmbientTemperatureResponse) => {
+          this.ambientTemps[location] = response.ambientTemperature;
+
+          this.minTemp = response.minTemperature;
+
+          this.maxTemp = response.maxTemperature;
+        },
+      });
+    });
+  }
+
+  /**
+   * Update ambient temperature for a location.
+   */
+  setAmbientTemperature(location: string, temperature: number): void {
+    const previousTemperature = this.ambientTemps[location];
+
+    this.ambientTemps[location] = temperature;
+
+    this.simulationApiService.setAmbientTemperature(location, temperature).subscribe({
+      error: () => {
+        this.ambientTemps[location] = previousTemperature;
+      },
+    });
   }
 }

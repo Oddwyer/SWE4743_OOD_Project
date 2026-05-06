@@ -5,7 +5,7 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -75,7 +75,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#d4bad4",
-      "LightBrightness": 82,
+      "LightBrightness": 76,
       "FanSpeed": null
     },
     {
@@ -122,8 +122,8 @@
       "Name": "Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": true,
-      "DeviceState": "Heating",
+      "IsOn": false,
+      "DeviceState": "Off",
       "ThermostatMode": 3,
       "TargetTemperature": 71,
       "LightColor": null,
@@ -5634,12 +5634,102 @@
       "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
       "Timestamp": "2026-05-06T20:43:06.2438336Z",
       "Operation": "Powered on Left Sconce."
+    },
+    {
+      "Id": "013aa515-0e18-40c2-8949-8cb531d93677",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-06T23:12:08.8526947Z",
+      "Operation": "Set light brightness to 76% for Right Side Table Lamp."
+    },
+    {
+      "Id": "4776cdcb-c4c8-40f4-993e-d73d0f01871d",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:29:56.2753221Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "c770e58a-8db4-4f98-b1fc-82f3c120e1d9",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:30:00.1491298Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "d1e4264a-f450-45ad-801a-6860b90f77cc",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:30:01.1657438Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "8d6f9c21-0dbf-4c18-8eb8-81f3d535ffef",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:30:02.9904463Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "2caea1b5-fc41-48af-a182-7d70eb49069f",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:30:04.2141189Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "1efad94e-f940-4b75-bb90-35b30a089f85",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:30:08.4188557Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "4f5d7c13-2987-4cc6-bdf4-2f3a52d93098",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:30:23.1389853Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "a8becf7a-db6b-43f7-9602-ec75189e42bd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:30:25.3431138Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "019e0197-30a4-48b0-983d-c96f935c326e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:31:01.1367438Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "6a1fb603-11cc-4940-84a6-518c71ff4108",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:31:01.9742623Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "ceda4954-6663-4bf8-a46a-193c955731df",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:31:02.717147Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "187e2cb4-c18a-49ec-9275-da18a61815b1",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:31:05.8027756Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "4566d527-90c0-4bae-8ce9-344b977a77f2",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T23:31:06.7295097Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "11f20072-03f9-4046-aa23-941733d6905c",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:31:09.1237214Z",
+      "Operation": "Powered off Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 70
+      "AmbientTemperature": 50
     }
   ]
 }

@@ -80,4 +80,13 @@ export class DeviceListComponent implements OnInit {
 
     return 'pi pi-map-marker'; // fallback
   }
+
+  get thermostatLocations(): string[] {
+    const locations = this.devices
+      .filter((device) => device.type?.toString().toLowerCase() === 'thermostat')
+      .map((device) => device.deviceLocation)
+      .filter((location): location is string => !!location);
+
+    return [...new Set(locations)];
+  }
 }
