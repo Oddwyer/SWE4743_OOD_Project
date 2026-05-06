@@ -139,6 +139,7 @@ public class SimulationService : ISimulationService
     public void ResetSimulation()
     {
         _runtime.Ticker.Stop();
+        _runtime.Ticker.SetSimulationTickerSpeed(SimulationSpeed.OneX);
 
         var devices = _deviceRepository.FindAllDevices(new DeviceFilter());
 
