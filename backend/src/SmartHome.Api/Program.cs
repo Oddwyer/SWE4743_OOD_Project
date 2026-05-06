@@ -59,20 +59,30 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-builder.Services.AddSingleton<SimulationRuntime>();
+// Register shared simulation runtime services.
+// These are singletons because ticker/runtime state should survive across requests.
 builder.Services.AddSingleton<SimulationTicker>();
+builder.Services.AddSingleton<SimulationRuntime>();
 
+// Initializes runtime simulation state from persisted devices on startup.
+builder.Services.AddScoped<SimulationInitializer>();
+
+// Register application services.
 builder.Services.AddScoped<ISimulationService, SimulationService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 
+// Register device factories.
 builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
+
+// Register command and strategy factories.
+builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
+// Register JSON repository once per request and expose it through repository interfaces.
 builder.Services.AddScoped<JsonRepository>();
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
@@ -86,18 +96,29 @@ builder.Services.AddControllers()
         );
     });
 
-// TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
+// Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(
+             "http://localhost:4200",
+                "https://localhost:4200"
+        )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
 var app = builder.Build();
+
+// Populate shared simulation runtime state from persisted devices.
+// This runs from Program.cs because it is application startup orchestration.
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<SimulationInitializer>();
+    initializer.Initialize();
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();
