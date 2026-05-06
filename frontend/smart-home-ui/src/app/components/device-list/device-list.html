@@ -17,27 +17,8 @@
   <div class="dashboard-content" *ngIf="!isLoading">
     <!-- Left side of dashboard: simulation controls. -->
 
-    <p-card styleClass="simulation-card">
-      <div class="simulation-card-header">
-        <h2>Simulation Settings</h2>
-      </div>
-
-      <div class="setting-row">
-        <span class="icon">🌡</span>
-        <div class="simulation-header">
-          <span class="simulation-label">Ambient Temperature:</span>
-        </div>
-      </div>
-
-      <div class="setting-row">
-        <i class="pi pi-bolt"></i>
-        <div class="simulation-header">
-          <span class="simulation-label">Speed:</span>
-          <span>1x</span>
-        </div>
-      </div>
-    </p-card>
-
+    <app-simulation-card></app-simulation-card>
+    
     <!-- Right side of dashboard: device list, grouped by location. -->
 
     <div class="devices-column">
