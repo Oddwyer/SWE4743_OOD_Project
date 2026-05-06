@@ -5,15 +5,13 @@ using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 namespace SmartHome.Domain.Simulations;
 
 /// <summary>
-/// Handles environment simulation operations such as setting and retrieving ambient temperature per location,
-/// delegating persistence to the repository.
+/// Orchestrates simulation behavior by coordinating runtime state and ambient temperature persistence.
 /// </summary>
 public class SimulationService : ISimulationService
 {
-    private readonly Dictionary<string, int> _ambientTemperatures = new();
     private int defaultAmbientTemperature = 72;
-    public const int MinAmbientTemperature = 0;
-    public const int MaxAmbientTemperature = 100;
+    public const int MinAmbientTemperature = 0; // Minimum allowed ambient temperature (°F).
+    public const int MaxAmbientTemperature = 100; // Maximum allowed ambient temperature (°F).
 
     private readonly ILocationRepository _locationRepository;
     private readonly SimulationRuntime _runtime;
@@ -26,13 +24,16 @@ public class SimulationService : ISimulationService
         _runtime.Ticker.OnTick += OnSimulationTick;
     }
 
+    /// <summary>
+    /// Handles simulation tick events by updating ambient temperatures.
+    /// </summary>
     private void OnSimulationTick()
     {
         UpdateAmbientTemperature();
     }
 
     /// <summary>
-    /// Sets ambient temperature based on client's requested location and temperature.
+    /// Sets the ambient temperature for a given location.
     /// </summary>
     public void SetAmbientTemperature(string location, int temperature)
     {
@@ -50,9 +51,8 @@ public class SimulationService : ISimulationService
 
     }
 
-
     /// <summary>
-    /// /// Returns the ambient temperature for a given location, or a default value if none is stored.
+    /// Gets the ambient temperature for a location or returns a default if none exists.
     /// </summary>
     public int GetAmbientTemperature(string location)
     {
@@ -67,7 +67,7 @@ public class SimulationService : ISimulationService
     }
 
     /// <summary>
-    /// Moves ambient temperature up or down based on thermostat state and target temperature.
+    /// Updates ambient temperatures based on thermostat state and target temperature.
     /// </summary>
     public void UpdateAmbientTemperature()
     {
@@ -78,22 +78,20 @@ public class SimulationService : ISimulationService
             {
                 continue; // Skip if thermostat is off or idle.
             }
-
-            var locationTemperature = GetAmbientTemperature(thermostat.DeviceLocation);
+            var location = Normalize(thermostat.DeviceLocation);
+            var locationTemperature = GetAmbientTemperature(location);
             var currentState = thermostat.CurrentStateType;
             var desiredTemperature = thermostat.TargetTemperature;
 
             if (currentState is ThermostatStateType.Heating && locationTemperature < desiredTemperature)
             {
-                //  Check what the tick is then increase the temp by 1°F per tick until it reaches the desired temp, then switch to idle.
-                startSimulation();
                 locationTemperature++;
+                _locationRepository.SaveAmbientTemperature(location, locationTemperature);
             }
             else if (currentState is ThermostatStateType.Cooling && locationTemperature > desiredTemperature)
             {
-                // Check what the tick is then decrease the temp by 1°F  per tick until it reaches the desired temp, then switch to idle.
-                startSimulation();
                 locationTemperature--;
+                _locationRepository.SaveAmbientTemperature(location, locationTemperature);
             }
             else if (currentState is ThermostatStateType.Idle)
             {
@@ -109,27 +107,34 @@ public class SimulationService : ISimulationService
         }
     }
 
+    /// <summary>
+    /// Sets the simulation speed multiplier.
+    /// </summary>
     public void SetSimulationSpeed(SimulationSpeed speedMultiplier)
     {
         _runtime.Ticker.setSimulationTickerSpeed(speedMultiplier);
     }
 
+    /// <summary>
+    /// Starts the simulation ticker.
+    /// </summary>
     public void startSimulation()
     {
         _runtime.Ticker.Start();
     }
 
+    /// <summary>
+    /// Resets the simulation by stopping the ticker.
+    /// </summary>
     public void ResetSimulation()
     {
         _runtime.Ticker.Stop();
 
-        foreach (var location in _ambientTemperatures.Keys.ToList())
-        {
-            _ambientTemperatures[location] = defaultAmbientTemperature;
-            _locationRepository.SaveAmbientTemperature(location, defaultAmbientTemperature);
-        }
     }
 
+    /// <summary>
+    /// Registers a thermostat with the simulation and ensures its location has an ambient temperature.
+    /// </summary>
     public void RegisterThermostat(ThermostatDevice thermostat)
     {
         _runtime.RegisterThermostat(thermostat);
@@ -140,13 +145,18 @@ public class SimulationService : ISimulationService
         }
     }
 
-
+    /// <summary>
+    /// Unregisters a thermostat from the simulation.
+    /// </summary>
     public void UnregisterThermostat(ThermostatDevice thermostat)
     {
         _runtime.UnregisterThermostat(thermostat);
 
     }
 
+    /// <summary>
+    /// Normalizes location strings for consistent storage and lookup.
+    /// </summary>
     private static string Normalize(string location) => location.Trim().ToLowerInvariant();
 }
 
