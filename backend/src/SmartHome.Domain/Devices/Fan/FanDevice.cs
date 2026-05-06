@@ -67,7 +67,7 @@ public class FanDevice : Device, IPoweredDevice
 
     /// <summary>
     /// Sets the fan speed (used by states).
-    /// <summary>
+    /// </summary>
     internal void SetFanSpeedInternal(FanSpeed newSpeed)
     {
         Speed = newSpeed;
@@ -86,7 +86,7 @@ public class FanDevice : Device, IPoweredDevice
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
+    /// </summary>
     internal void RehydrateState(DevicePowerState powerState, FanSpeed speed)
     {
         _powerState = powerState;

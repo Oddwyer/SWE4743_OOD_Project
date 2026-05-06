@@ -77,7 +77,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     /// <summary>
     /// Applies a color change (used by states).
     /// </summary>
-    internal void ChangeColorInternal(string newColor)
+    internal void SetColorInternal(string newColor)
     {
         Color = newColor;
         UpdatedAt = DateTime.UtcNow;
@@ -111,13 +111,26 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
+    /// </summary>
     internal void RehydrateState(DevicePowerState powerState, string color, int brightness)
     {
         _powerState = powerState;
         Color = color;
         LightBrightness = brightness;
         _currentState = powerState == DevicePowerState.On ? On : Off;
+    }
+
+    /// <summary>
+    /// Resets device properties to default settings.
+    /// </summary>
+    public override void ResetToDefault()
+    {
+        _powerState = DevicePowerState.Off;
+        _currentState = Off;
+        SetColorInternal("#FFFFFF");
+        SetLightBrightnessInternal(100);
+        UpdatedAt = DateTime.UtcNow;
+
     }
 
 

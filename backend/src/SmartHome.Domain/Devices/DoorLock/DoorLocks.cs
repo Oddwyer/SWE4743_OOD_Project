@@ -68,7 +68,7 @@ public class DoorLocks : Device, ILatchedDevice
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
+    /// </summary>
     internal void RehydrateState(DeviceLatchState latchState)
     {
         _latchState = latchState;
