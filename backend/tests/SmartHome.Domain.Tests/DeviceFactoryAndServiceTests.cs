@@ -57,7 +57,7 @@ public class DeviceFactoryAndServiceTests
         public void RegisterThermostat(ThermostatDevice thermostat) { }
         public void UnregisterThermostat(ThermostatDevice thermostat) { }
         public void UpdateAmbientTemperature() { }
-        public void startSimulation() { }
+        public void StartSimulation() { }
     }
 
     private static DeviceService CreateDeviceService(FakeDeviceRepository repository)

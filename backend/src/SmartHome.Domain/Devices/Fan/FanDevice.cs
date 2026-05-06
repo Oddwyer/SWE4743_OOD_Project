@@ -12,8 +12,8 @@ public class FanDevice : Device, IPoweredDevice
     public IFanState On { get; private set; }
     private IFanState _currentState;
 
-
-    public FanSpeed Speed { get; private set; } = FanSpeed.Medium; // Default speed
+    private const FanSpeed defaultSpeed = FanSpeed.Medium; // Default speed
+    public FanSpeed Speed { get; private set; }
 
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan, new FanCommandFactory())
     {
@@ -101,7 +101,7 @@ public class FanDevice : Device, IPoweredDevice
     {
         _powerState = DevicePowerState.Off;
         _currentState = Off;
-        SetFanSpeedInternal(FanSpeed.Medium);
+        Speed = FanSpeed.Medium;
         UpdatedAt = DateTime.UtcNow;
 
     }

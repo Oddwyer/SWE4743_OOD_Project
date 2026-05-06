@@ -145,6 +145,7 @@ public class SimulationService : ISimulationService
         foreach (var device in devices)
         {
             device.ResetToDefault();
+            _deviceRepository.SaveDevice(device);
         }
 
     }

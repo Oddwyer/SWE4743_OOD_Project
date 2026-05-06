@@ -5,6 +5,8 @@ namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
+    private const int defaultBrightness = 100; // Default brightness (100%)
+    private const string defaultColor = "#FFFFFF"; // Default color (white)
     public int MinBrightness => 10; // Minimum allowed brightness percentage
     public int MaxBrightness => 100; // Maximum allowed brightness percentage
 
@@ -15,9 +17,9 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     private ILightState _currentState;
 
-    public string Color { get; private set; } = "#FFFFFF"; // Default color (white)
+    public string Color { get; private set; } = defaultColor;
 
-    public int LightBrightness { get; private set; } = 100; // Default brightness (100%)
+    public int LightBrightness { get; private set; } = defaultBrightness;
 
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light, new LightCommandFactory())
@@ -121,16 +123,15 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     }
 
     /// <summary>
-    /// Resets device properties to default settings.
+    /// Sets the current state (used by states).
     /// </summary>
     public override void ResetToDefault()
     {
         _powerState = DevicePowerState.Off;
         _currentState = Off;
-        SetColorInternal("#FFFFFF");
-        SetLightBrightnessInternal(100);
+        Color = defaultColor;
+        LightBrightness = defaultBrightness;
         UpdatedAt = DateTime.UtcNow;
-
     }
 
 
