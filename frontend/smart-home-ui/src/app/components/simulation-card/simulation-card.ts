@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-simulation-card',
-  imports: [],
+  standalone: true,
+  imports: [CardModule],
   templateUrl: './simulation-card.html',
   styleUrl: './simulation-card.css',
 })

@@ -4,12 +4,13 @@ import { DeviceApiService } from '../../services/device.api.service';
 import { DeviceCardComponent } from '../device-card/device-card';
 import { CardModule } from 'primeng/card';
 import { DeviceResponse } from '../../devicemodels/deviceresponse';
+import { SimulationCard } from '../simulation-card/simulation-card';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
-  imports: [CommonModule, DeviceCardComponent, CardModule],
+  imports: [CommonModule, DeviceCardComponent, CardModule, SimulationCard],
   styleUrls: ['./device-list.css'],
 })
 
