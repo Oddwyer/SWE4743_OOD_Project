@@ -101,7 +101,8 @@ public class FanDevice : Device, IPoweredDevice
     {
         _powerState = DevicePowerState.Off;
         _currentState = Off;
-        SetFanSpeed(FanSpeed.Medium);
+        SetFanSpeedInternal(FanSpeed.Medium);
+        UpdatedAt = DateTime.UtcNow;
 
     }
 

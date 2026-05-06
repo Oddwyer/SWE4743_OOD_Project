@@ -75,6 +75,9 @@ public class DoorLocks : Device, ILatchedDevice
         _currentState = latchState == DeviceLatchState.Locked ? Locked : Unlocked;
     }
 
+    /// <summary>
+    /// Resets device properties to default settings.
+    /// </summary>
     public override void ResetToDefault()
     {
         _latchState = DeviceLatchState.Locked;
