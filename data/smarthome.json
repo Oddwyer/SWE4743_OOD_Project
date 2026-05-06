@@ -24,7 +24,7 @@
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 3
+      "FanSpeed": 2
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Heating",
       "ThermostatMode": 3,
-      "TargetTemperature": 73,
+      "TargetTemperature": 71,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -140,7 +140,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 10,
+      "LightBrightness": 45,
       "FanSpeed": null
     }
   ],
@@ -5586,6 +5586,54 @@
       "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
       "Timestamp": "2026-05-06T00:24:12.4225672Z",
       "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "421a881b-4db8-4161-929d-af2056deaf3c",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T20:41:24.2270076Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "4a07ec21-c064-4882-bd21-f0f315e9b344",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T20:41:26.8956427Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "a85ba805-8460-4769-b0d6-1d1513b25e19",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T20:41:31.0459122Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "ba7bad31-146c-4fdd-b7ce-4f6302ad62fd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T20:41:49.3759189Z",
+      "Operation": "Set target temperature to 71\u00B0F for Thermostat."
+    },
+    {
+      "Id": "d4c3a590-e6b1-4fb1-8fd7-d555c82509b8",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T20:41:51.5743231Z",
+      "Operation": "Set light brightness to 45% for Overhead Light."
+    },
+    {
+      "Id": "1f8fa8d0-f3e6-497d-81fc-68db66657134",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T20:42:10.7551924Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "dc6db01f-a31a-4e8d-8a17-3d599f5455fa",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-06T20:43:05.6010158Z",
+      "Operation": "Powered off Left Sconce."
+    },
+    {
+      "Id": "3696b381-379c-4be8-93d3-6cbf935ae754",
+      "DeviceId": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
+      "Timestamp": "2026-05-06T20:43:06.2438336Z",
+      "Operation": "Powered on Left Sconce."
     }
   ],
   "Locations": [

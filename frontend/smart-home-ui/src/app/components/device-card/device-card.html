@@ -128,7 +128,7 @@
           type="button"
           *ngFor="let option of fanSpeedOptions"
           class="fan-speed-button"
-          [class.selected]="device.fanSpeed === option.value"
+          [class.selected]="device.fanSpeed?.toLowerCase() === option.value.toLowerCase()"
           [disabled]="!device.isDeviceOn"
           (click)="setFanSpeed(option.value)">
           {{ option.label }}
@@ -149,7 +149,7 @@
           type="button"
           *ngFor="let option of thermostatModeOptions"
           class="thermostat-mode-button"
-          [class.selected]="device.thermostatMode === option.value"
+          [class.selected]="device.thermostatMode?.toLowerCase() === option.value.toLowerCase()"
           [disabled]="!device.isDeviceOn"
           (click)="setThermostatMode(option.value)">
           {{ option.label }}
