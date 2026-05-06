@@ -59,7 +59,8 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-// TODO - Amber: Add singletons for shared state (e.g. simulation ticker, speed) and ensure thread safety as needed.
+builder.Services.AddSingleton<SimulationRuntime>();
+builder.Services.AddSingleton<SimulationTicker>();
 
 builder.Services.AddScoped<ISimulationService, SimulationService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
