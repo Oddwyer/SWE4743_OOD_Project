@@ -5,25 +5,25 @@ using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 namespace SmartHome.Domain.Simulations;
 
 /// <summary>
-/// Handles environment simulation operations such as setting and retrieving ambient temperature per location, 
+/// Handles environment simulation operations such as setting and retrieving ambient temperature per location,
 /// delegating persistence to the repository.
 /// </summary>
 public class SimulationService : ISimulationService
 {
     private readonly Dictionary<string, int> _ambientTemperatures = new();
-    private readonly Dictionary<string, ThermostatDevice> _registeredThermostats = new Dictionary<string, ThermostatDevice>();
     private int defaultAmbientTemperature = 72;
     public const int MinAmbientTemperature = 0;
     public const int MaxAmbientTemperature = 100;
 
     private readonly ILocationRepository _locationRepository;
-    private readonly SimulationTicker _ticker;
+    private readonly SimulationRuntime _runtime;
 
-    public SimulationService(ILocationRepository locationRepository)
+
+    public SimulationService(ILocationRepository locationRepository, SimulationRuntime runtime)
     {
         _locationRepository = locationRepository;
-        _ticker = new SimulationTicker();
-        _ticker.OnTick += OnSimulationTick;
+        _runtime = runtime;
+        _runtime.Ticker.OnTick += OnSimulationTick;
     }
 
     private void OnSimulationTick()
@@ -32,7 +32,7 @@ public class SimulationService : ISimulationService
     }
 
     /// <summary>
-    /// Set ambient temperature based on client's requested location and temperature.
+    /// Sets ambient temperature based on client's requested location and temperature.
     /// </summary>
     public void SetAmbientTemperature(string location, int temperature)
     {
@@ -49,6 +49,8 @@ public class SimulationService : ISimulationService
         _locationRepository.SaveAmbientTemperature(Normalize(location), temperature);
 
     }
+
+
     /// <summary>
     /// /// Returns the ambient temperature for a given location, or a default value if none is stored.
     /// </summary>
@@ -64,14 +66,17 @@ public class SimulationService : ISimulationService
         return ambientTemperature ?? defaultAmbientTemperature;
     }
 
+    /// <summary>
+    /// Moves ambient temperature up or down based on thermostat state and target temperature.
+    /// </summary>
     public void UpdateAmbientTemperature()
     {
-        // this should move the temp up or down based on the current state, strategy and the tick rate
-        foreach (var thermostat in _registeredThermostats.Values)
+
+        foreach (var thermostat in _runtime.RegisteredThermostats)
         {
             if (!thermostat.IsDeviceOn)
             {
-                continue; // skip if thermostat is off or idle
+                continue; // Skip if thermostat is off or idle.
             }
 
             var locationTemperature = GetAmbientTemperature(thermostat.DeviceLocation);
@@ -80,26 +85,25 @@ public class SimulationService : ISimulationService
 
             if (currentState is ThermostatStateType.Heating && locationTemperature < desiredTemperature)
             {
-                // need to check what the tick is then increase the temp by 1 degree F per tick until it reaches the desired temp, then it should switch to idle
+                //  Check what the tick is then increase the temp by 1°F per tick until it reaches the desired temp, then switch to idle.
                 startSimulation();
                 locationTemperature++;
             }
             else if (currentState is ThermostatStateType.Cooling && locationTemperature > desiredTemperature)
             {
-                // need to check what the tick is then decrease the temp by 1 degree F per tick until it reaches the desired temp, then it should switch to idle
+                // Check what the tick is then decrease the temp by 1°F  per tick until it reaches the desired temp, then switch to idle.
                 startSimulation();
                 locationTemperature--;
             }
             else if (currentState is ThermostatStateType.Idle)
             {
-                // if the thermostat is idle, we can assume that the ambient temperature is stable
-                // and does not need to be updated
+                // If thermostat is idle, assume that the ambient temperature is stable and does not need to be updated.
                 continue;
             }
             else
             {
-                // if the thermostat is on but the ambient temperature has already reached the desired temperature,
-                //  we can assume that the ambient temperature is stable and does not need to be updated
+                // If the thermostat is on but the ambient temperature has already reached the desired temperature,
+                // assume that the ambient temperature is stable and does not need to be updated.
                 continue;
             }
         }
@@ -107,17 +111,17 @@ public class SimulationService : ISimulationService
 
     public void SetSimulationSpeed(SimulationSpeed speedMultiplier)
     {
-        _ticker.setSimulationTickerSpeed(speedMultiplier);
+        _runtime.Ticker.setSimulationTickerSpeed(speedMultiplier);
     }
 
     public void startSimulation()
     {
-        _ticker.Start();
+        _runtime.Ticker.Start();
     }
 
     public void ResetSimulation()
     {
-        _ticker.Stop();
+        _runtime.Ticker.Stop();
 
         foreach (var location in _ambientTemperatures.Keys.ToList())
         {
@@ -128,32 +132,19 @@ public class SimulationService : ISimulationService
 
     public void RegisterThermostat(ThermostatDevice thermostat)
     {
-        if (!_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
-        {
-            _registeredThermostats[thermostat.Id.ToString()] = thermostat;
+        _runtime.RegisterThermostat(thermostat);
 
-            if (!_ambientTemperatures.ContainsKey(thermostat.DeviceLocation))
-            {
-                SetAmbientTemperature(thermostat.DeviceLocation, defaultAmbientTemperature);
-            }
-        }
-
-        else
+        if (_locationRepository.GetAmbientTemperature(Normalize(thermostat.DeviceLocation)) is null)
         {
-            throw new InvalidOperationException("Thermostat is already registered.");
+            SetAmbientTemperature(thermostat.DeviceLocation, defaultAmbientTemperature);
         }
     }
 
+
     public void UnregisterThermostat(ThermostatDevice thermostat)
     {
-        if (_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
-        {
-            _registeredThermostats.Remove(thermostat.Id.ToString());
-        }
-        else
-        {
-            throw new InvalidOperationException("Thermostat is not registered.");
-        }
+        _runtime.UnregisterThermostat(thermostat);
+
     }
 
     private static string Normalize(string location) => location.Trim().ToLowerInvariant();

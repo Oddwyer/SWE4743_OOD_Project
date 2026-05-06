@@ -74,7 +74,7 @@ builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFac
 
 builder.Services.AddScoped<JsonRepository>();
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Configure JSON serialization to use camelCase and serialize enums as strings.
 builder.Services.AddControllers()

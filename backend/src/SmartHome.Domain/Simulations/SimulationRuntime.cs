@@ -10,26 +10,32 @@ namespace SmartHome.Domain.Simulations;
 /// </summary>
 public class SimulationRuntime
 {
-    private readonly Dictionary<string, int> _ambientTemperatures = new();
     private readonly Dictionary<string, ThermostatDevice> _registeredThermostats = new();
+
     public SimulationTicker Ticker { get; }
 
+    /// <summary>
+    /// Initializes runtime state with the provided simulation ticker.
+    /// </summary>
     public SimulationRuntime(SimulationTicker ticker)
     {
         Ticker = ticker;
     }
 
+    /// <summary>
+    /// Gets all currently registered thermostats participating in the simulation.
+    /// </summary>
     public IEnumerable<ThermostatDevice> RegisteredThermostats => _registeredThermostats.Values;
+
+    /// <summary>
+    /// Registers a thermostat to participate in the simulation.
+    /// </summary>
     public void RegisterThermostat(ThermostatDevice thermostat)
     {
         if (!_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
         {
             _registeredThermostats[thermostat.Id.ToString()] = thermostat;
 
-            if (!_ambientTemperatures.ContainsKey(thermostat.DeviceLocation))
-            {
-                SetAmbientTemperature(thermostat.DeviceLocation, defaultAmbientTemperature);
-            }
         }
 
         else
@@ -38,6 +44,9 @@ public class SimulationRuntime
         }
     }
 
+    /// <summary>
+    /// Unregisters a thermostat from the simulation.
+    /// </summary>
     public void UnregisterThermostat(ThermostatDevice thermostat)
     {
         if (_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
@@ -49,7 +58,6 @@ public class SimulationRuntime
             throw new InvalidOperationException("Thermostat is not registered.");
         }
     }
-
 
 }
 
