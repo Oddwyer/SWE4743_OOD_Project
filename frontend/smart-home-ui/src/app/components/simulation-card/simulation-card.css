@@ -7,10 +7,17 @@
     background: rgba(52, 61, 76, 0.9);
     border-left: 6px solid #343d4c;
     border-radius: 14px;
-    padding: 1rem;
+
+    padding-top: 1rem;
+    padding-right: 1.15rem;
+    padding-bottom: 1rem;
+    padding-left: 0.85rem;
+
     color: #ffffff;
     font-size: 0.95rem;
     line-height: 1.4;
+
+    box-sizing: border-box;
 }
 
 /* Header */
@@ -177,9 +184,10 @@
    ========================= */
 
 @media (max-width: 900px) {
-    .simulation-card {
-        min-height: auto;
-    }
+  .manage-devices-card {
+    width: 100%;
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 500px) {

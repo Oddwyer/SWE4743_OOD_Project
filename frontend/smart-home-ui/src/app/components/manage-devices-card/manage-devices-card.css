@@ -318,8 +318,21 @@
    RESPONSIVE
    ========================= */
 
-@media (max-width: 900px) {
-  .manage-devices-card {
-    min-height: auto;
+@media (max-width: 700px) {
+  .picker-modal,
+  .history-modal,
+  .small-modal {
+    width: 94vw;
+    max-height: 86vh;
+  }
+
+  .modal-option {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .modal-option span {
+    font-size: 0.95rem;
   }
 }

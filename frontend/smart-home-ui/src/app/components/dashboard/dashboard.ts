@@ -7,6 +7,9 @@ import { DeviceCardComponent } from '../device-card/device-card';
 import { DeviceResponse } from '../../devicemodels/deviceresponse';
 import { SimulationCardComponent } from '../simulation-card/simulation-card';
 import { ManageDevicesCardComponent } from '../manage-devices-card/manage-devices-card';
+import { DeviceType } from '../../types/devicetype';
+import { PowerFilter } from '../../types/powerfilter';
+import { DeviceTypeFilter } from '../../types/devicetypefilter';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +26,7 @@ import { ManageDevicesCardComponent } from '../manage-devices-card/manage-device
 })
 /**
  * Displays the smart home dashboard, including the simulation clock,
- * simulation controls, and devices grouped by location.
+ * simulation controls, filters, and devices grouped by location.
  */
 export class DashboardComponent implements OnInit, OnDestroy {
   devices: DeviceResponse[] = [];
@@ -31,6 +34,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentTime = '00:00:00';
   simulationSpeed = 1;
   simulationSeconds = 0;
+
+  selectedPowerFilter: PowerFilter = 'All';
+  selectedLocationFilter = 'All';
+  selectedTypeFilter: DeviceTypeFilter = 'All';
+
+  readonly powerFilters: PowerFilter[] = ['All', 'On', 'Off'];
+  readonly typeFilters: DeviceTypeFilter[] = ['All', 'Light', 'Fan', 'Thermostat', 'DoorLock'];
 
   private clockIntervalId?: number;
 
@@ -66,12 +76,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Groups devices by location for display in the dashboard.
+   * Returns unique locations from all loaded devices.
+   */
+  get locationFilters(): string[] {
+    const locations = this.devices
+      .map((device) => device.deviceLocation)
+      .filter((location): location is string => !!location);
+
+    return ['All', ...new Set(locations)];
+  }
+
+  /**
+   * Returns devices that match all selected filters.
+   */
+  get filteredDevices(): DeviceResponse[] {
+    return this.devices.filter((device) => {
+      return (
+        this.matchesPowerFilter(device) &&
+        this.matchesLocationFilter(device) &&
+        this.matchesTypeFilter(device)
+      );
+    });
+  }
+
+  /**
+   * Groups filtered devices by location for display in the dashboard.
    */
   get groupedDevices(): { location: string; devices: DeviceResponse[] }[] {
     const groups = new Map<string, DeviceResponse[]>();
 
-    for (const device of this.devices) {
+    for (const device of this.filteredDevices) {
       const location = device.deviceLocation || 'Unknown Location';
 
       if (!groups.has(location)) {
@@ -85,6 +119,88 @@ export class DashboardComponent implements OnInit, OnDestroy {
       location,
       devices,
     }));
+  }
+
+  /**
+   * Returns true when a device matches the selected power filter.
+   */
+  private matchesPowerFilter(device: DeviceResponse): boolean {
+    if (this.selectedPowerFilter === 'All') {
+      return true;
+    }
+
+    if (this.selectedPowerFilter === 'On') {
+      return this.isDeviceConsideredOn(device);
+    }
+
+    return this.isDeviceConsideredOff(device);
+  }
+
+  /**
+   * Returns true when a device matches the selected location filter.
+   */
+  private matchesLocationFilter(device: DeviceResponse): boolean {
+    return (
+      this.selectedLocationFilter === 'All' || device.deviceLocation === this.selectedLocationFilter
+    );
+  }
+
+  /**
+   * Returns true when a device matches the selected device type filter.
+   */
+  private matchesTypeFilter(device: DeviceResponse): boolean {
+    return this.selectedTypeFilter === 'All' || device.type === this.selectedTypeFilter;
+  }
+
+  /**
+   * Returns whether the device should count as on for filtering.
+   *
+   * Door locks are latch devices and always count as on.
+   * Thermostat Idle does not count as on because only Heating/Cooling are active.
+   */
+  private isDeviceConsideredOn(device: DeviceResponse): boolean {
+    if (device.type === 'DoorLock') {
+      return true;
+    }
+
+    if (device.type === 'Thermostat') {
+      return device.isDeviceOn === true;
+    }
+
+    return device.isPoweredOn === true || device.isDeviceOn === true;
+  }
+
+  /**
+   * Returns whether the device should count as off for filtering.
+   *
+   * Door locks are latch devices and are never considered off.
+   */
+  private isDeviceConsideredOff(device: DeviceResponse): boolean {
+    if (device.type === 'DoorLock') {
+      return false;
+    }
+
+    return !this.isDeviceConsideredOn(device);
+  }
+
+  /**
+   * Clears all selected filters.
+   */
+  clearFilters(): void {
+    this.selectedPowerFilter = 'All';
+    this.selectedLocationFilter = 'All';
+    this.selectedTypeFilter = 'All';
+  }
+
+  /**
+   * Returns whether any filter is currently active.
+   */
+  get hasActiveFilters(): boolean {
+    return (
+      this.selectedPowerFilter !== 'All' ||
+      this.selectedLocationFilter !== 'All' ||
+      this.selectedTypeFilter !== 'All'
+    );
   }
 
   /**
@@ -118,7 +234,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   handleSimulationReset(): void {
     this.simulationSpeed = 1;
     this.simulationSeconds = 0;
-    this.currentTime = '00:00:00';
+
+    setTimeout(() => {
+      this.currentTime = '00:00:00';
+    });
+
     this.loadDevices();
   }
 
@@ -145,10 +265,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const minutes = Math.floor((this.simulationSeconds % 3600) / 60);
     const seconds = this.simulationSeconds % 60;
 
-    this.currentTime =
-      `${hours.toString().padStart(2, '0')}:` +
-      `${minutes.toString().padStart(2, '0')}:` +
-      `${seconds.toString().padStart(2, '0')}`;
+    setTimeout(() => {
+      this.currentTime =
+        `${hours.toString().padStart(2, '0')}:` +
+        `${minutes.toString().padStart(2, '0')}:` +
+        `${seconds.toString().padStart(2, '0')}`;
+    });
   }
 
   /**

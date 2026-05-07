@@ -3,65 +3,95 @@
    ========================= */
 
 .dashboard {
+  width: 100%;
+  min-height: 100vh;
   padding: 2rem;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+   ========================= */
+
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
   color: #ffffff;
-  gap: 1rem;
-}
-.dashboard-header h1 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
 }
 
-.dashboard-header h2 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 1.3rem;
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.dashboard-header p {
-  margin: 0.25rem 0 0 0;
-  color: #ffffff;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-/* HEADER CONTENT (LOGO + TEXT) */
 .header-content {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
 }
 
-/* LOGO */
 .app-logo {
-  width: 200px;
-  height: 200px;
-  max-width: 200px;
-  max-height: 200px;
+  width: clamp(110px, 14vw, 200px);
+  height: clamp(110px, 14vw, 200px);
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-/* MAIN LAYOUT */
+.dashboard-header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.dashboard-header h2 {
+  margin: 0.2rem 0 0;
+  color: #ffffff;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* =========================
+   CLOCK
+   ========================= */
+
+.dashboard-clock {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  color: #ffffff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dashboard-clock .pi-clock {
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.clock-label,
+.clock-value {
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.clock-value {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================
+   MAIN LAYOUT
+   ========================= */
+
 .dashboard-content {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
   gap: 1.5rem;
   align-items: start;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .sidebar-column {
@@ -71,75 +101,12 @@
   min-width: 0;
 }
 
-.manage-devices-card {
-  background: rgba(52, 61, 76, 0.9);
-  border-left: 6px solid #343d4c;
-  border-radius: 14px;
-  padding: 1rem;
-  color: #ffffff;
-  min-height: 160px;
+.devices-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
 }
-
-.manage-devices-card h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.manage-devices-card p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #ffffff;
-}
-
-/* =========================
-   CLOCK
-   ========================= */
-
-/* Control wrapper */
-.clock-control {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Label */
-.clock-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.4rem;
-}
-
-
-/* Icon */
-.pi.pi-clock {
-    width: 1.3rem;
-    align-items: flex-start;
-    flex-shrink: 0;
-    margin-top: 0.6rem;
-    margin-right: 0.75rem;
-    font-size: 1.5rem;
-}
-
-/* Label */
-.clock-label {
-    font-weight: 600;
-    font-size: 2rem;
-    margin-right: 1rem;
-}
-
-.clock-value {
-    font-weight: 700;
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.92);
-}
-
-.clock-row .simulation-header {
-    align-items: baseline;
-}
-
 
 /* =========================
    LOCATION SECTIONS
@@ -154,7 +121,7 @@
   align-items: center;
   gap: 0.5rem;
   margin: 0 0 0.75rem;
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
   font-weight: 700;
   line-height: 1.25;
   color: #ffffff;
@@ -167,84 +134,116 @@
 
 .location-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.35);
   margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.35);
 }
 
 /* =========================
    DEVICE GRID
    ========================= */
 
-.devices-column {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
 .device-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 240px));
   gap: 1.25rem;
   align-items: stretch;
 }
 
-
 /* =========================
-   RESPONSIVE
+   TABLET RESPONSIVE
    ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-column {
+    max-width: 320px;
+  }
+
+  .device-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 240px));
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+
+@media (max-width: 700px) {
   .dashboard {
     padding: 1rem;
   }
 
   .dashboard-header {
-    width: auto;
-  }
-
-  .dashboard-content {
-    grid-template-columns: 1fr;
-  }
-
-
-  .device-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
-}
-
-@media (max-width: 500px) {
-  .dashboard {
-    padding: 0.75rem;
-  }
-
-  .dashboard-header {
-    padding: 1rem 0;
-  }
-
-  .dashboard-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .dashboard-header p {
-    font-size: 0.9rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
   }
 
   .header-content {
-    gap: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
   }
 
   .app-logo {
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
   }
 
-  .location-heading {
-    font-size: 1.2rem;
+  .dashboard-clock {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .clock-label,
+  .clock-value {
+    font-size: 1.25rem;
+  }
+
+  .sidebar-column {
+    width: 100%;
+    max-width: none;
   }
 
   .device-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+}
 
+/* =========================
+   VERY SMALL SCREENS
+   ========================= */
+
+@media (max-width: 420px) {
+  .dashboard {
+    padding: 0.75rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.55rem;
+  }
+
+  .dashboard-header h2 {
+    font-size: 0.95rem;
+  }
+
+  .app-logo {
+    width: 95px;
+    height: 95px;
+  }
+
+  .clock-label,
+  .clock-value {
+    font-size: 1.1rem;
+  }
+
+  .location-heading {
+    font-size: 1.1rem;
+  }
 }
