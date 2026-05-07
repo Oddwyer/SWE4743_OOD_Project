@@ -23,8 +23,7 @@ export class SimulationCard implements OnChanges {
   ambientTemps: Record<string, number> = {};
   minTemp = 0;
   maxTemp = 100;
-  defaultTemperature = 72;
-  isLoadingAmbientTemps = false;
+  defaultTemperature?: number;
 
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
@@ -42,21 +41,31 @@ export class SimulationCard implements OnChanges {
       return;
     }
 
-    this.loadAmbientTemperatures();
+    const unloadedLocations = this.locations.filter(
+      (location) => this.ambientTemps[location] === undefined,
+    );
+
+    if (unloadedLocations.length === 0) {
+      return;
+    }
+
+    setTimeout(() => {
+      this.loadAmbientTemperatures(unloadedLocations);
+    });
   }
 
-  loadAmbientTemperatures(): void {
-    this.locations.forEach((location) => {
-      if (this.ambientTemps[location] === undefined) {
-        this.ambientTemps[location] = this.defaultTemperature;
-      }
-
+  loadAmbientTemperatures(locations: string[] = this.locations): void {
+    locations.forEach((location) => {
       this.simulationApiService.getAmbientTemperature(location).subscribe({
         next: (response: AmbientTemperatureResponse) => {
-          this.ambientTemps[location] = response.ambientTemperature;
-          this.minTemp = response.minTemperature;
-          this.maxTemp = response.maxTemperature;
-          this.defaultTemperature = response.defaultTemperature;
+          setTimeout(() => {
+            this.ambientTemps[location] = response.ambientTemperature;
+            this.minTemp = response.minTemperature;
+            this.maxTemp = response.maxTemperature;
+            this.defaultTemperature = response.defaultTemperature;
+            console.log('SETTING TEMP:', location, response.ambientTemperature);
+            console.log(this.ambientTemps);
+          });
         },
         error: (err: unknown) => {
           console.error('Failed to load ambient temperature for', location, err);
@@ -65,8 +74,12 @@ export class SimulationCard implements OnChanges {
     });
   }
 
+  hasAmbientTemperature(location: string): boolean {
+    return this.ambientTemps[location] !== undefined;
+  }
+
   getAmbientTemperature(location: string): number {
-    return this.ambientTemps[location] ?? this.defaultTemperature;
+    return this.ambientTemps[location];
   }
 
   setAmbientTemperature(location: string, temperature: number): void {
@@ -113,7 +126,9 @@ export class SimulationCard implements OnChanges {
     this.simulationApiService.resetSimulation().subscribe({
       next: () => {
         this.ambientTemps = {};
-        this.loadAmbientTemperatures();
+        setTimeout(() => {
+          this.loadAmbientTemperatures();
+        });
         this.simulationChanged.emit();
       },
     });

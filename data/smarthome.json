@@ -84,7 +84,7 @@
       "Type": 2,
       "Location": "Living Room",
       "IsOn": true,
-      "DeviceState": "Unlocked",
+      "DeviceState": "Locked",
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": null,
@@ -119,13 +119,13 @@
     },
     {
       "Id": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
-      "Name": "Thermostat",
+      "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
       "IsOn": true,
-      "DeviceState": "Cooling",
-      "ThermostatMode": 3,
-      "TargetTemperature": 74,
+      "DeviceState": "Idle",
+      "ThermostatMode": 2,
+      "TargetTemperature": 70,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -7902,12 +7902,72 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T04:18:25.9532076Z",
       "Operation": "Set target temperature to 74\u00B0F for Thermostat."
+    },
+    {
+      "Id": "89ec8a64-5a30-4b62-925b-87fb695e9101",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:35:20.1456696Z",
+      "Operation": "Set target temperature to 68\u00B0F for Thermostat."
+    },
+    {
+      "Id": "fd0d9230-6317-4561-a91e-552046f97188",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:35:25.4705033Z",
+      "Operation": "Set target temperature to 73\u00B0F for Thermostat."
+    },
+    {
+      "Id": "3315dc22-4222-4f1e-a13c-fc5e00cf4e85",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:35:26.8550355Z",
+      "Operation": "Set target temperature to 70\u00B0F for Thermostat."
+    },
+    {
+      "Id": "b52f4103-b93d-494e-82a7-f355ecaf15df",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T05:02:40.9813387Z",
+      "Operation": "Set mode to Cool for Thermostat."
+    },
+    {
+      "Id": "78d25ebb-4291-4d53-8ba1-6362d2694c92",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T05:02:58.5545145Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "513b66da-076f-4ced-b58d-bddc4568c39a",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T05:15:14.2568729Z",
+      "Operation": "Set target temperature to 70\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "b5f2219d-f9c5-403d-b35d-2386dbbae477",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T05:16:47.5923404Z",
+      "Operation": "Set mode to Cool for Thermostat."
+    },
+    {
+      "Id": "efb4fc97-d16c-41d3-9f37-deeff4748aab",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T05:16:54.4737316Z",
+      "Operation": "Set mode to Heat for Thermostat."
+    },
+    {
+      "Id": "02314efa-8224-4eea-8183-210160111236",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T05:17:15.717009Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "17a68fa0-75ff-4f6b-bf91-9033955854dc",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-07T05:36:20.4655138Z",
+      "Operation": "Locked Back Door Lock."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 66
+      "AmbientTemperature": 33
     }
   ]
 }

@@ -25,6 +25,7 @@ export interface DeviceResponse {
   minTemperature?: number | null;
   maxTemperature?: number | null;
   targetTemperature?: number | null;
+  defaultTemperature?: number | null;
   ambientTemperature?: number | null;
 
   isLocked?: boolean | null;

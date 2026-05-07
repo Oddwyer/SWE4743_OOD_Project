@@ -11,16 +11,26 @@
     <div class="simulation-control">
       <div class="simulation-header">
         <span class="simulation-label">{{ location }} Ambient Temperature:</span>
-        <span class="simulation-value">{{ getAmbientTemperature(location) }}°F</span>
+
+        <span class="simulation-value">
+          <ng-container *ngIf="hasAmbientTemperature(location); else loadingTemp">
+            {{ getAmbientTemperature(location) }}°F
+          </ng-container>
+
+          <ng-template #loadingTemp>
+            Loading...
+          </ng-template>
+        </span>
       </div>
 
       <p-slider
         styleClass="ambient-slider"
-        [(ngModel)]="ambientTemps[location]"
+        [ngModel]="hasAmbientTemperature(location) ? getAmbientTemperature(location) : minTemp"
         [min]="minTemp"
         [max]="maxTemp"
-        (onSlideEnd)="setAmbientTemperature(location, ambientTemps[location])"
-      ></p-slider>
+        [disabled]="!hasAmbientTemperature(location)"
+        (onSlideEnd)="setAmbientTemperature(location, $any($event).value)">
+      </p-slider>
     </div>
   </div>
 
