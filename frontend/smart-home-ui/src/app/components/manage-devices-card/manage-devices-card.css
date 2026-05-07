@@ -1,0 +1,204 @@
+/* =========================
+   MANAGE DEVICES CARD
+   ========================= */
+
+.manage-devices-card {
+    background: rgba(52, 61, 76, 0.9);
+    border-left: 6px solid #343d4c;
+    border-radius: 14px;
+    padding: 1rem;
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Header */
+.manage-devices-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.manage-devices-card-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Sections */
+.manage-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-bottom: 0.9rem;
+}
+
+.manage-section:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 0.9rem;
+}
+
+.manage-section h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* Fields */
+.manage-field {
+    width: 100%;
+}
+
+.manage-field input {
+    width: 100%;
+}
+
+/* Buttons */
+.manage-button {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    padding: 0.65rem 0.8rem;
+    background: #b58e75;
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.manage-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* History */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+}
+
+.history-entry {
+    padding: 0.65rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.history-command {
+    font-weight: 700;
+}
+
+.history-time {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin-top: 0.2rem;
+}
+
+/* PrimeNG Select/Input overrides */
+:host ::ng-deep .p-select,
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+    min-height: 2.2rem;
+    border-radius: 6px;
+}
+
+:host ::ng-deep .p-button {
+    width: 100%;
+}
+
+.manage-section input,
+:host ::ng-deep .manage-section .p-select,
+:host ::ng-deep .manage-section .p-inputtext {
+    width: 100%;
+    min-height: 2.2rem;
+    box-sizing: border-box;
+}
+
+.manage-section input {
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border: none;
+}
+
+.manage-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+:host ::ng-deep .manage-section .p-select {
+    background: #ffffff;
+    color: #000000;
+    border: none;
+}
+
+:host ::ng-deep .manage-section .p-select-label {
+    color: #000000;
+    padding: 0.45rem 0.6rem;
+}
+
+:host ::ng-deep .manage-section .p-select-dropdown {
+    color: #000000;
+}
+
+.manage-devices-card {
+    margin-top: 0.75rem;
+}
+
+/* =========================
+   PRIME SELECT DROPDOWN PANEL
+   ========================= */
+
+:host ::ng-deep .p-select {
+    background: rgba(52, 61, 76, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+:host ::ng-deep .p-select-label {
+    color: #ffffff !important;
+}
+
+:host ::ng-deep .p-select-dropdown {
+    color: #ffffff !important;
+}
+
+/* Opened dropdown panel */
+:host ::ng-deep .p-select-overlay,
+:host ::ng-deep .p-select-panel {
+     background: rgba(223, 231, 251, 1);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #000000 !important;
+}
+
+/* Individual options */
+:host ::ng-deep .p-select-option {
+    color: #000000 !important;
+    font-weight: 600;
+    background: transparent !important;
+}
+
+/* Hovered option */
+:host ::ng-deep .p-select-option:hover {
+    background: #b58e75 !important;
+    color: #000000 !important;
+}
+
+/* Selected option */
+:host ::ng-deep .p-select-option.p-focus {
+    background: #b58e75 !important;
+    color:#000000 !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .manage-devices-card {
+        min-height: auto;
+    }
+}

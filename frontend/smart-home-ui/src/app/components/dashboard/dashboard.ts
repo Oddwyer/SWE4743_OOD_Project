@@ -6,11 +6,18 @@ import { DeviceApiService } from '../../services/device.api.service';
 import { DeviceCardComponent } from '../device-card/device-card';
 import { DeviceResponse } from '../../devicemodels/deviceresponse';
 import { SimulationCardComponent } from '../simulation-card/simulation-card';
+import { ManageDevicesCardComponent } from '../manage-devices-card/manage-devices-card';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, DeviceCardComponent, CardModule, SimulationCardComponent],
+  imports: [
+    CommonModule,
+    DeviceCardComponent,
+    CardModule,
+    SimulationCardComponent,
+    ManageDevicesCardComponent,
+  ],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })

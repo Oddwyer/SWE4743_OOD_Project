@@ -1,1 +1,108 @@
-<p>manage-devices-card works!</p>
+<div class="manage-devices-card">
+  <ng-template pTemplate="header">
+    <div class="card-header">
+      <span class="material-symbols-outlined">settings</span>
+      <h2>Manage Devices</h2>
+    </div>
+  </ng-template>
+
+  <!-- Add Device -->
+  <section class="card-section">
+    <h3>Add Device</h3>
+
+    <input
+      type="text"
+      pInputText
+      placeholder="Device Name"
+      [(ngModel)]="newDeviceName"
+    />
+
+    <input
+      type="text"
+      pInputText
+      placeholder="Location"
+      [(ngModel)]="newDeviceLocation"
+    />
+
+    <p-select
+      [options]="deviceTypes"
+      [(ngModel)]="selectedDeviceType"
+      placeholder="Select Device Type"
+    >
+    </p-select>
+
+    <button
+      pButton
+      type="button"
+      label="Add Device"
+      icon="pi pi-plus"
+      (click)="addDevice()"
+      [disabled]="!newDeviceName || !newDeviceLocation"
+    ></button>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Remove Device -->
+  <section class="card-section">
+    <h3>Remove Device</h3>
+
+    <p-select
+      [options]="devices"
+      optionLabel="deviceName"
+      optionValue="id"
+      [(ngModel)]="selectedRemoveDeviceId"
+      placeholder="Select Device"
+    >
+    </p-select>
+
+    <button
+      pButton
+      type="button"
+      label="Remove Device"
+      icon="pi pi-trash"
+      severity="danger"
+      (click)="removeDevice()"
+      [disabled]="!selectedRemoveDeviceId"
+    ></button>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Device History -->
+  <section class="card-section">
+    <h3>View Device History</h3>
+
+    <p-select
+      [options]="devices"
+      optionLabel="deviceName"
+      optionValue="id"
+      [(ngModel)]="selectedHistoryDeviceId"
+      placeholder="Select Device"
+    >
+    </p-select>
+
+    <button
+      pButton
+      type="button"
+      label="Load History"
+      icon="pi pi-history"
+      (click)="loadDeviceHistory()"
+      [disabled]="!selectedHistoryDeviceId"
+    ></button>
+
+    <div class="history-list" *ngIf="historyEntries.length > 0">
+      <div class="history-entry" *ngFor="let entry of historyEntries">
+        <div class="history-command">
+          {{ entry.commandName }}
+        </div>
+
+        <div class="history-time">
+          {{ entry.timestamp | date:'short' }}
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="isLoadingHistory">Loading history...</p>
+  </section>
+</div>
