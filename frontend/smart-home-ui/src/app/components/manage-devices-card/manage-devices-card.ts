@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -42,8 +42,9 @@ export class ManageDevicesCardComponent {
   /** Command history shown after loading a selected device. */
   historyEntries: CommandHistoryResponse[] = [];
 
-  /** Loading state for history requests. */
+  /** Loading and loaded states for history requests. */
   isLoadingHistory = false;
+  hasLoadedHistory = false;
 
   /** Modal visibility flags. */
   showAddDeviceModal = false;
@@ -51,7 +52,31 @@ export class ManageDevicesCardComponent {
   showHistoryDeviceModal = false;
   showTypePicker = false;
 
-  constructor(private readonly deviceApiService: DeviceApiService) {}
+  constructor(
+    private readonly deviceApiService: DeviceApiService,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
+  /** Open the add device modal. */
+  openAddDeviceModal(): void {
+    this.resetAddForm();
+    this.showAddDeviceModal = true;
+  }
+
+  /** Open the remove device modal. */
+  openRemoveDeviceModal(): void {
+    this.selectedRemoveDeviceId = '';
+    this.showRemoveDeviceModal = true;
+  }
+
+  /** Open the history modal. */
+  openHistoryDeviceModal(): void {
+    this.selectedHistoryDeviceId = '';
+    this.historyEntries = [];
+    this.hasLoadedHistory = false;
+    this.isLoadingHistory = false;
+    this.showHistoryDeviceModal = true;
+  }
 
   /** Register a new device through the API. */
   addDevice(): void {
@@ -98,37 +123,25 @@ export class ManageDevicesCardComponent {
     }
 
     this.isLoadingHistory = true;
+    this.hasLoadedHistory = false;
     this.historyEntries = [];
+    this.changeDetectorRef.detectChanges();
 
     this.deviceApiService.getCommandHistory(this.selectedHistoryDeviceId).subscribe({
       next: (history) => {
         this.historyEntries = history;
+        this.hasLoadedHistory = true;
         this.isLoadingHistory = false;
+        this.changeDetectorRef.detectChanges();
       },
       error: (error) => {
         console.error('Failed to load device history.', error);
+
+        this.hasLoadedHistory = true;
         this.isLoadingHistory = false;
+        this.changeDetectorRef.detectChanges();
       },
     });
-  }
-
-  /** Open the add device modal. */
-  openAddDeviceModal(): void {
-    this.resetAddForm();
-    this.showAddDeviceModal = true;
-  }
-
-  /** Open the remove device modal. */
-  openRemoveDeviceModal(): void {
-    this.selectedRemoveDeviceId = '';
-    this.showRemoveDeviceModal = true;
-  }
-
-  /** Open the history modal. */
-  openHistoryDeviceModal(): void {
-    this.selectedHistoryDeviceId = '';
-    this.historyEntries = [];
-    this.showHistoryDeviceModal = true;
   }
 
   /** Select the device type used by the add form. */
@@ -146,6 +159,8 @@ export class ManageDevicesCardComponent {
   selectHistoryDevice(deviceId: string): void {
     this.selectedHistoryDeviceId = deviceId;
     this.historyEntries = [];
+    this.hasLoadedHistory = false;
+    this.isLoadingHistory = false;
   }
 
   /** Get display name for a selected device ID. */

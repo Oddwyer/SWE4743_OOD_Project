@@ -78,6 +78,8 @@
   background: rgba(223, 231, 251, 0.9);
 }
 
+
+
 /* =========================
    MODALS
    ========================= */
@@ -118,19 +120,26 @@
 }
 
 .history-modal {
-  width: min(460px, 92vw);
+  width: min(620px, 92vw);
 }
 
 .picker-modal h3 {
   margin: 0 0 0.25rem;
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
 .modal-help {
   margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: #f1d576;
+  opacity: 0.95;
+}
+
+.selected-option {
+    border: 1px solid #e8d27c;
+    background: rgba(232, 210, 124, 0.15);
 }
 
 /* =========================
@@ -144,7 +153,7 @@
 }
 
 .manage-field span {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -220,9 +229,10 @@
 }
 
 .modal-option span {
-  font-size: 0.9rem;
-  font-weight: 500;
-  opacity: 0.85;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 1;
 }
 
 .modal-option:hover,
@@ -287,9 +297,12 @@
 }
 
 .history-time {
-  margin-top: 0.2rem;
-  font-size: 0.85rem;
-  opacity: 0.85;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #DFE7FB;
+  opacity: 1;
 }
 
 .empty-message {

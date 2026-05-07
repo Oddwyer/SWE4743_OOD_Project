@@ -11,7 +11,7 @@
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 2
+      "FanSpeed": 1
     },
     {
       "Id": "6bac8a57-3997-4669-9848-bd88a13e8855",
@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 72,
+      "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3043,12 +3043,60 @@
       "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
       "Timestamp": "2026-05-07T21:56:07.0542439Z",
       "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "0304de83-701f-49b9-a615-f483663980db",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T22:31:02.4917903Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "f1dbc001-8193-4919-b937-779b0e56359b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T22:31:06.6726767Z",
+      "Operation": "Set target temperature to 76\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "67a4951a-a8f4-42a3-875d-ff07c7847e33",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T22:31:19.353635Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "a2fcd1e1-7f06-4f84-b26b-05ef0845ed83",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T22:31:20.453666Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "900b9429-2d9d-4b47-bb62-561a0f193e2f",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T22:31:22.9574897Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "2a305e86-518a-4629-b6ba-6b7f7df3cfaa",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T22:31:24.2530202Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "86b8dd43-47d0-40a0-ae96-e7efc1158d38",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T23:11:44.4186569Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "f341e965-a20d-4ed9-bf07-3e63716353c5",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T23:11:46.3475808Z",
+      "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 72
+      "AmbientTemperature": 68
     }
   ]
 }
