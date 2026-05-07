@@ -85,7 +85,7 @@
         [min]="device.minBrightness"
         [max]="device.maxBrightness"
         [disabled]="!device.isDeviceOn"
-        (onSlideEnd)="setBrightness(device.lightBrightness ?? 100)">
+        (onSlideEnd)="setBrightness(device.lightBrightness ?? device.maxBrightness!)">
       </p-slider>
     </div>
 
@@ -175,7 +175,7 @@
         [min]="device.minTemperature"
         [max]="device.maxTemperature"
         [disabled]="!isThermostatPoweredOn()"
-        (onSlideEnd)="setTargetTemperature(device.targetTemperature ?? 72)">
+        (onSlideEnd)="setTargetTemperature(device.targetTemperature ?? device.defaultTemperature!)">
       </p-slider>
     </div>
 

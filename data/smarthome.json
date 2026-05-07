@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Cooling",
       "ThermostatMode": 3,
-      "TargetTemperature": 67,
+      "TargetTemperature": 74,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -7818,12 +7818,96 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-07T04:09:54.5167397Z",
       "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "ba841a98-71c1-486e-9e27-0dfc9aaf0742",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T04:13:20.9929666Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "c45f47e7-6e9f-49b0-9c89-c335e6b3eb20",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T04:13:41.1922619Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "9086c495-ef4f-4993-abb1-adc93aeb78ec",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T04:13:44.3340294Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "0df2c9f2-3aed-4c27-894e-8fc42f6d1756",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T04:13:46.9605792Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "81b3e891-508c-4825-8ab7-ba9a94d0fa6f",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T04:13:48.5079467Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "38d757d8-c1b3-4652-b41b-e042e9e37048",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T04:15:41.6972354Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "826e848d-6824-4f75-96f9-295c3d263856",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T04:15:44.2291639Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "390f8fad-785d-4ab0-afad-747ab5c2ceca",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T04:15:45.3938696Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "7992606d-e5c6-48b7-96d3-6c14ed73cf5b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T04:15:51.3488976Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "99dfa7f4-6d11-4a44-95b2-24e320fb5313",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T04:15:52.0557659Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "5c89a6b5-d2ec-4868-8fb9-e72170bc1df7",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:18:20.3659028Z",
+      "Operation": "Set target temperature to 71\u00B0F for Thermostat."
+    },
+    {
+      "Id": "cd0e6de9-bae7-4493-a57b-f07afaf3e91e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:18:21.4804537Z",
+      "Operation": "Set target temperature to 73\u00B0F for Thermostat."
+    },
+    {
+      "Id": "660cc025-ab63-4b9b-85ad-6e909411db6e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:18:24.656925Z",
+      "Operation": "Set target temperature to 70\u00B0F for Thermostat."
+    },
+    {
+      "Id": "42f63fbb-d54a-47ef-b146-6cf2b8cd6fee",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T04:18:25.9532076Z",
+      "Operation": "Set target temperature to 74\u00B0F for Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 71
+      "AmbientTemperature": 66
     }
   ]
 }

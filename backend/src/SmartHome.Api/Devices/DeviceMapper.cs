@@ -52,6 +52,7 @@ public static class DeviceMapper
                 response.MinTemperature = thermostat.MinTemperature;
                 response.AmbientTemperature = ambientTemperature;
                 response.ThermostatState = thermostat.CurrentStateType; // Convert enum to string for API response
+                response.DefaultTemperature = thermostat.DefaultTemperature;
                 break;
 
             case DoorLocks doorlock:

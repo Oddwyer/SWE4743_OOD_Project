@@ -46,10 +46,6 @@ export class SimulationCard implements OnChanges {
   }
 
   loadAmbientTemperatures(): void {
-    this.isLoadingAmbientTemps = true;
-
-    let completedRequests = 0;
-
     this.locations.forEach((location) => {
       if (this.ambientTemps[location] === undefined) {
         this.ambientTemps[location] = this.defaultTemperature;
@@ -64,13 +60,6 @@ export class SimulationCard implements OnChanges {
         },
         error: (err: unknown) => {
           console.error('Failed to load ambient temperature for', location, err);
-        },
-        complete: () => {
-          completedRequests++;
-
-          if (completedRequests === this.locations.length) {
-            this.isLoadingAmbientTemps = false;
-          }
         },
       });
     });

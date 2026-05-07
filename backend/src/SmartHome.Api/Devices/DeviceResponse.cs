@@ -33,6 +33,9 @@ public class DeviceResponse : BaseDevice
     public int? MinTemperature { get; set; }
     public int? MaxTemperature { get; set; }
     public int? TargetTemperature { get; set; }
+
+    public int? DefaultTemperature { get; set; }
+
     public int? AmbientTemperature { get; set; } // For bruno testing only. Frontend displayed via SimulationResponse.
 
     // Doors

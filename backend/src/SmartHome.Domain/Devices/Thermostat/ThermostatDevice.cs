@@ -5,14 +5,15 @@ namespace SmartHome.Domain.Devices.Thermostat;
 
 public class ThermostatDevice : Device, IPoweredDevice
 {
-    private const int defaultTemperature = 72;
+    private const int DefaultTargetTemperature = 72;
+
+    public int DefaultTemperature => DefaultTargetTemperature;
     private const ThermostatMode defaultMode = ThermostatMode.Auto;
 
     public int MinTemperature => 60; // Minimum allowed temperature
     public int MaxTemperature => 80; // Maximum allowed temperature
 
-
-    public int TargetTemperature { get; private set; } = defaultTemperature; // Default target temperature
+    public int TargetTemperature { get; private set; } = DefaultTargetTemperature;
     public IThermostatModeStrategy CurrentStrategy { get; private set; }
     public ThermostatMode Mode { get; private set; } = defaultMode;
 
@@ -178,7 +179,7 @@ public class ThermostatDevice : Device, IPoweredDevice
     {
         _powerState = DevicePowerState.Off;
         _currentState = Off;
-        TargetTemperature = defaultTemperature;
+        TargetTemperature = DefaultTemperature;
         SetMode(defaultMode, new AutoModeStrategy());
         UpdatedAt = DateTime.UtcNow;
 

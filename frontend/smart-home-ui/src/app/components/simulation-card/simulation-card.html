@@ -4,25 +4,25 @@
     <h2>Simulation Settings</h2>
   </div>
 
-<!-- Ambient temperature controls -->
-<div *ngFor="let location of locations" class="setting-row ambient-row">
-  <span class="icon">🌡️</span>
+  <!-- Ambient temperature controls -->
+  <div *ngFor="let location of locations" class="setting-row ambient-row">
+    <span class="icon">🌡️</span>
 
-  <div class="simulation-control">
-    <div class="simulation-header">
-      <span class="simulation-label">{{ location }} Ambient Temperature:</span>
-      <span class="simulation-value">{{ getAmbientTemperature(location) }}°F</span>
+    <div class="simulation-control">
+      <div class="simulation-header">
+        <span class="simulation-label">{{ location }} Ambient Temperature:</span>
+        <span class="simulation-value">{{ getAmbientTemperature(location) }}°F</span>
+      </div>
+
+      <p-slider
+        styleClass="ambient-slider"
+        [(ngModel)]="ambientTemps[location]"
+        [min]="minTemp"
+        [max]="maxTemp"
+        (onSlideEnd)="setAmbientTemperature(location, ambientTemps[location])"
+      ></p-slider>
     </div>
-
-    <p-slider
-      styleClass="ambient-slider"
-      [(ngModel)]="ambientTemps[location]"
-      [min]="minTemp"
-      [max]="maxTemp"
-      (onSlideEnd)="setAmbientTemperature(location, getAmbientTemperature(location))">
-    </p-slider>
   </div>
-</div>
 
   <!-- Simulation speed controls -->
   <div class="setting-row">
