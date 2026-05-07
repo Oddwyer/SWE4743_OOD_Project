@@ -30,7 +30,8 @@ public class LocationsController : ControllerBase
             Location = location,
             AmbientTemperature = temperature,
             MinTemperature = SimulationService.MinAmbientTemperature,
-            MaxTemperature = SimulationService.MaxAmbientTemperature
+            MaxTemperature = SimulationService.MaxAmbientTemperature,
+            DefaultTemperature = SimulationService.DefaultAmbientTemperature
         });
 
     }

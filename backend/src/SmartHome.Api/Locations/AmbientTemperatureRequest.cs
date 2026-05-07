@@ -6,7 +6,6 @@ namespace SmartHome.Api.Locations;
 
 public class AmbientTemperatureRequest
 {
-
     public int Temperature { get; set; }
 
 }

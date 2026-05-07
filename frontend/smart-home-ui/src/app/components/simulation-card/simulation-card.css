@@ -4,7 +4,7 @@
 
 .simulation-card {
     min-height: 330px;
-    background: rgba(52, 61, 76, 0.75);
+    background: rgba(52, 61, 76, 0.9);
     border-left: 6px solid #343d4c;
     border-radius: 14px;
     padding: 1rem;
@@ -98,8 +98,8 @@
     border-radius: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    max-width: 0.9rem;
-    max-height: 0.9rem;
+    max-width: 1rem;
+    max-height: 1rem;
 }
 
 

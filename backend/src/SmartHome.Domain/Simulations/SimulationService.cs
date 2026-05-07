@@ -11,7 +11,7 @@ namespace SmartHome.Domain.Simulations;
 /// </summary>
 public class SimulationService : ISimulationService
 {
-    private int defaultAmbientTemperature = 72;
+    public const int DefaultAmbientTemperature = 72;
     public const int MinAmbientTemperature = 0; // Minimum allowed ambient temperature (°F).
     public const int MaxAmbientTemperature = 100; // Maximum allowed ambient temperature (°F).
 
@@ -68,7 +68,7 @@ public class SimulationService : ISimulationService
 
         var ambientTemperature = _locationRepository.GetAmbientTemperature(Normalize(location));
 
-        return ambientTemperature ?? defaultAmbientTemperature;
+        return ambientTemperature ?? DefaultAmbientTemperature;
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ public class SimulationService : ISimulationService
 
         if (_locationRepository.GetAmbientTemperature(Normalize(thermostat.DeviceLocation)) is null)
         {
-            SetAmbientTemperature(thermostat.DeviceLocation, defaultAmbientTemperature);
+            SetAmbientTemperature(thermostat.DeviceLocation, DefaultAmbientTemperature);
         }
     }
 

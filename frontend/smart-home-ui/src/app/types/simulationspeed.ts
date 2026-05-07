@@ -1,1 +1,6 @@
-export type SimulationSpeed = 'OneX' | 'TwoX' | 'FiveX' | 'TenX';
+export enum SimulationSpeed {
+  OneX = 'OneX',
+  TwoX = 'TwoX',
+  FiveX = 'FiveX',
+  TenX = 'TenX',
+}

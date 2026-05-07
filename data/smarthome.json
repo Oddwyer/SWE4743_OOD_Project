@@ -5724,6 +5724,774 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-06T23:31:09.1237214Z",
       "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "3f209a9e-c2c7-4fff-ad5f-4b018149c180",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:33:36.198784Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "c170a436-3cc0-469f-96df-7cd4fc629253",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:33:37.7621732Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "c25462ba-a62a-45c5-af8a-67ebcf286bd1",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:33:38.6097413Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "4487454e-7911-483c-bc94-2d663298b579",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:33:39.407376Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "58384cad-7a31-4162-81c4-eeb3f307fdeb",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:35:22.0562751Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "fb694e5a-7bce-4131-b67f-b1a6fe1b2490",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T23:35:24.0704168Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "aa43e68b-836f-42a0-8027-f76e778b0b26",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:35:27.9647321Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "8df7fb46-9d0a-440f-a060-c9f42f358538",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:35:29.1169832Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "7866033e-7954-43b3-afe8-6262cfa43a77",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:35:30.085683Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "e4495b1c-0a48-4a37-8786-8268696f8cb8",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:35:31.3083336Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "ac395714-e002-4a86-b1b4-50c20da56bfc",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:37:14.5030823Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "035f603a-8d3a-4768-9df8-fc14f46d1e20",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T23:38:13.1721062Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "c4d7a17e-8d7d-43e4-9e86-10d43a95743d",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-06T23:38:14.0066383Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "84e628ea-eee3-48da-b1f8-9b3ef377c172",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-06T23:38:27.2354176Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "2dcfa1dd-dceb-4e13-afda-e09a1848cb3e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:41:49.4590037Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "ca73cda6-2935-47cd-a4d7-6aca5942e2ca",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:41:50.8089885Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "6e6c263b-1b5e-4280-9a77-c9423ebd08b4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:41:51.9726245Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "035e983d-4ba3-491d-bfab-3f46205bc153",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:41:53.4194811Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "fb183086-70a0-44e2-aeab-4705b0ebf186",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:41:54.2554119Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "3ef3ba62-c192-4d09-b25d-b5ffb6854af8",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:41:56.1017612Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "a39b2a4e-5ab6-4198-8d32-b078625fd152",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:34.7055772Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "cd5fa658-fee2-4ee9-8ccf-59039f68d066",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:38.5664386Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "afab7373-ec68-4dde-bf9e-fc3576224990",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:39.6482196Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "13c856bc-ed89-481f-a49c-f1e588d36812",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:41.4651763Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "27a73f56-c7fb-4d51-ab83-168afdc13ffb",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:42.7558177Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "6cf2f39c-c4fe-41ae-9978-70d8948e22c6",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:44.3218285Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "774f5690-206d-4e80-9f6e-d5144be67325",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:45.1877672Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "4d2313e6-c42c-40f4-8948-a9bdc2b4ec65",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:46.0294137Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "c3e022f0-676c-4e15-9898-f5c3fb4b6920",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:47.1230474Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "b1cdce00-3a4a-41a2-a03e-5d1f67a54a8e",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:47.9368624Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "be37412c-bdca-418e-ad07-731ce926507a",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:42:55.0073912Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "2739f7c1-9cc0-4208-94d4-11f62b8c7bb7",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:46:04.8976116Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "78ed6c8b-0cec-4b27-bc57-9ac2bf814d81",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:46:06.5177175Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "ce05e938-6198-499c-9fa9-1e94f0fce980",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:47:29.9224572Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "bf153b29-a0f9-4d7c-aaed-274ebd2ae295",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:47:31.1422018Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "d90f3bf0-c96e-45b1-83cc-daf6860d2afb",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:47:32.7946228Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "b124ff8a-a5a2-40c5-aebb-685e582be679",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:47:33.7151283Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "0c4a337a-2628-4f39-8368-4a775ff83303",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:47:36.0334249Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "c250303f-9a3d-4040-bc16-12f95f2dc574",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:47:37.2833154Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "e9871d73-3a6e-4f96-ae7e-b0449e63fbde",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:06.3332207Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "8e303a54-d4f7-48b6-8783-2cc482a02336",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:07.4293685Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "93ebe734-17af-465c-9051-3f55ee609753",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:09.2987857Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "b2c6d4df-2efb-4f23-80ea-68657fc1f797",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:10.4294427Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "9e820c2b-a9be-4252-98b5-6efafcc5b6eb",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:12.3233775Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "1a08bd08-0736-4eda-bd02-87af740ac1c8",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:13.6877197Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "0aeb7d7b-7b38-47ef-bf33-b28ca9c86215",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:15.3135825Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "88385f82-bde7-45e3-b907-cd3f888d5c79",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:18.2707739Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "0895fb75-3545-4763-bc2e-66422ad0dd4e",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:27.0044108Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "78359619-e0df-4281-b2bc-10c113553e47",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:28.4875545Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "5a79438c-edf7-4609-a698-6ef9bb6646ce",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:30.8045515Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "44b8b8c3-2782-41d7-940f-61179419ae33",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:31.6963904Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "3de00717-ebd3-4389-a415-9c9ed4b43b42",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:32.6504027Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "3b3c02f0-39a3-4c13-9feb-784beb04e940",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:43.3130127Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "a607cd40-8315-4c55-9d9a-34b3e1eb2686",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:45.8820928Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "ab087679-6312-46ed-af53-ccb3680e0dde",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:47.1953048Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "749808ca-693c-48e3-b1ab-1592d1378400",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:52.3773592Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "a9f42b53-bd23-42bd-b8a7-9f9b830a403a",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:48:54.0822952Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "c40e3d5d-0395-434c-93a2-e946241e98d0",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:00.6602048Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "e28b1fc1-4d8b-4a70-900f-8b5117c0611c",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:14.5578497Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "be355e41-b640-4b06-84cb-2644e87cb3da",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:15.8884358Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "ab79818f-5d1a-4e35-b575-619439fe9479",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:17.8332052Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "4407c614-6361-4dd5-9717-fa74759901d4",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:19.2171058Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "614ead93-4e18-48b6-baa6-79ad2dc0c45a",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:20.2811162Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "ede634d5-6d6e-465b-8d65-3e6d49a1a1af",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:28.9745318Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "989231d6-0da9-4ec8-af92-4484b44f60c7",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:46.0103944Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "18b7c991-5959-4794-9a0f-552a8b3a73cd",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:47.8359587Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "f44c391f-11db-415f-94c9-1128ae580112",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:49.2108676Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "e120e538-44d8-45c1-a834-22c509424c2c",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:53.9789613Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "e0834130-7aba-4f70-aea2-27bc84f2ca0a",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:55.2250633Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "7c45b88f-88bc-4771-b91f-3e03fc27e19e",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:57.6848289Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "a8d2dc01-f0d9-476f-b296-4d579c31bc69",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:49:58.741194Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "91fc2e2f-64f0-4cd0-bc84-07bd92a548a4",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:00.5199658Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "72c87ea2-fc29-4c1a-bdc9-b609906398aa",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:05.8524547Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "b5a0a08c-273c-481f-87b2-323fd051a584",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:07.9328642Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "03f2f4b4-74e5-4ea9-9cfb-f082ab078170",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:09.761016Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "f2e0af91-3e4d-4f12-acb0-d3c0d13f30e6",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:11.5044642Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "b7c7f951-d10e-467f-a9b2-144dcd111be7",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:41.5193922Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "9d7753e9-48df-4c51-8289-e5e846085077",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:42.24542Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "a8e9cfa6-caf4-4563-b6cb-a276a68595ba",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:58.1726009Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "8e9443f7-26e9-4e26-976a-8c706f2e7a85",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:50:58.7949351Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "acc9806a-88a7-49d8-910c-354dec943513",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:51:26.6682756Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "56326a21-a0cf-4774-a493-d8ad5b88720c",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:51:28.0331421Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "9aea1204-ca6e-4918-9959-a2129199f1f0",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:51:29.5101937Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "1c18406d-df5d-4ed0-88eb-d9f167a833bd",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:51:30.6758617Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "64c14370-fe21-4070-87a9-b0011d4b7ab7",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:51:54.0794712Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "c3687048-88cc-411c-bbae-a6e578b21528",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:51:54.7026376Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "99ac5c36-e08d-4764-ac3c-a310e92b6aed",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:51:57.472618Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "8f19b69c-dc60-4e02-9a39-4f55623c6c19",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:51:59.774271Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "e3054140-f9c2-4bc2-b010-907f6acd39ac",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:52:00.7656558Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "4deefe15-869a-41e8-978b-2bc3abb72c01",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:52:03.4685112Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "2275fa08-5f2c-462c-9a65-17dad90eee09",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:52:26.0911793Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "02966794-a689-4123-921c-cd62f6cc6ab0",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-06T23:52:37.2795192Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "64756bd8-7b92-4970-8be8-ff565ed5937e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:53:33.6712401Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "a438675e-e039-4294-9325-861bf9653729",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:53:35.1616983Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "71a95475-f607-4480-8c82-6a0d721c5634",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:53:36.2085206Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "f83f4ab2-81b3-4169-9da8-0a0e403fb87e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:53:37.0440985Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "262fa7eb-8e8d-4eb1-9f60-79e3948a332b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:54:09.7195126Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "3aa346f6-7ee0-4ad1-a89e-372a1e20ab7c",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:54:12.1184481Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "e63315c0-eb93-4bfe-a203-f4ee6efb564f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:54:22.7057454Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "3fb8d8f8-3668-40b9-80b3-7f981fda1e18",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:55:35.3872607Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "77dc25ae-c8a5-4e11-9423-f0879b982cee",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:55:36.3486751Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "3083126e-78a3-41c7-9a3a-ff08f233a835",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:55:37.9038504Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "5ac01fc7-c084-4774-ad71-e0fbb5a8618e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:55:56.7101412Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "35eddf88-a960-40aa-9bc5-cf9395437e4c",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:02.6298857Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "60187415-1a06-4c2e-9661-6b0252200871",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:03.3971869Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "15bd7afd-0c00-4218-bae6-da4acc436e35",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:05.5585248Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "1a3b720f-a7b2-4e5e-9cb0-da12a7fc1919",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:07.0474512Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "be0e005b-522a-4069-9406-d3745b551f60",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:18.9231774Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "1688fc47-ca1e-4ae9-8ad6-fa07d2c331b4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:20.1618926Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "eeb6c7df-0350-4953-81f8-9b818670f76e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:39.1931441Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "6ec0c70a-2d15-4beb-9215-a136a10fc1da",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:41.5819936Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "47dfbfe3-f406-4999-b586-a0b6280b188b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:42.8380038Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "756850b1-8704-4865-9c3e-9a25f01e97b2",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-06T23:56:45.8363516Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "e7c43483-63ff-4a00-a8b8-9596692641c7",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T00:01:54.2468277Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "762f92e1-87ea-42aa-89ec-f15712ba2ec3",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T00:01:55.0606713Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "cfba45c6-78ed-4fcb-afb8-5bfd5e040b18",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T00:01:56.192662Z",
+      "Operation": "Powered on Thermostat."
+    },
+    {
+      "Id": "88cf66b9-d80b-408a-bc56-0ce6d7a2abf8",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T00:01:57.1391342Z",
+      "Operation": "Powered off Thermostat."
+    },
+    {
+      "Id": "cba1a424-5e48-44b8-b3d7-28afe09c707b",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T00:03:15.4678822Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "acce2490-0609-43d1-b41b-aec340b6a6cd",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:53.1599598Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "36933ccc-8502-47c6-a6f5-bdf20a756bcb",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:54.4005122Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "ef003e52-a84b-4c1e-a7cc-8e20f1cba4aa",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:55.0928567Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "0dfb41cb-36a8-439f-93c0-8ba5f208f1ba",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:55.9804277Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "29f51b8f-066d-4da6-b811-96bea96cd73d",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:57.0026907Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "785d3619-6ce4-4d2e-b250-9cdb4cef00d1",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:57.5232374Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "f8d9c9b8-eed2-4915-b97c-f4ab20b7d1ea",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:59.2310466Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "4736180a-82d7-48cf-9c4f-10ef8bfbfc4e",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T00:04:59.8355446Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "96fa1222-898e-48e3-affc-6f2d3b9d73d7",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-07T00:07:11.3676815Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "1d060395-e2fc-46a8-bc1e-d52568c94799",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-07T00:07:13.2242763Z",
+      "Operation": "Locked Back Door Lock."
     }
   ],
   "Locations": [
