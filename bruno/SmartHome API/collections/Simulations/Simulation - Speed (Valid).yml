@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "speedMultiplier": "TwoX"
+        "speedMultiplier": "OneX"
       }
   auth: inherit
 

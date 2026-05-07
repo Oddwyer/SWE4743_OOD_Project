@@ -49,6 +49,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   private refreshInProgress = false;
 
   ambientTemps: Record<string, number> = {};
+  displayAmbientTemps: Record<string, number> = {};
   minTemp = 0;
   maxTemp = 100;
   defaultTemperature?: number;
@@ -103,6 +104,13 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
       this.simulationApiService.getAmbientTemperature(location).subscribe({
         next: (response: AmbientTemperatureResponse) => {
           this.ambientTemps[location] = response.ambientTemperature;
+
+          if (this.displayAmbientTemps[location] === undefined) {
+            this.displayAmbientTemps[location] = response.ambientTemperature;
+          } else {
+            this.updateDisplayedAmbientTemperature(location, response.ambientTemperature);
+          }
+
           this.minTemp = response.minTemperature;
           this.maxTemp = response.maxTemperature;
           this.defaultTemperature = response.defaultTemperature;
@@ -240,6 +248,22 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
     this.refreshInProgress = false;
     this.startAmbientRefresh();
+  }
+
+  /**
+   * Smoothly updates displayed ambient temperature values.
+   */
+  private updateDisplayedAmbientTemperature(location: string, targetTemperature: number): void {
+    const currentTemperature = this.displayAmbientTemps[location] ?? targetTemperature;
+
+    if (currentTemperature === targetTemperature) {
+      this.displayAmbientTemps[location] = targetTemperature;
+      return;
+    }
+
+    const direction = targetTemperature > currentTemperature ? 1 : -1;
+
+    this.displayAmbientTemps[location] = currentTemperature + direction;
   }
 
   /**
