@@ -6,11 +6,23 @@
 
   <!-- Ambient temperature controls -->
   <div *ngFor="let location of locations" class="setting-row ambient-row">
-    <span class="icon">🌡️</span>
+    <span class="material-symbols-outlined simulation-icon">thermostat</span>
 
     <div class="simulation-control">
       <div class="simulation-header">
         <span class="simulation-label">{{ location }} Ambient Temperature:</span>
+      </div>
+
+      <div class="ambient-slider-row">
+        <ng-container *ngIf="hasAmbientTemperature(location); else loadingSlider">
+          <p-slider styleClass="ambient-slider" [ngModel]="getAmbientTemperature(location)" [min]="minTemp"
+            [max]="maxTemp" (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"></p-slider>
+        </ng-container>
+
+        <ng-template #loadingSlider>
+          <p-slider styleClass="ambient-slider" [ngModel]="minTemp" [min]="minTemp" [max]="maxTemp"
+            [disabled]="true"></p-slider>
+        </ng-template>
 
         <span class="simulation-value">
           <ng-container *ngIf="hasAmbientTemperature(location); else loadingTemp">
@@ -20,32 +32,14 @@
           <ng-template #loadingTemp>Loading...</ng-template>
         </span>
       </div>
-
-      <ng-container *ngIf="hasAmbientTemperature(location); else loadingSlider">
-        <p-slider
-          styleClass="ambient-slider"
-          [ngModel]="getAmbientTemperature(location)"
-          [min]="minTemp"
-          [max]="maxTemp"
-          (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"
-        ></p-slider>
-      </ng-container>
-
-      <ng-template #loadingSlider>
-        <p-slider
-          styleClass="ambient-slider"
-          [ngModel]="minTemp"
-          [min]="minTemp"
-          [max]="maxTemp"
-          [disabled]="true"
-        ></p-slider>
-      </ng-template>
     </div>
   </div>
 
   <!-- Simulation speed controls -->
   <div class="setting-row speed-row">
-    <i class="pi pi-bolt"></i>
+    <span class="material-symbols-outlined simulation-icon">
+      speed
+    </span>
 
     <div class="simulation-control">
       <div class="simulation-header">
@@ -53,13 +47,8 @@
       </div>
 
       <div class="speed-button-group">
-        <button
-          type="button"
-          *ngFor="let option of speedOptions"
-          class="speed-button"
-          [class.selected]="simulationSpeed === option.value"
-          (click)="setSimulationSpeed(option.value)"
-        >
+        <button type="button" *ngFor="let option of speedOptions" class="speed-button"
+          [class.selected]="simulationSpeed === option.value" (click)="setSimulationSpeed(option.value)">
           {{ option.label }}
         </button>
       </div>

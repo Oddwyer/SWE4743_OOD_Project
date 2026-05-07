@@ -24,7 +24,10 @@
     <!-- Left side of dashboard: simulation controls. -->
 
     <aside class="sidebar-column">
-      <app-simulation-card [locations]="thermostatLocations"></app-simulation-card>
+      <app-simulation-card
+        [locations]="thermostatLocations"
+        (speedChanged)="simulationSpeed = $event"
+      ></app-simulation-card>
 
       <!-- Placeholder for next component -->
       <div class="manage-devices-card">

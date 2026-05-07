@@ -9,10 +9,13 @@
 
 /* HEADER */
 .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
   color: #ffffff;
+  gap: 1rem;
 }
-
 .dashboard-header h1 {
   margin: 0;
   color: #ffffff;
@@ -111,23 +114,25 @@
 
 
 /* Icon */
-.pi.pi-clock.icon {
+.pi.pi-clock {
     width: 1.3rem;
     align-items: flex-start;
     flex-shrink: 0;
     margin-top: 0.6rem;
-    font-size: 1rem;
+    margin-right: 0.75rem;
+    font-size: 1.5rem;
 }
 
 /* Label */
 .clock-label {
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 2rem;
+    margin-right: 1rem;
 }
 
 .clock-value {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: rgba(255, 255, 255, 0.92);
 }
 

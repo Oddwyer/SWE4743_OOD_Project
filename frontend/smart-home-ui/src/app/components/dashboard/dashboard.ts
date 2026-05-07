@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   devices: any[] = [];
   isLoading = true;
   currentTime = '';
+  simulationSpeed = 1;
+  simulationSeconds = 0;
 
   constructor(
     private deviceApiService: DeviceApiService,
@@ -51,11 +53,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private updateClock(): void {
-    this.currentTime = new Date().toLocaleTimeString([], {
-      hour: 'numeric',
-      minute: '2-digit',
-      second: '2-digit',
-    });
+    const speed = Number(this.simulationSpeed) || 1;
+
+    this.simulationSeconds += speed;
+
+    const hours = Math.floor(this.simulationSeconds / 3600) % 24;
+    const minutes = Math.floor((this.simulationSeconds % 3600) / 60);
+    const seconds = this.simulationSeconds % 60;
+
+    this.currentTime =
+      `${hours.toString().padStart(2, '0')}:` +
+      `${minutes.toString().padStart(2, '0')}:` +
+      `${seconds.toString().padStart(2, '0')}`;
   }
 
   /**

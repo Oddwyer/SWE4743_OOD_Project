@@ -68,6 +68,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     private readonly changeDetectorRef: ChangeDetectorRef,
   ) {}
 
+  @Output() speedChanged = new EventEmitter<number>();
   /**
    * Loads initial ambient temperatures and starts polling
    * when locations become available.
@@ -194,6 +195,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
       next: () => {
         this.restartAmbientRefresh();
         this.simulationChanged.emit();
+        this.speedChanged.emit(Number(speed));
       },
       error: () => {
         this.simulationSpeed = previousSpeed;
