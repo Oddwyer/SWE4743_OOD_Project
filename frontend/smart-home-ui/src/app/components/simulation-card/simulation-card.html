@@ -14,7 +14,7 @@
 
         <span class="simulation-value">
           <ng-container *ngIf="hasAmbientTemperature(location); else loadingTemp">
-           {{ displayAmbientTemps[location] ?? getAmbientTemperature(location) }}°F
+           {{ getDisplayAmbientTemperature(location) }}°F
           </ng-container>
 
           <ng-template #loadingTemp>Loading...</ng-template>

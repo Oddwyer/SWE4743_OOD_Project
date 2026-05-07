@@ -267,6 +267,19 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
+   * Gets the smoothed display temperature for a location.
+   */
+  getDisplayAmbientTemperature(location: string): number {
+    const displayTemperature = this.displayAmbientTemps[location];
+
+    if (displayTemperature !== undefined) {
+      return displayTemperature;
+    }
+
+    return this.getAmbientTemperature(location);
+  }
+
+  /**
    * Cleans up polling when the component is destroyed.
    */
   ngOnDestroy(): void {
