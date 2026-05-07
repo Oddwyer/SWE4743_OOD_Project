@@ -10,6 +10,6 @@ namespace SmartHome.Api.Simulations;
 public class SimulationResponse
 {
     public string Message { get; set; } = string.Empty;
-    public SimulationSpeed SpeedMultiplier { get; set; }
+    public SimulationSpeed SpeedMultiplier { get; set; } = SimulationSpeed.OneX;
 
 }

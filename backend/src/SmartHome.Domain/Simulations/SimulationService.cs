@@ -159,7 +159,9 @@ public class SimulationService : ISimulationService
         _runtime.Ticker.Stop();
         _runtime.Ticker.SetSimulationTickerSpeed(SimulationSpeed.OneX);
 
-        var devices = _deviceRepository.FindAllDevices(new DeviceFilter());
+        var devices = _deviceRepository
+            .FindAllDevices(new DeviceFilter())
+            .ToList();
 
         foreach (var device in devices)
         {
@@ -173,7 +175,6 @@ public class SimulationService : ISimulationService
         }
 
         _runtime.Ticker.Start();
-
     }
 
     /// <summary>

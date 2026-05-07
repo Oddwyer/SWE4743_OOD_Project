@@ -5,7 +5,7 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -18,24 +18,24 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 3
+      "FanSpeed": 2
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
       "Name": "Left Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#ffffff",
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -44,7 +44,7 @@
       "Name": "Right Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -57,12 +57,12 @@
       "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#adad84",
-      "LightBrightness": 61,
+      "LightColor": "#FFFFFF",
+      "LightBrightness": 100,
       "FanSpeed": null
     },
     {
@@ -70,12 +70,12 @@
       "Name": "Right Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#d4bad4",
-      "LightBrightness": 76,
+      "LightColor": "#FFFFFF",
+      "LightBrightness": 100,
       "FanSpeed": null
     },
     {
@@ -96,12 +96,12 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Entryway",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 50,
+      "LightBrightness": 100,
       "FanSpeed": null
     },
     {
@@ -122,8 +122,8 @@
       "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": true,
-      "DeviceState": "Idle",
+      "IsOn": false,
+      "DeviceState": "Off",
       "ThermostatMode": 3,
       "TargetTemperature": 72,
       "LightColor": null,
@@ -135,12 +135,12 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 45,
+      "LightBrightness": 100,
       "FanSpeed": null
     }
   ],
@@ -2688,12 +2688,60 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T19:50:40.9501184Z",
       "Operation": "Set target temperature to 72\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "6c3ef361-1c8b-47da-a556-4752c0b13be6",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-07T20:32:57.0791882Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "c6218c97-e3e8-4d9b-af34-f43bd6f8b287",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T20:33:33.580505Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "ae6a531f-ae21-4fc6-9513-78db89a92916",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T20:33:35.5352455Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "c0ee86be-4e01-4d9d-a5a3-43c4798d3fa9",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T20:33:36.6201539Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "a4715c32-98ef-49b4-8775-e9240f16d3b7",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-07T20:33:37.9332902Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "882eed1d-aeae-4f91-95b7-b5f88479f165",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T20:33:39.5952407Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "86cc0128-56b3-4e84-8a7b-f3300e9f4d5f",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T20:33:40.5299781Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "2fdb881f-1bf8-4b1a-b876-60c481e49295",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T20:33:44.202167Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 72
+      "AmbientTemperature": 51
     }
   ]
 }

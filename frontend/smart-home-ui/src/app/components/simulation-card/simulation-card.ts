@@ -209,15 +209,28 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   resetSimulation(): void {
     this.simulationApiService.resetSimulation().subscribe({
       next: () => {
+        this.simulationSpeed = SimulationSpeed.OneX;
+
         this.ambientTemps = {};
         this.displayAmbientTemps = {};
         this.refreshInProgress = false;
+
+        this.speedChanged.emit(Number(SimulationSpeed.OneX));
+
         this.restartAmbientRefresh();
         this.loadAmbientTemperatures();
+
+        console.log('Reset complete. Emitting simulationChanged.');
         this.simulationChanged.emit();
+
+        this.changeDetectorRef.detectChanges();
+      },
+      error: (err: unknown) => {
+        console.error('Failed to reset simulation.', err);
       },
     });
   }
+
   /**
    * Calculates the frontend polling interval based on simulation speed.
    * Uses a minimum interval to avoid excessive polling requests.

@@ -135,6 +135,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return [...new Set(locations)];
   }
 
+  handleSimulationChanged(): void {
+    console.log('Simulation changed. Reloading dashboard devices...');
+    this.loadDevices();
+  }
+
   ngOnDestroy(): void {
     if (this.clockIntervalId !== undefined) {
       window.clearInterval(this.clockIntervalId);

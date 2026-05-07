@@ -149,6 +149,30 @@
 }
 
 /* =========================
+   RESET BUTTON
+   ========================= */
+
+.reset-button {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    padding: 0.65rem 0.8rem;
+
+    background: #b58e75;
+    color: #000000;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.reset-button:hover {
+    opacity: 0.92;
+}
+
+/* =========================
    RESPONSIVE
    ========================= */
 
