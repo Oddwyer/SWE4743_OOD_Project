@@ -33,15 +33,32 @@ import { ThermostatMode } from '../../types/thermostatmode';
   templateUrl: './device-card.html',
   styleUrl: './device-card.css',
 })
+
+/**
+ * Displays and controls an individual smart home device.
+ *
+ * Handles device-specific UI interactions such as:
+ * - power controls
+ * - lighting controls
+ * - fan controls
+ * - thermostat controls
+ * - door lock controls
+ */
 export class DeviceCardComponent {
   @Input({ required: true }) device!: DeviceResponse;
 
+  /**
+   * Available fan speed options for select buttons.
+   */
   fanSpeedOptions: { label: string; value: FanSpeed }[] = [
     { label: 'Low', value: 'Low' },
     { label: 'Med', value: 'Medium' },
     { label: 'High', value: 'High' },
   ];
 
+  /**
+   * Available thermostat mode options for select buttons.
+   */
   thermostatModeOptions: { label: string; value: ThermostatMode }[] = [
     { label: 'Cool', value: 'Cool' },
     { label: 'Auto', value: 'Auto' },
@@ -50,23 +67,34 @@ export class DeviceCardComponent {
 
   constructor(private readonly deviceApiService: DeviceApiService) {}
 
+  /**
+   * Returns the Material icon name for a device type.
+   */
   getDeviceIcon(type: string): string {
     switch (type?.toLowerCase()) {
       case 'light':
         return 'emoji_objects';
+
       case 'fan':
         return 'mode_fan';
+
       case 'doorlock':
         return 'sensor_door';
+
       case 'thermostat':
         return 'thermostat';
+
       default:
         return 'devices';
     }
   }
 
+  /**
+   * Toggles device power using optimistic UI updates.
+   */
   toggleDevicePower(): void {
     const previousPowerState = this.device.isPoweredOn ?? false;
+
     this.device.isPoweredOn = !previousPowerState;
 
     const request: ControlDeviceRequest = {
@@ -77,6 +105,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to toggle power.', err);
         this.device.isPoweredOn = previousPowerState;
@@ -84,16 +113,34 @@ export class DeviceCardComponent {
     });
   }
 
+  /**
+   * Returns whether the device supports power toggling.
+   */
   canTogglePower(): boolean {
     return this.device.type?.toLowerCase() !== 'doorlock';
   }
 
+  /**
+   * Thermostats separate powered state from active heating/cooling state.
+   *
+   * isPoweredOn:
+   * - determines control availability
+   * - controls thermostat power state
+   *
+   * isDeviceOn:
+   * - represents active heating/cooling
+   * - used for filtering semantics
+   */
   isThermostatPoweredOn(): boolean {
     return this.device.isPoweredOn ?? false;
   }
 
+  /**
+   * Toggles the lock state for door lock devices.
+   */
   toggleLatch(): void {
     const previousLatchState = this.device.isLocked;
+
     this.device.isLocked = !this.device.isLocked;
 
     const request: ControlDeviceRequest = {
@@ -104,6 +151,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to toggle door lock.', err);
         this.device.isLocked = previousLatchState;
@@ -111,10 +159,19 @@ export class DeviceCardComponent {
     });
   }
 
+  /**
+   * Returns whether the device supports latch controls.
+   */
   canToggleLatch(): boolean {
     return this.device.type?.toLowerCase() === 'doorlock';
   }
 
+  /**
+   * Returns the display status for the device.
+   *
+   * Thermostats use isPoweredOn for display purposes,
+   * while filtering logic still uses isDeviceOn.
+   */
   getDeviceStatus(): string {
     if (this.canToggleLatch()) {
       return this.device.isLocked ? 'ON' : 'OFF';
@@ -127,8 +184,12 @@ export class DeviceCardComponent {
     return this.device.isDeviceOn ? 'ON' : 'OFF';
   }
 
+  /**
+   * Updates light brightness using optimistic UI updates.
+   */
   setBrightness(brightness: number): void {
     const previousBrightness = this.device.lightBrightness;
+
     this.device.lightBrightness = brightness;
 
     const request: ControlDeviceRequest = {
@@ -140,6 +201,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to set brightness.', err);
         this.device.lightBrightness = previousBrightness;
@@ -147,8 +209,12 @@ export class DeviceCardComponent {
     });
   }
 
+  /**
+   * Updates light color using optimistic UI updates.
+   */
   setColor(color: string): void {
     const previousColor = this.device.lightColor;
+
     const normalizedColor = color.startsWith('#') ? color : `#${color}`;
 
     this.device.lightColor = normalizedColor;
@@ -162,6 +228,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to set color.', err);
         this.device.lightColor = previousColor;
@@ -169,8 +236,12 @@ export class DeviceCardComponent {
     });
   }
 
+  /**
+   * Updates fan speed using optimistic UI updates.
+   */
   setFanSpeed(speed: FanSpeed): void {
     const previousSpeed = this.device.fanSpeed;
+
     this.device.fanSpeed = speed;
 
     const request: ControlDeviceRequest = {
@@ -182,6 +253,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to set fan speed.', err);
         this.device.fanSpeed = previousSpeed;
@@ -189,8 +261,12 @@ export class DeviceCardComponent {
     });
   }
 
+  /**
+   * Updates thermostat operating mode.
+   */
   setThermostatMode(mode: ThermostatMode): void {
     const previousMode = this.device.thermostatMode;
+
     this.device.thermostatMode = mode;
 
     const request: ControlDeviceRequest = {
@@ -202,6 +278,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to set thermostat mode.', err);
         this.device.thermostatMode = previousMode;
@@ -209,8 +286,12 @@ export class DeviceCardComponent {
     });
   }
 
+  /**
+   * Updates thermostat target temperature.
+   */
   setTargetTemperature(temperature: number): void {
     const previousTarget = this.device.targetTemperature;
+
     this.device.targetTemperature = temperature;
 
     const request: ControlDeviceRequest = {
@@ -222,6 +303,7 @@ export class DeviceCardComponent {
       next: (updatedDevice: DeviceResponse) => {
         this.device = updatedDevice;
       },
+
       error: (err: unknown) => {
         console.error('Failed to set target temperature.', err);
         this.device.targetTemperature = previousTarget;

@@ -4,18 +4,21 @@ import { DeviceApiService } from '../../services/device.api.service';
 import { DeviceCardComponent } from '../device-card/device-card';
 import { CardModule } from 'primeng/card';
 import { DeviceResponse } from '../../devicemodels/deviceresponse';
-import { SimulationCard } from '../simulation-card/simulation-card';
+import { SimulationCardComponent } from '../simulation-card/simulation-card';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.html',
   standalone: true,
-  imports: [CommonModule, DeviceCardComponent, CardModule, SimulationCard],
+  imports: [CommonModule, DeviceCardComponent, CardModule, SimulationCardComponent],
   styleUrls: ['./device-list.css'],
 })
 
-// The DeviceList component is responsible for fetching and displaying all devices in the smart home system.
-// It uses the DeviceApiService to retrieve device data and organizes it by location for better user experience.
+/**
+ * Displays all smart home devices and organizes them by location.
+ *
+ * Also coordinates refreshing device data after simulation changes.
+ */
 export class DeviceListComponent implements OnInit {
   devices: any[] = [];
   isLoading = true;
@@ -25,13 +28,17 @@ export class DeviceListComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  // On component initialization, load all devices from the API.
+  /**
+   * Loads all devices when the component initializes.
+   */
   ngOnInit(): void {
     console.log('DeviceList INIT');
     this.loadDevices();
   }
 
-  // Helper: Load all devices from the API and handle loading state.
+  /**
+   * Loads all devices from the backend API.
+   */
   loadDevices() {
     this.deviceApiService.getAllDevices().subscribe({
       next: (data: DeviceResponse[]) => {
@@ -48,7 +55,9 @@ export class DeviceListComponent implements OnInit {
     });
   }
 
-  // Group devices by location for better UI organization.
+  /**
+   * Groups devices by location for display in the UI.
+   */
   get groupedDevices(): { location: string; devices: any[] }[] {
     const groups = new Map<string, any[]>();
 
@@ -68,7 +77,9 @@ export class DeviceListComponent implements OnInit {
     }));
   }
 
-  // Helper method to get icon class based on device location.
+  /**
+   * Returns a PrimeIcons icon based on location name.
+   */
   getLocationIcon(location: string): string {
     const loc = location?.toLowerCase();
 
@@ -78,9 +89,12 @@ export class DeviceListComponent implements OnInit {
 
     if (loc.includes('entry')) return 'pi pi-sign-in';
 
-    return 'pi pi-map-marker'; // fallback
+    return 'pi pi-map-marker';
   }
 
+  /**
+   * Returns all unique thermostat locations for simulation controls.
+   */
   get thermostatLocations(): string[] {
     const locations = this.devices
       .filter((device) => device.type?.toString().toLowerCase() === 'thermostat')
