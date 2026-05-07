@@ -27,7 +27,7 @@
       <app-simulation-card
         [locations]="thermostatLocations"
         (speedChanged)="simulationSpeed = $event"
-        (simulationChanged)="handleSimulationChanged()"
+        (simulationChanged)="handleSimulationReset()"
       ></app-simulation-card>
 
       <!-- Placeholder for next component -->

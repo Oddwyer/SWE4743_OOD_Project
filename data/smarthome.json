@@ -2736,12 +2736,72 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T20:33:44.202167Z",
       "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "5fea3864-bed3-4baf-982b-6bd0b8533628",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T20:48:56.8038853Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "aeb7c423-4c15-4bd7-ba24-3843cb5d1e87",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T20:48:58.91323Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "3cd4993c-ac42-4d80-adb7-6f944cfb2de1",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T20:49:01.0047733Z",
+      "Operation": "Set light color to #662066 for Left Side Table Lamp."
+    },
+    {
+      "Id": "ed10ab74-a3e4-4b76-9013-21e134a44ba1",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T20:49:01.0575242Z",
+      "Operation": "Set light color to #692469 for Left Side Table Lamp."
+    },
+    {
+      "Id": "2d357cf9-247a-4365-99cc-cc5c8c186efc",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-07T20:50:01.8276891Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "ec155aee-10dc-4319-a5e8-358d21e37b5c",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T20:53:45.6185571Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "7486d7ee-e93c-4f4b-9d0d-e83e2e648807",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T20:53:48.3112678Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "d361161b-7045-49ce-b342-8c367649fa1a",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-07T20:53:49.1652406Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "60ee4a70-909d-4a9f-8ad4-772e45f1c51f",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T20:56:43.6679148Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "d16891cf-6509-4959-b0de-aa846b680072",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T20:56:46.6514702Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 51
+      "AmbientTemperature": 72
     }
   ]
 }

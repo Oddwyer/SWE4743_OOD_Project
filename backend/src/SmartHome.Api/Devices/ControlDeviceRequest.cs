@@ -12,8 +12,6 @@ namespace SmartHome.Api.Devices;
 
 public class ControlDeviceRequest
 {
-    // All devices
-    [Required]
     public DeviceCommandType Command { get; set; }
     public int? Brightness { get; set; }
     public string? Color { get; set; }
