@@ -23,5 +23,7 @@ public class SimulationInitializer
         {
             _simulationService.RegisterThermostat(thermostat);
         }
+
+        _simulationService.StartSimulation();
     }
 }

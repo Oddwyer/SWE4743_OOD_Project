@@ -147,7 +147,14 @@ public class SimulationService : ISimulationService
         {
             device.ResetToDefault();
             _deviceRepository.SaveDevice(device);
+
+            if (device is ThermostatDevice thermostat)
+            {
+                RegisterThermostat(thermostat);
+            }
         }
+
+        _runtime.Ticker.Start();
 
     }
 
