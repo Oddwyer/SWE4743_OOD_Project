@@ -53,6 +53,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   minTemp = 0;
   maxTemp = 100;
   defaultTemperature?: number;
+
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
   speedOptions = [

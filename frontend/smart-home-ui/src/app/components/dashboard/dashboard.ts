@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceApiService } from '../../services/device.api.service';
 import { DeviceCardComponent } from '../device-card/device-card';
@@ -18,9 +18,10 @@ import { SimulationCardComponent } from '../simulation-card/simulation-card';
  *
  * Also coordinates refreshing device data after simulation changes.
  */
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   devices: any[] = [];
   isLoading = true;
+  currentTime = '';
 
   constructor(
     private deviceApiService: DeviceApiService,
@@ -33,6 +34,28 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     console.log('Dashboard INIT');
     this.loadDevices();
+
+    if (!this.clockIntervalId) {
+      this.startClock();
+    }
+  }
+
+  private clockIntervalId?: number;
+
+  private startClock(): void {
+    this.updateClock();
+
+    this.clockIntervalId = window.setInterval(() => {
+      this.updateClock();
+    }, 1000);
+  }
+
+  private updateClock(): void {
+    this.currentTime = new Date().toLocaleTimeString([], {
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+    });
   }
 
   /**
@@ -101,5 +124,12 @@ export class DashboardComponent implements OnInit {
       .filter((location): location is string => !!location);
 
     return [...new Set(locations)];
+  }
+
+  ngOnDestroy(): void {
+    if (this.clockIntervalId !== undefined) {
+      window.clearInterval(this.clockIntervalId);
+      this.clockIntervalId = undefined;
+    }
   }
 }

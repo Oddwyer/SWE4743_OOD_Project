@@ -22,22 +22,29 @@
 
 .simulation-card-header h2 {
     margin: 0;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
 }
 
 /* Each row */
 .setting-row {
     display: flex;
     align-items: flex-start;
-    gap: 0.15rem;
+    gap: 0.05rem;
     padding-bottom: 0.9rem;
+}
+
+.setting-row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.9rem;
 }
 
 /* Icon */
 .setting-row i,
 .setting-row .icon {
-    width: 1.5rem;
+    width: 1.3rem;
     align-items: flex-start;
     flex-shrink: 0;
     margin-top: 0.2rem;
@@ -51,7 +58,7 @@
     flex-direction: column;
 }
 
-/* Label + value row */
+/* Label */
 .simulation-header {
     display: flex;
     justify-content: space-between;
@@ -67,6 +74,7 @@
     font-weight: 700;
     font-size: 1.4rem;
 }
+
 
 /* =========================
    AMBIENT TEMP SLIDER

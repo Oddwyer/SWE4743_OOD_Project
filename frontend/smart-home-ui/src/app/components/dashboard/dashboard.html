@@ -9,6 +9,12 @@
         <h2>Monitor and control your connected home devices.</h2>
       </div>
     </div>
+
+    <div class="dashboard-clock">
+      <i class="pi pi-clock"></i>
+      <span class="clock-label">Clock:</span>
+      <span class="clock-value">{{ currentTime }}</span>
+    </div>
   </header>
 
   <p *ngIf="isLoading">Loading devices...</p>
