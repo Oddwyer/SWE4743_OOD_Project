@@ -21,7 +21,9 @@
 
   <!-- Main content area with simulation controls and device list. -->
   <div class="dashboard-content" *ngIf="!isLoading">
-    <!-- Left side of dashboard: simulation controls. -->
+    <!-- Left side of dashboard: -->
+
+    <!-- Simulation Controls. -->
 
     <aside class="sidebar-column">
       <app-simulation-card
@@ -30,11 +32,11 @@
         (simulationChanged)="handleSimulationReset()"
       ></app-simulation-card>
 
-      <!-- Placeholder for next component -->
-      <div class="manage-devices-card">
-        <h2>Manage Devices</h2>
-        <p>Add/remove controls will go here.</p>
-      </div>
+      <!-- Manage Devices -->
+      <app-manage-devices-card
+        [devices]="devices"
+        (devicesChanged)="loadDevices()"
+      ></app-manage-devices-card>
     </aside>
 
     <!-- Right side of dashboard: device list, grouped by location. -->
