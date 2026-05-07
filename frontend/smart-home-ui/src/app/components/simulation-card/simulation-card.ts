@@ -24,35 +24,23 @@ import { SimulationSpeed } from '../../types/simulationspeed';
   templateUrl: './simulation-card.html',
   styleUrl: './simulation-card.css',
 })
-
 /**
- * Displays and manages simulation settings such as:
- * - ambient temperatures
- * - simulation speed
- * - simulation reset
+ * Displays and manages simulation settings.
  *
- * Also handles frontend polling to keep Angular synced
- * with backend simulation changes.
+ * Handles ambient temperature controls, simulation speed selection,
+ * reset behavior, and frontend polling for simulation updates.
  */
 export class SimulationCardComponent implements OnChanges, OnDestroy {
   @Input() locations: string[] = [];
+
   @Output() simulationChanged = new EventEmitter<void>();
-
-  /**
-   * Stores the active polling interval so it can be stopped/restarted safely.
-   */
-  private refreshIntervalId?: number;
-
-  /**
-   * Prevents overlapping ambient temperature requests.
-   */
-  private refreshInProgress = false;
+  @Output() speedChanged = new EventEmitter<number>();
 
   ambientTemps: Record<string, number> = {};
   displayAmbientTemps: Record<string, number> = {};
+
   minTemp = 0;
   maxTemp = 100;
-  defaultTemperature?: number;
 
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
@@ -63,15 +51,23 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     { label: '10x', value: SimulationSpeed.TenX },
   ];
 
+  /**
+   * Stores the active polling interval so it can be restarted safely.
+   */
+  private refreshIntervalId?: number;
+
+  /**
+   * Prevents overlapping ambient temperature HTTP requests.
+   */
+  private refreshInProgress = false;
+
   constructor(
     private readonly simulationApiService: SimulationApiService,
     private readonly changeDetectorRef: ChangeDetectorRef,
   ) {}
 
-  @Output() speedChanged = new EventEmitter<number>();
   /**
-   * Loads initial ambient temperatures and starts polling
-   * when locations become available.
+   * Loads ambient temperatures and starts polling when thermostat locations change.
    */
   ngOnChanges(): void {
     if (this.locations.length === 0) {
@@ -90,7 +86,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
-   * Loads ambient temperatures for one or more locations.
+   * Loads ambient temperatures for the provided locations.
    */
   loadAmbientTemperatures(locations: string[] = this.locations): void {
     if (locations.length === 0 || this.refreshInProgress) {
@@ -115,7 +111,6 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
           this.minTemp = response.minTemperature;
           this.maxTemp = response.maxTemperature;
-          this.defaultTemperature = response.defaultTemperature;
         },
         error: (err: unknown) => {
           console.error('Failed to load ambient temperature for', location, err);
@@ -133,17 +128,30 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
-   * Returns whether a location has a loaded ambient temperature.
+   * Returns true when the ambient temperature for a location has loaded.
    */
   hasAmbientTemperature(location: string): boolean {
     return this.ambientTemps[location] !== undefined;
   }
 
   /**
-   * Gets the current ambient temperature for a location.
+   * Returns the current ambient temperature for a location.
    */
   getAmbientTemperature(location: string): number {
     return this.ambientTemps[location];
+  }
+
+  /**
+   * Returns the smoothed display temperature for a location.
+   */
+  getDisplayAmbientTemperature(location: string): number {
+    const displayTemperature = this.displayAmbientTemps[location];
+
+    if (displayTemperature !== undefined) {
+      return displayTemperature;
+    }
+
+    return this.getAmbientTemperature(location);
   }
 
   /**
@@ -161,26 +169,14 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
       },
       error: (err: unknown) => {
         this.ambientTemps[location] = previousTemperature;
-        console.error('Failed to set ambient temperatures.', err);
+        console.error('Failed to set ambient temperature.', err);
         this.changeDetectorRef.detectChanges();
       },
     });
   }
 
   /**
-   * Gets the display label for the current simulation speed.
-   */
-  getSimulationSpeedLabel(): string {
-    const selectedOption = this.speedOptions.find(
-      (option) => option.value === this.simulationSpeed,
-    );
-
-    return selectedOption?.label ?? '1x';
-  }
-
-  /**
-   * Updates backend simulation speed and restarts polling
-   * using the new refresh interval.
+   * Updates the backend simulation speed and restarts frontend polling.
    */
   setSimulationSpeed(speed: SimulationSpeed): void {
     const previousSpeed = this.simulationSpeed;
@@ -197,14 +193,15 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
         this.simulationChanged.emit();
         this.speedChanged.emit(Number(speed));
       },
-      error: () => {
+      error: (err: unknown) => {
         this.simulationSpeed = previousSpeed;
+        console.error('Failed to set simulation speed.', err);
       },
     });
   }
 
   /**
-   * Resets the simulation and reloads ambient temperatures.
+   * Resets the simulation and reloads dashboard simulation data.
    */
   resetSimulation(): void {
     this.simulationApiService.resetSimulation().subscribe({
@@ -219,8 +216,6 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
         this.restartAmbientRefresh();
         this.loadAmbientTemperatures();
-
-        console.log('Reset complete. Emitting simulationChanged.');
         this.simulationChanged.emit();
 
         this.changeDetectorRef.detectChanges();
@@ -232,12 +227,11 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
-   * Calculates the frontend polling interval based on simulation speed.
-   * Uses a minimum interval to avoid excessive polling requests.
+   * Calculates the frontend polling interval from the current speed.
    */
   private getRefreshInterval(): number {
     const baseInterval = 5000;
-    const speed = Number(this.simulationSpeed);
+    const speed = Number(this.simulationSpeed) || 1;
 
     return Math.max(baseInterval / speed, 2000);
   }
@@ -269,7 +263,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
-   * Smoothly updates displayed ambient temperature values.
+   * Moves the displayed temperature one degree toward the latest backend value.
    */
   private updateDisplayedAmbientTemperature(location: string, targetTemperature: number): void {
     const currentTemperature = this.displayAmbientTemps[location] ?? targetTemperature;
@@ -285,20 +279,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
-   * Gets the smoothed display temperature for a location.
-   */
-  getDisplayAmbientTemperature(location: string): number {
-    const displayTemperature = this.displayAmbientTemps[location];
-
-    if (displayTemperature !== undefined) {
-      return displayTemperature;
-    }
-
-    return this.getAmbientTemperature(location);
-  }
-
-  /**
-   * Cleans up polling when the component is destroyed.
+   * Clears polling when the component is destroyed.
    */
   ngOnDestroy(): void {
     if (this.refreshIntervalId !== undefined) {
