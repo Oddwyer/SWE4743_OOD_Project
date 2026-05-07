@@ -8022,6 +8022,18 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T14:31:14.4184907Z",
       "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "c2071073-8f88-4712-8c44-c3a7fd32bf0d",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:57:06.5691452Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "34a3cddd-9a4c-44b5-a069-e6dfc6be0ef4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:59:44.7202826Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [

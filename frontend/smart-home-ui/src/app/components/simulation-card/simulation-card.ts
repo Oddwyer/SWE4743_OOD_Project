@@ -32,7 +32,6 @@ export class SimulationCard implements OnChanges, OnDestroy {
   minTemp = 0;
   maxTemp = 100;
   defaultTemperature?: number;
-  private refreshIntervalId?: number;
 
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
@@ -42,6 +41,9 @@ export class SimulationCard implements OnChanges, OnDestroy {
     { label: '5x', value: SimulationSpeed.FiveX },
     { label: '10x', value: SimulationSpeed.TenX },
   ];
+
+  private refreshIntervalId?: number;
+  private refreshInProgress = false;
 
   constructor(
     private readonly simulationApiService: SimulationApiService,
@@ -57,31 +59,41 @@ export class SimulationCard implements OnChanges, OnDestroy {
       (location) => this.ambientTemps[location] === undefined,
     );
 
-    if (unloadedLocations.length === 0) {
-      return;
-    }
-
-    setTimeout(() => {
+    if (unloadedLocations.length > 0) {
       this.loadAmbientTemperatures(unloadedLocations);
-    });
+    }
 
     this.startAmbientRefresh();
   }
 
   loadAmbientTemperatures(locations: string[] = this.locations): void {
-    locations.forEach((location) => {
+    if (locations.length === 0 || this.refreshInProgress) {
+      return;
+    }
+
+    this.refreshInProgress = true;
+
+    let completedRequests = 0;
+    const locationsToRefresh = [...locations];
+
+    locationsToRefresh.forEach((location) => {
       this.simulationApiService.getAmbientTemperature(location).subscribe({
         next: (response: AmbientTemperatureResponse) => {
           this.ambientTemps[location] = response.ambientTemperature;
           this.minTemp = response.minTemperature;
           this.maxTemp = response.maxTemperature;
           this.defaultTemperature = response.defaultTemperature;
-          console.log('SETTING TEMP:', location, response.ambientTemperature);
-          console.log(this.ambientTemps);
-          this.changeDetectorRef.detectChanges();
         },
         error: (err: unknown) => {
           console.error('Failed to load ambient temperature for', location, err);
+        },
+        complete: () => {
+          completedRequests++;
+
+          if (completedRequests === locationsToRefresh.length) {
+            this.refreshInProgress = false;
+            this.changeDetectorRef.detectChanges();
+          }
         },
       });
     });
@@ -103,10 +115,12 @@ export class SimulationCard implements OnChanges, OnDestroy {
     this.simulationApiService.setAmbientTemperature(location, temperature).subscribe({
       next: () => {
         this.simulationChanged.emit();
+        this.changeDetectorRef.detectChanges();
       },
       error: (err: unknown) => {
         this.ambientTemps[location] = previousTemperature;
         console.error('Failed to set ambient temperatures.', err);
+        this.changeDetectorRef.detectChanges();
       },
     });
   }
@@ -129,6 +143,9 @@ export class SimulationCard implements OnChanges, OnDestroy {
     };
 
     this.simulationApiService.setSimulationSpeed(request).subscribe({
+      next: () => {
+        this.restartAmbientRefresh();
+      },
       error: () => {
         this.simulationSpeed = previousSpeed;
       },
@@ -139,12 +156,18 @@ export class SimulationCard implements OnChanges, OnDestroy {
     this.simulationApiService.resetSimulation().subscribe({
       next: () => {
         this.ambientTemps = {};
-        setTimeout(() => {
-          this.loadAmbientTemperatures();
-        });
+        this.refreshInProgress = false;
+        this.loadAmbientTemperatures();
         this.simulationChanged.emit();
       },
     });
+  }
+
+  private getRefreshInterval(): number {
+    const baseInterval = 5000;
+    const speed = Number(this.simulationSpeed);
+
+    return Math.max(baseInterval / speed, 2000);
   }
 
   private startAmbientRefresh(): void {
@@ -154,12 +177,25 @@ export class SimulationCard implements OnChanges, OnDestroy {
 
     this.refreshIntervalId = window.setInterval(() => {
       this.loadAmbientTemperatures();
-    }, 3000);
+    }, this.getRefreshInterval());
+  }
+
+  private restartAmbientRefresh(): void {
+    if (this.refreshIntervalId !== undefined) {
+      window.clearInterval(this.refreshIntervalId);
+      this.refreshIntervalId = undefined;
+    }
+
+    this.refreshInProgress = false;
+    this.startAmbientRefresh();
   }
 
   ngOnDestroy(): void {
     if (this.refreshIntervalId !== undefined) {
       window.clearInterval(this.refreshIntervalId);
+      this.refreshIntervalId = undefined;
     }
+
+    this.refreshInProgress = false;
   }
 }
