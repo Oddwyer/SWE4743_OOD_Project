@@ -59,7 +59,8 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-// TODO - Amber: Add singletons for shared state (e.g. simulation ticker, speed) and ensure thread safety as needed.
+builder.Services.AddSingleton<SimulationRuntime>();
+builder.Services.AddSingleton<SimulationTicker>();
 
 builder.Services.AddScoped<ISimulationService, SimulationService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
@@ -68,7 +69,7 @@ builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<ICommandFactory, CommandFactory>();
+builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
@@ -108,7 +109,7 @@ app.UseSwaggerUI();
 
 app.UseMiddleware<GlobalErrorHandling>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
 

@@ -92,7 +92,7 @@ public class DevicesController : ControllerBase
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<DeviceResponse> UpdateDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
+    public ActionResult<DeviceResponse> ControlDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
 
         var context = DeviceMapper.MapToCommandData(request);

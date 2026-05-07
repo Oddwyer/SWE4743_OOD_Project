@@ -1,0 +1,479 @@
+/* =========================
+   DEVICE CARD
+   ========================= */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+:host ::ng-deep .device-card {
+  height: 100%;
+  background: rgba(223, 231, 251, 0.9);
+  border-left: 6px solid #343d4c;
+  border-radius: 12px;
+  color: #343d4c;
+
+}
+
+:host ::ng-deep .device-card .p-card {
+  height: 100%;
+}
+
+:host ::ng-deep .device-card .p-card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+:host ::ng-deep .device-card .p-card-content {
+  flex: 1;
+}
+
+.device-card-header {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem 0;
+}
+
+.device-header-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: 1.6rem;
+}
+
+.device-header-top>i {
+  font-size: 1.35rem;
+  color: #343d4c;
+  opacity: 0.85;
+}
+
+.device-status-inline {
+  display: grid;
+  grid-template-columns: 1.6rem 2.4rem;
+  align-items: center;
+  justify-content: end;
+  column-gap: 0.25rem;
+  width: 4.75rem;
+  white-space: nowrap;
+}
+
+.device-status-inline button {
+  width: 1.6rem;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  justify-self: center;
+}
+
+.device-status-text {
+  display: inline-block;
+  width: 2.4rem;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #343d4c;
+}
+
+.device-card-header h3 {
+  margin: 1rem 0 0.25rem;
+  padding-top: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.device-card-header h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.1;
+  font-style: italic;
+}
+
+.material-symbols-outlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  font-size: 2rem;
+  vertical-align: middle;
+  color: #343d4c;
+
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* =========================
+   DETAILS
+   ========================= */
+
+.device-details {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0 1rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* =========================
+   POWER / LOCK CONTROLS
+   ========================= */
+
+.power-row {
+  display: grid;
+  grid-template-columns: 4.75rem 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.power-row .p-toggleswitch {
+  justify-self: end;
+}
+
+.power-label,
+.lock-label {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #343d4c;
+}
+
+.power-on,
+.latch-on {
+  color: #28a745;
+  font-size: 1.4rem;
+}
+
+.power-off,
+.latch-off {
+  color: #dc3545;
+  font-size: 1.4rem;
+}
+
+:host ::ng-deep .latch-button .p-button-icon,
+:host ::ng-deep .power-on .p-button-icon,
+:host ::ng-deep .power-off .p-button-icon {
+  font-size: 1.4rem;
+}
+
+/* ToggleSwitch */
+
+:host ::ng-deep .power-row .p-toggleswitch {
+  width: 3.25rem;
+  height: 1.6rem;
+}
+
+:host ::ng-deep .power-row .p-toggleswitch-slider {
+  background: #2a2b2c !important;
+  border-radius: 999px !important;
+  border: none !important;
+  transition: background 0.2s ease;
+}
+
+:host ::ng-deep .power-row .p-toggleswitch-handle {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  background: #ffffff !important;
+  border-radius: 50% !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+:host ::ng-deep .power-row .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
+  background: #28a745 !important;
+}
+
+:host ::ng-deep .power-row .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-handle {
+  transform: translateX(2rem) translateY(-50%) !important;
+}
+
+/* =========================
+   CONTROL ROWS
+   ========================= */
+
+.control-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: opacity 0.2s ease;
+}
+
+.inline-control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.control-label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.control-value {
+  width: 4.75rem;
+  min-width: 4.75rem;
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #343d4c;
+}
+
+.control-disabled {
+  color: #343d4c;
+  cursor: not-allowed;
+}
+
+.control-disabled .control-label,
+.control-disabled span {
+  color: #6b7280;
+  opacity: 1;
+}
+
+.speed-row,
+.thermostat-mode-row {
+  display: grid;
+  grid-template-columns: 3.75rem 1fr;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+/* =========================
+   BRIGHTNESS SLIDER
+   ========================= */
+
+:host ::ng-deep .brightness-row .p-slider {
+  width: 100%;
+  height: 0.25rem;
+  background: #343d4c99 !important;
+  border-radius: 999px;
+  margin-top: 0.35rem;
+  position: relative;
+
+}
+
+:host ::ng-deep .brightness-row .p-slider-range {
+  height: 0.25rem !important;
+  background: transparent !important;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .brightness-row .p-slider-handle {
+  width: 1rem;
+  height: 1rem;
+  background: #134ecd !important;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 0.9rem;
+  max-height: 0.9rem;
+}
+
+:host ::ng-deep .brightness-row.control-disabled .p-slider,
+:host ::ng-deep .brightness-row.control-disabled .p-slider-range {
+  background: #343d4c !important;
+  opacity: 0.5;
+  height: 0.25rem;
+}
+
+:host ::ng-deep .brightness-row.control-disabled .p-slider-handle {
+  background: #343d4c !important;
+  cursor: not-allowed;
+}
+
+/* =========================
+   COLOR PICKER
+   ========================= */
+
+.color-display {
+  display: grid;
+  grid-template-columns: 1.25rem 4.75rem;
+  align-items: center;
+  justify-content: end;
+  column-gap: 0.35rem;
+  width: 6.35rem;
+  font-size: 1rem;
+}
+
+:host ::ng-deep .color-picker-square .p-colorpicker-preview {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.252);
+}
+
+.color-value {
+  min-width: 4.75rem;
+  text-align: right;
+  font-size: 0.95rem;
+  color: #343d4c;
+  font-weight: 600;
+}
+
+/* =========================
+   FAN SPEED
+   ========================= */
+
+.speed-row .control-label {
+  white-space: nowrap;
+}
+
+.fan-speed-buttons {
+  display: flex;
+  width: 100%;
+  gap: 0.15rem;
+  min-width: 0;
+
+}
+
+.fan-speed-button {
+  flex: 1;
+  min-width: 0;
+  padding: 0.3rem 0.25rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(52, 61, 76, 0.35);
+  background: rgba(255, 255, 255, 0.801);
+  color: #343d4c;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.fan-speed-button.selected {
+  background: #343d4c;
+  border-color: #343d4c;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.fan-speed-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================
+   THERMOSTAT MODE
+   ========================= */
+
+.thermostat-mode-row .control-label {
+  white-space: nowrap;
+}
+
+.thermostat-mode-buttons {
+  display: flex;
+  width: 100%;
+  gap: 0.15rem;
+  min-width: 0;
+
+}
+
+.thermostat-mode-button {
+  flex: 1;
+  min-width: 0;
+  padding: 0.3rem 0.25rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(52, 61, 76, 0.35);
+  background: rgba(255, 255, 255, 0.801);
+  color: #343d4c;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.thermostat-mode-button.selected {
+  background: #343d4c;
+  border-color: #343d4c;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.thermostat-mode-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   BRIGHTNESS SLIDER
+   ========================= */
+
+:host ::ng-deep .temperature-row .p-slider {
+  width: 100%;
+  height: 0.25rem;
+  background: #343d4c99 !important;
+  border-radius: 999px;
+  margin-top: 0.35rem;
+  position: relative;
+
+}
+
+:host ::ng-deep .temperature-row .p-slider-range {
+  height: 0.25rem !important;
+  background: transparent !important;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .temperature-row .p-slider-handle {
+  width: 1rem;
+  height: 1rem;
+  background: #134ecd !important;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 0.9rem;
+  max-height: 0.9rem;
+}
+
+:host ::ng-deep .temperature-row.control-disabled .p-slider,
+:host ::ng-deep .temperature-row.control-disabled .p-slider-range {
+  background: #343d4c !important;
+  opacity: 0.5;
+  height: 0.25rem;
+}
+
+:host ::ng-deep .temperature-row.control-disabled .p-slider-handle {
+  background: #343d4c !important;
+  cursor: not-allowed;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 500px) {
+
+  .device-card-header h3 {
+    font-size: 1.35rem;
+    margin: 0.35rem 0 0 0.05rem;
+  }
+
+  .device-card-header h4 {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  .device-details {
+    font-size: 0.9rem;
+  }
+
+  .device-status-text {
+    font-size: 1.2rem;
+  }
+}

@@ -23,7 +23,7 @@ public class SetLightColorCommand : DeviceCommand
     /// </summary>
     public override void Execute()
     {
-        _lightDevice.ChangeColor(Color);
+        _lightDevice.SetColor(Color);
         _commandDescription = $"Set light color to {Color} for {_lightDevice.DeviceName}.";
     }
 

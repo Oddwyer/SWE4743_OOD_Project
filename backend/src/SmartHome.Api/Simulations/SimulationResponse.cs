@@ -1,3 +1,6 @@
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Simulations;
+
 namespace SmartHome.Api.Simulations;
 
 /// <summary>
@@ -7,4 +10,6 @@ namespace SmartHome.Api.Simulations;
 public class SimulationResponse
 {
     public string Message { get; set; } = string.Empty;
+    public SimulationSpeed SpeedMultiplier { get; set; }
+
 }

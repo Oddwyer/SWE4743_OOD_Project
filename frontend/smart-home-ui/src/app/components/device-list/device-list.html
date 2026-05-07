@@ -1,0 +1,60 @@
+<!-- The header includes the app logo and title. -->
+<section class="dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <img src="assets/SmartHomeLogo.svg" alt="Smart Home Logo" class="app-logo" />
+
+      <div>
+        <h1>Smart Home Simulator</h1>
+        <p>Monitor and control your connected home devices.</p>
+      </div>
+    </div>
+  </header>
+
+  <p *ngIf="isLoading">Loading devices...</p>
+
+  <!-- Main content area with simulation controls and device list. -->
+  <div class="dashboard-content" *ngIf="!isLoading">
+    <!-- Left side of dashboard: simulation controls. -->
+
+    <p-card styleClass="simulation-card">
+      <div class="simulation-card-header">
+        <h2>Simulation Settings</h2>
+      </div>
+
+      <div class="setting-row">
+        <span class="icon">🌡</span>
+        <div class="simulation-header">
+          <span class="simulation-label">Ambient Temperature:</span>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <i class="pi pi-bolt"></i>
+        <div class="simulation-header">
+          <span class="simulation-label">Speed:</span>
+          <span>1x</span>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- Right side of dashboard: device list, grouped by location. -->
+
+    <div class="devices-column">
+      @for (group of groupedDevices; track group.location) {
+        <section class="location-section">
+          <h2 class="location-heading">
+            <i [class]="getLocationIcon(group.location)"></i>
+            {{ group.location }}
+          </h2>
+          <div class="location-divider"></div>
+          <div class="device-grid">
+            @for (device of group.devices; track device.id) {
+              <app-device-card [device]="device"></app-device-card>
+            }
+          </div>
+        </section>
+      }
+    </div>
+  </div>
+</section>

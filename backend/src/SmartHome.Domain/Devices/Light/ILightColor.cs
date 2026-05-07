@@ -6,5 +6,5 @@ namespace SmartHome.Domain.Devices.Light;
 public interface ILightColor
 {
     string Color { get; }
-    void ChangeColor(string newColor);
+    void SetColor(string newColor);
 }

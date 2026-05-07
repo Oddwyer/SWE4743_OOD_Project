@@ -16,6 +16,8 @@ namespace SmartHome.Infrastructure;
 public class JsonRepository : IDeviceRepository, ILocationRepository
 {
     private readonly List<IDevice> _devices = new();
+
+    private static readonly object _fileLock = new();
     private readonly Dictionary<string, int> _locations = new();
     private readonly List<CommandHistoryEntry> _commandHistory = new();
     private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/smarthome.json"));
@@ -208,8 +210,11 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
         {
             WriteIndented = true
         });
+        lock (_fileLock)
+        {
+            File.WriteAllText(_filePath, json);
+        }
 
-        File.WriteAllText(_filePath, json);
     }
 
     /// <summary>

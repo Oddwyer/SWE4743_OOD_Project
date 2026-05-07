@@ -1,3 +1,6 @@
+using SmartHome.Domain.Commands;
+using SmartHome.Domain.Contracts;
+
 namespace SmartHome.Domain.Devices;
 
 public interface IDevice
@@ -10,5 +13,7 @@ public interface IDevice
 
    public DateTime CreatedAt { get; }
    public DateTime UpdatedAt { get; }
+
+   public IDeviceCommand CreateCommand(IDevice device, CommandData data);
 
 }
