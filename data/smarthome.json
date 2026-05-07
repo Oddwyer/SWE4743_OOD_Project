@@ -124,8 +124,8 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Idle",
-      "ThermostatMode": 2,
-      "TargetTemperature": 68,
+      "ThermostatMode": 3,
+      "TargetTemperature": 64,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -7980,12 +7980,54 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T13:05:19.6880641Z",
       "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "7e82db2e-a307-419b-a715-03eb96fc361b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T13:19:00.7404263Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "c3a747cd-9e92-4c8e-834f-8ca03b58d8db",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:29:55.9958095Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "a3094a09-d151-408c-a533-2ac6b83e1659",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:29:56.8709257Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "73a6325f-abd7-4b8f-b4fd-4f444e3619e6",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:30:00.4559516Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "52c0b38f-2bfa-4098-8732-bc29d22d8c35",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:30:41.8267825Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "4fef8f3f-c1ac-4c46-8365-49a30c7eff69",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:30:53.8125706Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "14b1a5ff-23b4-4671-b252-71ec97b8ca3b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T14:31:14.4184907Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 68
+      "AmbientTemperature": 64
     }
   ]
 }

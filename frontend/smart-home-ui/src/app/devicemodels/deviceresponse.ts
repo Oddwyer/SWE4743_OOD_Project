@@ -10,6 +10,7 @@ export interface DeviceResponse {
   type: DeviceType;
 
   isDeviceOn: boolean;
+  isPoweredOn?: boolean | null;
   createdAt: string;
   updatedAt: string;
 

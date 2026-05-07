@@ -17,20 +17,29 @@
             {{ getAmbientTemperature(location) }}°F
           </ng-container>
 
-          <ng-template #loadingTemp>
-            Loading...
-          </ng-template>
+          <ng-template #loadingTemp>Loading...</ng-template>
         </span>
       </div>
 
-      <p-slider
-        styleClass="ambient-slider"
-        [ngModel]="hasAmbientTemperature(location) ? getAmbientTemperature(location) : minTemp"
-        [min]="minTemp"
-        [max]="maxTemp"
-        [disabled]="!hasAmbientTemperature(location)"
-        (onSlideEnd)="setAmbientTemperature(location, $any($event).value)">
-      </p-slider>
+      <ng-container *ngIf="hasAmbientTemperature(location); else loadingSlider">
+        <p-slider
+          styleClass="ambient-slider"
+          [ngModel]="getAmbientTemperature(location)"
+          [min]="minTemp"
+          [max]="maxTemp"
+          (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"
+        ></p-slider>
+      </ng-container>
+
+      <ng-template #loadingSlider>
+        <p-slider
+          styleClass="ambient-slider"
+          [ngModel]="minTemp"
+          [min]="minTemp"
+          [max]="maxTemp"
+          [disabled]="true"
+        ></p-slider>
+      </ng-template>
     </div>
   </div>
 

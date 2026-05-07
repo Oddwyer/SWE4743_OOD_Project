@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { SliderModule } from 'primeng/slider';
@@ -16,7 +24,7 @@ import { SimulationSpeed } from '../../types/simulationspeed';
   templateUrl: './simulation-card.html',
   styleUrl: './simulation-card.css',
 })
-export class SimulationCard implements OnChanges {
+export class SimulationCard implements OnChanges, OnDestroy {
   @Input() locations: string[] = [];
   @Output() simulationChanged = new EventEmitter<void>();
 
@@ -24,6 +32,7 @@ export class SimulationCard implements OnChanges {
   minTemp = 0;
   maxTemp = 100;
   defaultTemperature?: number;
+  private refreshIntervalId?: number;
 
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
@@ -34,7 +43,10 @@ export class SimulationCard implements OnChanges {
     { label: '10x', value: SimulationSpeed.TenX },
   ];
 
-  constructor(private readonly simulationApiService: SimulationApiService) {}
+  constructor(
+    private readonly simulationApiService: SimulationApiService,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnChanges(): void {
     if (this.locations.length === 0) {
@@ -52,20 +64,21 @@ export class SimulationCard implements OnChanges {
     setTimeout(() => {
       this.loadAmbientTemperatures(unloadedLocations);
     });
+
+    this.startAmbientRefresh();
   }
 
   loadAmbientTemperatures(locations: string[] = this.locations): void {
     locations.forEach((location) => {
       this.simulationApiService.getAmbientTemperature(location).subscribe({
         next: (response: AmbientTemperatureResponse) => {
-          setTimeout(() => {
-            this.ambientTemps[location] = response.ambientTemperature;
-            this.minTemp = response.minTemperature;
-            this.maxTemp = response.maxTemperature;
-            this.defaultTemperature = response.defaultTemperature;
-            console.log('SETTING TEMP:', location, response.ambientTemperature);
-            console.log(this.ambientTemps);
-          });
+          this.ambientTemps[location] = response.ambientTemperature;
+          this.minTemp = response.minTemperature;
+          this.maxTemp = response.maxTemperature;
+          this.defaultTemperature = response.defaultTemperature;
+          console.log('SETTING TEMP:', location, response.ambientTemperature);
+          console.log(this.ambientTemps);
+          this.changeDetectorRef.detectChanges();
         },
         error: (err: unknown) => {
           console.error('Failed to load ambient temperature for', location, err);
@@ -132,5 +145,21 @@ export class SimulationCard implements OnChanges {
         this.simulationChanged.emit();
       },
     });
+  }
+
+  private startAmbientRefresh(): void {
+    if (this.refreshIntervalId !== undefined) {
+      return;
+    }
+
+    this.refreshIntervalId = window.setInterval(() => {
+      this.loadAmbientTemperatures();
+    }, 3000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.refreshIntervalId !== undefined) {
+      window.clearInterval(this.refreshIntervalId);
+    }
   }
 }

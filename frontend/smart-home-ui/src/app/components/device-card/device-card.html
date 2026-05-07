@@ -14,7 +14,7 @@
             pButton
             icon="pi pi-power-off"
             class="p-button-text p-button-sm"
-            [ngClass]="device.isDeviceOn ? 'power-on' : 'power-off'"
+            [ngClass]="(device.isPoweredOn ?? device.isDeviceOn) ? 'power-on' : 'power-off'"
             (click)="toggleDevicePower()">
           </button>
 
@@ -46,7 +46,7 @@
     <div class="power-row" *ngIf="canTogglePower()">
       <span class="power-label">Power</span>
       <p-toggleswitch
-        [ngModel]="device.isDeviceOn"
+        [ngModel]="device.isPoweredOn ?? device.isDeviceOn"
         (onChange)="toggleDevicePower()">
       </p-toggleswitch>
     </div>
@@ -73,7 +73,7 @@
     <div
       *ngIf="device.lightBrightness !== null && device.minBrightness !== null && device.maxBrightness !== null"
       class="control-row brightness-row"
-      [class.control-disabled]="!device.isDeviceOn">
+      [class.control-disabled]="!(device.isPoweredOn ?? device.isDeviceOn)">
 
       <div class="control-header">
         <span class="control-label">Brightness:</span>
@@ -84,7 +84,7 @@
         [(ngModel)]="device.lightBrightness"
         [min]="device.minBrightness"
         [max]="device.maxBrightness"
-        [disabled]="!device.isDeviceOn"
+        [disabled]="!(device.isPoweredOn ?? device.isDeviceOn)"
         (onSlideEnd)="setBrightness(device.lightBrightness ?? device.maxBrightness!)">
       </p-slider>
     </div>
@@ -93,7 +93,7 @@
     <div
       *ngIf="device.lightColor !== null"
       class="control-row color-row"
-      [class.control-disabled]="!device.isDeviceOn">
+      [class.control-disabled]="!(device.isPoweredOn ?? device.isDeviceOn)">
 
       <div class="control-header">
         <span class="control-label">Color:</span>
@@ -101,7 +101,7 @@
         <div class="color-display">
           <p-colorpicker
             [(ngModel)]="device.lightColor"
-            [disabled]="!device.isDeviceOn"
+            [disabled]="!(device.isPoweredOn ?? device.isDeviceOn)"
             [appendTo]="'body'"
             styleClass="color-picker-square"
             panelStyleClass="color-picker-overlay"
@@ -119,7 +119,7 @@
     <div
       *ngIf="device.fanSpeed !== null"
       class="control-row speed-row"
-      [class.control-disabled]="!device.isDeviceOn">
+      [class.control-disabled]="!(device.isPoweredOn ?? device.isDeviceOn)">
 
       <span class="control-label">Speed:</span>
 
@@ -129,7 +129,7 @@
           *ngFor="let option of fanSpeedOptions"
           class="fan-speed-button"
           [class.selected]="device.fanSpeed?.toLowerCase() === option.value.toLowerCase()"
-          [disabled]="!device.isDeviceOn"
+          [disabled]="!(device.isPoweredOn ?? device.isDeviceOn)"
           (click)="setFanSpeed(option.value)">
           {{ option.label }}
         </button>

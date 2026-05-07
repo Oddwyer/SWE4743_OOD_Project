@@ -66,8 +66,8 @@ export class DeviceCardComponent {
   }
 
   toggleDevicePower(): void {
-    const previousPowerState = this.device.isDeviceOn;
-    this.device.isDeviceOn = !this.device.isDeviceOn;
+    const previousPowerState = this.device.isPoweredOn ?? false;
+    this.device.isPoweredOn = !previousPowerState;
 
     const request: ControlDeviceRequest = {
       command: 'TogglePower',
@@ -79,7 +79,7 @@ export class DeviceCardComponent {
       },
       error: (err: unknown) => {
         console.error('Failed to toggle power.', err);
-        this.device.isDeviceOn = previousPowerState;
+        this.device.isPoweredOn = previousPowerState;
       },
     });
   }
@@ -89,9 +89,7 @@ export class DeviceCardComponent {
   }
 
   isThermostatPoweredOn(): boolean {
-    return (
-      this.device.type?.toLowerCase() === 'thermostat' && this.device.thermostatState !== 'Off'
-    );
+    return this.device.isPoweredOn ?? false;
   }
 
   toggleLatch(): void {

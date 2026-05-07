@@ -14,6 +14,7 @@ public class DeviceResponse : BaseDevice
     // All devices. Includes DeviceName, DeviceLocation, and Type from BaseDevice
     public Guid Id { get; set; }
     public bool IsDeviceOn { get; set; }
+    public bool? IsPoweredOn { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
@@ -29,13 +30,10 @@ public class DeviceResponse : BaseDevice
     // Thermostat
     public ThermostatMode? ThermostatMode { get; set; }
     public ThermostatStateType? ThermostatState { get; set; }
-
     public int? MinTemperature { get; set; }
     public int? MaxTemperature { get; set; }
     public int? TargetTemperature { get; set; }
-
     public int? DefaultTemperature { get; set; }
-
     public int? AmbientTemperature { get; set; } // For bruno testing only. Frontend displayed via SimulationResponse.
 
     // Doors
