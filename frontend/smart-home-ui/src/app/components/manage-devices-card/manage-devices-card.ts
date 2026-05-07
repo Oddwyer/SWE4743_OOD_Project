@@ -1,77 +1,59 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { SelectModule } from 'primeng/select';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { DeviceApiService } from '../../services/device.api.service';
-
 import { DeviceResponse } from '../../devicemodels/deviceresponse';
 import { RegisterDeviceRequest } from '../../devicemodels/registerdevicerequest';
 import { CommandHistoryResponse } from '../../historymodels/commandhistoryresponse';
-
 import { DeviceType } from '../../types/devicetype';
 
 /**
- * Sidebar card for managing smart home devices.
- *
- * Supports:
- * - adding devices
- * - removing devices
- * - viewing device command history
+ * Sidebar card for adding devices, removing devices, and viewing command history.
  */
 @Component({
   selector: 'app-manage-devices-card',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardModule, ButtonModule, SelectModule],
+  imports: [CommonModule, FormsModule, ButtonModule, InputTextModule],
   templateUrl: './manage-devices-card.html',
   styleUrls: ['./manage-devices-card.css'],
 })
 export class ManageDevicesCardComponent {
-  /**
-   * Current devices loaded by dashboard.
-   */
+  /** Devices currently loaded by the dashboard. */
   @Input() devices: DeviceResponse[] = [];
 
-  /**
-   * Notify dashboard to refresh devices.
-   */
+  /** Tells the dashboard to reload devices after add/remove actions. */
   @Output() devicesChanged = new EventEmitter<void>();
 
-  /**
-   * Available device types.
-   */
+  /** Device types available for registration. */
   readonly deviceTypes: DeviceType[] = ['Light', 'Fan', 'Thermostat', 'DoorLock'];
 
-  /**
-   * New device form values.
-   */
+  /** Add device form values. */
   newDeviceName = '';
   newDeviceLocation = '';
   selectedDeviceType: DeviceType = 'Light';
 
-  /**
-   * Selected device IDs for actions.
-   */
+  /** Selected devices for remove and history actions. */
   selectedRemoveDeviceId = '';
   selectedHistoryDeviceId = '';
 
-  /**
-   * Loaded command history entries.
-   */
+  /** Command history shown after loading a selected device. */
   historyEntries: CommandHistoryResponse[] = [];
 
-  /**
-   * Whether history is currently loading.
-   */
+  /** Loading state for history requests. */
   isLoadingHistory = false;
+
+  /** Modal visibility flags. */
+  showAddDeviceModal = false;
+  showRemoveDeviceModal = false;
+  showHistoryDeviceModal = false;
+  showTypePicker = false;
 
   constructor(private readonly deviceApiService: DeviceApiService) {}
 
-  /**
-   * Register a new smart home device.
-   */
+  /** Register a new device through the API. */
   addDevice(): void {
     const request: RegisterDeviceRequest = {
       deviceName: this.newDeviceName.trim(),
@@ -82,6 +64,7 @@ export class ManageDevicesCardComponent {
     this.deviceApiService.registerDevice(request).subscribe({
       next: () => {
         this.resetAddForm();
+        this.showAddDeviceModal = false;
         this.devicesChanged.emit();
       },
       error: (error) => {
@@ -90,9 +73,7 @@ export class ManageDevicesCardComponent {
     });
   }
 
-  /**
-   * Remove the selected device.
-   */
+  /** Remove the selected device through the API. */
   removeDevice(): void {
     if (!this.selectedRemoveDeviceId) {
       return;
@@ -101,6 +82,7 @@ export class ManageDevicesCardComponent {
     this.deviceApiService.removeDevice(this.selectedRemoveDeviceId).subscribe({
       next: () => {
         this.selectedRemoveDeviceId = '';
+        this.showRemoveDeviceModal = false;
         this.devicesChanged.emit();
       },
       error: (error) => {
@@ -109,15 +91,14 @@ export class ManageDevicesCardComponent {
     });
   }
 
-  /**
-   * Load command history for the selected device.
-   */
+  /** Load command history for the selected device. */
   loadDeviceHistory(): void {
     if (!this.selectedHistoryDeviceId) {
       return;
     }
 
     this.isLoadingHistory = true;
+    this.historyEntries = [];
 
     this.deviceApiService.getCommandHistory(this.selectedHistoryDeviceId).subscribe({
       next: (history) => {
@@ -131,9 +112,53 @@ export class ManageDevicesCardComponent {
     });
   }
 
-  /**
-   * Reset the add device form.
-   */
+  /** Open the add device modal. */
+  openAddDeviceModal(): void {
+    this.resetAddForm();
+    this.showAddDeviceModal = true;
+  }
+
+  /** Open the remove device modal. */
+  openRemoveDeviceModal(): void {
+    this.selectedRemoveDeviceId = '';
+    this.showRemoveDeviceModal = true;
+  }
+
+  /** Open the history modal. */
+  openHistoryDeviceModal(): void {
+    this.selectedHistoryDeviceId = '';
+    this.historyEntries = [];
+    this.showHistoryDeviceModal = true;
+  }
+
+  /** Select the device type used by the add form. */
+  selectDeviceType(deviceType: DeviceType): void {
+    this.selectedDeviceType = deviceType;
+    this.showTypePicker = false;
+  }
+
+  /** Select the device to remove. */
+  selectRemoveDevice(deviceId: string): void {
+    this.selectedRemoveDeviceId = deviceId;
+  }
+
+  /** Select the device whose history should be viewed. */
+  selectHistoryDevice(deviceId: string): void {
+    this.selectedHistoryDeviceId = deviceId;
+    this.historyEntries = [];
+  }
+
+  /** Get display name for a selected device ID. */
+  getDeviceName(deviceId: string): string {
+    return this.devices.find((device) => device.id === deviceId)?.deviceName ?? 'Choose Device';
+  }
+
+  /** Get display location for a selected device ID. */
+  getDeviceLocation(deviceId: string): string {
+    return this.devices.find((device) => device.id === deviceId)?.deviceLocation ?? '';
+  }
+
+  /** Reset the add device form after a successful registration. */
   private resetAddForm(): void {
     this.newDeviceName = '';
     this.newDeviceLocation = '';

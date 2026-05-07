@@ -109,7 +109,7 @@
 :host ::ng-deep .ambient-slider-row .p-slider .p-slider-handle {
     width: 1rem;
     height: 1rem;
-    background: #F1D576; !important;
+    background: #F1D576 !important;
     border-radius: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -132,7 +132,7 @@
 .speed-button {
     width: 100%;
     border: 1px solid #9aa8c7;
-    background: #ffffff;
+    background: rgba(223, 231, 251, 0.9);
     color: #000000;
     border-radius: 6px;
     padding: 0.45rem 0.8rem;
