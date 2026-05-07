@@ -124,8 +124,8 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Idle",
-      "ThermostatMode": 1,
-      "TargetTemperature": 74,
+      "ThermostatMode": 3,
+      "TargetTemperature": 72,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -2160,12 +2160,126 @@
       "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
       "Timestamp": "2026-05-04T02:12:55.1321667Z",
       "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "d8a25c71-d25d-437e-b567-e134a96c650f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T16:58:37.2122438Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "2a9d19de-ea74-4c35-904d-86fa02621b94",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T16:59:29.2506945Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "12567c20-4505-4f55-8cef-945204984e63",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T16:59:31.946511Z",
+      "Operation": "Set target temperature to 65\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "945c1590-5e96-4e50-b530-cbb9614197c1",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:00:38.5702883Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "d637ac21-914b-413a-bc99-d5c510a2607f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:00:46.9519586Z",
+      "Operation": "Set target temperature to 72\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "07e15d77-5646-4939-9bf9-ca11e8ea80c1",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:01:30.8151726Z",
+      "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "405f424b-c7d8-4db2-a1db-8108d0016819",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:02:05.064189Z",
+      "Operation": "Set target temperature to 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "cec4e647-4f26-4780-addb-b7b20e2e4463",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:02:14.4582787Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "112abfba-d4d7-46b2-8d43-3ee2c788dfe0",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:02:17.1123611Z",
+      "Operation": "Set target temperature to 67\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "a240c68d-ef32-45a8-b76d-6d24db2e1b22",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:02:17.6845376Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "eb25c1b5-8063-427f-8d66-c399762544da",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:02:31.2987783Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "26fb9591-4134-4412-a280-78eada334851",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:02:36.791941Z",
+      "Operation": "Set target temperature to 73\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "8afd3a68-2a45-40da-b34d-66da324eb91c",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:05:46.4088874Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "e5a09908-7fd4-4274-8205-c624ebb1c0a4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:05:47.0185777Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "90461983-baa3-426e-9a10-7f503b0a2b9e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:16:16.0699417Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "d999efe8-0958-431c-a7d9-0b8603163927",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:19:01.4033715Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "fa94edb0-adcf-49ce-9fe4-b9641b88ba5c",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:19:11.607011Z",
+      "Operation": "Set target temperature to 65\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "bbba7786-de80-4239-bdca-879cba02323a",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:20:39.5168512Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "2c90c36a-dc07-433d-95a5-6b3efba2adce",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:21:13.0888158Z",
+      "Operation": "Set target temperature to 72\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 74
+      "AmbientTemperature": 72
     }
   ]
 }

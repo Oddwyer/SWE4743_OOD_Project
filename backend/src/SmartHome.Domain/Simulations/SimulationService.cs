@@ -52,7 +52,25 @@ public class SimulationService : ISimulationService
             throw new ArgumentOutOfRangeException(nameof(temperature), $"Temperature must be between {MinAmbientTemperature}°F and {MaxAmbientTemperature}°F.");
         }
 
-        _locationRepository.SaveAmbientTemperature(Normalize(location), temperature);
+        var normalizedLocation = Normalize(location);
+
+        _locationRepository.SaveAmbientTemperature(normalizedLocation, temperature);
+
+        foreach (var thermostat in _runtime.RegisteredThermostats)
+        {
+            if (Normalize(thermostat.DeviceLocation) != normalizedLocation)
+            {
+                continue;
+            }
+
+            if (thermostat.PowerState == DevicePowerState.Off)
+            {
+                continue;
+            }
+
+            thermostat.Evaluate(temperature);
+            _deviceRepository.SaveDevice(thermostat);
+        }
 
     }
 

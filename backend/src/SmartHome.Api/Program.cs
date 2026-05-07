@@ -65,27 +65,27 @@ builder.Services.AddSingleton<SimulationTicker>();
 builder.Services.AddSingleton<SimulationRuntime>();
 
 // Initializes runtime simulation state from persisted devices on startup.
-builder.Services.AddScoped<SimulationInitializer>();
+builder.Services.AddSingleton<SimulationInitializer>();
 
 // Register application services.
-builder.Services.AddScoped<ISimulationService, SimulationService>();
+builder.Services.AddSingleton<ISimulationService, SimulationService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 
 // Register device factories.
-builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, LightDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
 // Register command and strategy factories.
+builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
+builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
-builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
-// Register JSON repository once per request and expose it through repository interfaces.
-builder.Services.AddScoped<JsonRepository>();
-builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+// Register JSON repository and expose it through repository interfaces.
+builder.Services.AddSingleton<JsonRepository>();
+builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Configure JSON serialization to use camelCase and serialize enums as strings.
 builder.Services.AddControllers()
