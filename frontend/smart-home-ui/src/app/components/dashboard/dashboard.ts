@@ -7,19 +7,18 @@ import { DeviceResponse } from '../../devicemodels/deviceresponse';
 import { SimulationCardComponent } from '../simulation-card/simulation-card';
 
 @Component({
-  selector: 'app-device-list',
-  templateUrl: './device-list.html',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule, DeviceCardComponent, CardModule, SimulationCardComponent],
-  styleUrls: ['./device-list.css'],
+  templateUrl: './dashboard.html',
+  styleUrls: ['./dashboard.css'],
 })
-
 /**
  * Displays all smart home devices and organizes them by location.
  *
  * Also coordinates refreshing device data after simulation changes.
  */
-export class DeviceListComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   devices: any[] = [];
   isLoading = true;
 
@@ -32,7 +31,7 @@ export class DeviceListComponent implements OnInit {
    * Loads all devices when the component initializes.
    */
   ngOnInit(): void {
-    console.log('DeviceList INIT');
+    console.log('Dashboard INIT');
     this.loadDevices();
   }
 

@@ -1,7 +1,7 @@
 info:
-  name: Simulation - Speed (Valid)
+  name: Simulation - Speed (10x)
   type: http
-  seq: 3
+  seq: 6
 
 http:
   method: PUT
@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "speedMultiplier": "TenX"
+        "speedMultiplier": "tenX"
       }
   auth: inherit
 

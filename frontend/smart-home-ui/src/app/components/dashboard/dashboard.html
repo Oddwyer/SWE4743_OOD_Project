@@ -6,7 +6,7 @@
 
       <div>
         <h1>Smart Home Simulator</h1>
-        <p>Monitor and control your connected home devices.</p>
+        <h2>Monitor and control your connected home devices.</h2>
       </div>
     </div>
   </header>
@@ -17,8 +17,16 @@
   <div class="dashboard-content" *ngIf="!isLoading">
     <!-- Left side of dashboard: simulation controls. -->
 
-    <app-simulation-card [locations]="thermostatLocations"></app-simulation-card>
-    
+    <aside class="sidebar-column">
+      <app-simulation-card [locations]="thermostatLocations"></app-simulation-card>
+
+      <!-- Placeholder for next component -->
+      <div class="manage-devices-card">
+        <h2>Manage Devices</h2>
+        <p>Add/remove controls will go here.</p>
+      </div>
+    </aside>
+
     <!-- Right side of dashboard: device list, grouped by location. -->
 
     <div class="devices-column">

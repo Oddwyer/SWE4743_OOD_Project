@@ -14,7 +14,7 @@
 
         <span class="simulation-value">
           <ng-container *ngIf="hasAmbientTemperature(location); else loadingTemp">
-           {{ getDisplayAmbientTemperature(location) }}°F
+            {{ getDisplayAmbientTemperature(location) }}°F
           </ng-container>
 
           <ng-template #loadingTemp>Loading...</ng-template>
@@ -44,13 +44,24 @@
   </div>
 
   <!-- Simulation speed controls -->
-  <div class="setting-row">
+  <div class="setting-row speed-row">
     <i class="pi pi-bolt"></i>
 
     <div class="simulation-control">
       <div class="simulation-header">
-        <span class="simulation-label">Speed:</span>
-        <span class="simulation-value">{{ getSimulationSpeedLabel() }}</span>
+        <span class="simulation-label">Simulation Speed:</span>
+      </div>
+
+      <div class="speed-button-group">
+        <button
+          type="button"
+          *ngFor="let option of speedOptions"
+          class="speed-button"
+          [class.selected]="simulationSpeed === option.value"
+          (click)="setSimulationSpeed(option.value)"
+        >
+          {{ option.label }}
+        </button>
       </div>
     </div>
   </div>

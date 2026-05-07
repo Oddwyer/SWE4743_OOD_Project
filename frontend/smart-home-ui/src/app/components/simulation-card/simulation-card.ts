@@ -192,6 +192,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     this.simulationApiService.setSimulationSpeed(request).subscribe({
       next: () => {
         this.restartAmbientRefresh();
+        this.simulationChanged.emit();
       },
       error: () => {
         this.simulationSpeed = previousSpeed;
@@ -206,13 +207,14 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     this.simulationApiService.resetSimulation().subscribe({
       next: () => {
         this.ambientTemps = {};
+        this.displayAmbientTemps = {};
         this.refreshInProgress = false;
+        this.restartAmbientRefresh();
         this.loadAmbientTemperatures();
         this.simulationChanged.emit();
       },
     });
   }
-
   /**
    * Calculates the frontend polling interval based on simulation speed.
    * Uses a minimum interval to avoid excessive polling requests.

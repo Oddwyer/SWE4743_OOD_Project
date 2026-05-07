@@ -70,7 +70,7 @@
       "Name": "Right Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 67,
+      "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -135,7 +135,7 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -2292,12 +2292,348 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T17:24:51.0230524Z",
       "Operation": "Set target temperature to 67\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "640910ea-96ff-4250-8b60-7a0b2141a707",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:32:28.6966704Z",
+      "Operation": "Set target temperature to 70\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "969c00b2-45eb-410c-b895-4c63d8632b2b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:32:44.3986795Z",
+      "Operation": "Set target temperature to 80\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "fe9788b6-4a6e-498b-9484-fca1fc5b6b82",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T17:40:58.1479561Z",
+      "Operation": "Set target temperature to 71\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "5534baf4-c2d7-4bcd-a59e-85997aa7a4fe",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:23:07.3275481Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "7b9f7913-466e-4896-a143-c0fc7de3263f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:23:08.6727835Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "9ed88a94-58ce-44f7-99a8-f2b745434c88",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:23:09.6008439Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "8d6591af-7a63-453c-a01e-d090edb6e0da",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:23:11.9418492Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "697f54ac-1506-44c7-854b-2d7a39a8cab4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:23:14.6489621Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "98df2cd4-590c-4a50-9eb0-03b4369e25a1",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:23:16.1478971Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "7a118c74-70c3-46de-93f4-9b00491a0225",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:27:57.2273498Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "301839b2-e560-42f2-b848-308e6ac91dd4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:01.4160377Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "270db8c9-c59f-4c56-bebb-9c8e0835aba7",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:02.4594347Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "74b840f5-6f65-4b95-b667-07d1ff1e1a58",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:04.0575302Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "acb13cf8-2f53-49a3-89bf-f8eca562cc5a",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:04.8547089Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "075f5892-2771-42db-8f1e-a2d24143ba64",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:09.3784013Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "73de125f-93d6-404b-ab5d-35e6ff6cc342",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:27.1824315Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "d2081574-1de5-4426-8cbe-06588160065c",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:31.9545275Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "4af628f5-a103-40f1-9237-08dbfc614eeb",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:46.6203594Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "ae72df0d-b0a8-4893-980b-a7f785390568",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:28:48.6676046Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "5ef43cd1-ce46-4e34-a9e3-d9ac47e1a28d",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T18:29:17.7676865Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "1f4c7c51-a3d8-43a6-b24f-7593cae9706c",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T18:29:18.4457504Z",
+      "Operation": "Powered off Right Side Table Lamp."
+    },
+    {
+      "Id": "3c0719b0-4e0e-4523-b92e-2d0432f13b12",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:30:08.0323027Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "fb0e6f22-a9d1-47e6-97c9-4b6e60efdbd1",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:30:09.4625451Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "daf41531-f13c-4ad2-87f4-f05ae5cc8269",
+      "DeviceId": "214b015d-78b3-4b57-b49d-47768871907a",
+      "Timestamp": "2026-05-07T18:30:11.6193404Z",
+      "Operation": "Powered on Right Side Table Lamp."
+    },
+    {
+      "Id": "be322103-80a3-49b9-b0b1-a01d38fdb839",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-07T18:30:15.7501031Z",
+      "Operation": "Powered off Right Sconce."
+    },
+    {
+      "Id": "542f80f6-e679-4e16-b970-ce7434328959",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-07T18:30:17.2286882Z",
+      "Operation": "Powered on Right Sconce."
+    },
+    {
+      "Id": "3c047b7f-ac70-48e2-96d2-6728daae5b57",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-07T18:30:18.2675241Z",
+      "Operation": "Powered off Right Sconce."
+    },
+    {
+      "Id": "c7bc1e12-a844-46d7-ae2e-1fecf2225ad7",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-07T18:30:19.5091201Z",
+      "Operation": "Powered on Right Sconce."
+    },
+    {
+      "Id": "951b4835-1cb9-4806-84fd-14278a1d0046",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-07T18:30:20.8796935Z",
+      "Operation": "Powered off Right Sconce."
+    },
+    {
+      "Id": "eed7a7a3-1c24-4659-b1fa-b280b4c29dba",
+      "DeviceId": "e8d66863-fe40-4002-9c43-2f145bd6ecd8",
+      "Timestamp": "2026-05-07T18:30:24.7123634Z",
+      "Operation": "Powered on Right Sconce."
+    },
+    {
+      "Id": "424e1029-c477-40ca-8df8-fbd3e3f3325e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:30:25.8458231Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "6a6060d3-84cc-42a6-8701-422759610a4f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:30:58.7872692Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "44a9cd1d-4eee-4473-8a9e-7a08cffe5149",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:30:59.5641818Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "da9e4abb-3908-491a-bbe6-a4efdaa853a2",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:31:00.3159321Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "ca78bd44-b758-471d-8199-d249be7eda4f",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:34:14.8531048Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "df2d739b-6edd-465e-9ca2-55ef4df663e2",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:34:16.6940837Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "b88860ed-be8f-4ceb-921f-9a7efe2cd456",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:34:34.8189255Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "90075087-5e3a-468e-81e1-c799fbbdcf98",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:36:02.1751158Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "3aa2942d-ddfa-43d0-ab1f-c73dfb8b7f1f",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:36:03.1078431Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "0a012077-4cee-4a34-974b-e6b231669ed6",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:36:28.57148Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "5e0a0bd6-3d71-46e2-b41f-f8ae8ad0a490",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:36:29.4173654Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "83b566d6-a0fd-48ab-94e8-dff0fd56fe9e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:49.8212328Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "41af9fd4-a79e-4c98-879d-69124f027600",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:50.732566Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "347c2927-64eb-42a8-9662-bd301a53e89b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:52.0228493Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "9084ba96-6514-4e52-93ed-d99845dd1b8e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:53.2232096Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "d8df76b0-d365-4ddf-af4b-d4b70a42f75f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:55.449473Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "46deab8b-bde1-46af-a4db-2bd1ebe39fbe",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:56.9676594Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "47237b86-3140-4c5c-af79-b6ef1c82e3ec",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:36:57.4831787Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "fd9dfed0-6cf6-41e4-88e0-a79d4efc6593",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:37:23.0819327Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "2a84d770-6c6d-4e9a-bef5-01ac3f3dad78",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:37:25.5396278Z",
+      "Operation": "Set target temperature to 66\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "0fb9fb18-0537-4924-b4df-e0b388b40152",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:38:01.4414773Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "f32a01c2-63e0-41c0-b6cf-e2d1ece5dfb0",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-07T18:43:06.6406465Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "85bd21b6-baa0-4d07-8b3e-fa77f3fdf39a",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-07T18:43:13.3185959Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "ab8f12d5-88ad-4635-8492-062cb5d229da",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:48:04.6851928Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "c7eb6ca5-d158-4534-940f-efb634978cbe",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:48:10.5750682Z",
+      "Operation": "Set target temperature to 73\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "984c35b0-e81d-47d8-9e2c-4438bf017f23",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T18:48:24.4197523Z",
+      "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 67
+      "AmbientTemperature": 68
     }
   ]
 }

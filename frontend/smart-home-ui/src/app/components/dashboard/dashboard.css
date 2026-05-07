@@ -1,5 +1,5 @@
 /* =========================
-   DEVICE LIST COMPONENT
+   DASHBOARD
    ========================= */
 
 .dashboard {
@@ -16,8 +16,16 @@
 .dashboard-header h1 {
   margin: 0;
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  line-height: 1.2;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 500;
   line-height: 1.2;
 }
 
