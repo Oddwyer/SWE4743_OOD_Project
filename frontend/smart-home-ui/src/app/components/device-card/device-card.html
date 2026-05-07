@@ -140,7 +140,7 @@
     <div
       *ngIf="device.thermostatMode !== null"
       class="control-row thermostat-mode-row"
-      [class.control-disabled]="!device.isDeviceOn">
+      [class.control-disabled]="!isThermostatPoweredOn()">
 
       <span class="control-label">Mode:</span>
 
@@ -150,7 +150,7 @@
           *ngFor="let option of thermostatModeOptions"
           class="thermostat-mode-button"
           [class.selected]="device.thermostatMode?.toLowerCase() === option.value.toLowerCase()"
-          [disabled]="!device.isDeviceOn"
+          [disabled]="!isThermostatPoweredOn()"
           (click)="setThermostatMode(option.value)">
           {{ option.label }}
         </button>
@@ -161,7 +161,7 @@
     <div
       *ngIf="device.targetTemperature !== null && device.minTemperature !== null && device.maxTemperature !== null"
       class="control-row temperature-row"
-      [class.control-disabled]="!device.isDeviceOn">
+      [class.control-disabled]="!isThermostatPoweredOn()">
 
       <div class="control-header">
         <span class="control-label">Desired Temperature:</span>
@@ -174,7 +174,7 @@
         [(ngModel)]="device.targetTemperature"
         [min]="device.minTemperature"
         [max]="device.maxTemperature"
-        [disabled]="!device.isDeviceOn"
+        [disabled]="!isThermostatPoweredOn()"
         (onSlideEnd)="setTargetTemperature(device.targetTemperature ?? 72)">
       </p-slider>
     </div>

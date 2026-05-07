@@ -18,7 +18,7 @@ public class ControlDeviceRequest
     public int? Brightness { get; set; }
     public string? Color { get; set; }
     public FanSpeed? FanSpeed { get; set; }
-    public ThermostatMode? Mode { get; set; }
+    public ThermostatMode? ThermostatMode { get; set; }
     public int? TargetTemperature { get; set; }
 
 }

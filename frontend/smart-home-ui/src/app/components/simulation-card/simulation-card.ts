@@ -18,12 +18,13 @@ import { SimulationSpeed } from '../../types/simulationspeed';
 })
 export class SimulationCard implements OnChanges {
   @Input() locations: string[] = [];
-
   @Output() simulationChanged = new EventEmitter<void>();
 
   ambientTemps: Record<string, number> = {};
-  minTemp = 60;
-  maxTemp = 80;
+  minTemp = 0;
+  maxTemp = 100;
+  defaultTemperature = 72;
+  isLoadingAmbientTemps = false;
 
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
@@ -37,13 +38,21 @@ export class SimulationCard implements OnChanges {
   constructor(private readonly simulationApiService: SimulationApiService) {}
 
   ngOnChanges(): void {
+    if (this.locations.length === 0) {
+      return;
+    }
+
     this.loadAmbientTemperatures();
   }
 
   loadAmbientTemperatures(): void {
+    this.isLoadingAmbientTemps = true;
+
+    let completedRequests = 0;
+
     this.locations.forEach((location) => {
-      if (this.ambientTemps[location] !== undefined) {
-        return;
+      if (this.ambientTemps[location] === undefined) {
+        this.ambientTemps[location] = this.defaultTemperature;
       }
 
       this.simulationApiService.getAmbientTemperature(location).subscribe({
@@ -51,9 +60,24 @@ export class SimulationCard implements OnChanges {
           this.ambientTemps[location] = response.ambientTemperature;
           this.minTemp = response.minTemperature;
           this.maxTemp = response.maxTemperature;
+          this.defaultTemperature = response.defaultTemperature;
+        },
+        error: (err: unknown) => {
+          console.error('Failed to load ambient temperature for', location, err);
+        },
+        complete: () => {
+          completedRequests++;
+
+          if (completedRequests === this.locations.length) {
+            this.isLoadingAmbientTemps = false;
+          }
         },
       });
     });
+  }
+
+  getAmbientTemperature(location: string): number {
+    return this.ambientTemps[location] ?? this.defaultTemperature;
   }
 
   setAmbientTemperature(location: string, temperature: number): void {
@@ -65,10 +89,19 @@ export class SimulationCard implements OnChanges {
       next: () => {
         this.simulationChanged.emit();
       },
-      error: () => {
+      error: (err: unknown) => {
         this.ambientTemps[location] = previousTemperature;
+        console.error('Failed to set ambient temperatures.', err);
       },
     });
+  }
+
+  getSimulationSpeedLabel(): string {
+    const selectedOption = this.speedOptions.find(
+      (option) => option.value === this.simulationSpeed,
+    );
+
+    return selectedOption?.label ?? '1x';
   }
 
   setSimulationSpeed(speed: SimulationSpeed): void {

@@ -15,7 +15,7 @@ public class CommandData
     public int? Brightness { get; init; }
     public string? Color { get; init; }
     public FanSpeed? FanSpeed { get; init; }
-    public ThermostatMode? Mode { get; init; }
+    public ThermostatMode? ThermostatMode { get; init; }
     public int? TargetTemperature { get; init; }
 
 }

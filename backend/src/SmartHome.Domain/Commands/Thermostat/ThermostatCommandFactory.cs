@@ -51,14 +51,14 @@ public class ThermostatCommandFactory : IDeviceCommandFactory
     private IDeviceCommand CreateSetThermostatModeCommand(ThermostatDevice thermostat, CommandData context)
     {
 
-        if (context.Mode is null)
+        if (context.ThermostatMode is null)
         {
             throw new ArgumentException("A thermostat mode is required to alter current thermostat mode.");
         }
 
-        var strategy = _thermostatStrategyFactory.Create(context.Mode.Value);
+        var strategy = _thermostatStrategyFactory.Create(context.ThermostatMode.Value);
 
-        return new SetThermostatModeCommand(thermostat, context.Mode.Value, strategy);
+        return new SetThermostatModeCommand(thermostat, context.ThermostatMode.Value, strategy);
     }
 
     private IDeviceCommand CreateSetTargetTemperatureCommand(ThermostatDevice thermostat, CommandData context)

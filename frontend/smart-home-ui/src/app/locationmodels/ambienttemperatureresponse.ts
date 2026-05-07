@@ -3,4 +3,5 @@ export interface AmbientTemperatureResponse {
   ambientTemperature: number;
   minTemperature: number;
   maxTemperature: number;
+  defaultTemperature: number;
 }

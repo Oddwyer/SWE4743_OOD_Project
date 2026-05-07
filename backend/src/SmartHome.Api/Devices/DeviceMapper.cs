@@ -73,7 +73,7 @@ public static class DeviceMapper
             Brightness = request.Brightness,
             Color = request.Color,
             FanSpeed = request.FanSpeed,
-            Mode = request.Mode,
+            ThermostatMode = request.ThermostatMode,
             TargetTemperature = request.TargetTemperature
         };
 

@@ -79,7 +79,7 @@ public class SimulationService : ISimulationService
 
         foreach (var thermostat in _runtime.RegisteredThermostats)
         {
-            if (!thermostat.IsDeviceOn)
+            if (thermostat.PowerState == DevicePowerState.Off)
             {
                 continue; // Skip if thermostat is off or idle.
             }

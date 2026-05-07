@@ -88,6 +88,12 @@ export class DeviceCardComponent {
     return this.device.type?.toLowerCase() !== 'doorlock';
   }
 
+  isThermostatPoweredOn(): boolean {
+    return (
+      this.device.type?.toLowerCase() === 'thermostat' && this.device.thermostatState !== 'Off'
+    );
+  }
+
   toggleLatch(): void {
     const previousLatchState = this.device.isLocked;
     this.device.isLocked = !this.device.isLocked;
@@ -114,6 +120,10 @@ export class DeviceCardComponent {
   getDeviceStatus(): string {
     if (this.canToggleLatch()) {
       return this.device.isLocked ? 'ON' : 'OFF';
+    }
+
+    if (this.device.type?.toLowerCase() === 'thermostat') {
+      return this.isThermostatPoweredOn() ? 'ON' : 'OFF';
     }
 
     return this.device.isDeviceOn ? 'ON' : 'OFF';
