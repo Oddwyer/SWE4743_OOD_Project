@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 2,
-      "TargetTemperature": 70,
+      "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -7962,12 +7962,30 @@
       "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
       "Timestamp": "2026-05-07T05:36:20.4655138Z",
       "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "2db34c0a-7eea-4619-b3ff-55fdf51ca297",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T13:05:14.3104939Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "f1a13d23-aca2-4698-baf8-a121c49d3698",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T13:05:18.5613506Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "e2d6b22b-5a51-41f8-9f2f-be1133c548b0",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-07T13:05:19.6880641Z",
+      "Operation": "Powered off Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 33
+      "AmbientTemperature": 68
     }
   ]
 }
