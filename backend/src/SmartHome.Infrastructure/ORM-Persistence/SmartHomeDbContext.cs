@@ -1,4 +1,8 @@
-public class SmartHomeDbContext : DbContext
+using Microsoft.EntityFrameworkCore;
+
+namespace SmartHome.Infrastructure.ORM_Persistence
+{
+    public class SmartHomeDbContext : DbContext
 {
     public SmartHomeDbContext(DbContextOptions<SmartHomeDbContext> options) 
     : base(options) {}
@@ -44,4 +48,5 @@ public class SmartHomeDbContext : DbContext
                   .OnDelete(DeleteBehavior.Cascade);
         });
     }
+}
 }

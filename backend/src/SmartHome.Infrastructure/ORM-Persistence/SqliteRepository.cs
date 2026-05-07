@@ -1,3 +1,11 @@
+using SmartHome.Domain.Commands.History;
+using SmartHome.Domain.Contracts;
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.Fan;
+using SmartHome.Domain.Locations;
+using SmartHome.Infrastructure;
+using SmartHome.Infrastructure.ORM_Persistence;
+
 public class SqliteRepository : IDeviceRepository, ILocationRepository
 {
     private readonly SmartHomeDbContext _dbContext;
@@ -14,9 +22,9 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
     {
         var query = _dbContext.Devices.AsQueryable();
 
-        if (filter.Types != null)
+        if (filter.Type != null)
         {
-            query = query.Where(d => d.Types == filter.Types);
+            query = query.Where(d => d.Type == filter.Type);
         }
 
         if (!string.IsNullOrWhiteSpace(filter.Location))
@@ -29,24 +37,29 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
             query = query.Where(d => d.IsOn == filter.IsOn.Value);
         }
 
-        return query.AsEnumerable.Select(e => _deviceFactory.RehydrateDevice(MapToRehydrationData(e)));
+        return query.AsEnumerable().Select(e => _deviceFactory.RehydrateDevice(MapToRehydrationData(e)));
+    }
+
+    public IDevice? FindDeviceById(Guid deviceId)
+    {
+        var entity = _dbContext.Devices.Find(deviceId);
+        return entity == null ? null : _deviceFactory.RehydrateDevice(MapToRehydrationData(entity));
     }
 
     public void AddDevice(Device device)
     {
         var entity = new DeviceEntity
         {
-            Name = device.Name,
-            Location = device.Location,
+            Name = device.DeviceName,
+            Location = device.DeviceLocation,
             Type = device.Type
         };
 
         _dbContext.Devices.Add(entity);
         _dbContext.SaveChanges();
-        device.Id = entity.Id; // Update the domain model with the generated ID
     }
 
-    public void RemoveDevice(Guid deviceId)
+    public void DeleteDevice(Guid deviceId)
     {
         var entity = _dbContext.Devices.Find(deviceId);
         if (entity != null)
@@ -110,27 +123,27 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         }
     }
 
-    public bool IsThermostatPresentInLocation(string locationName)
+    public bool ThermostatInLocation(string location)
     {
-        return _dbContext.Devices.Any(d => d.Location == locationName && d.Types == DeviceType.Thermostat);
+        return _dbContext.Devices.Any(d => d.Location == location && d.Type == DeviceType.Thermostat);
     }
 
-    public IEnumerable<CommandHistoryEntry> GetDeviceCommandHistory(Guid deviceId)
+    public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
         return _dbContext.CommandHistories
             .Where(ch => ch.DeviceId == deviceId)
             .AsEnumerable()
             .OrderByDescending(ch => ch.Timestamp)
-            .Select(ch => CommandHistoryEntry.Rehydrate(ch.Id, ch.deviceId, ch.CommandExecuted, ch.Timestamp));
+            .Select(ch => CommandHistoryEntry.Rehydrate(ch.Id, ch.DeviceId, ch.CommandExecuted, ch.Timestamp));
     }
 
-    public void SaveCommandHistoryEntry(CommandHistoryEntry entry)
+    public void SaveHistoryEntry(CommandHistoryEntry entry)
     {
-        _dbContext.CommandHistory.Add(new CommandHistoryEntity
+        _dbContext.CommandHistories.Add(new CommandHistoryEntity
         {
             Id = entry.Id,
             DeviceId = entry.DeviceId,
-            CommandExecuted = entry.CommandExecuted,
+            CommandExecuted = entry.Operation,
             Timestamp = entry.Timestamp
         });
         _dbContext.SaveChanges();
@@ -141,27 +154,27 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         return _dbContext.Locations.Find(locationName)?.AmbientTemperature;
     }
 
-    public void UpdateAmbientTemperature(string locationName, int newTemperature)
+    public void SaveAmbientTemperature(string location, int temperature)
     {
-        var entity = _dbContext.Locations.Find(locationName);
+        var entity = _dbContext.Locations.Find(location);
         if (entity != null)
         {
-            entity.AmbientTemperature = newTemperature;
+            entity.AmbientTemperature = temperature;
             _dbContext.Locations.Update(entity);
         }
         else
         {
             _dbContext.Locations.Add(new LocationEntity
             {
-                Location = locationName,
-                AmbientTemperature = newTemperature
+                Location = location,
+                AmbientTemperature = temperature
             });
         }
         _dbContext.SaveChanges();
     }
 
     // Helper methods for mapping between entities and domain models
-    private static DeviceRehydrationData MapToRehydrationData(DeviceEntity entity) => new
+    private static DeviceRehydrationData MapToRehydrationData(DeviceEntity entity) => new DeviceRehydrationData
     {
         Id = entity.Id,
         Name = entity.Name,
@@ -170,11 +183,10 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         IsOn = entity.IsOn,
         DeviceState = entity.DeviceState,
         ThermostatMode = entity.ThermostatMode,
-        FanSpeed = entity.FanSpeed,
-        LockState = entity.LockState,
-        LightBrightness = entity.LightBrightness,
+        TargetTemperature = entity.TargetTemperature,
         LightColor = entity.LightColor,
-        TargetTemp = entity.TargetTemp
+        LightBrightness = entity.LightBrightness,
+        FanSpeed = (FanSpeed?)entity.FanSpeed
     };
 
     private static DeviceEntity MapSnapshotToNewEntity(DeviceSnapshot snapshot) => new()
@@ -186,11 +198,10 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         IsOn = snapshot.IsOn,
         DeviceState = snapshot.DeviceState,
         ThermostatMode = snapshot.ThermostatMode,
-        FanSpeed = snapshot.FanSpeed,
-        LockState = snapshot.LockState,
+        FanSpeed = (int?)snapshot.FanSpeed,
         LightBrightness = snapshot.LightBrightness,
         LightColor = snapshot.LightColor,
-        TargetTemp = snapshot.TargetTemp
+        TargetTemperature = snapshot.TargetTemperature
     };
 
     private static void MapSnapshotToEntity(DeviceSnapshot snapshot, DeviceEntity entity)
@@ -201,10 +212,9 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         entity.IsOn = snapshot.IsOn;
         entity.DeviceState = snapshot.DeviceState;
         entity.ThermostatMode = snapshot.ThermostatMode;
-        entity.FanSpeed = snapshot.FanSpeed;
-        entity.LockState = snapshot.LockState;
+        entity.FanSpeed = (int?)snapshot.FanSpeed;
         entity.LightBrightness = snapshot.LightBrightness;
         entity.LightColor = snapshot.LightColor;
-        entity.TargetTemp = snapshot.TargetTemp;
+        entity.TargetTemperature = snapshot.TargetTemperature;
     }
 }

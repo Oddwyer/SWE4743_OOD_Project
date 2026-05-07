@@ -76,7 +76,7 @@ builder.Services.AddScoped<JsonRepository>(); // gets replaced for ORM and sqlit
 builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
-/// this will be commented out while I build out the rest of the ORM components
+// this will be commented out while I build out the rest of the ORM components
 // builder.Services.AddScoped<SqliteRepository>();
 // builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
 // builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());

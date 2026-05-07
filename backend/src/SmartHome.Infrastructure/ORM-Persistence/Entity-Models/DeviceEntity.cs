@@ -1,3 +1,6 @@
+using SmartHome.Domain.Devices;
+using SmartHome.Domain.Devices.Thermostat;
+
 public class DeviceEntity
 {
     // shared properties
