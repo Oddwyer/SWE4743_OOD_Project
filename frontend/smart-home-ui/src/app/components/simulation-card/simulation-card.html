@@ -33,6 +33,7 @@
             [ngModel]="getAmbientTemperature(location)"
             [min]="minTemp"
             [max]="maxTemp"
+            (onChange)="onSliderDrag(location, $any($event).value)"
             (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"
           ></p-slider>
 

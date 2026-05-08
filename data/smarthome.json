@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 72,
+      "TargetTemperature": 67,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3601,12 +3601,18 @@
       "DeviceId": "7df5c262-fd24-4e3f-8d13-9f20390ca43e",
       "Timestamp": "2026-05-08T18:41:18.8947579Z",
       "Operation": "Powered on media room thermostat."
+    },
+    {
+      "Id": "8aeafc3f-fe5c-4895-b95e-c09c9ee1eafc",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T18:52:26.6482721Z",
+      "Operation": "Set target temperature to 67\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 72
+      "AmbientTemperature": 67
     },
     {
       "Location": "master bedroom",

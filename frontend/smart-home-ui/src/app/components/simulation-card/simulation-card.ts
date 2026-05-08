@@ -166,6 +166,16 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
+   * Synchronises the display value with the slider handle while dragging,
+   * so the number tracks the handle in real-time without waiting for a poll cycle.
+   */
+  onSliderDrag(location: string, value: number): void {
+    this.ambientTemps[location] = value;
+    this.displayAmbientTemps[location] = value;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  /**
    * Updates the ambient temperature for a location.
    */
   setAmbientTemperature(location: string, temperature: number): void {

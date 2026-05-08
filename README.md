@@ -81,13 +81,13 @@ docker compose down
 
 ## Running Tests
 
+Run tests from the backend/ directory with:
+
 ### Unit Testing:
 
 `dotnet test backend/tests/SmartHome.Domain.Tests`
 
 ### Backend Integration Testing:
-
-Run tests from the backend/ directory with:
 
 `dotnet test tests/SmartHome.Api.Tests/SmartHome.Api.Tests.csproj`
 

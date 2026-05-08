@@ -29,4 +29,25 @@ describe('SimulationCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // ── onSliderDrag ─────────────────────────────────────────────────────────────
+
+  describe('onSliderDrag', () => {
+    it('immediately updates ambientTemps so the slider position is stable', () => {
+      component['ambientTemps']['Bedroom'] = 65;
+      component.onSliderDrag('Bedroom', 72);
+      expect(component['ambientTemps']['Bedroom']).toBe(72);
+    });
+
+    it('immediately updates displayAmbientTemps so the number tracks the handle', () => {
+      component['displayAmbientTemps']['Bedroom'] = 65;
+      component.onSliderDrag('Bedroom', 72);
+      expect(component['displayAmbientTemps']['Bedroom']).toBe(72);
+    });
+
+    it('keeps ambientTemps and displayAmbientTemps in sync after a drag', () => {
+      component.onSliderDrag('Kitchen', 80);
+      expect(component['ambientTemps']['Kitchen']).toBe(component['displayAmbientTemps']['Kitchen']);
+    });
+  });
 });
