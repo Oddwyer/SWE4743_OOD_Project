@@ -167,7 +167,7 @@
   <div class="picker-modal" (click)="$event.stopPropagation()">
     <h3>Remove Device</h3>
 
-    <p class="modal-help">Choose the device you want to remove.</p>
+    <p class="modal-help">Choose the device you wish to remove.</p>
 
     <div class="empty-message" *ngIf="devices.length === 0">No devices available.</div>
 
@@ -187,9 +187,8 @@
       <strong>{{ getDeviceName(selectedRemoveDeviceId) }}</strong>
 
       <span *ngIf="getDeviceLocation(selectedRemoveDeviceId)">
-        from {{ getDeviceLocation(selectedRemoveDeviceId) }}
+        from {{ getDeviceLocation(selectedRemoveDeviceId) }}?
       </span>
-      ?
     </div>
 
     <button
