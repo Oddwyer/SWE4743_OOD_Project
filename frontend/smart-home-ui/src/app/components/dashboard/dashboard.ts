@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.loadDevices();
+    this.startClock();
   }
 
   /**
@@ -227,10 +228,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   handleSimulationRunningChanged(isRunning: boolean): void {
     if (isRunning) {
       this.startClock();
-      return;
     }
-
-    this.stopClock();
   }
 
   /**
