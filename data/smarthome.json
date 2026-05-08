@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 72,
+      "TargetTemperature": 60,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -135,7 +135,7 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -3535,12 +3535,24 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T16:45:08.012573Z",
       "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "518c21a9-df6c-4b79-83e8-048f3a5fc809",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T17:01:16.5542817Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "0730375b-8157-4007-b2c5-39abbe367980",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T17:02:57.8754298Z",
+      "Operation": "Set target temperature to 60\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 72
+      "AmbientTemperature": 60
     },
     {
       "Location": "master bedroom",
