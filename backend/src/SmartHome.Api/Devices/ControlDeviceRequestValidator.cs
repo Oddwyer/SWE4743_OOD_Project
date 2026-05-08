@@ -22,7 +22,7 @@ public class ControlDeviceRequestValidator : AbstractValidator<ControlDeviceRequ
         RuleFor(x => x.Brightness)
             .NotNull()
                 .WithMessage("Brightness is required.")
-            .ExclusiveBetween(LightDevice.MinBrightness, LightDevice.MaxBrightness)
+            .InclusiveBetween(LightDevice.MinBrightness, LightDevice.MaxBrightness)
                 .WithMessage($"Ambient temperature must be between {LightDevice.MinBrightness}% and {LightDevice.MaxBrightness}%.")
 
             .When(x => x.Command == DeviceCommandType.SetBrightness);
@@ -44,7 +44,7 @@ public class ControlDeviceRequestValidator : AbstractValidator<ControlDeviceRequ
         RuleFor(x => x.TargetTemperature)
             .NotNull()
                 .WithMessage("Desired temperature is required.")
-            .ExclusiveBetween(ThermostatDevice.MinTemperature, ThermostatDevice.MaxTemperature)
+            .InclusiveBetween(ThermostatDevice.MinTemperature, ThermostatDevice.MaxTemperature)
                 .WithMessage($"Ambient temperature must be between {ThermostatDevice.MinTemperature}°F and {ThermostatDevice.MaxTemperature}°F.")
             .When(x => x.Command == DeviceCommandType.SetTargetTemperature);
 
