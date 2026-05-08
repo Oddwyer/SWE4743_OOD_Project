@@ -58,7 +58,7 @@ Infrastructure Layer → JSON persistence
 - Docker
 - Docker Compose
 
-### Run (recommended)
+### Run in Docker (recommended)
 
 ```bash
 docker compose up --build
@@ -71,6 +71,30 @@ docker compose down
 ```
 
 ---
+
+## Run Local (without Docker)
+
+### Backend
+
+```bash
+cd backend/src/SmartHome.Api
+dotnet run --launch-profile https
+```
+
+### Frontend
+
+```bash
+cd frontend/smart-home-ui
+npm install
+npm run build
+```
+
+### Frontend Build Verification
+
+```bash
+cd frontend/smart-home-ui
+npm run build
+```
 
 ## Access Points
 
@@ -134,32 +158,6 @@ The collection includes both:
 
 - Success cases
 - Error cases
-
----
-
-## Local Development (without Docker)
-
-### Backend
-
-```bash
-cd backend/src/SmartHome.Api
-dotnet run --launch-profile https
-```
-
-### Frontend
-
-```bash
-cd frontend/smart-home-ui
-npm install
-npm run build
-```
-
-### Frontend Build Verification
-
-```bash
-cd frontend/smart-home-ui
-npm run build
-```
 
 ---
 
