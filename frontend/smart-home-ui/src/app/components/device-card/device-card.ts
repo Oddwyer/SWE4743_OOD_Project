@@ -186,8 +186,8 @@ export class DeviceCardComponent {
    *
    * Thermostats display:
    * - OFF when powered off
-   * - IDLE when powered on but not actively heating/cooling
-   * - ON when actively heating or cooling
+   * - IDLE only when powered on and mode is Auto
+   * - ON when powered on and mode is Heat or Cool
    */
   getDeviceStatus(): string {
     if (this.canToggleLatch()) {
@@ -199,11 +199,7 @@ export class DeviceCardComponent {
         return 'OFF';
       }
 
-      if (this.device.thermostatState?.toLowerCase() === 'idle') {
-        return 'IDLE';
-      }
-
-      return 'ON';
+      return this.device.thermostatMode?.toLowerCase() === 'auto' ? 'IDLE' : 'ON';
     }
 
     return this.device.isDeviceOn ? 'ON' : 'OFF';

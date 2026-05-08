@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 67,
+      "TargetTemperature": 68,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3607,12 +3607,96 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T18:52:26.6482721Z",
       "Operation": "Set target temperature to 67\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "60da3b27-f943-4bd5-b036-dbc49958b195",
+      "DeviceId": "1ec03e6c-41fc-4e7c-82ce-47e191c06be2",
+      "Timestamp": "2026-05-08T19:13:21.4767033Z",
+      "Operation": "Powered on Office Lamp."
+    },
+    {
+      "Id": "90d37147-c0a6-4e4e-9376-86308fe3b058",
+      "DeviceId": "1ec03e6c-41fc-4e7c-82ce-47e191c06be2",
+      "Timestamp": "2026-05-08T19:13:27.951864Z",
+      "Operation": "Set light brightness to 70% for Office Lamp."
+    },
+    {
+      "Id": "a462ae09-b2a0-49cb-81ff-48ca655ff671",
+      "DeviceId": "1ec03e6c-41fc-4e7c-82ce-47e191c06be2",
+      "Timestamp": "2026-05-08T19:13:30.8111213Z",
+      "Operation": "Set light color to #bf3fbf for Office Lamp."
+    },
+    {
+      "Id": "c0a308a1-7b0f-4838-823f-fc2b8816b122",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:13:43.5765771Z",
+      "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "4a26f6b3-058c-45b6-aba1-5dbab2c24bb8",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:13:46.756436Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "fc3eeaae-6aae-4688-99c8-e75c18171f57",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:13:52.0463399Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "6c596d9b-17e2-4be3-8518-094095fb0774",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:13:52.9414981Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "79f0ecee-b614-41f3-ae3f-7e6a3f637c62",
+      "DeviceId": "03a91f7d-5b9d-468c-a5f8-fb55b94fa44a",
+      "Timestamp": "2026-05-08T19:14:26.6703431Z",
+      "Operation": "Powered on Living Room Floor Lamp."
+    },
+    {
+      "Id": "ce8ac658-ace9-48dc-8878-b709e57c5399",
+      "DeviceId": "03a91f7d-5b9d-468c-a5f8-fb55b94fa44a",
+      "Timestamp": "2026-05-08T19:14:27.3446744Z",
+      "Operation": "Powered off Living Room Floor Lamp."
+    },
+    {
+      "Id": "651dce0d-43e7-400b-b6e5-381717f9df10",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:16:28.4790224Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "0915ae4c-a1fc-4aa8-bf02-a9231452d71d",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:16:29.57293Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "076f166b-c8f6-457a-a562-b5410a0fc70b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:21:16.277969Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "9737aab7-a41f-4ff4-86aa-ddba3e918f34",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:21:18.5189836Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "f9b780fb-e4f6-4ad3-8529-2a544b76d2c5",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:21:19.5670851Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 67
+      "AmbientTemperature": 68
     },
     {
       "Location": "master bedroom",
