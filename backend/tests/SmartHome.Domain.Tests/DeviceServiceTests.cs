@@ -10,6 +10,7 @@ using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Locations;
 using SmartHome.Domain.Simulations;
+using SmartHome.Domain.Exceptions;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
@@ -375,7 +376,7 @@ public class DeviceServiceTests
             DeviceType = DeviceType.Thermostat
         };
 
-        Assert.Throws<InvalidOperationException>(() => service.RegisterDevice(register));
+        Assert.Throws<DeviceConflictException>(() => service.RegisterDevice(register));
     }
 
     [Fact]
