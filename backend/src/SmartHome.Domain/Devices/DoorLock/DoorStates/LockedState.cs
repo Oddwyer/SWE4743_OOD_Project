@@ -1,5 +1,3 @@
-using SmartHome.Domain.Devices.DoorLock;
-
 namespace SmartHome.Domain.Devices.DoorLock.DoorStates;
 
 /// <summary>

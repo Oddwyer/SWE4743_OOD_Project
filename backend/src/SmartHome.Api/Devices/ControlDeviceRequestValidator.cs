@@ -1,7 +1,6 @@
 using FluentValidation;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 
 namespace SmartHome.Api.Devices;

@@ -1,5 +1,3 @@
-using FluentValidation;
-
 namespace SmartHome.Api.Devices;
 
 /// <summary>

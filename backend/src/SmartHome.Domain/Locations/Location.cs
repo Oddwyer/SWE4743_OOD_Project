@@ -1,3 +1,5 @@
+namespace SmartHome.Domain.Locations;
+
 /// <summary>
 /// Represents a named physical location with an associated ambient temperature.
 /// </summary>

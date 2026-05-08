@@ -1,6 +1,5 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Fan;
-using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
 
 namespace SmartHome.Infrastructure;

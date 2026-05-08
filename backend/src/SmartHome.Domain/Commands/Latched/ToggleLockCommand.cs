@@ -1,4 +1,3 @@
-using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Commands.Latched;

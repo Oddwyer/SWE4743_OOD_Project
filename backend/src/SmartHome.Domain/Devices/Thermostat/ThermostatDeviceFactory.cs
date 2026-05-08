@@ -1,4 +1,3 @@
-using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 using SmartHome.Domain.Contracts;
 

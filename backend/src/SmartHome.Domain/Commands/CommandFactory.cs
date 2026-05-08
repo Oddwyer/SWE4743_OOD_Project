@@ -1,7 +1,6 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Contracts;
 
-
 namespace SmartHome.Domain.Commands;
 
 /// <summary>

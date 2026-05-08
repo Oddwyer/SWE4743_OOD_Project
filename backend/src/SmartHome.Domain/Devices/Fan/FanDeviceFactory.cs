@@ -1,5 +1,4 @@
 using SmartHome.Domain.Contracts;
-using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Devices.Fan;
 

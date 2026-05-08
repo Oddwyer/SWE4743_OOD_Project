@@ -1,5 +1,3 @@
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Fan;
 
 namespace SmartHome.Domain.Commands.Fan;

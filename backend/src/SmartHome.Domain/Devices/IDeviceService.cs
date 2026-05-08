@@ -1,5 +1,4 @@
 using SmartHome.Domain.Commands.History;
-using SmartHome.Domain.Commands;
 using SmartHome.Domain.Contracts;
 
 namespace SmartHome.Domain.Devices;

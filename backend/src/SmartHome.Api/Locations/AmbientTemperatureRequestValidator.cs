@@ -1,5 +1,4 @@
 using FluentValidation;
-using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Api.Locations;

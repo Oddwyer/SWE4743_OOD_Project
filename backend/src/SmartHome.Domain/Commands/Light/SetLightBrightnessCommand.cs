@@ -1,5 +1,3 @@
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Light;
 
 namespace SmartHome.Domain.Commands.Light;
