@@ -87,6 +87,11 @@ builder.Services.AddSingleton<JsonRepository>();
 builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
 builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
+// this will be commented out while I build out the rest of the ORM components
+// builder.Services.AddScoped<SqliteRepository>();
+// builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
+// builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
+
 // Configure JSON serialization to use camelCase and serialize enums as strings.
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
