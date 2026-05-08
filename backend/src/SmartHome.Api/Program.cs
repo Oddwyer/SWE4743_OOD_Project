@@ -8,6 +8,7 @@ using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure.ORM_Persistence;
+using SmartHome.Infrastructure;
 using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
 using FluentValidation;
@@ -91,15 +92,9 @@ builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
-// swapping json for sqlite repository for ORM implementation
-builder.Services.AddScoped<SqliteRepository>();
-builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
-builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
-
-/*
-builder.Services.AddSingleton<IDeviceRepository, SqliteRepository>();
-builder.Services.AddSingleton<ILocationRepository, SqliteRepository>();
-*/
+// Extra credit SQLite/ORM implementation in progrgess but is not currently wired as the active repository.
+//builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
+//builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
 
 // Register command and strategy factories.
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
@@ -107,30 +102,15 @@ builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategy
 builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 
 // Register JSON repository and expose it through repository interfaces.
-// builder.Services.AddSingleton<JsonRepository>();
-// builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-// builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<JsonRepository>();
+builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Add DbContext with SQLite provider
 builder.Services.AddDbContext<SmartHomeDbContext>(options =>
-    options.UseSqlite("Data Source=SmartHome.db"));
-
-/*
-builder.Services.AddDbContext<SmartHomeDbContext>(sp =>
-    new SmartHomeDbContext(new DbContextOptionsBuilder<SmartHomeDbContext>()
-        .UseSqlite("Data Source=SmartHome.db")
-        .Options));
-
-*/
-
-// Configure JSON serialization to use camelCase and serialize enums as strings.
-// builder.Services.AddControllers()
-//    .AddJsonOptions(options =>
-//    {
-//        options.JsonSerializerOptions.Converters.Add(
-//            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false)
-//        );
-//    });
+{
+    options.UseSqlite("Data Source=SmartHome.db");
+});
 
 // Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>
@@ -158,7 +138,6 @@ using (var scope = app.Services.CreateScope())
         dbContext.Database.Migrate();
     SmartHomeSeedData.Seed(dbContext);
 }
-
 // Populate shared simulation runtime state from persisted devices.
 // This runs from Program.cs because it is application startup orchestration.
 using (var scope = app.Services.CreateScope())
