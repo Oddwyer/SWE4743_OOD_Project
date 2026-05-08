@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   simulationSeconds = 0;
   showFilterModal = false;
 
-  private simulationEvents?: EventSource;
+  private deviceEvents?: EventSource;
 
   selectedPowerFilter: PowerFilter = 'All';
   readonly powerFilters: PowerFilter[] = ['All', 'On', 'Off'];
@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadDevices();
     this.startClock();
-    this.startSimulationEvents();
+    this.startDeviceEvents();
   }
 
   /**
@@ -313,15 +313,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Opens a Server-Sent Events connection so the dashboard can refresh
    * when the backend reports simulation updates.
    */
-  private startSimulationEvents(): void {
-    this.simulationEvents = new EventSource('http://localhost:5001/api/simulation/events');
+  private startDeviceEvents(): void {
+    this.deviceEvents = new EventSource('http://localhost:5001/api/devices/events');
 
-    this.simulationEvents.addEventListener('simulation-update', () => {
+    this.deviceEvents.addEventListener('device-changed', () => {
       this.loadDevices();
     });
 
-    this.simulationEvents.onerror = (error) => {
-      console.error('Simulation SSE connection error.', error);
+    this.deviceEvents.onerror = (error) => {
+      console.error('Device SSE connection error.', error);
     };
   }
 
@@ -330,6 +330,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.stopClock();
-    this.simulationEvents?.close();
+    this.deviceEvents?.close();
   }
 }

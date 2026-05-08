@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Simulations;
+using SmartHome.Api.SSE;
 
 namespace SmartHome.Api.Simulations;
 
@@ -13,9 +14,12 @@ public class SimulationController : ControllerBase
 {
     private readonly ISimulationService _simulationService;
 
-    public SimulationController(ISimulationService simulationService)
+    private readonly IEventBroadcaster _eventBroadcaster; // SSE
+
+    public SimulationController(ISimulationService simulationService, IEventBroadcaster eventBroadcaster)
     {
         _simulationService = simulationService;
+        _eventBroadcaster = eventBroadcaster;
     }
 
     /// <summary>
@@ -24,9 +28,10 @@ public class SimulationController : ControllerBase
     [HttpPost("reset")]
     [ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult ResetSimulation()
+    public async Task<IActionResult> ResetSimulation()
     {
         _simulationService.ResetSimulation();
+        await _eventBroadcaster.BroadcastDeviceChangedAsync(Guid.Empty);
         return Ok(new SimulationResponse
         {
             Message = "Simulation reset successfully."

@@ -96,11 +96,11 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Entryway",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#e81022",
+      "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -122,8 +122,8 @@
       "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": true,
-      "DeviceState": "Idle",
+      "IsOn": false,
+      "DeviceState": "Off",
       "ThermostatMode": 3,
       "TargetTemperature": 72,
       "LightColor": null,
@@ -4261,6 +4261,138 @@
       "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
       "Timestamp": "2026-05-08T21:28:24.8079387Z",
       "Operation": "Set light color to #e81022 for Overhead Light."
+    },
+    {
+      "Id": "01463e58-c3dc-42fd-8a3d-d48ecd1bce32",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:23:52.6963973Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "40beed5f-6fa8-4bca-9063-8e35fbdf322b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:24:00.5124891Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "f3ce15b3-66f9-41a0-96ca-e4db645418fb",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:24:04.9563059Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "ed18dc63-f530-4ac5-8beb-080e0cb2a137",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:25:32.9012466Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "bc909a22-03f7-48ef-9ed3-bfa3de372506",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:25:34.225896Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "8694df9e-ec96-41f2-9d01-d2c714e89748",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:29:54.7416138Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "27f6055b-fe67-405a-b156-fe7e8a158a9e",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:29:56.0890151Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "db2bc218-876a-4aae-b736-5007625b82e4",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:29:56.8272932Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "1563ff60-e066-4be2-a836-9f9b2a959a2e",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T23:29:59.0599107Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "3af350a6-6083-4308-afa9-cfd2a6436a18",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T23:29:59.948074Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "45a8aec0-79e9-42ea-b385-e0c79f9a81f1",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-08T23:30:14.0750777Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "d7555c83-c459-4cd9-a39a-82de1a347fcf",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-08T23:30:15.3767839Z",
+      "Operation": "Powered off Left Side Table Lamp."
+    },
+    {
+      "Id": "8553807f-b981-40fe-8f73-7310143aeb29",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:32:59.7644324Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "3573164b-44a8-4c49-a7e3-a19e3ca4ffbc",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:33:00.5344888Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "0a45642c-801b-425f-90ee-2cdabc73905b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:33:08.2326823Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "505bfd76-215e-49c8-ab0b-b47be29ceb48",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T23:33:13.2489543Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "aeb49773-355b-4385-be9a-40208cb68aef",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:33:16.5253277Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "6ff6e0fc-b7a7-41b6-a1de-f4fbef3024fa",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T23:33:17.7188958Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "224ffdd4-f3a6-4794-9084-3044af339318",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T23:38:35.6833479Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "b942bffa-8d47-4d0f-aa8d-eff50ae11e57",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T23:38:37.5727754Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "c8090c73-f915-4159-bcb4-39cf2b4d7080",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T23:39:11.6415541Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "0910d8db-ae99-48bd-ac7d-842f1befa458",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T23:39:12.4527309Z",
+      "Operation": "Locked Front Door Lock."
     }
   ],
   "Locations": [
