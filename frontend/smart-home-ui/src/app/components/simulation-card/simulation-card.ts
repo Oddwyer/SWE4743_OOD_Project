@@ -67,6 +67,9 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   private refreshIntervalId?: number;
   private refreshInProgress = false;
   private simulationIsRunning = false;
+  // Locations where the user is actively dragging or waiting for API confirmation.
+  // Polling skips these so it cannot clobber the value the user just set.
+  private pendingDragLocations = new Set<string>();
 
   constructor(
     private readonly simulationApiService: SimulationApiService,
@@ -109,12 +112,15 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     locationsToRefresh.forEach((location) => {
       this.simulationApiService.getAmbientTemperature(location).subscribe({
         next: (response: AmbientTemperatureResponse) => {
-          this.ambientTemps[location] = response.ambientTemperature;
+          // Skip overwriting local state if the user owns this location right now.
+          if (!this.pendingDragLocations.has(location)) {
+            this.ambientTemps[location] = response.ambientTemperature;
 
-          if (this.displayAmbientTemps[location] === undefined) {
-            this.displayAmbientTemps[location] = response.ambientTemperature;
-          } else {
-            this.updateDisplayedAmbientTemperature(location, response.ambientTemperature);
+            if (this.displayAmbientTemps[location] === undefined) {
+              this.displayAmbientTemps[location] = response.ambientTemperature;
+            } else {
+              this.updateDisplayedAmbientTemperature(location, response.ambientTemperature);
+            }
           }
 
           this.minTemp = response.minTemperature;
@@ -168,8 +174,10 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   /**
    * Synchronises the display value with the slider handle while dragging,
    * so the number tracks the handle in real-time without waiting for a poll cycle.
+   * Marks the location as pending so the polling loop cannot overwrite it.
    */
   onSliderDrag(location: string, value: number): void {
+    this.pendingDragLocations.add(location);
     this.ambientTemps[location] = value;
     this.displayAmbientTemps[location] = value;
     this.changeDetectorRef.detectChanges();
@@ -177,20 +185,27 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
   /**
    * Updates the ambient temperature for a location.
+   * The location stays in pendingDragLocations until the API call settles so the
+   * polling loop cannot clobber the optimistic value before the server confirms.
    */
   setAmbientTemperature(location: string, temperature: number): void {
     const previousTemperature = this.ambientTemps[location];
 
+    this.pendingDragLocations.add(location);
     this.ambientTemps[location] = temperature;
+    this.displayAmbientTemps[location] = temperature;
     this.setSimulationRunning(true);
 
     this.simulationApiService.setAmbientTemperature(location, temperature).subscribe({
       next: () => {
+        this.pendingDragLocations.delete(location);
         this.simulationChanged.emit();
         this.changeDetectorRef.detectChanges();
       },
       error: (err: unknown) => {
+        this.pendingDragLocations.delete(location);
         this.ambientTemps[location] = previousTemperature;
+        this.displayAmbientTemps[location] = previousTemperature;
         this.updateSimulationRunningState();
 
         console.error('Failed to set ambient temperature.', err);

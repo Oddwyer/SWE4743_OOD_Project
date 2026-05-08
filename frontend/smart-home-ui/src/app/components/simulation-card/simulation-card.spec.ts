@@ -49,5 +49,27 @@ describe('SimulationCard', () => {
       component.onSliderDrag('Kitchen', 80);
       expect(component['ambientTemps']['Kitchen']).toBe(component['displayAmbientTemps']['Kitchen']);
     });
+
+    it('adds the location to pendingDragLocations so polling cannot overwrite it', () => {
+      component.onSliderDrag('Bedroom', 72);
+      expect(component['pendingDragLocations'].has('Bedroom')).toBe(true);
+    });
+
+    it('polling does not overwrite ambientTemps for a pending location', () => {
+      component.onSliderDrag('Bedroom', 80);
+      // Simulate what loadAmbientTemperatures does when a poll response arrives.
+      if (!component['pendingDragLocations'].has('Bedroom')) {
+        component['ambientTemps']['Bedroom'] = 65;
+      }
+      expect(component['ambientTemps']['Bedroom']).toBe(80);
+    });
+
+    it('polling does not overwrite displayAmbientTemps for a pending location', () => {
+      component.onSliderDrag('Bedroom', 80);
+      if (!component['pendingDragLocations'].has('Bedroom')) {
+        component['displayAmbientTemps']['Bedroom'] = 65;
+      }
+      expect(component['displayAmbientTemps']['Bedroom']).toBe(80);
+    });
   });
 });

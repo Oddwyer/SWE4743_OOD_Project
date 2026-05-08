@@ -226,7 +226,7 @@ Features:
 | GET    | `/api/devices/{id}`                             | Retrieve a single device by ID                          |
 | POST   | `/api/devices`                                  | Register a new smart home device                        |
 | DELETE | `/api/devices/{id}`                             | Remove an existing device                               |
-| PUT    | `/api/devices/{id}/state`                       | Update or control a device state                        |
+| POST   | `/api/devices/{id}/commands`                    | Update or control a device state                        |
 | PUT    | `/api/locations/{location}/ambient-temperature` | Set the ambient temperature for a location              |
 | GET    | `/api/devices/{id}/history`                     | Retrieve command history for a device                   |
 | PUT    | `/api/simulation/speed`                         | Change the simulation speed multiplier                  |
