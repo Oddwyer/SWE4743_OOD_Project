@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Commands;

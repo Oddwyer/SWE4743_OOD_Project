@@ -1,4 +1,3 @@
-using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Api.Simulations;

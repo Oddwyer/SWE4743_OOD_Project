@@ -1,6 +1,4 @@
-using SmartHome.Domain.Locations;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 using System.Collections.Concurrent;
 
 namespace SmartHome.Domain.Simulations;

@@ -4,7 +4,7 @@ using SmartHome.Domain.Devices.Thermostat;
 
 namespace SmartHome.Domain.Commands.Thermostat;
 
-/// <summary>
+/// <summary>git 
 /// Sets the thermostat to the mode requested by the client.
 /// </summary>
 public class SetThermostatModeCommand : DeviceCommand
