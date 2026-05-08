@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
@@ -120,8 +120,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     return Array.from(groups, ([location, devices]) => ({
       location,
-      devices,
-    }));
+      devices: devices.sort((a, b) => (a.deviceName ?? '').localeCompare(b.deviceName ?? '')),
+    })).sort((a, b) => a.location.localeCompare(b.location));
   }
 
   /**
@@ -210,11 +210,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Returns a location icon class based on the location name.
    */
   getLocationIcon(location: string): string {
-    const loc = location?.toLowerCase();
+    const loc = (location ?? '').toLowerCase();
 
-    if (loc.includes('living')) return 'pi pi-home';
-    if (loc.includes('bedroom')) return 'pi pi-moon';
-    if (loc.includes('entry')) return 'pi pi-sign-in';
+    if (loc.includes('living')) {
+      return 'pi pi-home';
+    }
+
+    if (loc.includes('bedroom')) {
+      return 'pi pi-moon';
+    }
+
+    if (loc.includes('entry')) {
+      return 'pi pi-sign-in';
+    }
 
     return 'pi pi-map-marker';
   }
@@ -237,19 +245,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
   handleSimulationReset(): void {
     this.simulationSpeed = 1;
     this.simulationSeconds = 0;
+    this.currentTime = '00:00:00';
 
-    setTimeout(() => {
-      this.currentTime = '00:00:00';
-    });
-
+    this.restartClock();
     this.loadDevices();
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Updates the active simulation speed and restarts the dashboard clock.
+   */
+  handleSpeedChanged(speed: number): void {
+    this.simulationSpeed = speed;
+    this.restartClock();
+    this.cdr.detectChanges();
   }
 
   /**
    * Starts the simulation clock interval.
    */
   private startClock(): void {
-    this.updateClock();
+    this.restartClock();
+  }
+
+  /**
+   * Restarts the simulation clock interval.
+   */
+  private restartClock(): void {
+    if (this.clockIntervalId !== undefined) {
+      window.clearInterval(this.clockIntervalId);
+      this.clockIntervalId = undefined;
+    }
 
     this.clockIntervalId = window.setInterval(() => {
       this.updateClock();
@@ -268,12 +294,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const minutes = Math.floor((this.simulationSeconds % 3600) / 60);
     const seconds = this.simulationSeconds % 60;
 
-    setTimeout(() => {
-      this.currentTime =
-        `${hours.toString().padStart(2, '0')}:` +
-        `${minutes.toString().padStart(2, '0')}:` +
-        `${seconds.toString().padStart(2, '0')}`;
-    });
+    this.currentTime =
+      `${hours.toString().padStart(2, '0')}:` +
+      `${minutes.toString().padStart(2, '0')}:` +
+      `${seconds.toString().padStart(2, '0')}`;
+
+    this.cdr.detectChanges();
   }
 
   /**

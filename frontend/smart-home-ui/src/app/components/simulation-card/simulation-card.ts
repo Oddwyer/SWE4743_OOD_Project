@@ -35,6 +35,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
   @Output() simulationChanged = new EventEmitter<void>();
   @Output() speedChanged = new EventEmitter<number>();
+  @Output() simulationRunningChanged = new EventEmitter<boolean>();
 
   ambientTemps: Record<string, number> = {};
   displayAmbientTemps: Record<string, number> = {};
@@ -51,15 +52,9 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     { label: '10x', value: SimulationSpeed.TenX },
   ];
 
-  /**
-   * Stores the active polling interval so it can be restarted safely.
-   */
   private refreshIntervalId?: number;
-
-  /**
-   * Prevents overlapping ambient temperature HTTP requests.
-   */
   private refreshInProgress = false;
+  private simulationIsRunning = false;
 
   constructor(
     private readonly simulationApiService: SimulationApiService,
@@ -71,6 +66,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
    */
   ngOnChanges(): void {
     if (this.locations.length === 0) {
+      this.setSimulationRunning(false);
       return;
     }
 
@@ -111,6 +107,8 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
           this.minTemp = response.minTemperature;
           this.maxTemp = response.maxTemperature;
+
+          this.updateSimulationRunningState();
         },
         error: (err: unknown) => {
           console.error('Failed to load ambient temperature for', location, err);
@@ -120,6 +118,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
 
           if (completedRequests === locationsToRefresh.length) {
             this.refreshInProgress = false;
+            this.updateSimulationRunningState();
             this.changeDetectorRef.detectChanges();
           }
         },
@@ -161,6 +160,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     const previousTemperature = this.ambientTemps[location];
 
     this.ambientTemps[location] = temperature;
+    this.setSimulationRunning(true);
 
     this.simulationApiService.setAmbientTemperature(location, temperature).subscribe({
       next: () => {
@@ -169,6 +169,8 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
       },
       error: (err: unknown) => {
         this.ambientTemps[location] = previousTemperature;
+        this.updateSimulationRunningState();
+
         console.error('Failed to set ambient temperature.', err);
         this.changeDetectorRef.detectChanges();
       },
@@ -192,10 +194,39 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
         this.restartAmbientRefresh();
         this.simulationChanged.emit();
         this.speedChanged.emit(this.getSpeedMultiplier(speed));
+        this.updateSimulationRunningState();
       },
       error: (err: unknown) => {
         this.simulationSpeed = previousSpeed;
         console.error('Failed to set simulation speed.', err);
+      },
+    });
+  }
+
+  /**
+   * Resets the simulation and reloads dashboard simulation data.
+   */
+  resetSimulation(): void {
+    this.simulationApiService.resetSimulation().subscribe({
+      next: () => {
+        this.simulationSpeed = SimulationSpeed.OneX;
+
+        this.ambientTemps = {};
+        this.displayAmbientTemps = {};
+        this.refreshInProgress = false;
+
+        this.setSimulationRunning(false);
+
+        this.speedChanged.emit(this.getSpeedMultiplier(SimulationSpeed.OneX));
+
+        this.restartAmbientRefresh();
+        this.loadAmbientTemperatures();
+        this.simulationChanged.emit();
+
+        this.changeDetectorRef.detectChanges();
+      },
+      error: (err: unknown) => {
+        console.error('Failed to reset simulation.', err);
       },
     });
   }
@@ -215,37 +246,10 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
-   * Resets the simulation and reloads dashboard simulation data.
-   */
-  resetSimulation(): void {
-    this.simulationApiService.resetSimulation().subscribe({
-      next: () => {
-        this.simulationSpeed = SimulationSpeed.OneX;
-
-        this.ambientTemps = {};
-        this.displayAmbientTemps = {};
-        this.refreshInProgress = false;
-
-        this.speedChanged.emit(this.getSpeedMultiplier(SimulationSpeed.OneX));
-
-        this.restartAmbientRefresh();
-        this.loadAmbientTemperatures();
-        this.simulationChanged.emit();
-
-        this.changeDetectorRef.detectChanges();
-      },
-      error: (err: unknown) => {
-        console.error('Failed to reset simulation.', err);
-      },
-    });
-  }
-
-  /**
    * Calculates the frontend polling interval from the current speed.
    */
   private getRefreshInterval(): number {
     const baseInterval = 5000;
-
     const speedMultiplier = this.getSpeedMultiplier(this.simulationSpeed);
 
     return Math.max(baseInterval / speedMultiplier, 2000);
@@ -294,6 +298,36 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   }
 
   /**
+   * Emits whether the simulation is still visibly adjusting ambient temperature.
+   */
+  private updateSimulationRunningState(): void {
+    const isRunning = this.locations.some((location) => {
+      const actualTemperature = this.ambientTemps[location];
+      const displayedTemperature = this.displayAmbientTemps[location];
+
+      return (
+        actualTemperature !== undefined &&
+        displayedTemperature !== undefined &&
+        actualTemperature !== displayedTemperature
+      );
+    });
+
+    this.setSimulationRunning(isRunning);
+  }
+
+  /**
+   * Emits simulation running changes only when the running state changes.
+   */
+  private setSimulationRunning(isRunning: boolean): void {
+    if (this.simulationIsRunning === isRunning) {
+      return;
+    }
+
+    this.simulationIsRunning = isRunning;
+    this.simulationRunningChanged.emit(isRunning);
+  }
+
+  /**
    * Clears polling when the component is destroyed.
    */
   ngOnDestroy(): void {
@@ -303,5 +337,6 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
     }
 
     this.refreshInProgress = false;
+    this.setSimulationRunning(false);
   }
 }

@@ -51,6 +51,7 @@
         [locations]="thermostatLocations"
         (speedChanged)="simulationSpeed = $event"
         (simulationChanged)="handleSimulationReset()"
+        (simulationRunningChanged)="handleSimulationRunningChanged($event)"
       ></app-simulation-card>
 
       <!-- Device management -->

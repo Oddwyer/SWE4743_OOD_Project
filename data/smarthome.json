@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 62,
+      "TargetTemperature": 64,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3247,12 +3247,48 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T06:38:46.6029777Z",
       "Operation": "Set target temperature to 62\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "37177c33-9c71-4f04-aebf-c5b8005880c9",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T06:40:02.6329737Z",
+      "Operation": "Set target temperature to 73\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "40001f58-3729-4f62-8d13-ef6cf76dc743",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T06:45:28.6246113Z",
+      "Operation": "Set target temperature to 64\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "ae64c79d-71a1-4f2d-81c8-291145045274",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T06:46:17.7740247Z",
+      "Operation": "Set target temperature to 77\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "516d4095-cd1b-448e-b52c-544181eedb3b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T06:46:40.9116968Z",
+      "Operation": "Set target temperature to 65\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "07f79fdf-8c3a-4adf-91f8-74efa3f45f55",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T06:52:07.5177753Z",
+      "Operation": "Set target temperature to 76\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "09f3fac7-0687-40d4-b26d-7115e807198b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T06:53:13.7087282Z",
+      "Operation": "Set target temperature to 64\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 62
+      "AmbientTemperature": 64
     }
   ]
 }
