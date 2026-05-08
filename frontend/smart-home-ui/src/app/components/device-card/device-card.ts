@@ -184,8 +184,10 @@ export class DeviceCardComponent {
   /**
    * Returns the display status for the device.
    *
-   * Thermostats use isPoweredOn for display purposes,
-   * while filtering logic still uses isDeviceOn.
+   * Thermostats display:
+   * - OFF when powered off
+   * - IDLE when powered on but not actively heating/cooling
+   * - ON when actively heating or cooling
    */
   getDeviceStatus(): string {
     if (this.canToggleLatch()) {
@@ -193,7 +195,15 @@ export class DeviceCardComponent {
     }
 
     if (this.device.type?.toLowerCase() === 'thermostat') {
-      return this.isThermostatPoweredOn() ? 'ON' : 'OFF';
+      if (!this.isThermostatPoweredOn()) {
+        return 'OFF';
+      }
+
+      if (this.device.thermostatState?.toLowerCase() === 'idle') {
+        return 'IDLE';
+      }
+
+      return 'ON';
     }
 
     return this.device.isDeviceOn ? 'ON' : 'OFF';

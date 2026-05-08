@@ -140,16 +140,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   /** Returns true when the device matches the selected type (or when 'All' is selected). */
   private matchesTypeFilter(device: DeviceResponse): boolean {
-    return this.selectedTypeFilter === 'All' || device.type === this.selectedTypeFilter;
+    return (
+      this.selectedTypeFilter === 'All' ||
+      this.getNormalizedDeviceType(device) === this.selectedTypeFilter.toLowerCase()
+    );
   }
 
   /** Returns true when the device is considered "on" for power filter purposes. */
   private isDeviceConsideredOn(device: DeviceResponse): boolean {
-    if (device.type === 'DoorLock') {
-      return true;
+    if (this.getNormalizedDeviceType(device) === 'doorlock') {
+      return device.isLocked === true;
     }
 
-    if (device.type === 'Thermostat') {
+    if (this.getNormalizedDeviceType(device) === 'thermostat') {
       return device.isDeviceOn === true;
     }
 
@@ -158,10 +161,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   /** Returns true when the device is considered "off" for power filter purposes. */
   private isDeviceConsideredOff(device: DeviceResponse): boolean {
-    if (device.type === 'DoorLock') {
-      return false;
-    }
-
     return !this.isDeviceConsideredOn(device);
   }
 
@@ -299,6 +298,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       `${seconds.toString().padStart(2, '0')}`;
 
     this.cdr.detectChanges();
+  }
+
+  private getNormalizedDeviceType(device: DeviceResponse): string {
+    return device.type?.toString().toLowerCase() ?? '';
   }
 
   /**

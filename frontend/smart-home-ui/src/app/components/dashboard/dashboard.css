@@ -108,6 +108,15 @@
   min-width: 0;
 }
 
+.device-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-bottom: 1rem;
+}
+
 /* =========================
    LOCATION SECTIONS
    ========================= */

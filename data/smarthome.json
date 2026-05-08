@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 66,
+      "TargetTemperature": 72,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -135,7 +135,7 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -3469,12 +3469,78 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T15:17:25.9820733Z",
       "Operation": "Set target temperature to 66\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "5e940d13-7c3d-4952-bb04-823d5f727dff",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:59:45.9528428Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "4e74a499-71c9-44f4-8756-35eb93046043",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:59:49.4179885Z",
+      "Operation": "Set target temperature to 65\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "2505e3d1-989d-40bf-af2b-24d1eb327c34",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T16:00:11.7081716Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "c9e28530-4e33-45f4-9622-3abdec19e4f5",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T16:00:12.674334Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "c83eea0e-8e85-4c50-ad1b-4e601cefcb65",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T16:00:13.6792661Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "df62dd14-b24b-44a9-9b01-72e8ca5dae8f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T16:01:58.3704069Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "5b0b2f09-db78-41ca-aaf4-89bbc21a8326",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T16:21:48.4479545Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "214e4d5d-9be8-4607-b9e0-e6469ff3b9fb",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T16:26:55.7041933Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "eeddf3c6-db54-4707-9590-afe5fbf1bf2b",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T16:26:57.0369862Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "02fdd0d9-f1b5-48c5-abbe-fc3f98232fa0",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-08T16:44:58.3627364Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "67afd850-317d-404d-a13d-3512428e5d68",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T16:45:08.012573Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 66
+      "AmbientTemperature": 72
     },
     {
       "Location": "master bedroom",
