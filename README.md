@@ -265,13 +265,12 @@ docker-compose.yml
 
 ---
 
-## Demo & Architecture Walkthrough
+## Demo & Architecture Walkthrough Videos
 
-Application Demo:
-// TODO: [INSERT LINK]
+[Application Demo](https://www.loom.com/share/548398bc6e494c6aac0fa27718c3252a)
 
-Architecture Walkthrough:
 // TODO: [INSERT LINK]
+[Architecture Walkthrough](Add link here!)
 
 ---
 
