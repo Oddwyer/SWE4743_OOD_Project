@@ -122,10 +122,10 @@
       "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": true,
-      "DeviceState": "Idle",
+      "IsOn": false,
+      "DeviceState": "Off",
       "ThermostatMode": 3,
-      "TargetTemperature": 68,
+      "TargetTemperature": 72,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3703,12 +3703,390 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T19:22:07.4934875Z",
       "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "5b717bc2-27bd-401c-809d-f665565bdff8",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:05.5379681Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "4756fcd4-22f6-4235-9789-f7f439136dc0",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:14.8545548Z",
+      "Operation": "Set light brightness to 53% for Overhead Light."
+    },
+    {
+      "Id": "a3dda62b-5430-424c-9780-9bf26106f9b3",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:17.505409Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "97201898-ca46-43b2-951d-e703013c9a7e",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:20.5261785Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "8672c8da-9fe6-4f67-beb6-4db54c1cffbe",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:21.3347593Z",
+      "Operation": "Set light color to #3023c2 for Overhead Light."
+    },
+    {
+      "Id": "d931407a-703b-40c1-a529-a041b78b4731",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:21.4088178Z",
+      "Operation": "Set light color to #3023c2 for Overhead Light."
+    },
+    {
+      "Id": "7691d270-842f-4b8f-be2f-01d046c7faba",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.6434958Z",
+      "Operation": "Set light color to #c28823 for Overhead Light."
+    },
+    {
+      "Id": "9cf9c343-50f3-4de6-8ced-9f471435a4ea",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.722002Z",
+      "Operation": "Set light color to #c28223 for Overhead Light."
+    },
+    {
+      "Id": "0fc477d8-ea21-4cb1-85eb-15591504a5c2",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.8164509Z",
+      "Operation": "Set light color to #c28223 for Overhead Light."
+    },
+    {
+      "Id": "73ca8162-bfde-4bbb-9614-8d7bfe8de34b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.8252701Z",
+      "Operation": "Set light color to #c26823 for Overhead Light."
+    },
+    {
+      "Id": "ad17622d-cfeb-4813-8afa-ad69776afd1a",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.8582406Z",
+      "Operation": "Set light color to #c25d23 for Overhead Light."
+    },
+    {
+      "Id": "543fd9ee-c625-4ef4-a0ba-4676215de5c7",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.8918875Z",
+      "Operation": "Set light color to #c25523 for Overhead Light."
+    },
+    {
+      "Id": "70ef911d-b7fc-4186-92df-92645cc5d387",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.9244309Z",
+      "Operation": "Set light color to #c25023 for Overhead Light."
+    },
+    {
+      "Id": "df20e39b-682c-4e22-a14d-f8b61b31c27a",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:23.9582781Z",
+      "Operation": "Set light color to #c25023 for Overhead Light."
+    },
+    {
+      "Id": "f15a01d1-c54c-4cdc-a1f5-e18e508ba03a",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.0424266Z",
+      "Operation": "Set light color to #c24823 for Overhead Light."
+    },
+    {
+      "Id": "a5dd53a6-9042-4e5c-b629-90d7b55b08e3",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.0446139Z",
+      "Operation": "Set light color to #c23023 for Overhead Light."
+    },
+    {
+      "Id": "f391ea3f-2410-4ca3-bb66-fe4f47b9744a",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.0570317Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "d92558d4-05bd-4a73-ac20-75bd27855372",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.091649Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "68b1f038-f8f7-456b-a111-431b946afb3d",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.2416853Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "353568ca-f0a1-4214-986d-f908c394b5da",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.293217Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "e48777ec-1584-433c-8b44-1b78112bf48e",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.3930816Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "3e380ac1-e836-4fde-8d07-1e54b600371b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.4593373Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "b9e99b1c-4103-4f45-8b36-79b3c201e6cf",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.4925495Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "c19d98f5-dcaa-4e49-9626-32be53b1e752",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.6979333Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "549c66f3-c91f-4e70-84e7-84921eb40415",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.7252393Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "60cd2ee0-f1a8-47c5-913c-aa77481a1dc4",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:24.7431001Z",
+      "Operation": "Set light color to #c22323 for Overhead Light."
+    },
+    {
+      "Id": "227cd106-73a1-43f6-8e1f-36d38532d8d9",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:25.2564278Z",
+      "Operation": "Set light color to #610808 for Overhead Light."
+    },
+    {
+      "Id": "70bfc0d0-2b92-40ee-afd0-14ba3e2531e8",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:26.1237594Z",
+      "Operation": "Set light color to #781717 for Overhead Light."
+    },
+    {
+      "Id": "fe35d893-3de2-4952-8fd4-c503f915e3eb",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:27.2043937Z",
+      "Operation": "Set light color to #f07373 for Overhead Light."
+    },
+    {
+      "Id": "3541712a-dd06-4f74-bb8b-3257c9728337",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:28.0246576Z",
+      "Operation": "Set light color to #e69e9e for Overhead Light."
+    },
+    {
+      "Id": "074ed5c7-f27c-41aa-82bd-45d90e2e5b30",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:28.6694309Z",
+      "Operation": "Set light color to #ed6f6f for Overhead Light."
+    },
+    {
+      "Id": "8126f8ca-a88e-4e32-ba1e-1fd31cc117ab",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:28.7259134Z",
+      "Operation": "Set light color to #ed6f6f for Overhead Light."
+    },
+    {
+      "Id": "62367db5-df77-498c-811f-18ac562ec4bc",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:52:29.8582032Z",
+      "Operation": "Set light color to #e83838 for Overhead Light."
+    },
+    {
+      "Id": "a2c21e12-d7a2-4d98-9a60-4e74f39ed73d",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:52:36.6560017Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "d215bf3d-9d84-48d8-8125-dd27a7e37bc2",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:52:40.2790036Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "c2bf292c-3313-4c5e-a1ce-6ac6cdc9abd4",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:52:41.0797109Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "5241afdf-795f-48ec-bf81-1b04d8829d77",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:52:41.6990881Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "edf81261-9e12-4c2c-97e4-24e08e16e539",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T19:52:44.1618961Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "41fc4394-60d3-4889-8c5d-cb653bbc9a5d",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T19:52:49.3427138Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "61c2f2ef-f3dc-46c7-a0e5-37d13a5aa12a",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:52:51.2221502Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "c2514580-42e7-4f91-9b15-aa7250c82994",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:53:00.8898607Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "47762e8a-bd17-49dc-8b5a-a8ec85b0a0dd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:53:12.9384942Z",
+      "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "649d2b43-38b7-4107-9e98-9163cd10bb12",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:53:35.9690723Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "1304c549-9f54-4dd0-85fa-893126fd7952",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:53:40.661054Z",
+      "Operation": "Set target temperature to 72\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "5bc05ba0-5c48-4c2d-85e5-865e9d68bc9e",
+      "DeviceId": "e38fdd31-0329-4ca3-b1e9-451b0bac8c0e",
+      "Timestamp": "2026-05-08T19:54:31.8605327Z",
+      "Operation": "Powered on Media Room Light."
+    },
+    {
+      "Id": "99eef1e6-71e2-47ed-82bb-6002ee72e9dd",
+      "DeviceId": "e38fdd31-0329-4ca3-b1e9-451b0bac8c0e",
+      "Timestamp": "2026-05-08T19:54:35.684367Z",
+      "Operation": "Set light brightness to 65% for Media Room Light."
+    },
+    {
+      "Id": "92547827-12f9-401d-832c-b49aea655acd",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:59:04.0898936Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "eb8a94e3-feab-4714-b0cb-5c8890257d8e",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:59:11.682881Z",
+      "Operation": "Set light brightness to 77% for Overhead Light."
+    },
+    {
+      "Id": "5a79bdb0-7662-45b7-9bed-18e02664dddb",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T19:59:13.4694013Z",
+      "Operation": "Set light color to #b337b3 for Overhead Light."
+    },
+    {
+      "Id": "84a5b8ca-2578-47a5-8b0d-c19ff0ec6d72",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:59:17.8574992Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "d11ae46d-b909-44d0-b85a-4359c4dbd29f",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:59:20.9563995Z",
+      "Operation": "Set fan speed to Low for Ceiling Fan."
+    },
+    {
+      "Id": "cc116285-3989-4dba-96a1-ebcbd5d31ee6",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:59:21.4622531Z",
+      "Operation": "Set fan speed to Medium for Ceiling Fan."
+    },
+    {
+      "Id": "f34e3471-2b06-4483-a9de-573f50e0e922",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T19:59:21.9664243Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "7d79e694-fd07-4285-bc83-2fced65012db",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T19:59:24.3946257Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "4b9a7f2b-a5eb-4660-acb0-1be6c9c2516a",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T19:59:25.0569369Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "0185bae9-c12b-4cbb-a900-12059216fa1e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:59:28.5833782Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "08d13013-c71a-4581-a42d-70c9f7a2a583",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:59:35.7697276Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "66e865ca-1c64-4ba3-8357-8149c6b4339b",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:59:43.507524Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "fe9d9e57-d8d1-4200-932e-c412372d2372",
+      "DeviceId": "0d54ee70-e6f5-47a0-90f6-f308aeaefb15",
+      "Timestamp": "2026-05-08T20:00:18.1499608Z",
+      "Operation": "Powered on Media Room Light."
+    },
+    {
+      "Id": "294e13f8-74b1-4bec-99da-44b0c8601658",
+      "DeviceId": "0d54ee70-e6f5-47a0-90f6-f308aeaefb15",
+      "Timestamp": "2026-05-08T20:00:21.2889517Z",
+      "Operation": "Set light color to #ffffff for Media Room Light."
+    },
+    {
+      "Id": "a52ac601-d806-4fa4-8c68-283ae338f9d6",
+      "DeviceId": "0d54ee70-e6f5-47a0-90f6-f308aeaefb15",
+      "Timestamp": "2026-05-08T20:00:21.8261235Z",
+      "Operation": "Set light color to #4e1db8 for Media Room Light."
+    },
+    {
+      "Id": "8ab7df9e-5c45-4b39-95b3-0c7e9783bf58",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T20:00:59.2259411Z",
+      "Operation": "Set mode to Cool for Living Room Thermostat."
+    },
+    {
+      "Id": "f086327d-ebab-43a5-a672-4845184a755d",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T20:01:03.6256242Z",
+      "Operation": "Set target temperature to 66\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 68
+      "AmbientTemperature": 66
     },
     {
       "Location": "master bedroom",
