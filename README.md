@@ -91,11 +91,14 @@ Run tests from the backend/ directory with:
 
 `dotnet test tests/SmartHome.Api.Tests/SmartHome.Api.Tests.csproj`
 
-## API & Integration Testing
+## Frontend Testing:
 
-Run tests from the frontend/ directory with:
+Run frontend component and service tests from:
 
-Run them with `ng test` from `frontend/smart-home-ui/`.
+```bash
+cd frontend/smart-home-ui
+ng test
+```
 
 ### Bruno:
 
@@ -176,7 +179,7 @@ It provides:
 
 ## Persistence
 
-Uses JSON file storage.
+SQLite/EF Core ORM experimentation is included as extra-credit work, but the active persistence implementation used by the application is JSON-based persistence through `JsonRepository`.
 
 File location:
 
@@ -193,6 +196,8 @@ Features:
 ---
 
 ## Core Features
+
+<img src="docs/smarthomeUI.png" width="600"/>
 
 ### Device Types
 
@@ -256,6 +261,7 @@ docker-compose.yml
 
 /data
   smarthome.json
+```
 
 ---
 
@@ -272,4 +278,7 @@ Architecture Walkthrough:
 ## Known Issues
 
 The Angular frontend may log a non-blocking change detection warning related to the simulated clock. Core functionality is unaffected.
+
+```
+
 ```

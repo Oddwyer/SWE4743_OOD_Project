@@ -92,7 +92,7 @@ builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
-// Extra credit SQLite/ORM implementation in progress but is not currently wired as the active repository.
+// Extra credit SQLite/ORM implementation in progrgess but is not currently wired as the active repository.
 //builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
 //builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
 
