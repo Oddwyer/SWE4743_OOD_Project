@@ -155,6 +155,11 @@
     font-weight: 600;
 }
 
+.speed-button:hover {
+  opacity: 0.92;
+}
+
+
 /* =========================
    RESET BUTTON
    ========================= */
