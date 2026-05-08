@@ -83,12 +83,25 @@ dotnet test backend/tests/SmartHome.Domain.Tests
 
 ## Local Development (without Docker)
 
+### Backend
+
 ```bash
 cd backend/src/SmartHome.Api
 dotnet run
+```
 
+### Frontend
+
+```bash
 cd frontend/smart-home-ui
 npm install
+npm run build
+```
+
+### Frontend Build Verification
+
+```bash
+cd frontend/smart-home-ui
 npm run build
 ```
 
@@ -215,4 +228,8 @@ Application Demo:
 Architecture Walkthrough:  
 // TODO: [INSERT LINK]
 
-## Known issue: The Angular frontend may log a non-blocking change detection warning related to the simulated clock. Core functionality is unaffected.
+---
+
+## Known Issues
+
+The Angular frontend may log a non-blocking change detection warning related to the simulated clock. Core functionality is unaffected.
