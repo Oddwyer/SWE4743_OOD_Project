@@ -82,6 +82,7 @@ builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 // swapping json for sqlite repository for ORM implementation
 builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
 builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
+
 // Register command and strategy factories.
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();

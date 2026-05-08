@@ -5,6 +5,7 @@
 The Smart Home Simulator is a full-stack application that models and controls household devices such as lights, fans, thermostats, and door locks.
 
 Users can:
+
 - View devices grouped by location
 - Control device behavior (power, brightness, speed, lock state, temperature)
 - Simulate environmental conditions (ambient temperature)
@@ -12,6 +13,7 @@ Users can:
 - Interact with a RESTful API backend
 
 This project demonstrates:
+
 - SOLID principles
 - Clean layered architecture
 - Design patterns (State, Factory, Strategy)
@@ -28,9 +30,10 @@ The backend follows a layered architecture:
 Controller Layer → HTTP handling and validation  
 Service Layer → Business logic and orchestration  
 Domain Layer → Core models and state machines  
-Infrastructure Layer → JSON persistence  
+Infrastructure Layer → JSON persistence
 
 Key patterns used:
+
 - State Pattern → device state machines
 - Factory Pattern → device creation (IDeviceFactory + type factories)
 - Strategy Pattern → thermostat modes (heat/cool/auto)
@@ -41,6 +44,7 @@ Key patterns used:
 ## Running the Application
 
 ### Prerequisites
+
 - Docker
 - Docker Compose
 
@@ -49,17 +53,19 @@ Key patterns used:
 ```bash
 docker compose up --build
 ```
+
 ### Stop the application
 
 ```bash
 docker compose down
+```
 
 ---
 
 ## Access Points
 
-- API: http://localhost:5000  
-- Swagger: http://localhost:5000/swagger  
+- API: http://localhost:5001
+- Swagger: http://localhost:5001/swagger
 
 ---
 
@@ -87,6 +93,7 @@ Swagger UI is available at:
 http://localhost:5000/swagger
 
 It provides:
+
 - All endpoints
 - Request/response schemas
 - Interactive testing
@@ -102,6 +109,7 @@ Bruno collections are located at:
 ```
 
 To use:
+
 1. Open Bruno
 2. Open the `/bruno` folder
 3. Run requests for:
@@ -111,6 +119,7 @@ To use:
    - Command history
 
 The collection includes both:
+
 - Success cases
 - Error cases
 
@@ -127,6 +136,7 @@ File location:
 ```
 
 Features:
+
 - State persists across restarts
 - Device dehydration and rehydration
 - Seed data included
@@ -136,12 +146,14 @@ Features:
 ## Core Features
 
 ### Device Types
+
 - Light (brightness, color)
 - Fan (speed)
 - Thermostat (mode, temperature, state machine)
 - Door Lock (locked/unlocked)
 
 ### Supported Operations
+
 - List devices
 - Get device by ID
 - Register device
@@ -183,14 +195,12 @@ TODO: /frontend
 
 ---
 
-
 ## Demo & Architecture Walkthrough
 
 Application Demo:  
-// TODO:  [INSERT LINK]
+// TODO: [INSERT LINK]
 
 Architecture Walkthrough:  
 // TODO: [INSERT LINK]
 
 ---
-

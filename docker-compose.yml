@@ -4,15 +4,20 @@ services:
       context: .
       dockerfile: backend/src/SmartHome.Api/Dockerfile
     ports:
-      - "5000:8080"
+      - "5001:8080"
     environment:
       - ASPNETCORE_URLS=http://+:8080
-      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
+      - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ./data:/data
-    healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://localhost:8080/swagger/index.html || exit 1" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend/smart-home-ui
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
     restart: unless-stopped

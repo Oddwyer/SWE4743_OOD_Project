@@ -86,9 +86,9 @@ public class DevicesController : ControllerBase
     }
 
     /// <summary>
-    /// PUT: api/devices/{id}/commands
+    /// POST: api/devices/{id}/commands
     /// </summary>
-    [HttpPut("{deviceId:guid}/commands")]
+    [HttpPost("{deviceId:guid}/commands")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

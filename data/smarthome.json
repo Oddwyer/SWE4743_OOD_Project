@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 68,
+      "TargetTemperature": 75,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3091,12 +3091,18 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-07T23:11:46.3475808Z",
       "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "83d9c529-da9f-4066-bd30-c1fdee38d7f0",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T01:34:54.8921973Z",
+      "Operation": "Set target temperature to 75\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 68
+      "AmbientTemperature": 75
     }
   ]
 }
