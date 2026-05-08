@@ -78,8 +78,6 @@
   background: rgba(223, 231, 251, 0.9);
 }
 
-
-
 /* =========================
    MODALS
    ========================= */
@@ -350,4 +348,8 @@
   .modal-option span {
     font-size: 0.95rem;
   }
+
+  .manage-devices-card {
+  width: 100%;
+}
 }

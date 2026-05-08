@@ -103,13 +103,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Groups filtered devices by location for display in the dashboard.
+   * Groups filtered devices by location. then sort by name for display in the dashboard.
    */
-  get groupedDevices(): { location: string; devices: DeviceResponse[] }[] {
+  get groupedDevices() {
     const groups = new Map<string, DeviceResponse[]>();
 
     for (const device of this.filteredDevices) {
-      const location = device.deviceLocation || 'Unknown Location';
+      const location = device.deviceLocation || 'Unknown';
 
       if (!groups.has(location)) {
         groups.set(location, []);
@@ -120,8 +120,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     return Array.from(groups, ([location, devices]) => ({
       location,
-      devices,
-    }));
+      devices: devices.sort((a, b) => a.deviceName.localeCompare(b.deviceName)),
+    })).sort((a, b) => a.location.localeCompare(b.location));
+  }
+
+  /**
+   * Returns device type for labeling.
+   */
+  getDeviceTypeLabel(type: DeviceType): string {
+    const labels: Record<DeviceType, string> = {
+      Light: 'Light',
+      Fan: 'Fan',
+      Thermostat: 'Thermostat',
+      DoorLock: 'Door Lock',
+    };
+
+    return labels[type] ?? type;
   }
 
   /**

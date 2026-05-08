@@ -3,6 +3,7 @@ using System.Linq;
 using SmartHome.Api.Devices;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
+using SmartHome.Domain.Commands.Latched;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.DoorLock;
@@ -51,12 +52,14 @@ public class ExtendedTests
     // ── Fan device defaults and reset ──────────────────────────────────────
 
     [Fact]
-    public void FanDevice_InitialSpeed_IsOff()
+    public void FanDevice_InitialSpeed_IsDefaultEnumValue()
     {
         // defaultSpeed constant is FanSpeed.Medium but the property is not
-        // initialized to it — documents the current (buggy) behaviour.
+        // initialized to it — documents the current (buggy) behaviour where
+        // Speed starts at (FanSpeed)0, not the named Medium value.
         var fan = new FanDevice(Guid.NewGuid(), "CeilingFan", "LivingRoom");
-        Assert.Equal(FanSpeed.Off, fan.Speed);
+        Assert.Equal(default(FanSpeed), fan.Speed); // (FanSpeed)0 — no named value
+        Assert.NotEqual(FanSpeed.Medium, fan.Speed);
     }
 
     [Fact]

@@ -51,7 +51,7 @@
 
       <h3>{{ device.deviceName }}</h3>
 
-      <h4>{{ device.type | titlecase }}</h4>
+      <h4>{{ getDeviceTypeLabel(device.type) }}</h4>
 
     </div>
   </ng-template>
@@ -100,7 +100,7 @@
          LATCH STATUS
          ========================= -->
 
-    <div *ngIf="device.isLocked !== null">
+    <div *ngIf="device.type === 'DoorLock'">
 
       <div class="control-header">
 

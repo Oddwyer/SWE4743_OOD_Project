@@ -86,6 +86,10 @@ dotnet test backend/tests/SmartHome.Domain.Tests
 ```bash
 cd backend/src/SmartHome.Api
 dotnet run
+
+cd frontend/smart-home-ui
+npm install
+npm run build
 ```
 
 ---
@@ -180,6 +184,9 @@ PUT    /api/devices/{id}/state
 PUT    /api/locations/{location}/ambient-temperature
 
 GET    /api/devices/{id}/history
+
+PUT  /api/simulation/speed
+POST /api/simulation/reset
 ```
 
 ---
@@ -193,6 +200,9 @@ GET    /api/devices/{id}/history
 
 /bruno
 /data
+
+/frontend
+  /smart-home-ui
 ```
 
 ---
@@ -205,4 +215,4 @@ Application Demo:
 Architecture Walkthrough:  
 // TODO: [INSERT LINK]
 
----
+## Known issue: The Angular frontend may log a non-blocking change detection warning related to the simulated clock. Core functionality is unaffected.
