@@ -96,11 +96,11 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Entryway",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
-      "LightColor": "#FFFFFF",
+      "LightColor": "#e81022",
       "LightBrightness": 100,
       "FanSpeed": null
     },
@@ -122,8 +122,8 @@
       "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": false,
-      "DeviceState": "Off",
+      "IsOn": true,
+      "DeviceState": "Idle",
       "ThermostatMode": 3,
       "TargetTemperature": 72,
       "LightColor": null,
@@ -4081,12 +4081,192 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T20:01:03.6256242Z",
       "Operation": "Set target temperature to 66\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "f4d43cd5-72d9-4f63-b264-37deefb52a99",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T21:24:12.4850712Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "9d9d9d4e-4b0b-4579-a605-2a880a468977",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:19.4396055Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "05412736-e1c9-42bb-b431-31ee29b323c5",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:21.1056903Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "e1842f1a-7969-4bdc-94a8-f9913b9c2904",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:22.277028Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "346e3834-2d35-4f36-87cb-68c49cd54751",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:23.4641089Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "c38273c3-3693-4b80-aa2b-77c21847b42e",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:24.2459988Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "aef43672-9e0e-450f-856d-748a4167b23c",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:25.0502096Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "58862845-5fd9-4930-aad3-add670364747",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:25.8448993Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "c1dfe9b9-b53b-4ce3-86dd-f6f8f05a6341",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T21:25:26.595079Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "e7aa3a12-918f-4c67-8f9f-52ec0efd14b5",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-08T21:26:26.771377Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "f83074de-c4a8-46ed-9aca-76b6a253ff5e",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-08T21:26:29.2934121Z",
+      "Operation": "Powered off Ceiling Fan."
+    },
+    {
+      "Id": "563e6eba-082f-4366-a128-8ea5bb1816a3",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:07.2437956Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "752d6beb-0f6c-40b8-bfc4-4764ebf9e1dc",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:15.2608834Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "d1a839b7-2d2c-425c-8e85-fe6152294602",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:15.3095108Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "f3b1c766-da14-4906-aa0e-9d4e92c89c8d",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.036975Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "cecb0421-18e5-42ad-bab5-6db4a2b67fa7",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.1779985Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "71316166-2450-4fa6-b742-52d0514042e2",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.2080456Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "5d8526cb-72a1-4b00-bb1c-781a5050da67",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.2429824Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "c2cc8fb7-3577-48e4-8183-55dd3033a603",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.2766585Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "c4221331-d046-43c0-ad0c-9b2e50fae941",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.3095434Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "9811da5c-3355-4ac8-ae85-49673da145c9",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.3412327Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "de2772c8-e132-43ff-b577-3b06929f33ea",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:16.4239781Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "d7f5e1fa-3037-4656-a563-1659a607a524",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:22.8819718Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "fd624f14-90b1-4cad-9799-b100e67d2a82",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:23.6837778Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "8ba83de4-a30b-4502-978c-52984540d781",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:23.8263536Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "c45057bd-6ce5-4c64-bb7d-a161ec715b68",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:23.8789942Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "3c81cff4-eba2-4ee9-aa34-66598b52fc9b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:23.9124735Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "3364345f-2620-4fb9-9724-4dc2dfb32589",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:23.9450133Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "52850757-fd7b-46bc-a469-36f37e40ccc7",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:24.1397994Z",
+      "Operation": "Set light color to #ffffff for Overhead Light."
+    },
+    {
+      "Id": "6804ee31-7eb1-4604-ba54-8e430bfc1e54",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T21:28:24.8079387Z",
+      "Operation": "Set light color to #e81022 for Overhead Light."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 66
+      "AmbientTemperature": 72
     },
     {
       "Location": "master bedroom",
