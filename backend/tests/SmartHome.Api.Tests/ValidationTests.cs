@@ -2,11 +2,6 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using SmartHome.Api.Devices;
-using SmartHome.Api.Tests.Helpers;
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Devices;
-using Xunit;
 
 namespace SmartHome.Api.Tests;
 

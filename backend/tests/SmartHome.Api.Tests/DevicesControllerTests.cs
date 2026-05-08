@@ -2,13 +2,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using SmartHome.Api.Devices;
-using SmartHome.Api.Tests.Helpers;
-using SmartHome.Domain.Commands;
-using SmartHome.Domain.Devices;
-using SmartHome.Domain.Devices.Fan;
-using SmartHome.Domain.Devices.Thermostat;
-using Xunit;
+
 
 namespace SmartHome.Api.Tests;
 
@@ -465,7 +459,7 @@ public class DevicesControllerTests : IClassFixture<SmartHomeWebFactory>
     [Fact]
     public async Task RegisterTwoThermostats_InDifferentLocations_BothSucceed()
     {
-        var first  = await RegisterAsync("Thermo A", "Sunroom", DeviceType.Thermostat);
+        var first = await RegisterAsync("Thermo A", "Sunroom", DeviceType.Thermostat);
         var second = await RegisterAsync("Thermo B", "Playroom", DeviceType.Thermostat);
 
         Assert.NotEqual(Guid.Empty, first.Id);
