@@ -8,7 +8,6 @@ namespace SmartHome.Api.Devices;
 /// <summary>
 /// DTO used to represent a device returned by the API.
 /// </summary>
-
 public class DeviceResponse : BaseDevice
 {
     /// <summary>Unique device identifier (UUID).</summary>

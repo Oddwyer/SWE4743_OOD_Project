@@ -2,12 +2,11 @@ using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 using SmartHome.Domain.Contracts;
 
+namespace SmartHome.Domain.Devices.Thermostat;
+
 /// <summary>
 /// Creates and restores thermostat device instances.
 /// </summary>
-
-namespace SmartHome.Domain.Devices.Thermostat;
-
 public class ThermostatDeviceFactory : IDeviceTypeFactory
 {
     public DeviceType DeviceType => DeviceType.Thermostat;

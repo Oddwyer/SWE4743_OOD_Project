@@ -1,12 +1,11 @@
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
 
+namespace SmartHome.Domain.Devices.Fan;
+
 /// <summary>
 /// Creates and restores fan device instances.
 /// </summary>
-
-namespace SmartHome.Domain.Devices.Fan;
-
 public class FanDeviceFactory : IDeviceTypeFactory
 {
     public DeviceType DeviceType => DeviceType.Fan;

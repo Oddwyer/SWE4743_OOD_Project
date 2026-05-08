@@ -3,6 +3,9 @@ using SmartHome.Domain.Commands.Thermostat;
 
 namespace SmartHome.Domain.Devices.Thermostat;
 
+/// <summary>
+/// Temperature-regulating device that heats or cools a room based on ambient and target temperature.
+/// </summary>
 public class ThermostatDevice : Device, IPoweredDevice
 {
     public const int DefaultTemperature = 72;

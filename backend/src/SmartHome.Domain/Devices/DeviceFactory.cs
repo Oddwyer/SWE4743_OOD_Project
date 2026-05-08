@@ -1,11 +1,10 @@
 using SmartHome.Domain.Contracts;
 
+namespace SmartHome.Domain.Devices;
+
 /// <summary>
 /// Factory for creating and rehydrating device instances without exposing concrete device types.
 /// </summary>
-
-namespace SmartHome.Domain.Devices;
-
 public class DeviceFactory : IDeviceFactory
 {
     private readonly Dictionary<DeviceType, IDeviceTypeFactory> _factories;

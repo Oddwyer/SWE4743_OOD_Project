@@ -1,12 +1,11 @@
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
 
+namespace SmartHome.Domain.Devices.Light;
+
 /// <summary>
 /// Creates and restores light device instances.
 /// </summary>
-
-namespace SmartHome.Domain.Devices.Light;
-
 public class LightDeviceFactory : IDeviceTypeFactory
 {
     public DeviceType DeviceType => DeviceType.Light;

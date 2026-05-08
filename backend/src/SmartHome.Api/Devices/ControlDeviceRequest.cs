@@ -9,7 +9,6 @@ namespace SmartHome.Api.Devices;
 /// <summary>
 /// DTO used to represent a command request from the client.
 /// </summary>
-
 public class ControlDeviceRequest
 {
     /// <summary>The command to execute on the target device.</summary>

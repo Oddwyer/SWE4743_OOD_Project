@@ -6,7 +6,6 @@ namespace SmartHome.Api.Simulations;
 /// <summary>
 /// DTO used to represent a simulation response returned by the API.
 /// </summary>
-
 public class SimulationResponse
 {
     /// <summary>Human-readable result message.</summary>

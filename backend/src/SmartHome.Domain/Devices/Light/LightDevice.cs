@@ -3,6 +3,9 @@ using SmartHome.Domain.Commands.Light;
 
 namespace SmartHome.Domain.Devices.Light;
 
+/// <summary>
+/// Dimmable, color-capable light device with an on/off power switch.
+/// </summary>
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
     private const int defaultBrightness = 100; // Default brightness (100%)

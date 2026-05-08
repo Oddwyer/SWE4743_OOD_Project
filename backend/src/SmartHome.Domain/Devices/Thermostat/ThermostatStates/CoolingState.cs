@@ -3,7 +3,6 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 /// <summary>
 /// Represents the thermostat cooling state.
 /// </summary>
-
 public class CoolingState : IThermostatState
 {
     private readonly ThermostatDevice _thermostat;

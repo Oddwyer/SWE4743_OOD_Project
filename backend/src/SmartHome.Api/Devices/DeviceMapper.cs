@@ -8,10 +8,9 @@ using SmartHome.Domain.Contracts;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// Abstracts conditional logic that varies by device type to avoid if/else statements in 
-/// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller. 
+/// Abstracts conditional logic that varies by device type to avoid if/else statements in
+/// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller.
 /// </summary>
-
 public static class DeviceMapper
 {
     /// <summary>

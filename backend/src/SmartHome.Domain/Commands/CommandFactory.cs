@@ -13,7 +13,6 @@ namespace SmartHome.Domain.Commands;
 /// Creates command objects from API requests for device operations.
 /// Encapsulates actions and provides descriptions for audit logging (Command Pattern).
 /// </summary>
-
 public class CommandFactory : IDeviceCommandFactory
 {
     /// <summary>Delegates command creation to the device's own factory via the Command Pattern.</summary>

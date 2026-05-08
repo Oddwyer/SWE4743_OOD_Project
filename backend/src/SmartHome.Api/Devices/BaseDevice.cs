@@ -5,7 +5,6 @@ namespace SmartHome.Api.Devices;
 /// <summary>
 /// Abstract DTO for shared properties for reuse by concrete DTO classes.
 /// </summary>
-
 public abstract class BaseDevice
 {
     /// <summary>Human-readable device name (minimum 2 characters).</summary>
