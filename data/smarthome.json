@@ -3565,6 +3565,12 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T17:39:15.8317682Z",
       "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "388caaa4-0e70-4a2e-a7fd-1e7ca2f079dd",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T17:55:22.8011614Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [

@@ -143,7 +143,7 @@ The collection includes both:
 
 ```bash
 cd backend/src/SmartHome.Api
-dotnet run
+dotnet run --launch-profile https
 ```
 
 ### Frontend
