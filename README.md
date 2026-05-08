@@ -64,7 +64,7 @@ docker compose down
 
 ## Access Points
 
-- API: http://localhost:4200
+- Frontend: http://localhost:4200
 - Swagger: http://localhost:5001/swagger
 
 ---
@@ -90,7 +90,7 @@ dotnet run
 
 Swagger UI is available at:
 
-http://localhost:5000/swagger
+http://localhost:5001/swagger
 
 It provides:
 

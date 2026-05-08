@@ -7,8 +7,8 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
     private const int defaultBrightness = 100; // Default brightness (100%)
     private const string defaultColor = "#FFFFFF"; // Default color (white)
-    public int MinBrightness => 10; // Minimum allowed brightness percentage
-    public int MaxBrightness => 100; // Maximum allowed brightness percentage
+    public const int MinBrightness = 10; // Minimum allowed brightness percentage
+    public const int MaxBrightness = 100; // Maximum allowed brightness percentage
 
     // States
     private DevicePowerState _powerState = DevicePowerState.Off; // Default state

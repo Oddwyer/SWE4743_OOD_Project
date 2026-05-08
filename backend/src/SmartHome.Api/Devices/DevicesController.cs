@@ -30,7 +30,11 @@ public class DevicesController : ControllerBase
         var devices = _deviceService.GetAllDevices(filter);
 
         // Map domain devices to API response models.
-        var response = devices.Select(DeviceMapper.ToResponse);
+        var response = devices.Select(device =>
+        {
+            var ambient = _simulationService.GetAmbientTemperature(device.DeviceLocation);
+            return DeviceMapper.ToResponse(device, ambient);
+        });
 
         return Ok(response);
     }
