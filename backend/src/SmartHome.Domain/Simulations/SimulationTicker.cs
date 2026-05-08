@@ -1,4 +1,5 @@
 using System.Timers;
+
 namespace SmartHome.Domain.Simulations;
 
 public class SimulationTicker
@@ -6,7 +7,6 @@ public class SimulationTicker
     /// <summary>   
     /// Implement periodical ticking for the simulation speed, allowing it to update device states and generate events.
     /// <summary>
-
     private System.Timers.Timer _timer;
     private SimulationSpeed _defaultSpeed = SimulationSpeed.OneX;
 
@@ -22,11 +22,14 @@ public class SimulationTicker
         _timer.Elapsed += OnTimerElapsed;
         _timer.AutoReset = true;
         SetSimulationTickerSpeed(_defaultSpeed);
+
     }
 
     private void OnTimerElapsed(object? sender, ElapsedEventArgs e)
     {
+
         OnTick?.Invoke();
+
     }
 
     public void SetSimulationTickerSpeed(SimulationSpeed speed)

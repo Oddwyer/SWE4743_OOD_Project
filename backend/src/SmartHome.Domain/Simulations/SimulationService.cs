@@ -34,7 +34,14 @@ public class SimulationService : ISimulationService
     /// </summary>
     private void OnSimulationTick()
     {
-        UpdateAmbientTemperature();
+        try
+        {
+            UpdateAmbientTemperature();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Simulation tick failed: {ex.Message}"); // Logger not accessible here. 
+        }
     }
 
     /// <summary>
