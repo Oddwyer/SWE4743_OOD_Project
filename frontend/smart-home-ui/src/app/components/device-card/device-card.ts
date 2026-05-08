@@ -68,6 +68,20 @@ export class DeviceCardComponent {
   constructor(private readonly deviceApiService: DeviceApiService) {}
 
   /**
+   * Returns the human-readable label for a device type.
+   */
+  getDeviceTypeLabel(type: string): string {
+    const labels: Record<string, string> = {
+      Light: 'Light',
+      Fan: 'Fan',
+      Thermostat: 'Thermostat',
+      DoorLock: 'Door Lock',
+    };
+
+    return labels[type] ?? type;
+  }
+
+  /**
    * Returns the Material icon name for a device type.
    */
   getDeviceIcon(type: string): string {

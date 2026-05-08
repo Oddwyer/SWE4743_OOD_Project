@@ -1,0 +1,382 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of, throwError } from 'rxjs';
+
+import { ManageDevicesCardComponent } from './manage-devices-card';
+import { DeviceApiService } from '../../services/device.api.service';
+import { DeviceResponse } from '../../devicemodels/deviceresponse';
+
+// ── Test data factory ──────────────────────────────────────────────────────────
+
+function makeDevice(overrides: Partial<DeviceResponse> = {}): DeviceResponse {
+  return {
+    id: 'd1',
+    deviceName: 'Test Device',
+    deviceLocation: 'Room',
+    type: 'Light',
+    isDeviceOn: true,
+    isPoweredOn: true,
+    createdAt: '',
+    updatedAt: '',
+    ...overrides,
+  };
+}
+
+// ── Spy type ───────────────────────────────────────────────────────────────────
+
+type ApiSpy = {
+  getAllDevices: ReturnType<typeof vi.fn>;
+  controlDevice: ReturnType<typeof vi.fn>;
+  registerDevice: ReturnType<typeof vi.fn>;
+  removeDevice: ReturnType<typeof vi.fn>;
+  getCommandHistory: ReturnType<typeof vi.fn>;
+};
+
+// ── Tests ──────────────────────────────────────────────────────────────────────
+
+describe('ManageDevicesCardComponent', () => {
+  let fixture: ComponentFixture<ManageDevicesCardComponent>;
+  let component: ManageDevicesCardComponent;
+  let apiSpy: ApiSpy;
+
+  beforeEach(async () => {
+    apiSpy = {
+      getAllDevices: vi.fn().mockReturnValue(of([])),
+      controlDevice: vi.fn(),
+      registerDevice: vi.fn().mockReturnValue(of(makeDevice())),
+      removeDevice: vi.fn().mockReturnValue(of(undefined)),
+      getCommandHistory: vi.fn().mockReturnValue(of([])),
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [ManageDevicesCardComponent],
+      providers: [{ provide: DeviceApiService, useValue: apiSpy }],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ManageDevicesCardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  // ── openAddDeviceModal ─────────────────────────────────────────────────────
+
+  describe('openAddDeviceModal', () => {
+    it('sets showAddDeviceModal to true', () => {
+      component.openAddDeviceModal();
+      expect(component.showAddDeviceModal).toBe(true);
+    });
+
+    it('clears newDeviceName', () => {
+      component.newDeviceName = 'Old Name';
+      component.openAddDeviceModal();
+      expect(component.newDeviceName).toBe('');
+    });
+
+    it('clears newDeviceLocation', () => {
+      component.newDeviceLocation = 'Old Location';
+      component.openAddDeviceModal();
+      expect(component.newDeviceLocation).toBe('');
+    });
+
+    it('resets selectedDeviceType to "Light"', () => {
+      component.selectedDeviceType = 'Fan';
+      component.openAddDeviceModal();
+      expect(component.selectedDeviceType).toBe('Light');
+    });
+  });
+
+  // ── openRemoveDeviceModal ──────────────────────────────────────────────────
+
+  describe('openRemoveDeviceModal', () => {
+    it('sets showRemoveDeviceModal to true', () => {
+      component.openRemoveDeviceModal();
+      expect(component.showRemoveDeviceModal).toBe(true);
+    });
+
+    it('clears selectedRemoveDeviceId', () => {
+      component.selectedRemoveDeviceId = 'dev-999';
+      component.openRemoveDeviceModal();
+      expect(component.selectedRemoveDeviceId).toBe('');
+    });
+  });
+
+  // ── openHistoryDeviceModal ─────────────────────────────────────────────────
+
+  describe('openHistoryDeviceModal', () => {
+    it('sets showHistoryDeviceModal to true', () => {
+      component.openHistoryDeviceModal();
+      expect(component.showHistoryDeviceModal).toBe(true);
+    });
+
+    it('clears historyEntries', () => {
+      component.historyEntries = [{ id: 'h1', commandName: 'PowerOn', timestamp: '' }];
+      component.openHistoryDeviceModal();
+      expect(component.historyEntries.length).toBe(0);
+    });
+
+    it('resets hasLoadedHistory to false', () => {
+      component.hasLoadedHistory = true;
+      component.openHistoryDeviceModal();
+      expect(component.hasLoadedHistory).toBe(false);
+    });
+
+    it('resets isLoadingHistory to false', () => {
+      component.isLoadingHistory = true;
+      component.openHistoryDeviceModal();
+      expect(component.isLoadingHistory).toBe(false);
+    });
+  });
+
+  // ── addDevice ──────────────────────────────────────────────────────────────
+
+  describe('addDevice', () => {
+    it('calls registerDevice with trimmed name and location', () => {
+      component.newDeviceName = '  Desk Lamp  ';
+      component.newDeviceLocation = '  Kitchen  ';
+      component.selectedDeviceType = 'Light';
+      component.addDevice();
+      expect(apiSpy.registerDevice).toHaveBeenCalledWith({
+        deviceName: 'Desk Lamp',
+        deviceLocation: 'Kitchen',
+        type: 'Light',
+      });
+    });
+
+    it('calls registerDevice with the selected device type', () => {
+      component.newDeviceName = 'Ceiling Fan';
+      component.newDeviceLocation = 'Bedroom';
+      component.selectedDeviceType = 'Fan';
+      component.addDevice();
+      expect(apiSpy.registerDevice).toHaveBeenCalledWith({
+        deviceName: 'Ceiling Fan',
+        deviceLocation: 'Bedroom',
+        type: 'Fan',
+      });
+    });
+
+    it('closes the modal on success', () => {
+      component.showAddDeviceModal = true;
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = 'Kitchen';
+      component.addDevice();
+      expect(component.showAddDeviceModal).toBe(false);
+    });
+
+    it('resets the form fields on success', () => {
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = 'Kitchen';
+      component.selectedDeviceType = 'Fan';
+      component.addDevice();
+      expect(component.newDeviceName).toBe('');
+      expect(component.newDeviceLocation).toBe('');
+      expect(component.selectedDeviceType).toBe('Light');
+    });
+
+    it('emits devicesChanged on success', () => {
+      const emitSpy = vi.fn();
+      component.devicesChanged.subscribe(emitSpy);
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = 'Kitchen';
+      component.addDevice();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('keeps the modal open on API error', () => {
+      apiSpy.registerDevice.mockReturnValue(throwError(() => new Error('fail')));
+      component.showAddDeviceModal = true;
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = 'Kitchen';
+      component.addDevice();
+      expect(component.showAddDeviceModal).toBe(true);
+    });
+
+    it('does not emit devicesChanged on API error', () => {
+      apiSpy.registerDevice.mockReturnValue(throwError(() => new Error('fail')));
+      const emitSpy = vi.fn();
+      component.devicesChanged.subscribe(emitSpy);
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = 'Kitchen';
+      component.addDevice();
+      expect(emitSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  // ── removeDevice ───────────────────────────────────────────────────────────
+
+  describe('removeDevice', () => {
+    it('is a no-op when selectedRemoveDeviceId is empty', () => {
+      component.selectedRemoveDeviceId = '';
+      component.removeDevice();
+      expect(apiSpy.removeDevice).not.toHaveBeenCalled();
+    });
+
+    it('calls removeDevice with the selected device ID', () => {
+      component.selectedRemoveDeviceId = 'dev-abc';
+      component.removeDevice();
+      expect(apiSpy.removeDevice).toHaveBeenCalledWith('dev-abc');
+    });
+
+    it('closes the modal on success', () => {
+      component.selectedRemoveDeviceId = 'dev-abc';
+      component.showRemoveDeviceModal = true;
+      component.removeDevice();
+      expect(component.showRemoveDeviceModal).toBe(false);
+    });
+
+    it('clears selectedRemoveDeviceId on success', () => {
+      component.selectedRemoveDeviceId = 'dev-abc';
+      component.removeDevice();
+      expect(component.selectedRemoveDeviceId).toBe('');
+    });
+
+    it('emits devicesChanged on success', () => {
+      const emitSpy = vi.fn();
+      component.devicesChanged.subscribe(emitSpy);
+      component.selectedRemoveDeviceId = 'dev-abc';
+      component.removeDevice();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('keeps the modal open on API error', () => {
+      apiSpy.removeDevice.mockReturnValue(throwError(() => new Error('fail')));
+      component.selectedRemoveDeviceId = 'dev-abc';
+      component.showRemoveDeviceModal = true;
+      component.removeDevice();
+      expect(component.showRemoveDeviceModal).toBe(true);
+    });
+
+    it('does not emit devicesChanged on API error', () => {
+      apiSpy.removeDevice.mockReturnValue(throwError(() => new Error('fail')));
+      const emitSpy = vi.fn();
+      component.devicesChanged.subscribe(emitSpy);
+      component.selectedRemoveDeviceId = 'dev-abc';
+      component.removeDevice();
+      expect(emitSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  // ── loadDeviceHistory ──────────────────────────────────────────────────────
+
+  describe('loadDeviceHistory', () => {
+    it('is a no-op when selectedHistoryDeviceId is empty', () => {
+      component.selectedHistoryDeviceId = '';
+      component.loadDeviceHistory();
+      expect(apiSpy.getCommandHistory).not.toHaveBeenCalled();
+    });
+
+    it('calls getCommandHistory with the selected device ID', () => {
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(apiSpy.getCommandHistory).toHaveBeenCalledWith('dev-xyz');
+    });
+
+    it('populates historyEntries on success', () => {
+      const entries = [
+        { id: 'h1', commandName: 'PowerOn', timestamp: '2024-01-01T00:00:00Z' },
+        { id: 'h2', commandName: 'SetBrightness', timestamp: '2024-01-02T00:00:00Z' },
+      ];
+      apiSpy.getCommandHistory.mockReturnValue(of(entries));
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(component.historyEntries).toEqual(entries);
+    });
+
+    it('sets hasLoadedHistory to true on success', () => {
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(component.hasLoadedHistory).toBe(true);
+    });
+
+    it('sets isLoadingHistory to false on success', () => {
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(component.isLoadingHistory).toBe(false);
+    });
+
+    it('sets hasLoadedHistory to true on error', () => {
+      apiSpy.getCommandHistory.mockReturnValue(throwError(() => new Error('fail')));
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(component.hasLoadedHistory).toBe(true);
+    });
+
+    it('sets isLoadingHistory to false on error', () => {
+      apiSpy.getCommandHistory.mockReturnValue(throwError(() => new Error('fail')));
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(component.isLoadingHistory).toBe(false);
+    });
+
+    it('leaves historyEntries empty on error', () => {
+      apiSpy.getCommandHistory.mockReturnValue(throwError(() => new Error('fail')));
+      component.selectedHistoryDeviceId = 'dev-xyz';
+      component.loadDeviceHistory();
+      expect(component.historyEntries.length).toBe(0);
+    });
+  });
+
+  // ── selectDeviceType ───────────────────────────────────────────────────────
+
+  describe('selectDeviceType', () => {
+    it('sets the selected device type', () => {
+      component.selectDeviceType('Fan');
+      expect(component.selectedDeviceType).toBe('Fan');
+    });
+
+    it('closes the type picker', () => {
+      component.showTypePicker = true;
+      component.selectDeviceType('Thermostat');
+      expect(component.showTypePicker).toBe(false);
+    });
+  });
+
+  // ── selectRemoveDevice / selectHistoryDevice ───────────────────────────────
+
+  describe('selectRemoveDevice', () => {
+    it('sets selectedRemoveDeviceId', () => {
+      component.selectRemoveDevice('dev-42');
+      expect(component.selectedRemoveDeviceId).toBe('dev-42');
+    });
+  });
+
+  describe('selectHistoryDevice', () => {
+    it('sets selectedHistoryDeviceId', () => {
+      component.selectHistoryDevice('dev-99');
+      expect(component.selectedHistoryDeviceId).toBe('dev-99');
+    });
+
+    it('resets history state when switching device', () => {
+      component.historyEntries = [{ id: 'h1', commandName: 'PowerOn', timestamp: '' }];
+      component.hasLoadedHistory = true;
+      component.selectHistoryDevice('dev-99');
+      expect(component.historyEntries.length).toBe(0);
+      expect(component.hasLoadedHistory).toBe(false);
+    });
+  });
+
+  // ── getDeviceName / getDeviceLocation ──────────────────────────────────────
+
+  describe('device lookup helpers', () => {
+    beforeEach(() => {
+      component.devices = [
+        makeDevice({ id: 'x1', deviceName: 'Kitchen Light', deviceLocation: 'Kitchen' }),
+        makeDevice({ id: 'x2', deviceName: 'Bedroom Fan', deviceLocation: 'Bedroom' }),
+      ];
+    });
+
+    it('getDeviceName returns the device name for a known ID', () => {
+      expect(component.getDeviceName('x1')).toBe('Kitchen Light');
+    });
+
+    it('getDeviceName returns "Choose Device" for an unknown ID', () => {
+      expect(component.getDeviceName('unknown')).toBe('Choose Device');
+    });
+
+    it('getDeviceLocation returns the location for a known ID', () => {
+      expect(component.getDeviceLocation('x2')).toBe('Bedroom');
+    });
+
+    it('getDeviceLocation returns an empty string for an unknown ID', () => {
+      expect(component.getDeviceLocation('unknown')).toBe('');
+    });
+  });
+});

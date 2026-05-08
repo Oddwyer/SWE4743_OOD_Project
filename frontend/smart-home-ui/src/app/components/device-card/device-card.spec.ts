@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, Subject, of, throwError } from 'rxjs';
 
 import { DeviceCardComponent } from './device-card';
@@ -90,7 +89,6 @@ describe('DeviceCardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DeviceCardComponent],
       providers: [
-        provideNoopAnimations(),
         { provide: DeviceApiService, useValue: apiSpy },
       ],
     }).compileComponents();
@@ -334,7 +332,7 @@ describe('DeviceCardComponent', () => {
       expect(fixture.debugElement.query(By.css('.power-on, .power-off'))).toBeNull());
 
     it('shows the pi-lock icon on the latch button', () =>
-      expect(fixture.debugElement.query(By.css('[icon="pi pi-lock"]'))).toBeTruthy());
+      expect(fixture.debugElement.query(By.css('.pi-lock'))).toBeTruthy());
 
     it('latch button carries latch-on class', () =>
       expect(fixture.debugElement.query(By.css('.latch-on'))).toBeTruthy());
@@ -351,7 +349,7 @@ describe('DeviceCardComponent', () => {
     beforeEach(() => init(makeDoorLock(false)));
 
     it('shows the pi-lock-open icon', () =>
-      expect(fixture.debugElement.query(By.css('[icon="pi pi-lock-open"]'))).toBeTruthy());
+      expect(fixture.debugElement.query(By.css('.pi-lock-open'))).toBeTruthy());
 
     it('latch button carries latch-off class', () =>
       expect(fixture.debugElement.query(By.css('.latch-off'))).toBeTruthy());
