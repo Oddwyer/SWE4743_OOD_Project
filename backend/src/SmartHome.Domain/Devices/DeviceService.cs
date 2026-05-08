@@ -109,17 +109,10 @@ public class DeviceService : IDeviceService
     {
         var device = GetDeviceById(deviceId);
 
-        if (device == null)
-        {
-            throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
-        }
-
-
         if (device is ThermostatDevice thermostat)
         {
             _simulationService.UnregisterThermostat(thermostat);
         }
-
 
         _deviceRepository.DeleteDevice(deviceId);
     }
