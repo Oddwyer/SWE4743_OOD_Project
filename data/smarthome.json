@@ -11,27 +11,27 @@
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 1
+      "FanSpeed": 2
     },
     {
       "Id": "6bac8a57-3997-4669-9848-bd88a13e8855",
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 3
+      "FanSpeed": 2
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
       "Name": "Left Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -44,7 +44,7 @@
       "Name": "Right Sconce",
       "Type": 0,
       "Location": "Master Bedroom",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -57,7 +57,7 @@
       "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -70,7 +70,7 @@
       "Name": "Right Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -96,12 +96,12 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Entryway",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 50,
+      "LightBrightness": 100,
       "FanSpeed": null
     },
     {
@@ -122,10 +122,10 @@
       "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": true,
-      "DeviceState": "Cooling",
+      "IsOn": false,
+      "DeviceState": "Off",
       "ThermostatMode": 3,
-      "TargetTemperature": 66,
+      "TargetTemperature": 72,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -135,7 +135,7 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -3307,12 +3307,48 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T07:04:51.2852611Z",
       "Operation": "Set target temperature to 66\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "3d13c948-fa06-4bce-9a1b-e532832d54ff",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T11:54:41.0966024Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "295c60a7-eb09-4521-99a7-bf4aa7beefc5",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T11:54:43.2213038Z",
+      "Operation": "Set target temperature to 76\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "b2a66cb0-dcc3-4942-b2da-240814af45f3",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T11:55:43.7364571Z",
+      "Operation": "Set target temperature to 63\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "52499134-335e-4659-9b91-0aa1740dc3b0",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:04:53.2698857Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "8fce6271-3821-456b-ad8e-25e0bf693beb",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:04:57.4018397Z",
+      "Operation": "Set target temperature to 64\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "73709fd3-92dc-427a-8286-e9bbea66e320",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:05:02.6931219Z",
+      "Operation": "Set target temperature to 75\u00B0F for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 67
+      "AmbientTemperature": 75
     }
   ]
 }

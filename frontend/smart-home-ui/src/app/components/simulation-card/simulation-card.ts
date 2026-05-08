@@ -36,6 +36,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
   @Output() simulationChanged = new EventEmitter<void>();
   @Output() speedChanged = new EventEmitter<number>();
   @Output() simulationRunningChanged = new EventEmitter<boolean>();
+  @Output() simulationReset = new EventEmitter<void>();
 
   ambientTemps: Record<string, number> = {};
   displayAmbientTemps: Record<string, number> = {};
@@ -218,7 +219,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
         this.setSimulationRunning(false);
 
         this.speedChanged.emit(this.getSpeedMultiplier(SimulationSpeed.OneX));
-
+        this.simulationReset.emit();
         this.restartAmbientRefresh();
         this.loadAmbientTemperatures();
         this.simulationChanged.emit();

@@ -202,6 +202,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Resets dashboard simulation display state after the backend simulation resets.
    */
   handleSimulationReset(): void {
+    this.stopClock();
     this.simulationSpeed = 1;
     this.simulationSeconds = 0;
     this.currentTime = '00:00:00';

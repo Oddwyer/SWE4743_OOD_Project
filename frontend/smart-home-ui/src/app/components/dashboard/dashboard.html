@@ -49,11 +49,11 @@
       <!-- Simulation controls -->
       <app-simulation-card
         [locations]="thermostatLocations"
-        (speedChanged)="handleSpeedChanged($event)"
         (simulationChanged)="loadDevices()"
+        (speedChanged)="handleSpeedChanged($event)"
         (simulationRunningChanged)="handleSimulationRunningChanged($event)"
+        (simulationReset)="handleSimulationReset()"
       ></app-simulation-card>
-
       <!-- Device management -->
       <app-manage-devices-card
         [devices]="devices"
