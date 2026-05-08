@@ -5,7 +5,7 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -57,7 +57,7 @@
       "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -122,8 +122,8 @@
       "Name": "Living Room Thermostat",
       "Type": 3,
       "Location": "Living Room",
-      "IsOn": false,
-      "DeviceState": "Off",
+      "IsOn": true,
+      "DeviceState": "Idle",
       "ThermostatMode": 3,
       "TargetTemperature": 72,
       "LightColor": null,
@@ -135,7 +135,7 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -3397,12 +3397,36 @@
       "DeviceId": "2106f389-79bf-4bf7-b17f-56bafe7dcee9",
       "Timestamp": "2026-05-08T12:42:40.80593Z",
       "Operation": "Powered off Kitchen Lamp."
+    },
+    {
+      "Id": "5f37da08-b0c6-42bc-b40a-7f767c2bfae2",
+      "DeviceId": "69360665-1e86-4d3c-9511-a683767a68b7",
+      "Timestamp": "2026-05-08T13:42:48.4582459Z",
+      "Operation": "Powered on Left Side Table Lamp."
+    },
+    {
+      "Id": "69b0eb17-fea8-45d2-9d07-8594a0ebfb85",
+      "DeviceId": "7a420ebf-e710-4d03-9079-132323754a2c",
+      "Timestamp": "2026-05-08T13:42:49.4548894Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "ac5f798f-4dae-4dda-a689-2b007feb02a8",
+      "DeviceId": "3d3d13ae-f876-4bf3-bfc7-f1aef0b7f522",
+      "Timestamp": "2026-05-08T13:42:51.0161784Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "ae63ae6a-8222-4077-b482-1acd0790b59e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T13:42:51.7850544Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 75
+      "AmbientTemperature": 72
     },
     {
       "Location": "master bedroom",

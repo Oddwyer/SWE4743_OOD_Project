@@ -8,6 +8,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - ASPNETCORE_ENVIRONMENT=Development
+      - SMART_HOME_DATA_PATH=/data/smarthome.json
     volumes:
       - ./data:/data
     restart: unless-stopped

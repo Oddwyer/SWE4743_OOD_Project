@@ -73,13 +73,13 @@ export class DeviceCardComponent {
    */
   getDeviceTypeLabel(type: string): string {
     const labels: Record<string, string> = {
-      Light: 'Light',
-      Fan: 'Fan',
-      Thermostat: 'Thermostat',
-      DoorLock: 'Door Lock',
+      light: 'Light',
+      fan: 'Fan',
+      thermostat: 'Thermostat',
+      doorLock: 'Door Lock',
     };
 
-    return labels[type] ?? type;
+    return labels[type?.toLowerCase()] ?? type;
   }
 
   /**
