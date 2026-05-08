@@ -22,7 +22,7 @@ import { SimulationSpeed } from '../../types/simulationspeed';
   standalone: true,
   imports: [CommonModule, CardModule, SliderModule, FormsModule],
   templateUrl: './simulation-card.html',
-  styleUrl: './simulation-card.css',
+  styleUrls: ['./simulation-card.css'],
 })
 /**
  * Displays and manages simulation settings.

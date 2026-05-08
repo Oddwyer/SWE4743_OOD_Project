@@ -31,7 +31,7 @@ import { ThermostatMode } from '../../types/thermostatmode';
     SelectButtonModule,
   ],
   templateUrl: './device-card.html',
-  styleUrl: './device-card.css',
+  styleUrls: ['./device-card.css'],
 })
 
 /**

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
@@ -47,7 +47,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private clockIntervalId?: number;
 
-  constructor(private readonly deviceApiService: DeviceApiService) {}
+  constructor(
+    private readonly deviceApiService: DeviceApiService,
+    private readonly cdr: ChangeDetectorRef,
+  ) {}
 
   /**
    * Initializes dashboard data and starts the simulation clock.
@@ -65,10 +68,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
       next: (data: DeviceResponse[]) => {
         this.devices = data;
         this.isLoading = false;
+        this.cdr.detectChanges();
       },
       error: (err: unknown) => {
         console.error('Error loading devices:', err);
         this.isLoading = false;
+        this.cdr.detectChanges();
       },
     });
   }
@@ -98,13 +103,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Groups filtered devices by location and sorts locations/devices alphabetically.
+   * Groups filtered devices by location for display in the dashboard.
    */
-  get groupedDevices() {
+  get groupedDevices(): { location: string; devices: DeviceResponse[] }[] {
     const groups = new Map<string, DeviceResponse[]>();
 
     for (const device of this.filteredDevices) {
-      const location = device.deviceLocation || 'Unknown';
+      const location = device.deviceLocation || 'Unknown Location';
 
       if (!groups.has(location)) {
         groups.set(location, []);
@@ -115,8 +120,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     return Array.from(groups, ([location, devices]) => ({
       location,
-      devices: devices.sort((a, b) => a.deviceName.localeCompare(b.deviceName)),
-    })).sort((a, b) => a.location.localeCompare(b.location));
+      devices,
+    }));
   }
 
   /**
@@ -152,6 +157,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   /**
    * Returns whether the device should count as on for filtering.
+   *
+   * Door locks are latch devices and always count as on.
+   * Thermostat Idle does not count as on because only Heating/Cooling are active.
    */
   private isDeviceConsideredOn(device: DeviceResponse): boolean {
     if (device.type === 'DoorLock') {
@@ -167,6 +175,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   /**
    * Returns whether the device should count as off for filtering.
+   *
+   * Door locks are latch devices and are never considered off.
    */
   private isDeviceConsideredOff(device: DeviceResponse): boolean {
     if (device.type === 'DoorLock') {
@@ -214,7 +224,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    */
   get thermostatLocations(): string[] {
     const locations = this.devices
-      .filter((device) => device.type === 'Thermostat')
+      .filter((device) => device.type?.toString().toLowerCase() === 'thermostat')
       .map((device) => device.deviceLocation)
       .filter((location): location is string => !!location);
 
@@ -222,62 +232,43 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Resets dashboard simulation display state after backend simulation reset.
+   * Resets dashboard simulation display state after the backend simulation resets.
    */
   handleSimulationReset(): void {
     this.simulationSpeed = 1;
     this.simulationSeconds = 0;
 
-    queueMicrotask(() => {
+    setTimeout(() => {
       this.currentTime = '00:00:00';
     });
 
-    this.restartClock();
     this.loadDevices();
-  }
-
-  /**
-   * Updates the active simulation speed and restarts the clock interval.
-   */
-  handleSpeedChanged(speed: number): void {
-    this.simulationSpeed = speed;
-    this.restartClock();
   }
 
   /**
    * Starts the simulation clock interval.
    */
   private startClock(): void {
-    this.restartClock();
-  }
-
-  /**
-   * Restarts the simulation clock using the current speed multiplier.
-   */
-  private restartClock(): void {
-    if (this.clockIntervalId !== undefined) {
-      window.clearInterval(this.clockIntervalId);
-      this.clockIntervalId = undefined;
-    }
-
-    const interval = 1000 / this.simulationSpeed;
+    this.updateClock();
 
     this.clockIntervalId = window.setInterval(() => {
       this.updateClock();
-    }, interval);
+    }, 1000);
   }
 
   /**
-   * Advances the displayed simulation clock by one simulated second.
+   * Advances the displayed simulation clock based on the current speed multiplier.
    */
   private updateClock(): void {
-    this.simulationSeconds++;
+    const speed = Number(this.simulationSpeed) || 1;
+
+    this.simulationSeconds += speed;
 
     const hours = Math.floor(this.simulationSeconds / 3600) % 24;
     const minutes = Math.floor((this.simulationSeconds % 3600) / 60);
     const seconds = this.simulationSeconds % 60;
 
-    queueMicrotask(() => {
+    setTimeout(() => {
       this.currentTime =
         `${hours.toString().padStart(2, '0')}:` +
         `${minutes.toString().padStart(2, '0')}:` +
