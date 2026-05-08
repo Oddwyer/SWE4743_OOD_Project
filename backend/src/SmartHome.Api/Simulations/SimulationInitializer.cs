@@ -2,6 +2,7 @@ using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Thermostat;
 
+namespace SmartHome.Api.Simulations;
 /// <summary>
 /// Loads persisted devices at startup and enrolls thermostats into the simulation before the first tick.
 /// </summary>

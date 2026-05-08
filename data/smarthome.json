@@ -5,7 +5,7 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -57,7 +57,7 @@
       "Name": "Left Side Table Lamp",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -135,7 +135,7 @@
       "Name": "Overhead Light",
       "Type": 0,
       "Location": "Living Room",
-      "IsOn": true,
+      "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
@@ -3420,6 +3420,42 @@
       "Id": "ae63ae6a-8222-4077-b482-1acd0790b59e",
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T13:42:51.7850544Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "9c5f0718-8284-42d5-ba0f-640496b8251e",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:04:14.6158554Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "7af77d65-8523-4c9e-9181-b9ff457635dc",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:04:25.4467505Z",
+      "Operation": "Set target temperature to 68\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "4c874274-af5c-4625-add2-211f99ff2e1f",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:05:17.7837619Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "6db89d3f-878a-480f-b882-b12adbdfe3f6",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:06:32.8261416Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "25f9645d-62c4-439b-8522-005bf668ccd4",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:06:37.6560585Z",
+      "Operation": "Set target temperature to 67\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "8670afb4-bda0-491f-bbac-4c8e5c27d6e7",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T15:11:33.1883892Z",
       "Operation": "Powered on Living Room Thermostat."
     }
   ],

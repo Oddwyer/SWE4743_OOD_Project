@@ -1,4 +1,4 @@
-using SmartHome.Domain;
+using SmartHome.Api.Simulations;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Fan;
