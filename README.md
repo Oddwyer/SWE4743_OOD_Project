@@ -267,7 +267,7 @@ docker-compose.yml
 
 ## Demo & Walkthrough Videos
 
-[Application Demo](https://www.loom.com/share/33400f871fc44efc96f3020c9ab1c3e5)
+[Application Demo](https://www.loom.com/share/548398bc6e494c6aac0fa27718c3252a)
 
 // TODO: Architecture Walkthrough:
 [Archtecture Walkthrough](place link here!!!)
