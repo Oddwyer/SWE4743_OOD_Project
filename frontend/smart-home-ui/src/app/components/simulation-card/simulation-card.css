@@ -60,13 +60,13 @@
 .setting-row i,
 .setting-row .icon,
 .simulation-icon {
-    width: 1rem;
-    min-width: 1rem;
+    width: 1.rem;
+    min-width: 1.rem;
     flex-shrink: 0;
 
-    margin-top: 0.2rem;
+    margin-top: 0rem;
 
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     color: #ffffff;
 }
 
