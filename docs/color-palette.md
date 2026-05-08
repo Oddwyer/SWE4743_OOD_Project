@@ -2,15 +2,16 @@
 
 This project uses a color palette designed for:
 
-- Readability (WCAG contrast compliant)
-- Color vision deficiency support (deuteranopia-friendly)
-- Clear UI state separation (no reliance on red/green)
+- High readability
+- WCAG-aware contrast choices
+- Deuteranopia-friendly differentiation
+- Clear UI state separation without relying solely on color
 
 ---
 
 ## Palette Preview
 
-<img src="palette.png" width="600"/>
+<img src="smarthomepalette.svg" width="600"/>
 
 ---
 
@@ -21,8 +22,8 @@ This project uses a color palette designed for:
 | Background       | `#FFFFFF`            | App background                      |
 | Card Surface     | `#D1D5DB`            | Cards, panels                       |
 | Primary Text     | `#343D4C`, `#000000` | Headings, body text                 |
-| Action (Primary) | `#134ECD`,`#f1d576`  | Buttons, toggles, links             |
-| State / Accent   | `#A1683A`, `#b58e75` | Active states, thermostat, emphasis |
+| Action (Primary) | `#134ECD`, `#F1D576` | Buttons, toggles, links             |
+| State / Accent   | `#A1683A`, `#B58E75` | Active states, thermostat, emphasis |
 
 ---
 
@@ -41,6 +42,5 @@ All states must include:
 
 The following are intentionally avoided:
 
-- Green (collapses in deuteranopia)
-- Red/Green combinations
-- Yellow/Lime accents (shift unpredictably)
+- Red/green dependent status indicators
+- Low-contrast yellow/lime UI accents on light backgrounds

@@ -92,9 +92,9 @@ builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
-// swapping json for sqlite repository for ORM implementation
-builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
-builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
+// Extra credit SQLite/ORM implementation in progress but is not currently wired as the active repository.
+//builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
+//builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
 
 // Register command and strategy factories.
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
