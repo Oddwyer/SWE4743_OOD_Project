@@ -21,6 +21,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Register MVC controllers and configure API behavior.
+// Includes:
+// - RFC/problem+json validation responses
+// - camelCase JSON serialization
+// - enum serialization as readable strings instead of integers
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -28,7 +33,7 @@ builder.Services.AddControllers()
         {
             var problemDetails = new ValidationProblemDetails(context.ModelState)
             {
-                Type = "https://httpstatuses.com/400",
+                Type = "about:blank",
                 Title = "One or more validation errors occurred.",
                 Status = StatusCodes.Status400BadRequest,
                 Instance = context.HttpContext.Request.Path
@@ -39,6 +44,14 @@ builder.Services.AddControllers()
                 ContentTypes = { "application/problem+json" }
             };
         };
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter(
+                JsonNamingPolicy.CamelCase,
+                allowIntegerValues: false)
+        );
     });
 
 builder.Services.AddFluentValidationAutoValidation();
@@ -98,15 +111,6 @@ builder.Services.AddDbContext<SmartHomeDbContext>(options =>
 {
     options.UseSqlite("Data Source=SmartHome.db");
 });
-
-// Configure JSON serialization to use camelCase and serialize enums as strings.
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(
-            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false)
-        );
-    });
 
 // Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>

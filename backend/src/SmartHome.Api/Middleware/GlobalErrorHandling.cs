@@ -28,7 +28,7 @@ public class GlobalErrorHandling
             await WriteErrorResponse(
                 context,
                 HttpStatusCode.NotFound,
-                "https://httpstatuses.com/404",
+                "about:blank",
                 "Not Found",
                 "The requested resource could not be found.");
         }
@@ -38,7 +38,7 @@ public class GlobalErrorHandling
             await WriteErrorResponse(
                 context,
                 HttpStatusCode.BadRequest,
-                "https://httpstatuses.com/400",
+                "about:blank",
                 "Invalid Request Range",
                 "One or more values were outside the allowed range.");
         }
@@ -48,7 +48,7 @@ public class GlobalErrorHandling
             await WriteErrorResponse(
                 context,
                 HttpStatusCode.BadRequest,
-                "https://httpstatuses.com/400",
+                "about:blank",
                 "Bad Request",
                 "The request contains invalid input.");
         }
@@ -58,7 +58,7 @@ public class GlobalErrorHandling
             await WriteErrorResponse(
                 context,
                 HttpStatusCode.BadRequest,
-                "https://httpstatuses.com/400",
+                "about:blank",
                 "Invalid Operation",
                 "The requested operation could not be completed.");
         }
@@ -68,7 +68,7 @@ public class GlobalErrorHandling
             await WriteErrorResponse(
                 context,
                 HttpStatusCode.NotImplemented,
-                "https://httpstatuses.com/501",
+                "about:blank",
                 "Not Implemented",
                 "This feature is not implemented.");
         }
@@ -78,7 +78,7 @@ public class GlobalErrorHandling
             await WriteErrorResponse(
                 context,
                 HttpStatusCode.InternalServerError,
-                "https://httpstatuses.com/500",
+                "about:blank",
                 "Internal Server Error",
                 "An unexpected error occurred. Please try again later.");
         }
