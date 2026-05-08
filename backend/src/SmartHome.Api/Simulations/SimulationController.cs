@@ -39,7 +39,7 @@ public class SimulationController : ControllerBase
     [HttpPut("speed")]
     [ProducesResponseType(typeof(SimulationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult SetSimulationSpeed([FromBody] SetSimulationSpeedRequest request)
+    public IActionResult SetSimulationSpeed([FromBody] SimulationSpeedRequest request)
     {
         _simulationService.SetSimulationSpeed(request.SpeedMultiplier);
         return Ok(new SimulationResponse

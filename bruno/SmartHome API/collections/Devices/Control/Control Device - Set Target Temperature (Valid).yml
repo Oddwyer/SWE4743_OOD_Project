@@ -11,7 +11,7 @@ http:
     data: |-
       {
         "command": "setTargetTemperature",
-        "targetTemperature": 68
+        "targetTemperature": 76
       }
   auth: inherit
 

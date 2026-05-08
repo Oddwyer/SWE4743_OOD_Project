@@ -172,13 +172,9 @@ public class DeviceServiceTests
             LastUnregisteredThermostat = thermostat;
         }
 
-        public void UpdateAmbientTemperature()
-        {
-        }
+        public void UpdateAmbientTemperature() { }
 
-        public void startSimulation()
-        {
-        }
+        public void StartSimulation() { }
     }
 
     private static DeviceService CreateDeviceService(

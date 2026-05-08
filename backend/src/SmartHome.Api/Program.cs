@@ -59,23 +59,33 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-builder.Services.AddSingleton<SimulationRuntime>();
+// Register shared simulation runtime services.
+// These are singletons because ticker/runtime state should survive across requests.
 builder.Services.AddSingleton<SimulationTicker>();
+builder.Services.AddSingleton<SimulationRuntime>();
 
-builder.Services.AddScoped<ISimulationService, SimulationService>();
+// Initializes runtime simulation state from persisted devices on startup.
+builder.Services.AddSingleton<SimulationInitializer>();
+
+// Register application services.
+builder.Services.AddSingleton<ISimulationService, SimulationService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 
-builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
-builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
-builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+// Register device factories.
+builder.Services.AddSingleton<IDeviceTypeFactory, LightDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
-builder.Services.AddScoped<JsonRepository>(); // gets replaced for ORM and sqlite
-builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+// Register command and strategy factories.
+builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
+builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
+
+// Register JSON repository and expose it through repository interfaces.
+builder.Services.AddSingleton<JsonRepository>();
+builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // this will be commented out while I build out the rest of the ORM components
 // builder.Services.AddScoped<SqliteRepository>();
@@ -91,18 +101,29 @@ builder.Services.AddControllers()
         );
     });
 
-// TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
+// Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(
+             "http://localhost:4200",
+                "https://localhost:4200"
+        )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
 var app = builder.Build();
+
+// Populate shared simulation runtime state from persisted devices.
+// This runs from Program.cs because it is application startup orchestration.
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<SimulationInitializer>();
+    initializer.Initialize();
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();

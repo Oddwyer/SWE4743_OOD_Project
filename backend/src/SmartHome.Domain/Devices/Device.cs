@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-using System.Windows.Input;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Contracts;
 
@@ -34,6 +32,14 @@ public abstract class Device : IDevice
 
     }
 
-    public IDeviceCommand CreateCommand(IDevice device, CommandData data) => CommandFactory.CreateCommand(device, data);
+    /// <summary>
+    /// Creates a command for this device using the configured command factory.
+    /// </summary>
+    public IDeviceCommand CreateCommand(IDevice device, CommandData data) => CommandFactory.CreateCommand(this, data);
+
+    /// <summary>
+    /// Resets the device to its factory default state.
+    /// </summary>
+    public abstract void ResetToDefault();
 
 }

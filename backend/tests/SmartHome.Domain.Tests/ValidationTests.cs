@@ -46,8 +46,8 @@ public class ValidationTests
     [Fact]
     public void SetAmbientTemperatureRequestValidator_OutOfRange_FailsValidation()
     {
-        var validator = new SetAmbientTemperatureRequestValidator();
-        var request = new SetAmbientTemperatureRequest
+        var validator = new AmbientTemperatureRequestValidator();
+        var request = new AmbientTemperatureRequest
         {
             Temperature = 200
         };
@@ -55,14 +55,14 @@ public class ValidationTests
         var result = validator.Validate(request);
 
         Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, error => error.PropertyName == nameof(SetAmbientTemperatureRequest.Temperature));
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(AmbientTemperatureRequest.Temperature));
     }
 
     [Fact]
     public void SetSimulationSpeedRequestValidator_InvalidValue_FailsValidation()
     {
-        var validator = new SetSimulationSpeedRequestValidator();
-        var request = new SetSimulationSpeedRequest
+        var validator = new SimulationSpeedRequestValidator();
+        var request = new SimulationSpeedRequest
         {
             SpeedMultiplier = (SimulationSpeed)999
         };
@@ -70,7 +70,7 @@ public class ValidationTests
         var result = validator.Validate(request);
 
         Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, error => error.PropertyName == nameof(SetSimulationSpeedRequest.SpeedMultiplier));
+        Assert.Contains(result.Errors, error => error.PropertyName == nameof(SimulationSpeedRequest.SpeedMultiplier));
     }
 
     [Fact]

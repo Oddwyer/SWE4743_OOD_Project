@@ -5,12 +5,17 @@ namespace SmartHome.Domain.Devices.Thermostat;
 
 public class ThermostatDevice : Device, IPoweredDevice
 {
-    public int TargetTemperature { get; private set; } = 72; // Default target temperature
-    public IThermostatModeStrategy CurrentStrategy { get; private set; }
-    public ThermostatMode Mode { get; private set; }
+    private const int DefaultTargetTemperature = 72;
+
+    public int DefaultTemperature => DefaultTargetTemperature;
+    private const ThermostatMode defaultMode = ThermostatMode.Auto;
 
     public int MinTemperature => 60; // Minimum allowed temperature
     public int MaxTemperature => 80; // Maximum allowed temperature
+
+    public int TargetTemperature { get; private set; } = DefaultTargetTemperature;
+    public IThermostatModeStrategy CurrentStrategy { get; private set; }
+    public ThermostatMode Mode { get; private set; } = defaultMode;
 
     // States
     private DevicePowerState _powerState = DevicePowerState.Off; // Default power state; has sub-states for Idle, Heating, Cooling.
@@ -18,7 +23,6 @@ public class ThermostatDevice : Device, IPoweredDevice
     public CoolingState Cooling { get; private set; }
     public HeatingState Heating { get; private set; }
     public OffState Off { get; private set; }
-
     private IThermostatState _currentState;
 
     // Helper property to expose current state type for API responses and persistence.     
@@ -168,4 +172,16 @@ public class ThermostatDevice : Device, IPoweredDevice
        };
     }
 
+    /// <summary>
+    /// Resets device properties to default settings.
+    /// </summary>
+    public override void ResetToDefault()
+    {
+        _powerState = DevicePowerState.Off;
+        _currentState = Off;
+        TargetTemperature = DefaultTemperature;
+        SetMode(defaultMode, new AutoModeStrategy());
+        UpdatedAt = DateTime.UtcNow;
+
+    }
 }

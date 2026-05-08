@@ -5,9 +5,9 @@ namespace SmartHome.Api.Simulations;
 /// <summary>
 /// Ensures that the simulation speed is a valid enum value.
 /// </summary>
-public class SetSimulationSpeedRequestValidator : AbstractValidator<SetSimulationSpeedRequest>
+public class SimulationSpeedRequestValidator : AbstractValidator<SimulationSpeedRequest>
 {
-    public SetSimulationSpeedRequestValidator()
+    public SimulationSpeedRequestValidator()
     {
         RuleFor(x => x.SpeedMultiplier)
             .IsInEnum()

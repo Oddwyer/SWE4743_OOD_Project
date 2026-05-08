@@ -16,7 +16,6 @@ namespace SmartHome.Infrastructure;
 public class JsonRepository : IDeviceRepository, ILocationRepository
 {
     private readonly List<IDevice> _devices = new();
-
     private static readonly object _fileLock = new();
     private readonly Dictionary<string, int> _locations = new();
     private readonly List<CommandHistoryEntry> _commandHistory = new();
@@ -127,25 +126,32 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     /// </summary>
     private void LoadFromFile()
     {
-        // Check if file path exists and if so, read JSON file, deserialize into devices, and rehydrate to local repository.
-        if (!File.Exists(_filePath))
+        lock (_fileLock)
         {
-            return;
+            if (!File.Exists(_filePath))
+            {
+                return;
+            }
+
+            var json = File.ReadAllText(_filePath);
+
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                return;
+            }
+
+            var data = JsonSerializer.Deserialize<SmartHomeDataSnapshot>(json);
+
+            if (data == null)
+            {
+                return;
+            }
+
+            LoadDevices(data);
+            LoadHistory(data);
+            LoadLocations(data);
         }
-
-        var json = File.ReadAllText(_filePath);
-        var data = JsonSerializer.Deserialize<SmartHomeDataSnapshot>(json);
-
-        if (data == null)
-        {
-            return;
-        }
-
-        LoadDevices(data);
-        LoadHistory(data);
-        LoadLocations(data);
     }
-
     /// <summary>
     /// Rehydrates device snapshots into real domain device objects using the factory and stores them in memory.
     /// </summary>
@@ -198,23 +204,22 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     /// </summary>
     private void SaveToFile()
     {
-        var data = new SmartHomeDataSnapshot
-        {
-            Devices = DehydrateDevices(),
-            CommandHistory = DehydrateHistory(),
-            Locations = DehydrateLocations()
-        };
-
-
-        var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
-        {
-            WriteIndented = true
-        });
         lock (_fileLock)
         {
+            var data = new SmartHomeDataSnapshot
+            {
+                Devices = DehydrateDevices(),
+                CommandHistory = DehydrateHistory(),
+                Locations = DehydrateLocations()
+            };
+
+            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
             File.WriteAllText(_filePath, json);
         }
-
     }
 
     /// <summary>

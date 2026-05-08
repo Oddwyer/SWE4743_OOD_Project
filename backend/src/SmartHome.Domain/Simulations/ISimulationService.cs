@@ -18,8 +18,8 @@ public interface ISimulationService
 
     // speed control
     void SetSimulationSpeed(SimulationSpeed speedMultiplier);
-    
+
     // simulation control
-    void startSimulation();
+    void StartSimulation();
     void ResetSimulation();
 }

@@ -193,7 +193,7 @@ public class StateMachineTests
         var command = commandFactory.CreateCommand(thermostat, new CommandData
         {
             Command = DeviceCommandType.SetThermostatMode,
-            Mode = ThermostatMode.Cool
+            ThermostatMode = ThermostatMode.Cool
         });
 
         command.Execute();

@@ -91,6 +91,12 @@ public class DeviceService : IDeviceService
         _deviceRepository.SaveDevice(device);
         _deviceRepository.SaveHistoryEntry(new CommandHistoryEntry(device.Id, command));
 
+        // After mode/target/power changes, runtime needs the updated thermostat.
+        if (device is ThermostatDevice updatedThermostat)
+        {
+            _simulationService.RegisterThermostat(updatedThermostat);
+        }
+
         return device;
     }
 

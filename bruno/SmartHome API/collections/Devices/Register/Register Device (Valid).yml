@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "deviceName": "Living Room Light",
+        "deviceName": "Living Room Floor Lamp",
         "deviceLocation": "Living Room",
         "type": "Light"
       }

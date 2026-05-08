@@ -1,0 +1,353 @@
+/* =========================
+   MANAGE DEVICES CARD
+   ========================= */
+
+:host {
+  display: block;
+}
+
+.manage-devices-card {
+  margin-top: 0.75rem;
+  background: rgba(52, 61, 76, 0.9);
+  border-left: 6px solid #343d4c;
+  border-radius: 14px;
+  padding: 1rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.manage-devices-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.manage-devices-card-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.manage-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-bottom: 0.9rem;
+}
+
+.manage-section:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 0.9rem;
+}
+
+.manage-section h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* =========================
+   CARD BUTTONS
+   ========================= */
+
+.manage-button {
+  width: 100%;
+  min-height: 2.35rem;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 0.65rem;
+  background: #f1d576;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.manage-button:hover {
+  opacity: 0.92;
+}
+
+.manage-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.danger-button {
+  background: rgba(223, 231, 251, 0.9);
+}
+
+
+
+/* =========================
+   MODALS
+   ========================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.higher-modal {
+  z-index: 1100;
+}
+
+.picker-modal {
+  width: min(390px, 92vw);
+  max-height: 88vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+
+  padding: 1rem;
+  border-left: 6px solid #343d4c;
+  border-radius: 14px;
+  background: rgba(52, 61, 76, 0.98);
+  color: #ffffff;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+.small-modal {
+  width: min(320px, 92vw);
+}
+
+.history-modal {
+  width: min(620px, 92vw);
+}
+
+.picker-modal h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-help {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #f1d576;
+  opacity: 0.95;
+}
+
+.selected-option {
+  border: 1px solid #e8d27c;
+  background: rgba(232, 210, 124, 0.15);
+}
+
+/* =========================
+   MODAL FORM FIELDS
+   ========================= */
+
+.manage-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.manage-field span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.manage-field input,
+:host ::ng-deep .manage-field .p-inputtext {
+  width: 100%;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.65rem !important;
+  border: 2px solid rgba(241, 213, 118, 0.75) !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+}
+
+.manage-field input::placeholder {
+  color: #4b5563;
+  opacity: 1;
+}
+
+/* =========================
+   PICKER BUTTONS
+   ========================= */
+
+.picker-button {
+  width: 100%;
+  min-height: 2.45rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+
+  background: rgba(52, 61, 76, 0.95);
+  color: #ffffff;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.picker-button strong {
+  font-weight: 700;
+}
+
+.modal-option,
+.modal-cancel,
+.modal-confirm {
+  width: 100%;
+  min-height: 2.5rem;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+
+  text-align: left;
+  font-weight: 700;
+}
+
+.modal-option span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 1;
+}
+
+.modal-option:hover,
+.selected-option {
+  background: rgba(241, 213, 118, 0.22);
+  border-color: rgba(241, 213, 118, 0.7);
+}
+
+.modal-confirm {
+  border: none;
+  background: #f1d576;
+  color: #000000;
+  font-weight: 700;
+}
+
+.modal-confirm:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.danger-confirm {
+  background: rgba(255, 255, 255, 0.92);
+  color: #000000;
+
+}
+
+.modal-confirm:hover {
+  background: #f1d576;
+  color: #000000;
+}
+
+.modal-cancel {
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.modal-cancel:hover {
+  background: #f1d576;
+  color: #000000;
+}
+
+/* =========================
+   REMOVE CONFIRMATION
+   ========================= */
+
+.confirm-warning {
+  padding: 0.65rem;
+  border-radius: 10px;
+  color: #f1d576;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* =========================
+   HISTORY
+   ========================= */
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.history-entry {
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.history-command {
+  font-weight: 700;
+}
+
+.history-time {
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #DFE7FB;
+  opacity: 1;
+}
+
+.empty-message {
+  margin: 0;
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 700px) {
+
+  .picker-modal,
+  .history-modal,
+  .small-modal {
+    width: 94vw;
+    max-height: 86vh;
+  }
+
+  .modal-option {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .modal-option span {
+    font-size: 0.95rem;
+  }
+}

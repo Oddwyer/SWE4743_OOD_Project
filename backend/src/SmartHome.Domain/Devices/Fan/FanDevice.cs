@@ -12,8 +12,8 @@ public class FanDevice : Device, IPoweredDevice
     public IFanState On { get; private set; }
     private IFanState _currentState;
 
-
-    public FanSpeed Speed { get; private set; } = FanSpeed.Medium; // Default speed
+    private const FanSpeed defaultSpeed = FanSpeed.Medium; // Default speed
+    public FanSpeed Speed { get; private set; }
 
     public FanDevice(Guid id, string name, string location) : base(id, name, location, DeviceType.Fan, new FanCommandFactory())
     {
@@ -67,7 +67,7 @@ public class FanDevice : Device, IPoweredDevice
 
     /// <summary>
     /// Sets the fan speed (used by states).
-    /// <summary>
+    /// </summary>
     internal void SetFanSpeedInternal(FanSpeed newSpeed)
     {
         Speed = newSpeed;
@@ -86,7 +86,7 @@ public class FanDevice : Device, IPoweredDevice
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
+    /// </summary>
     internal void RehydrateState(DevicePowerState powerState, FanSpeed speed)
     {
         _powerState = powerState;
@@ -94,6 +94,17 @@ public class FanDevice : Device, IPoweredDevice
         _currentState = powerState == DevicePowerState.On ? On : Off;
     }
 
+    /// <summary>
+    /// Resets device properties to default settings.
+    /// </summary>
+    public override void ResetToDefault()
+    {
+        _powerState = DevicePowerState.Off;
+        _currentState = Off;
+        Speed = FanSpeed.Medium;
+        UpdatedAt = DateTime.UtcNow;
+
+    }
 
 }
 

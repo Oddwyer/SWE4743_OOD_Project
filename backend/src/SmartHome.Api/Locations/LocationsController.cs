@@ -30,7 +30,8 @@ public class LocationsController : ControllerBase
             Location = location,
             AmbientTemperature = temperature,
             MinTemperature = SimulationService.MinAmbientTemperature,
-            MaxTemperature = SimulationService.MaxAmbientTemperature
+            MaxTemperature = SimulationService.MaxAmbientTemperature,
+            DefaultTemperature = SimulationService.DefaultAmbientTemperature
         });
 
     }
@@ -41,13 +42,16 @@ public class LocationsController : ControllerBase
     [HttpPut("{location}/ambient-temperature")]
     [ProducesResponseType(typeof(AmbientTemperatureResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult SetAmbientTemperature(string location, [FromBody] SetAmbientTemperatureRequest request)
+    public IActionResult SetAmbientTemperature(string location, [FromBody] AmbientTemperatureRequest request)
     {
         _simulationService.SetAmbientTemperature(location, request.Temperature);
         return Ok(new AmbientTemperatureResponse
         {
             Location = location,
-            AmbientTemperature = request.Temperature
+            AmbientTemperature = request.Temperature,
+            MinTemperature = SimulationService.MinAmbientTemperature,
+            MaxTemperature = SimulationService.MaxAmbientTemperature,
+            DefaultTemperature = SimulationService.DefaultAmbientTemperature
         });
     }
 

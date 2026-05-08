@@ -5,11 +5,11 @@ using SmartHome.Domain.Simulations;
 namespace SmartHome.Api.Locations;
 
 /// <summary>
-/// Validator for SetAmbientTemperatureRequest. Ensures that the temperature is within a valid range.
+/// Validator for Set ambient temperature request. Ensures that the temperature is within a valid range.
 /// </summary>
-public class SetAmbientTemperatureRequestValidator : AbstractValidator<SetAmbientTemperatureRequest>
+public class AmbientTemperatureRequestValidator : AbstractValidator<AmbientTemperatureRequest>
 {
-    public SetAmbientTemperatureRequestValidator()
+    public AmbientTemperatureRequestValidator()
     {
         RuleFor(x => x.Temperature)
             .InclusiveBetween(SimulationService.MinAmbientTemperature, SimulationService.MaxAmbientTemperature)

@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "temperature": 70
+        "temperature": 78
       }
   auth: inherit
 

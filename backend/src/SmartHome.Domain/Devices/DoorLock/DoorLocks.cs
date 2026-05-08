@@ -68,13 +68,21 @@ public class DoorLocks : Device, ILatchedDevice
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
+    /// </summary>
     internal void RehydrateState(DeviceLatchState latchState)
     {
         _latchState = latchState;
         _currentState = latchState == DeviceLatchState.Locked ? Locked : Unlocked;
     }
 
-
+    /// <summary>
+    /// Resets device properties to default settings.
+    /// </summary>
+    public override void ResetToDefault()
+    {
+        _latchState = DeviceLatchState.Locked;
+        _currentState = Locked;
+        UpdatedAt = DateTime.UtcNow;
+    }
 
 }

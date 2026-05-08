@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/api/Devices/5589731f-a375-4692-8680-0684c13f3e9d"
+  url: "{{baseUrl}}/api/Devices/73575364-74f3-4411-a300-fe401151e53f"
   auth: inherit
 
 settings:

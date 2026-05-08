@@ -1,36 +1,63 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
+import { DeviceResponse } from '../devicemodels/deviceresponse';
+import { RegisterDeviceRequest } from '../devicemodels/registerdevicerequest';
+import { ControlDeviceRequest } from '../devicemodels/controldevicerequest';
+import { CommandHistoryResponse } from '../historymodels/commandhistoryresponse';
+
+/**
+ * Handles device-related API calls.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DeviceApiService {
+  private readonly baseUrl = `${environment.apiBaseUrl}/devices`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
-  getAllDevices() {
-    return this.http.get<any[]>(`http://localhost:5000/api/devices`);
+  /**
+   * Retrieve all devices.
+   */
+  getAllDevices(): Observable<DeviceResponse[]> {
+    return this.http.get<DeviceResponse[]>(this.baseUrl);
   }
 
-  getDeviceById(id: string) {
-    return this.http.get(`http://localhost:5000/api/devices/${id}`);
+  /**
+   * Retrieve a device by ID.
+   */
+  getDeviceById(deviceId: string): Observable<DeviceResponse> {
+    return this.http.get<DeviceResponse>(`${this.baseUrl}/${deviceId}`);
   }
 
-  controlDevice(id: string, data: any) {
-    return this.http.put(`http://localhost:5000/api/devices/${id}/commands`, data);
+  /**
+   * Register a new device.
+   */
+  registerDevice(request: RegisterDeviceRequest): Observable<DeviceResponse> {
+    return this.http.post<DeviceResponse>(this.baseUrl, request);
   }
 
-  getDeviceHistory(id: string) {
-    return this.http.get(`http://localhost:5000/api/devices/${id}/history`);
+  /**
+   * Remove a device by ID.
+   */
+  removeDevice(deviceId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${deviceId}`);
   }
 
-  registerDevice(data: any) {
-    return this.http.post(`http://localhost:5000/api/devices`, data);
+  /**
+   * Send a control command to a device.
+   */
+  controlDevice(deviceId: string, request: ControlDeviceRequest): Observable<DeviceResponse> {
+    return this.http.put<DeviceResponse>(`${this.baseUrl}/${deviceId}/commands`, request);
   }
 
-  removeDevice(id: string) {
-    return this.http.delete(`http://localhost:5000/api/devices/${id}`);
+  /**
+   * Retrieve command history for a device.
+   */
+  getCommandHistory(deviceId: string): Observable<CommandHistoryResponse[]> {
+    return this.http.get<CommandHistoryResponse[]>(`${this.baseUrl}/${deviceId}/history`);
   }
-
-
 }
