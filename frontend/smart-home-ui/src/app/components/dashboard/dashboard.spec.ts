@@ -439,20 +439,20 @@ describe('DashboardComponent', () => {
   // ── getLocationIcon ────────────────────────────────────────────────────────
 
   describe('getLocationIcon', () => {
-    it('returns home icon for "Living Room"', () => {
-      expect(component.getLocationIcon('Living Room')).toBe('pi pi-home');
+    it('returns living icon for "Living Room"', () => {
+      expect(component.getLocationIcon('Living Room')).toBe('living');
     });
 
-    it('returns moon icon for "Bedroom"', () => {
-      expect(component.getLocationIcon('Bedroom')).toBe('pi pi-moon');
+    it('returns king_bed icon for "Bedroom"', () => {
+      expect(component.getLocationIcon('Bedroom')).toBe('king_bed');
     });
 
-    it('returns sign-in icon for a location containing "entry"', () => {
-      expect(component.getLocationIcon('Entry Hall')).toBe('pi pi-sign-in');
+    it('returns door_open icon for a location containing "entry"', () => {
+      expect(component.getLocationIcon('Entry Hall')).toBe('door_open');
     });
 
-    it('returns map marker for an unrecognized location', () => {
-      expect(component.getLocationIcon('Garage')).toBe('pi pi-map-marker');
+    it('returns home icon for an unrecognized location', () => {
+      expect(component.getLocationIcon('Basement')).toBe('home');
     });
   });
 

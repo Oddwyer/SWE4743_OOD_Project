@@ -3595,6 +3595,12 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T18:35:44.3611926Z",
       "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "ba2ef16a-5aa0-43c6-b43b-eb83a9ce8f37",
+      "DeviceId": "7df5c262-fd24-4e3f-8d13-9f20390ca43e",
+      "Timestamp": "2026-05-08T18:41:18.8947579Z",
+      "Operation": "Powered on media room thermostat."
     }
   ],
   "Locations": [
@@ -3604,6 +3610,10 @@
     },
     {
       "Location": "master bedroom",
+      "AmbientTemperature": 72
+    },
+    {
+      "Location": "media room",
       "AmbientTemperature": 72
     }
   ]

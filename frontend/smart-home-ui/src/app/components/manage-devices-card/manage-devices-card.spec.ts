@@ -154,6 +154,42 @@ describe('ManageDevicesCardComponent', () => {
       });
     });
 
+    it('converts an all-lowercase device name to Title Case', () => {
+      component.newDeviceName = 'desk lamp';
+      component.newDeviceLocation = 'Office';
+      component.addDevice();
+      expect(apiSpy.registerDevice).toHaveBeenCalledWith(
+        expect.objectContaining({ deviceName: 'Desk Lamp' }),
+      );
+    });
+
+    it('converts an all-lowercase location to Title Case', () => {
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = 'living room';
+      component.addDevice();
+      expect(apiSpy.registerDevice).toHaveBeenCalledWith(
+        expect.objectContaining({ deviceLocation: 'Living Room' }),
+      );
+    });
+
+    it('normalises ALLCAPS input to Title Case', () => {
+      component.newDeviceName = 'CEILING FAN';
+      component.newDeviceLocation = 'BEDROOM';
+      component.addDevice();
+      expect(apiSpy.registerDevice).toHaveBeenCalledWith(
+        expect.objectContaining({ deviceName: 'Ceiling Fan', deviceLocation: 'Bedroom' }),
+      );
+    });
+
+    it('preserves already-correct Title Case unchanged', () => {
+      component.newDeviceName = 'Front Door Lock';
+      component.newDeviceLocation = 'Entryway';
+      component.addDevice();
+      expect(apiSpy.registerDevice).toHaveBeenCalledWith(
+        expect.objectContaining({ deviceName: 'Front Door Lock', deviceLocation: 'Entryway' }),
+      );
+    });
+
     it('closes the modal on success', () => {
       component.showAddDeviceModal = true;
       component.newDeviceName = 'Lamp';

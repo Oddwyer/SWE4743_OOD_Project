@@ -81,8 +81,8 @@ export class ManageDevicesCardComponent {
   /** Register a new device through the API. */
   addDevice(): void {
     const request: RegisterDeviceRequest = {
-      deviceName: this.newDeviceName.trim(),
-      deviceLocation: this.newDeviceLocation.trim(),
+      deviceName: this.toTitleCase(this.newDeviceName.trim()),
+      deviceLocation: this.toTitleCase(this.newDeviceLocation.trim()),
       type: this.selectedDeviceType,
     };
 
@@ -171,6 +171,14 @@ export class ManageDevicesCardComponent {
   /** Get display location for a selected device ID. */
   getDeviceLocation(deviceId: string): string {
     return this.devices.find((device) => device.id === deviceId)?.deviceLocation ?? '';
+  }
+
+  /** Converts a string to Title Case (first letter of each word capitalised). */
+  private toTitleCase(value: string): string {
+    return value
+      .split(' ')
+      .map((word) => (word.length > 0 ? word[0].toUpperCase() + word.slice(1).toLowerCase() : ''))
+      .join(' ');
   }
 
   /** Reset the add device form after a successful registration. */
