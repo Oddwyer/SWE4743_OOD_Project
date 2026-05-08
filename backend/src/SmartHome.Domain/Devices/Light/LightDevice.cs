@@ -5,6 +5,8 @@ namespace SmartHome.Domain.Devices.Light;
 
 public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 {
+    private const int defaultBrightness = 100; // Default brightness (100%)
+    private const string defaultColor = "#FFFFFF"; // Default color (white)
     public int MinBrightness => 10; // Minimum allowed brightness percentage
     public int MaxBrightness => 100; // Maximum allowed brightness percentage
 
@@ -15,9 +17,9 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     private ILightState _currentState;
 
-    public string Color { get; private set; } = "#FFFFFF"; // Default color (white)
+    public string Color { get; private set; } = defaultColor;
 
-    public int LightBrightness { get; private set; } = 100; // Default brightness (100%)
+    public int LightBrightness { get; private set; } = defaultBrightness;
 
 
     public LightDevice(Guid id, string deviceName, string deviceLocation) : base(id, deviceName, deviceLocation, DeviceType.Light, new LightCommandFactory())
@@ -77,7 +79,7 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
     /// <summary>
     /// Applies a color change (used by states).
     /// </summary>
-    internal void ChangeColorInternal(string newColor)
+    internal void SetColorInternal(string newColor)
     {
         Color = newColor;
         UpdatedAt = DateTime.UtcNow;
@@ -111,13 +113,25 @@ public class LightDevice : Device, IPoweredDevice, ILightColor, IDimLights
 
     /// <summary>
     /// Restores device properties.
-    /// <summary>
+    /// </summary>
     internal void RehydrateState(DevicePowerState powerState, string color, int brightness)
     {
         _powerState = powerState;
         Color = color;
         LightBrightness = brightness;
         _currentState = powerState == DevicePowerState.On ? On : Off;
+    }
+
+    /// <summary>
+    /// Sets the current state (used by states).
+    /// </summary>
+    public override void ResetToDefault()
+    {
+        _powerState = DevicePowerState.Off;
+        _currentState = Off;
+        Color = defaultColor;
+        LightBrightness = defaultBrightness;
+        UpdatedAt = DateTime.UtcNow;
     }
 
 

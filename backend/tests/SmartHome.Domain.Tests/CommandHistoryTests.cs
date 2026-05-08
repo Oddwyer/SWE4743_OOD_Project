@@ -75,6 +75,7 @@ public class CommandHistoryTests
         public void RegisterThermostat(ThermostatDevice thermostat) { }
         public void UnregisterThermostat(ThermostatDevice thermostat) { }
         public void UpdateAmbientTemperature() { }
-        public void startSimulation() { }
+        public void StartSimulation() { }
+
     }
 }

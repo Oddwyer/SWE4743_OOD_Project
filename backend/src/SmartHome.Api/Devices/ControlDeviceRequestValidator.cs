@@ -44,7 +44,7 @@ public class ControlDeviceRequestValidator : AbstractValidator<ControlDeviceRequ
                 .WithMessage("Desired temperature is required.")
             .When(x => x.Command == DeviceCommandType.SetTargetTemperature);
 
-        RuleFor(x => x.Mode)
+        RuleFor(x => x.ThermostatMode)
             .NotNull()
                 .WithMessage("Thermostat mode is required.")
             .IsInEnum()

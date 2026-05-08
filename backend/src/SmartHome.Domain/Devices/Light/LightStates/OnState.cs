@@ -24,7 +24,7 @@ public class OnState : ILightState
     /// </summary>
     public void ChangeColor(string color)
     {
-        _light.ChangeColorInternal(color);
+        _light.SetColorInternal(color);
     }
 
     /// <summary>

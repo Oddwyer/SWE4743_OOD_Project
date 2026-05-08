@@ -8,6 +8,7 @@ using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure.ORM_Persistence;
+using SmartHome.Infrastructure;
 using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
 using FluentValidation;
@@ -60,23 +61,36 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-builder.Services.AddSingleton<SimulationRuntime>();
+// Register shared simulation runtime services.
+// These are singletons because ticker/runtime state should survive across requests.
 builder.Services.AddSingleton<SimulationTicker>();
+builder.Services.AddSingleton<SimulationRuntime>();
 
-builder.Services.AddScoped<ISimulationService, SimulationService>();
+// Initializes runtime simulation state from persisted devices on startup.
+builder.Services.AddSingleton<SimulationInitializer>();
+
+// Register application services.
+builder.Services.AddSingleton<ISimulationService, SimulationService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 
-builder.Services.AddScoped<IDeviceTypeFactory, LightDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, FanDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, ThermostatDeviceFactory>();
-builder.Services.AddScoped<IDeviceTypeFactory, DoorLockFactory>();
-builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
-builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
-builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+// Register device factories.
+builder.Services.AddSingleton<IDeviceTypeFactory, LightDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
+builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
 // swapping json for sqlite repository for ORM implementation
 builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
 builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
+// Register command and strategy factories.
+builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
+builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
+builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
+
+// Register JSON repository and expose it through repository interfaces.
+builder.Services.AddSingleton<JsonRepository>();
+builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Add DbContext with SQLite provider
 builder.Services.AddDbContext<SmartHomeDbContext>(options =>
@@ -93,12 +107,15 @@ builder.Services.AddControllers()
         );
     });
 
-// TODO - Amber: Tighten CORS when frontend local host is defined; JWT implementation?
+// Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(
+             "http://localhost:4200",
+                "https://localhost:4200"
+        )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -112,6 +129,13 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<SmartHomeDbContext>();
     dbContext.Database.Migrate();
     SmartHomeSeedData.Seed(dbContext);
+}
+// Populate shared simulation runtime state from persisted devices.
+// This runs from Program.cs because it is application startup orchestration.
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<SimulationInitializer>();
+    initializer.Initialize();
 }
 
 app.UseSwagger();

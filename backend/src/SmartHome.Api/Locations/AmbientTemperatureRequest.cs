@@ -4,9 +4,8 @@ namespace SmartHome.Api.Locations;
 /// DTO for setting the ambient temperature of a location.
 /// </summary>
 
-public class SetAmbientTemperatureRequest
+public class AmbientTemperatureRequest
 {
-
     public int Temperature { get; set; }
 
 }

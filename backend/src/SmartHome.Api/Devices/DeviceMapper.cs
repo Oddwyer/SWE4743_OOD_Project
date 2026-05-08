@@ -36,6 +36,7 @@ public static class DeviceMapper
         {
             case LightDevice light:
                 response.LightBrightness = light.LightBrightness;
+                response.IsPoweredOn = light.PowerState == DevicePowerState.On;
                 response.LightColor = light.Color;
                 response.MaxBrightness = light.MaxBrightness;
                 response.MinBrightness = light.MinBrightness;
@@ -43,15 +44,18 @@ public static class DeviceMapper
 
             case FanDevice fan:
                 response.FanSpeed = fan.Speed;
+                response.IsPoweredOn = fan.PowerState == DevicePowerState.On;
                 break;
 
             case ThermostatDevice thermostat:
                 response.ThermostatMode = thermostat.Mode;
+                response.IsPoweredOn = thermostat.PowerState == DevicePowerState.On;
                 response.TargetTemperature = thermostat.TargetTemperature;
                 response.MaxTemperature = thermostat.MaxTemperature;
                 response.MinTemperature = thermostat.MinTemperature;
                 response.AmbientTemperature = ambientTemperature;
                 response.ThermostatState = thermostat.CurrentStateType; // Convert enum to string for API response
+                response.DefaultTemperature = thermostat.DefaultTemperature;
                 break;
 
             case DoorLocks doorlock:
@@ -73,7 +77,7 @@ public static class DeviceMapper
             Brightness = request.Brightness,
             Color = request.Color,
             FanSpeed = request.FanSpeed,
-            Mode = request.Mode,
+            ThermostatMode = request.ThermostatMode,
             TargetTemperature = request.TargetTemperature
         };
 

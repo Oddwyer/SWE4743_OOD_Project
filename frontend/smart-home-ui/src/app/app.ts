@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { DeviceListComponent } from './components/device-list/device-list';
+import { DashboardComponent } from './components/dashboard/dashboard';
 
 @Component({
   selector: 'app-root',
-  imports: [DeviceListComponent],
+  imports: [DashboardComponent],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css',

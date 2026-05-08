@@ -9,5 +9,6 @@ public class AmbientTemperatureResponse
     public int AmbientTemperature { get; set; }
     public int MinTemperature { get; set; }
     public int MaxTemperature { get; set; }
+    public int DefaultTemperature { get; set; }
 
 }

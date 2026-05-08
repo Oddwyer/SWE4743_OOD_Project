@@ -13,11 +13,9 @@ public class AutoModeStrategy : IThermostatModeStrategy
     /// </summary>
     public IThermostatState DetermineNextState(ThermostatDevice thermostat, int ambientTemperature)
     {
-        return ambientTemperature < thermostat.TargetTemperature
-            ? thermostat.Heating
-            : ambientTemperature > thermostat.TargetTemperature
-                ? thermostat.Cooling
-                : thermostat.Idle;
+        return ambientTemperature < thermostat.TargetTemperature ? thermostat.Heating
+            : ambientTemperature > thermostat.TargetTemperature ? thermostat.Cooling
+            : thermostat.Idle;
     }
 
 }

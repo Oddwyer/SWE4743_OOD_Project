@@ -2,7 +2,7 @@ using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Api.Simulations;
 
-public class SetSimulationSpeedRequest
+public class SimulationSpeedRequest
 {
     public SimulationSpeed SpeedMultiplier { get; set; }
 }

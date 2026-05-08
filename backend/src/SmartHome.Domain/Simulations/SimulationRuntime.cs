@@ -28,20 +28,11 @@ public class SimulationRuntime
     public IEnumerable<ThermostatDevice> RegisteredThermostats => _registeredThermostats.Values;
 
     /// <summary>
-    /// Registers a thermostat to participate in the simulation.
+    /// Registers a thermostat to participate in the simulation; replaced stale thermostat objects.
     /// </summary>
     public void RegisterThermostat(ThermostatDevice thermostat)
     {
-        if (!_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
-        {
-            _registeredThermostats[thermostat.Id.ToString()] = thermostat;
-
-        }
-
-        else
-        {
-            throw new InvalidOperationException("Thermostat is already registered.");
-        }
+        _registeredThermostats[thermostat.Id.ToString()] = thermostat;
     }
 
     /// <summary>
@@ -49,14 +40,7 @@ public class SimulationRuntime
     /// </summary>
     public void UnregisterThermostat(ThermostatDevice thermostat)
     {
-        if (_registeredThermostats.ContainsKey(thermostat.Id.ToString()))
-        {
-            _registeredThermostats.Remove(thermostat.Id.ToString());
-        }
-        else
-        {
-            throw new InvalidOperationException("Thermostat is not registered.");
-        }
+        _registeredThermostats.Remove(thermostat.Id.ToString());
     }
 
 }

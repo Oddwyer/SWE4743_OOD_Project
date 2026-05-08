@@ -113,7 +113,7 @@ public class CommandFactoryTests
         var command = _factory.CreateCommand(device, new CommandData
         {
             Command = DeviceCommandType.SetThermostatMode,
-            Mode = ThermostatMode.Cool
+            ThermostatMode = ThermostatMode.Cool
         });
 
         Assert.IsType<SetThermostatModeCommand>(command);
