@@ -545,4 +545,130 @@ describe('DeviceCardComponent', () => {
       expect(component.device.maxTemperature).toBe(80);
     });
   });
+
+  // ── Input Validation — Brightness slider bounds ──────────────────────────────
+
+  describe('Input Validation — brightness slider', () => {
+    it('brightness row is hidden when lightBrightness is null', () => {
+      init(makeLightOn({ lightBrightness: null }));
+      expect(fixture.debugElement.query(By.css('.brightness-row'))).toBeNull();
+    });
+
+    it('brightness row is hidden when minBrightness is null', () => {
+      init(makeLightOn({ minBrightness: null }));
+      expect(fixture.debugElement.query(By.css('.brightness-row'))).toBeNull();
+    });
+
+    it('brightness row is hidden when maxBrightness is null', () => {
+      init(makeLightOn({ maxBrightness: null }));
+      expect(fixture.debugElement.query(By.css('.brightness-row'))).toBeNull();
+    });
+
+    it('brightness slider [min] binding is wired to device.minBrightness (10)', () => {
+      init(makeLightOn());
+      const sliderEl = fixture.debugElement.query(By.css('.brightness-row p-slider'));
+      const min = sliderEl?.componentInstance?.min;
+      expect(typeof min === 'function' ? min() : min).toBe(10);
+    });
+
+    it('brightness slider [max] binding is wired to device.maxBrightness (100)', () => {
+      init(makeLightOn());
+      const sliderEl = fixture.debugElement.query(By.css('.brightness-row p-slider'));
+      const max = sliderEl?.componentInstance?.max;
+      expect(typeof max === 'function' ? max() : max).toBe(100);
+    });
+
+    it('setBrightness at lower bound (10) sends 10 to the API', () => {
+      init(makeLightOn(), of(makeLightOn({ lightBrightness: 10 })));
+      component.setBrightness(10);
+      expect(apiSpy.controlDevice).toHaveBeenCalledWith('light-1', {
+        command: 'SetBrightness',
+        brightness: 10,
+      });
+    });
+
+    it('setBrightness at upper bound (100) sends 100 to the API', () => {
+      init(makeLightOn(), of(makeLightOn({ lightBrightness: 100 })));
+      component.setBrightness(100);
+      expect(apiSpy.controlDevice).toHaveBeenCalledWith('light-1', {
+        command: 'SetBrightness',
+        brightness: 100,
+      });
+    });
+
+    it('setBrightness optimistically sets the value to 10 at lower bound', () => {
+      init(makeLightOn(), new Subject<DeviceResponse>().asObservable());
+      component.setBrightness(10);
+      expect(component.device.lightBrightness).toBe(10);
+    });
+
+    it('setBrightness optimistically sets the value to 100 at upper bound', () => {
+      init(makeLightOn(), new Subject<DeviceResponse>().asObservable());
+      component.setBrightness(100);
+      expect(component.device.lightBrightness).toBe(100);
+    });
+  });
+
+  // ── Input Validation — Temperature slider bounds ─────────────────────────────
+
+  describe('Input Validation — temperature slider', () => {
+    it('temperature row is hidden when targetTemperature is null', () => {
+      init(makeThermostat('Idle', { targetTemperature: null }));
+      expect(fixture.debugElement.query(By.css('.temperature-row'))).toBeNull();
+    });
+
+    it('temperature row is hidden when minTemperature is null', () => {
+      init(makeThermostat('Idle', { minTemperature: null }));
+      expect(fixture.debugElement.query(By.css('.temperature-row'))).toBeNull();
+    });
+
+    it('temperature row is hidden when maxTemperature is null', () => {
+      init(makeThermostat('Idle', { maxTemperature: null }));
+      expect(fixture.debugElement.query(By.css('.temperature-row'))).toBeNull();
+    });
+
+    it('temperature slider [min] binding is wired to device.minTemperature (60)', () => {
+      init(makeThermostat('Idle'));
+      const sliderEl = fixture.debugElement.query(By.css('.temperature-row p-slider'));
+      const min = sliderEl?.componentInstance?.min;
+      expect(typeof min === 'function' ? min() : min).toBe(60);
+    });
+
+    it('temperature slider [max] binding is wired to device.maxTemperature (80)', () => {
+      init(makeThermostat('Idle'));
+      const sliderEl = fixture.debugElement.query(By.css('.temperature-row p-slider'));
+      const max = sliderEl?.componentInstance?.max;
+      expect(typeof max === 'function' ? max() : max).toBe(80);
+    });
+
+    it('setTargetTemperature at lower bound (60) sends 60 to the API', () => {
+      init(makeThermostat('Idle'), of(makeThermostat('Idle', { targetTemperature: 60 })));
+      component.setTargetTemperature(60);
+      expect(apiSpy.controlDevice).toHaveBeenCalledWith('thermo-1', {
+        command: 'SetTargetTemperature',
+        targetTemperature: 60,
+      });
+    });
+
+    it('setTargetTemperature at upper bound (80) sends 80 to the API', () => {
+      init(makeThermostat('Idle'), of(makeThermostat('Idle', { targetTemperature: 80 })));
+      component.setTargetTemperature(80);
+      expect(apiSpy.controlDevice).toHaveBeenCalledWith('thermo-1', {
+        command: 'SetTargetTemperature',
+        targetTemperature: 80,
+      });
+    });
+
+    it('setTargetTemperature optimistically sets value to 60 at lower bound', () => {
+      init(makeThermostat('Idle'), new Subject<DeviceResponse>().asObservable());
+      component.setTargetTemperature(60);
+      expect(component.device.targetTemperature).toBe(60);
+    });
+
+    it('setTargetTemperature optimistically sets value to 80 at upper bound', () => {
+      init(makeThermostat('Idle'), new Subject<DeviceResponse>().asObservable());
+      component.setTargetTemperature(80);
+      expect(component.device.targetTemperature).toBe(80);
+    });
+  });
 });

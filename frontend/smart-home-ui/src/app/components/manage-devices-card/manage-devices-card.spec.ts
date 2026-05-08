@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 
 import { ManageDevicesCardComponent } from './manage-devices-card';
@@ -377,6 +378,143 @@ describe('ManageDevicesCardComponent', () => {
 
     it('getDeviceLocation returns an empty string for an unknown ID', () => {
       expect(component.getDeviceLocation('unknown')).toBe('');
+    });
+  });
+
+  // ── Input Validation — Add Device form (DOM) ───────────────────────────────
+
+  describe('Add Device form — DOM validation', () => {
+    beforeEach(() => {
+      component.openAddDeviceModal();
+      fixture.detectChanges();
+    });
+
+    it('"Confirm Add" button is disabled when name is empty', () => {
+      component.newDeviceName = '';
+      component.newDeviceLocation = 'Kitchen';
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(true);
+    });
+
+    it('"Confirm Add" button is disabled when location is empty', () => {
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = '';
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(true);
+    });
+
+    it('"Confirm Add" button is disabled when name is whitespace only', () => {
+      component.newDeviceName = '   ';
+      component.newDeviceLocation = 'Kitchen';
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(true);
+    });
+
+    it('"Confirm Add" button is disabled when location is whitespace only', () => {
+      component.newDeviceName = 'Lamp';
+      component.newDeviceLocation = '   ';
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(true);
+    });
+
+    it('"Confirm Add" button is enabled when name and location are non-empty', () => {
+      component.newDeviceName = 'Desk Lamp';
+      component.newDeviceLocation = 'Office';
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(false);
+    });
+
+    it('device type is always pre-selected and defaults to "Light"', () => {
+      expect(component.selectedDeviceType).toBe('Light');
+    });
+
+    it('all four device types are available in the type list', () => {
+      expect(component.deviceTypes).toEqual(['Light', 'Fan', 'Thermostat', 'DoorLock']);
+    });
+
+    it('"Cancel" button closes the add modal without calling the API', () => {
+      const cancel = fixture.debugElement.query(By.css('.modal-cancel'));
+      cancel.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.showAddDeviceModal).toBe(false);
+      expect(apiSpy.registerDevice).not.toHaveBeenCalled();
+    });
+
+    it('clicking the modal backdrop closes the add modal', () => {
+      const backdrop = fixture.debugElement.query(By.css('.modal-backdrop'));
+      backdrop.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.showAddDeviceModal).toBe(false);
+    });
+  });
+
+  // ── Input Validation — Remove Device form (DOM) ────────────────────────────
+
+  describe('Remove Device form — DOM validation', () => {
+    beforeEach(() => {
+      component.devices = [
+        makeDevice({ id: 'dev-1', deviceName: 'Kitchen Light', deviceLocation: 'Kitchen' }),
+        makeDevice({ id: 'dev-2', deviceName: 'Bedroom Fan', deviceLocation: 'Bedroom' }),
+      ];
+      component.openRemoveDeviceModal();
+      fixture.detectChanges();
+    });
+
+    it('"Confirm Remove" button is disabled when no device has been selected', () => {
+      expect(component.selectedRemoveDeviceId).toBe('');
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(true);
+    });
+
+    it('"Confirm Remove" button is enabled after selecting a device', () => {
+      component.selectRemoveDevice('dev-1');
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(false);
+    });
+
+    it('"Confirm Remove" button returns to disabled after clearing the selection', () => {
+      component.selectRemoveDevice('dev-1');
+      fixture.detectChanges();
+      component.selectedRemoveDeviceId = '';
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.modal-confirm'));
+      expect((btn.nativeElement as HTMLButtonElement).disabled).toBe(true);
+    });
+
+    it('"Cancel" button closes the remove modal without calling the API', () => {
+      const cancel = fixture.debugElement.query(By.css('.modal-cancel'));
+      cancel.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.showRemoveDeviceModal).toBe(false);
+      expect(apiSpy.removeDevice).not.toHaveBeenCalled();
+    });
+
+    it('cancelling the remove modal preserves both devices', () => {
+      component.selectRemoveDevice('dev-1');
+      fixture.detectChanges();
+      const cancel = fixture.debugElement.query(By.css('.modal-cancel'));
+      cancel.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.devices.length).toBe(2);
+      expect(apiSpy.removeDevice).not.toHaveBeenCalled();
+    });
+
+    it('clicking the modal backdrop closes the remove modal', () => {
+      const backdrop = fixture.debugElement.query(By.css('.modal-backdrop'));
+      backdrop.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.showRemoveDeviceModal).toBe(false);
+    });
+
+    it('device list shows all available devices as removal options', () => {
+      const options = fixture.debugElement.queryAll(By.css('.modal-option'));
+      expect(options.length).toBe(2);
     });
   });
 });

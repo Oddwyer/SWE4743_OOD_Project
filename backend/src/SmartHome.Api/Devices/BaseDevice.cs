@@ -8,11 +8,12 @@ namespace SmartHome.Api.Devices;
 
 public abstract class BaseDevice
 {
-
+    /// <summary>Human-readable device name (minimum 2 characters).</summary>
     public string DeviceName { get; set; } = string.Empty;
 
+    /// <summary>Location the device is installed in.</summary>
     public string DeviceLocation { get; set; } = string.Empty;
 
+    /// <summary>Device category.</summary>
     public DeviceType Type { get; set; }
-
 }

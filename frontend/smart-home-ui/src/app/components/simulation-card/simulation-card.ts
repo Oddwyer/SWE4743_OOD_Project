@@ -31,21 +31,32 @@ import { SimulationSpeed } from '../../types/simulationspeed';
  * reset behavior, and frontend polling for simulation updates.
  */
 export class SimulationCardComponent implements OnChanges, OnDestroy {
+  /** Location names whose ambient temperatures are displayed and controlled. */
   @Input() locations: string[] = [];
 
+  /** Emitted when any simulation state changes (speed, ambient temperature, reset). */
   @Output() simulationChanged = new EventEmitter<void>();
+  /** Emitted with the new numeric multiplier when the simulation speed changes. */
   @Output() speedChanged = new EventEmitter<number>();
+  /** Emitted with the running state when ambient temperature starts or finishes adjusting. */
   @Output() simulationRunningChanged = new EventEmitter<boolean>();
+  /** Emitted when the simulation is reset. */
   @Output() simulationReset = new EventEmitter<void>();
 
+  /** Latest ambient temperatures fetched from the API, keyed by location. */
   ambientTemps: Record<string, number> = {};
+  /** Smoothed display temperatures updated one degree per poll cycle, keyed by location. */
   displayAmbientTemps: Record<string, number> = {};
 
+  /** Minimum allowed ambient temperature (°F). */
   minTemp = 0;
+  /** Maximum allowed ambient temperature (°F). */
   maxTemp = 100;
 
+  /** Currently active simulation speed multiplier. */
   simulationSpeed: SimulationSpeed = SimulationSpeed.OneX;
 
+  /** Speed options rendered by the speed selector. */
   speedOptions = [
     { label: '1x', value: SimulationSpeed.OneX },
     { label: '2x', value: SimulationSpeed.TwoX },

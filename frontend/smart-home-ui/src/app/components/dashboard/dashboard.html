@@ -47,18 +47,11 @@
 
     <aside class="sidebar-column">
       <!-- Simulation controls -->
-      <app-simulation-card
-        [locations]="thermostatLocations"
-        (simulationChanged)="loadDevices()"
-        (speedChanged)="handleSpeedChanged($event)"
-        (simulationRunningChanged)="handleSimulationRunningChanged($event)"
-        (simulationReset)="handleSimulationReset()"
-      ></app-simulation-card>
+      <app-simulation-card [locations]="thermostatLocations" (simulationChanged)="loadDevices()"
+        (speedChanged)="handleSpeedChanged($event)" (simulationRunningChanged)="handleSimulationRunningChanged($event)"
+        (simulationReset)="handleSimulationReset()"></app-simulation-card>
       <!-- Device management -->
-      <app-manage-devices-card
-        [devices]="devices"
-        (devicesChanged)="loadDevices()"
-      ></app-manage-devices-card>
+      <app-manage-devices-card [devices]="devices" (devicesChanged)="loadDevices()"></app-manage-devices-card>
     </aside>
 
     <!-- =========================
@@ -71,72 +64,67 @@
            ========================= -->
 
       @if (showFilterModal) {
-        <div class="filter-modal-overlay" (click)="showFilterModal = false">
-          <div class="filter-modal" (click)="$event.stopPropagation()">
-            <!-- Modal header -->
-            <div class="filter-modal-header">
-              <h3>Filter Devices</h3>
+      <div class="filter-modal-overlay" (click)="showFilterModal = false">
+        <div class="filter-modal" (click)="$event.stopPropagation()">
+          <!-- Modal header -->
+          <div class="filter-modal-header">
+            <h3>Filter Devices</h3>
 
-              <button type="button" class="close-button" (click)="showFilterModal = false">
-                ✕
-              </button>
-            </div>
-
-            <!-- Power filter -->
-            <label class="filter-field">
-              <span>Power</span>
-
-              <select [(ngModel)]="selectedPowerFilter">
-                @for (filter of powerFilters; track filter) {
-                  <option [value]="filter">
-                    {{ filter }}
-                  </option>
-                }
-              </select>
-            </label>
-
-            <!-- Location filter -->
-            <label class="filter-field">
-              <span>Location</span>
-
-              <select [(ngModel)]="selectedLocationFilter">
-                @for (location of locationFilters; track location) {
-                  <option [value]="location">
-                    {{ location }}
-                  </option>
-                }
-              </select>
-            </label>
-
-            <!-- Device type filter -->
-            <label class="filter-field">
-              <span>Device Type</span>
-
-              <select [(ngModel)]="selectedTypeFilter">
-                @for (type of typeFilters; track type) {
-                  <option [value]="type">
-                    {{ type }}
-                  </option>
-                }
-              </select>
-            </label>
-
-            <!-- Clear filters button -->
-            <button
-              type="button"
-              class="clear-filters-button"
-              (click)="clearFilters()"
-              [disabled]="!hasActiveFilters"
-            >
-              Clear Filters
-            </button>
-
-            <!-- Close modal button -->
-            <button type="button" class="close-filters-button" (click)="showFilterModal = false">
-              Close
+            <button type="button" class="close-button" (click)="showFilterModal = false">
+              ✕
             </button>
           </div>
+
+          <!-- Power filter -->
+          <label class="filter-field">
+            <span>Power</span>
+
+            <select [(ngModel)]="selectedPowerFilter">
+              @for (filter of powerFilters; track filter) {
+              <option [value]="filter">
+                {{ filter }}
+              </option>
+              }
+            </select>
+          </label>
+
+          <!-- Location filter -->
+          <label class="filter-field">
+            <span>Location</span>
+
+            <select [(ngModel)]="selectedLocationFilter">
+              @for (location of locationFilters; track location) {
+              <option [value]="location">
+                {{ location }}
+              </option>
+              }
+            </select>
+          </label>
+
+          <!-- Device type filter -->
+          <label class="filter-field">
+            <span>Device Type</span>
+
+            <select [(ngModel)]="selectedTypeFilter">
+              @for (type of typeFilters; track type) {
+              <option [value]="type">
+                {{ type }}
+              </option>
+              }
+            </select>
+          </label>
+
+          <!-- Clear filters button -->
+          <button type="button" class="clear-filters-button" (click)="clearFilters()" [disabled]="!hasActiveFilters">
+            Clear Filters
+          </button>
+
+          <!-- Close modal button -->
+          <button type="button" class="close-filters-button" (click)="showFilterModal = false">
+            Close
+          </button>
         </div>
+      </div>
       }
 
       <!-- =========================
@@ -144,7 +132,7 @@
            ========================= -->
 
       @if (groupedDevices.length === 0) {
-        <div class="empty-filter-state">No devices match the selected filters.</div>
+      <div class="empty-filter-state">No devices match the selected filters.</div>
       }
 
       <!-- =========================
@@ -152,58 +140,54 @@
            ========================= -->
 
       @for (group of groupedDevices; track group.location; let first = $first) {
-        <section class="location-section">
-          <!-- =========================
+      <section class="location-section">
+        <!-- =========================
                LOCATION HEADER
                ========================= -->
 
-          <div class="location-header">
-            <!-- Location title -->
-            <h2 class="location-heading">
-              <i [class]="getLocationIcon(group.location)"></i>
+        <div class="location-header">
+          <!-- Location title -->
+          <h2 class="location-heading">
+            <span class="material-symbols-outlined">
+              {{ getLocationIcon(group.location) }}
+            </span>
+            {{ group.location }}
+          </h2>
 
-              {{ group.location }}
-            </h2>
+          <!-- Only show filters beside FIRST location -->
+          @if (first) {
+          <div class="location-actions">
+            <!-- Device count -->
+            <span class="device-toolbar-subtitle">
+              Showing
+              {{ filteredDevices.length }}
+              of
+              {{ devices.length }}
+              devices
+            </span>
 
-            <!-- Only show filters beside FIRST location -->
-            @if (first) {
-              <div class="location-actions">
-                <!-- Device count -->
-                <span class="device-toolbar-subtitle">
-                  Showing
-                  {{ filteredDevices.length }}
-                  of
-                  {{ devices.length }}
-                  devices
-                </span>
-
-                <!-- Filter icon button -->
-                <button
-                  type="button"
-                  class="filter-icon-button"
-                  (click)="showFilterModal = true"
-                  title="Filter Devices"
-                  aria-label="Filter Devices"
-                >
-                  <span class="material-symbols-outlined">filter_list</span>
-                </button>
-              </div>
-            }
+            <!-- Filter icon button -->
+            <button type="button" class="filter-icon-button" (click)="showFilterModal = true" title="Filter Devices"
+              aria-label="Filter Devices">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
           </div>
+          }
+        </div>
 
-          <!-- Divider below location heading -->
-          <div class="location-divider"></div>
+        <!-- Divider below location heading -->
+        <div class="location-divider"></div>
 
-          <!-- =========================
+        <!-- =========================
                DEVICE GRID
                ========================= -->
 
-          <div class="device-grid">
-            @for (device of group.devices; track device.id) {
-              <app-device-card [device]="device"></app-device-card>
-            }
-          </div>
-        </section>
+        <div class="device-grid">
+          @for (device of group.devices; track device.id) {
+          <app-device-card [device]="device"></app-device-card>
+          }
+        </div>
+      </section>
       }
     </div>
   </div>

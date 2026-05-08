@@ -2,36 +2,36 @@ using System.Timers;
 
 namespace SmartHome.Domain.Simulations;
 
+/// <summary>
+/// Drives the simulation loop by firing a periodic tick event at a rate determined by the current speed multiplier.
+/// </summary>
 public class SimulationTicker
 {
-    /// <summary>   
-    /// Implement periodical ticking for the simulation speed, allowing it to update device states and generate events.
-    /// <summary>
     private System.Timers.Timer _timer;
     private SimulationSpeed _defaultSpeed = SimulationSpeed.OneX;
 
-    // Accounting for "temperature changes by 1 F every 5s at 1x speed" condition. The actual interval will be baseTimerInterval 
-    // divided by the speed multiplier (e.g., 2x speed means timer ticks every 2.5s).
+    /// <summary>Base tick interval at 1× speed (5 000 ms = ambient temperature changes 1 °F every 5 seconds).</summary>
     private const int baseTimerInterval = 5000;
 
-    // Action to execute on each tick, set by SimulationService to update simulation state.
+    /// <summary>Fired on every tick; subscribed to by SimulationService to advance simulation state.</summary>
     public event Action? OnTick;
+
+    /// <summary>Initializes the ticker at 1× speed.</summary>
     public SimulationTicker()
     {
         _timer = new System.Timers.Timer(baseTimerInterval);
         _timer.Elapsed += OnTimerElapsed;
         _timer.AutoReset = true;
         SetSimulationTickerSpeed(_defaultSpeed);
-
     }
 
+    /// <summary>Invokes the OnTick event on each timer elapsed event.</summary>
     private void OnTimerElapsed(object? sender, ElapsedEventArgs e)
     {
-
         OnTick?.Invoke();
-
     }
 
+    /// <summary>Updates the tick interval to match the new speed multiplier.</summary>
     public void SetSimulationTickerSpeed(SimulationSpeed speed)
     {
         _defaultSpeed = speed;
@@ -39,11 +39,13 @@ public class SimulationTicker
         _timer.Interval = newInterval;
     }
 
+    /// <summary>Starts the simulation timer.</summary>
     public void Start()
     {
         _timer.Start();
     }
 
+    /// <summary>Stops the simulation timer.</summary>
     public void Stop()
     {
         _timer.Stop();

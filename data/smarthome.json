@@ -144,10 +144,10 @@
       "FanSpeed": null
     },
     {
-      "Id": "1c75f158-dfba-4da2-a149-932b1ed4cb09",
-      "Name": "Floor Lamp",
+      "Id": "03a91f7d-5b9d-468c-a5f8-fb55b94fa44a",
+      "Name": "Living Room Floor Lamp",
       "Type": 0,
-      "Location": "Master Bedroom",
+      "Location": "Living Room",
       "IsOn": false,
       "DeviceState": null,
       "ThermostatMode": null,
@@ -3343,12 +3343,70 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T12:05:02.6931219Z",
       "Operation": "Set target temperature to 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "d8edbe70-b597-4dc7-90cd-808eb64dfe41",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:24:55.2940747Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "ab660312-82b2-4e33-b19f-d8a96a129680",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:24:56.8229279Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "655c84c1-0b35-4293-b0f9-3eae91b61281",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:24:57.8131606Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "96d01065-e03c-41f8-a3fc-c35fea0af36a",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T12:24:59.252681Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "e03b5f8d-15ee-4599-a346-9e31d529c0df",
+      "DeviceId": "2106f389-79bf-4bf7-b17f-56bafe7dcee9",
+      "Timestamp": "2026-05-08T12:42:34.8020721Z",
+      "Operation": "Powered on Kitchen Lamp."
+    },
+    {
+      "Id": "9742eaa8-96c4-4625-b83e-544d27d0b680",
+      "DeviceId": "2106f389-79bf-4bf7-b17f-56bafe7dcee9",
+      "Timestamp": "2026-05-08T12:42:35.8122201Z",
+      "Operation": "Powered off Kitchen Lamp."
+    },
+    {
+      "Id": "eca8bc55-56b4-4299-84d0-b7618cc79f67",
+      "DeviceId": "2106f389-79bf-4bf7-b17f-56bafe7dcee9",
+      "Timestamp": "2026-05-08T12:42:37.85232Z",
+      "Operation": "Powered on Kitchen Lamp."
+    },
+    {
+      "Id": "e30c5ed9-d9c9-4388-a8aa-95229337d73e",
+      "DeviceId": "2106f389-79bf-4bf7-b17f-56bafe7dcee9",
+      "Timestamp": "2026-05-08T12:42:39.3968418Z",
+      "Operation": "Set light brightness to 40% for Kitchen Lamp."
+    },
+    {
+      "Id": "c674804a-9e36-46ae-9bea-9bf1e3a539f4",
+      "DeviceId": "2106f389-79bf-4bf7-b17f-56bafe7dcee9",
+      "Timestamp": "2026-05-08T12:42:40.80593Z",
+      "Operation": "Powered off Kitchen Lamp."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
       "AmbientTemperature": 75
+    },
+    {
+      "Location": "master bedroom",
+      "AmbientTemperature": 72
     }
   ]
 }

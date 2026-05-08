@@ -8,6 +8,9 @@ using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Domain.Devices;
 
+/// <summary>
+/// Implements device application logic: registration, retrieval, command dispatch, history, and simulation enrollment.
+/// </summary>
 public class DeviceService : IDeviceService
 {
     private readonly IDeviceRepository _deviceRepository;

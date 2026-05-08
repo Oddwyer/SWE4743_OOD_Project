@@ -6,6 +6,5 @@ namespace SmartHome.Api.Devices;
 
 public class RegisterDeviceRequest : BaseDevice
 {
-    // All devices. Includes DeviceName, DeviceLocation, and Type from BaseDevice
-    // Must provide device name, location, and type.
+    // DeviceName, DeviceLocation, and Type are inherited from BaseDevice.
 }

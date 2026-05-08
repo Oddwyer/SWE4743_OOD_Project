@@ -81,9 +81,56 @@ docker compose down
 
 ## Running Tests
 
-```bash
-dotnet test backend/tests/SmartHome.Domain.Tests
+### Unit Testing:
+
+`dotnet test backend/tests/SmartHome.Domain.Tests`
+
+### Backend Integration Testing:
+
+Run tests from the backend/ directory with:
+
+`dotnet test tests/SmartHome.Api.Tests/SmartHome.Api.Tests.csproj`
+
+## API & Integration Testing
+
+Run tests from the frontend/ directory with:
+
+Run them with `ng test` from `frontend/smart-home-ui/`.
+
+### Bruno:
+
+Integration/API testing is performed through the committed Bruno collection in `/bruno/SmartHome API`.
+
+The collection includes requests for:
+
+- device listing, filtering, registration, removal, and control
+- invalid validation cases
+- command history retrieval
+- ambient temperature get/set
+- simulation speed changes
+- simulation reset
+- thermostat, light, fan, and door lock workflows
+
+Run the backend, open the Bruno collection, select the SmartHome API environment, and execute the requests in order.
+
+```text
+/bruno
 ```
+
+To use:
+
+1. Open Bruno
+2. Open the `/bruno` folder
+3. Run requests for:
+   - Devices
+   - Locations
+   - Simulation
+   - Command history
+
+The collection includes both:
+
+- Success cases
+- Error cases
 
 ---
 
@@ -124,31 +171,6 @@ It provides:
 - All endpoints
 - Request/response schemas
 - Interactive testing
-
----
-
-## API Testing (Bruno)
-
-Bruno collections are located at:
-
-```text
-/bruno
-```
-
-To use:
-
-1. Open Bruno
-2. Open the `/bruno` folder
-3. Run requests for:
-   - Devices
-   - Locations
-   - Simulation
-   - Command history
-
-The collection includes both:
-
-- Success cases
-- Error cases
 
 ---
 

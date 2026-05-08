@@ -45,6 +45,7 @@ import { ThermostatMode } from '../../types/thermostatmode';
  * - door lock controls
  */
 export class DeviceCardComponent {
+  /** The device state to display and control. */
   @Input({ required: true }) device!: DeviceResponse;
 
   /**

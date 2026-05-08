@@ -6,17 +6,23 @@ using SmartHome.Domain.Exceptions;
 
 namespace SmartHome.Api.Middleware;
 
+/// <summary>
+/// Middleware that catches unhandled exceptions and converts them into RFC 7807 problem+json responses.
+/// Maps KeyNotFoundException → 404, ArgumentException/InvalidOperationException → 400, DeviceConflictException → 409.
+/// </summary>
 public class GlobalErrorHandling
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<GlobalErrorHandling> _logger;
 
+    /// <summary>Initializes the middleware with the next pipeline delegate and a logger.</summary>
     public GlobalErrorHandling(RequestDelegate next, ILogger<GlobalErrorHandling> logger)
     {
         _next = next;
         _logger = logger;
     }
 
+    /// <summary>Invokes the next middleware and handles any exceptions it throws.</summary>
     public async Task InvokeAsync(HttpContext context)
     {
         try

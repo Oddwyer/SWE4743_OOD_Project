@@ -132,7 +132,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<SmartHomeDbContext>();
-    dbContext.Database.Migrate();
+    if (app.Environment.IsEnvironment("Testing"))
+        dbContext.Database.EnsureCreated();
+    else
+        dbContext.Database.Migrate();
     SmartHomeSeedData.Seed(dbContext);
 }
 // Populate shared simulation runtime state from persisted devices.
@@ -154,3 +157,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
+
+// Exposes the auto-generated Program class to the integration test project.
+public partial class Program { }

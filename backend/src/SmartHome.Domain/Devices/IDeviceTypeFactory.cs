@@ -3,15 +3,16 @@ using SmartHome.Domain.Contracts;
 namespace SmartHome.Domain.Devices;
 
 /// <summary>
-/// Factory interface for creating devices of different types.
+/// Type-specific factory for creating and rehydrating a single device category.
 /// </summary>
 public interface IDeviceTypeFactory
 {
+    /// <summary>Device category this factory handles.</summary>
     public DeviceType DeviceType { get; }
 
-    // For frontend device creation.
+    /// <summary>Creates a new device with the given name and location.</summary>
     public IDevice CreateDevice(string name, string location);
 
-    // For backend device rehydration (reference section 2 in project doc).
+    /// <summary>Reconstructs a device from persisted snapshot data.</summary>
     public IDevice RehydrateDevice(DeviceRehydrationData data);
 }

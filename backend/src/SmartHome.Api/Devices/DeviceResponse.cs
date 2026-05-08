@@ -11,32 +11,45 @@ namespace SmartHome.Api.Devices;
 
 public class DeviceResponse : BaseDevice
 {
-    // All devices. Includes DeviceName, DeviceLocation, and Type from BaseDevice
+    /// <summary>Unique device identifier (UUID).</summary>
     public Guid Id { get; set; }
+    /// <summary>True when the device is considered active for filtering and display.</summary>
     public bool IsDeviceOn { get; set; }
+    /// <summary>Explicit power state for devices with an on/off switch; null for door locks.</summary>
     public bool? IsPoweredOn { get; set; }
+    /// <summary>Timestamp of device registration.</summary>
     public DateTime CreatedAt { get; set; }
+    /// <summary>Timestamp of the most recent state change.</summary>
     public DateTime UpdatedAt { get; set; }
 
-    // Lights
+    /// <summary>Current brightness level (light devices, 10–100).</summary>
     public int? LightBrightness { get; set; }
+    /// <summary>Minimum allowed brightness (light devices).</summary>
     public int? MinBrightness { get; set; }
+    /// <summary>Maximum allowed brightness (light devices).</summary>
     public int? MaxBrightness { get; set; }
+    /// <summary>Current color hex string (light devices).</summary>
     public string? LightColor { get; set; }
 
-    // Fans
+    /// <summary>Current fan speed (fan devices).</summary>
     public FanSpeed? FanSpeed { get; set; }
 
-    // Thermostat
+    /// <summary>Active operating mode (thermostat devices).</summary>
     public ThermostatMode? ThermostatMode { get; set; }
+    /// <summary>Runtime heating/cooling state (thermostat devices).</summary>
     public ThermostatStateType? ThermostatState { get; set; }
+    /// <summary>Minimum allowed target temperature in °F (thermostat devices).</summary>
     public int? MinTemperature { get; set; }
+    /// <summary>Maximum allowed target temperature in °F (thermostat devices).</summary>
     public int? MaxTemperature { get; set; }
+    /// <summary>User-set target temperature in °F (thermostat devices).</summary>
     public int? TargetTemperature { get; set; }
+    /// <summary>Default target temperature in °F (thermostat devices).</summary>
     public int? DefaultTemperature { get; set; }
-    public int? AmbientTemperature { get; set; } // For bruno testing only. Frontend displayed via SimulationResponse.
+    /// <summary>Current ambient temperature in the device's location in °F (thermostat devices).</summary>
+    public int? AmbientTemperature { get; set; }
 
-    // Doors
+    /// <summary>Lock state (door lock devices).</summary>
     public bool? IsLocked { get; set; }
 }
 

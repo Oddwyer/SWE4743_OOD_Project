@@ -336,10 +336,10 @@ describe('DashboardComponent', () => {
       expect(group.devices[2].deviceName).toBe('Zebra');
     });
 
-    it('uses "Unknown" for devices with no location', () => {
+    it('uses "Unknown Location" for devices with no location', () => {
       component.devices = [makeDevice({ id: 'a', deviceLocation: '' })];
       const [group] = component.groupedDevices;
-      expect(group.location).toBe('Unknown');
+      expect(group.location).toBe('Unknown Location');
     });
 
     it('only includes devices that pass the active filters', () => {

@@ -9,7 +9,8 @@ namespace SmartHome.Api.Simulations;
 
 public class SimulationResponse
 {
+    /// <summary>Human-readable result message.</summary>
     public string Message { get; set; } = string.Empty;
+    /// <summary>Speed multiplier active after the operation.</summary>
     public SimulationSpeed SpeedMultiplier { get; set; } = SimulationSpeed.OneX;
-
 }

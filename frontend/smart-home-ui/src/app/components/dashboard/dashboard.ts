@@ -78,6 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  /** Unique location names derived from loaded devices, prefixed with 'All'. */
   get locationFilters(): string[] {
     const locations = this.devices
       .map((device) => device.deviceLocation)
@@ -86,6 +87,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return ['All', ...new Set(locations)];
   }
 
+  /** Devices that pass all active power, location, and type filters. */
   get filteredDevices(): DeviceResponse[] {
     return this.devices.filter((device) => {
       return (
@@ -96,6 +98,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  /** Filtered devices grouped by location, with each group sorted alphabetically by name. */
   get groupedDevices(): { location: string; devices: DeviceResponse[] }[] {
     const groups = new Map<string, DeviceResponse[]>();
 
@@ -115,6 +118,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })).sort((a, b) => a.location.localeCompare(b.location));
   }
 
+  /** Returns true when the device satisfies the active power filter. */
   private matchesPowerFilter(device: DeviceResponse): boolean {
     if (this.selectedPowerFilter === 'All') {
       return true;
@@ -127,16 +131,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.isDeviceConsideredOff(device);
   }
 
+  /** Returns true when the device belongs to the selected location (or when 'All' is selected). */
   private matchesLocationFilter(device: DeviceResponse): boolean {
     return (
       this.selectedLocationFilter === 'All' || device.deviceLocation === this.selectedLocationFilter
     );
   }
 
+  /** Returns true when the device matches the selected type (or when 'All' is selected). */
   private matchesTypeFilter(device: DeviceResponse): boolean {
     return this.selectedTypeFilter === 'All' || device.type === this.selectedTypeFilter;
   }
 
+  /** Returns true when the device is considered "on" for power filter purposes. */
   private isDeviceConsideredOn(device: DeviceResponse): boolean {
     if (device.type === 'DoorLock') {
       return true;
@@ -149,6 +156,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return device.isPoweredOn === true || device.isDeviceOn === true;
   }
 
+  /** Returns true when the device is considered "off" for power filter purposes. */
   private isDeviceConsideredOff(device: DeviceResponse): boolean {
     if (device.type === 'DoorLock') {
       return false;
@@ -157,12 +165,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return !this.isDeviceConsideredOn(device);
   }
 
+  /** Resets all active filters to their 'All' defaults. */
   clearFilters(): void {
     this.selectedPowerFilter = 'All';
     this.selectedLocationFilter = 'All';
     this.selectedTypeFilter = 'All';
   }
 
+  /** True when any filter is set to a value other than 'All'. */
   get hasActiveFilters(): boolean {
     return (
       this.selectedPowerFilter !== 'All' ||
@@ -171,24 +181,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
+  /** Returns an icon for a location based on its name. */
   getLocationIcon(location: string): string {
     const loc = (location ?? '').toLowerCase();
 
     if (loc.includes('living')) {
-      return 'pi pi-home';
+      return 'living';
     }
 
     if (loc.includes('bedroom')) {
-      return 'pi pi-moon';
+      return 'king_bed';
     }
 
     if (loc.includes('entry')) {
-      return 'pi pi-sign-in';
+      return 'door_open';
     }
 
-    return 'pi pi-map-marker';
+    if (loc.includes('kitchen')) {
+      return 'kitchen';
+    }
+
+    if (loc.includes('garage')) {
+      return 'garage';
+    }
+
+    if (loc.includes('media')) {
+      return 'tv';
+    }
+    if (loc.includes('office')) {
+      return 'desktop_mac';
+    }
+    return 'home';
   }
 
+  /** Location names that contain at least one thermostat device. */
   get thermostatLocations(): string[] {
     const locations = this.devices
       .filter((device) => device.type?.toString().toLowerCase() === 'thermostat')

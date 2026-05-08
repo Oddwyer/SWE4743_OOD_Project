@@ -16,6 +16,7 @@ namespace SmartHome.Domain.Commands;
 
 public class CommandFactory : IDeviceCommandFactory
 {
+    /// <summary>Delegates command creation to the device's own factory via the Command Pattern.</summary>
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
         return device.CreateCommand(device, context);
