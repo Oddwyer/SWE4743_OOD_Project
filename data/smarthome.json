@@ -18,13 +18,13 @@
       "Name": "Ceiling Fan",
       "Type": 1,
       "Location": "Master Bedroom",
-      "IsOn": false,
+      "IsOn": true,
       "DeviceState": null,
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": null,
       "LightBrightness": null,
-      "FanSpeed": 2
+      "FanSpeed": 3
     },
     {
       "Id": "0ae336e9-f22f-47b4-bb0f-868f69cfaecd",
@@ -101,7 +101,7 @@
       "ThermostatMode": null,
       "TargetTemperature": null,
       "LightColor": "#FFFFFF",
-      "LightBrightness": 100,
+      "LightBrightness": 50,
       "FanSpeed": null
     },
     {
@@ -124,8 +124,8 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Idle",
-      "ThermostatMode": 3,
-      "TargetTemperature": 75,
+      "ThermostatMode": 1,
+      "TargetTemperature": 76,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3097,12 +3097,102 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T01:34:54.8921973Z",
       "Operation": "Set target temperature to 75\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "e2f01b48-22dd-469e-904e-e932509190fa",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T04:09:00.6216963Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "16843667-0467-418e-852e-ae8461729c69",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T04:09:03.6244793Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "9ba725af-4bd2-46a1-9de3-2513687c24dc",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T04:09:12.2785431Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "da08db4a-9002-401f-94f8-54c0b497b367",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T04:09:15.3176711Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "35783a8c-7fd4-4d0d-aba1-221cb3cdcff4",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T04:09:19.8232466Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "0cedd384-51c2-4255-9032-35470619cbf8",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T04:09:19.8539414Z",
+      "Operation": "Locked Back Door Lock."
+    },
+    {
+      "Id": "91458ead-65ad-49ae-8c06-90ba16d2f452",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T04:09:19.89784Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "ed74b29c-06b2-414e-b2aa-2da0ca166139",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T04:09:19.9338046Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "4a1483dd-f6a7-4583-b72a-41da3f5e540e",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-08T04:09:19.9476585Z",
+      "Operation": "Powered on Ceiling Fan."
+    },
+    {
+      "Id": "00370005-081f-456c-87d2-be5b8fe7c5f8",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T04:09:19.9741105Z",
+      "Operation": "Set light brightness to 75% for Overhead Light."
+    },
+    {
+      "Id": "1306e338-6cd7-490b-866f-ac813d26fb93",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T04:09:19.987199Z",
+      "Operation": "Set light brightness to 50% for Overhead Light."
+    },
+    {
+      "Id": "74fb2c5c-3bff-45f3-b140-1b6aeed2b54b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-08T04:09:20.0115903Z",
+      "Operation": "Set light color to #FFFFFF for Overhead Light."
+    },
+    {
+      "Id": "20952ecf-2c64-41f4-8b0d-97c442da2dc7",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T04:09:20.0551993Z",
+      "Operation": "Set target temperature to 76\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "20f4ce7e-d549-4245-8bb6-432c2475f03a",
+      "DeviceId": "6bac8a57-3997-4669-9848-bd88a13e8855",
+      "Timestamp": "2026-05-08T04:09:20.1061281Z",
+      "Operation": "Set fan speed to High for Ceiling Fan."
+    },
+    {
+      "Id": "1ffe9ed1-1388-4bfc-bfc8-fa4940ab9fa6",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T04:09:20.1397668Z",
+      "Operation": "Set mode to Heat for Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 75
+      "AmbientTemperature": 76
     }
   ]
 }
