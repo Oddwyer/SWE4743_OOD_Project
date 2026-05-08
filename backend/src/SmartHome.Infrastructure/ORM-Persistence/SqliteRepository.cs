@@ -6,18 +6,22 @@ using SmartHome.Domain.Locations;
 using SmartHome.Infrastructure;
 using SmartHome.Infrastructure.ORM_Persistence;
 
+/// <summary>
+/// SQLite-backed implementation of IDeviceRepository and ILocationRepository using EF Core.
+/// </summary>
 public class SqliteRepository : IDeviceRepository, ILocationRepository
 {
     private readonly SmartHomeDbContext _dbContext;
     private readonly IDeviceFactory _deviceFactory;
 
+    /// <summary>Initializes the repository with a shared EF Core context and device factory.</summary>
     public SqliteRepository(SmartHomeDbContext dbContext, IDeviceFactory deviceFactory)
     {
         _dbContext = dbContext;
         _deviceFactory = deviceFactory;
     }
 
-    // Device repository methods
+    /// <summary>Returns all devices matching the provided filter criteria.</summary>
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
         var query = _dbContext.Devices.AsQueryable();
@@ -40,6 +44,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         return query.AsEnumerable().Select(e => _deviceFactory.RehydrateDevice(MapToRehydrationData(e)));
     }
 
+    /// <summary>Returns the device with the given ID, or null if not found.</summary>
     public IDevice? FindDeviceById(Guid deviceId)
     {
         var entity = _dbContext.Devices.Find(deviceId);
@@ -61,6 +66,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         _dbContext.SaveChanges();
     }
 
+    /// <summary>Removes the device with the given ID from the database.</summary>
     public void DeleteDevice(Guid deviceId)
     {
         var entity = _dbContext.Devices.Find(deviceId);
@@ -71,11 +77,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         }
     }
 
-// we'll make use of the current JsonRepository's mapping logic to convert between 
-// our domain models and the database entities, which will help keep our repository focused on data access concerns
-
-// this method saves a device to the database
-// it checks if the device already exists (by ID) and updates it, otherwise it adds a new record
+    /// <summary>Inserts a new device or updates the existing record; returns the saved device.</summary>
     public IDevice SaveDevice(IDevice device)
     {
         var snapshot = JsonRepository.ToDeviceSnapshot(device);
@@ -94,7 +96,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         return device;
     }
 
-    // Location repository methods
+    /// <summary>Returns all persisted locations with their ambient temperatures.</summary>
     public IEnumerable<Location> GetAllLocations()
     {
         return _dbContext.Locations.ToList().Select(e => new Location
@@ -104,6 +106,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         });
     }
 
+    /// <summary>Inserts a new location record.</summary>
     public void AddLocation(Location location)
     {
         var entity = new LocationEntity
@@ -115,6 +118,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         _dbContext.SaveChanges();
     }
 
+    /// <summary>Removes a location record by name.</summary>
     public void RemoveLocation(string locationName)
     {
         var entity = _dbContext.Locations.Find(locationName);
@@ -125,11 +129,13 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         }
     }
 
+    /// <summary>Returns true when a thermostat device already exists in the specified location.</summary>
     public bool ThermostatInLocation(string location)
     {
         return _dbContext.Devices.Any(d => d.Location == location && d.Type == DeviceType.Thermostat);
     }
 
+    /// <summary>Returns command history entries for the specified device, newest first.</summary>
     public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
         return _dbContext.CommandHistories
@@ -139,6 +145,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
             .Select(ch => CommandHistoryEntry.Rehydrate(ch.Id, ch.DeviceId, ch.CommandExecuted, ch.Timestamp));
     }
 
+    /// <summary>Persists a command history entry to the database.</summary>
     public void SaveHistoryEntry(CommandHistoryEntry entry)
     {
         _dbContext.CommandHistories.Add(new CommandHistoryEntity
@@ -151,11 +158,13 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         _dbContext.SaveChanges();
     }
 
+    /// <summary>Returns the stored ambient temperature (°F) for the given location, or null if not found.</summary>
     public int? GetAmbientTemperature(string locationName)
     {
         return _dbContext.Locations.Find(locationName)?.AmbientTemperature;
     }
 
+    /// <summary>Inserts or updates the ambient temperature record for a location.</summary>
     public void SaveAmbientTemperature(string location, int temperature)
     {
         var entity = _dbContext.Locations.Find(location);
@@ -175,7 +184,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         _dbContext.SaveChanges();
     }
 
-    // Helper methods for mapping between entities and domain models
+    /// <summary>Maps a DeviceEntity to the rehydration data contract used by the device factory.</summary>
     private static DeviceRehydrationData MapToRehydrationData(DeviceEntity entity) => new DeviceRehydrationData
     {
         Id = entity.Id,
@@ -191,6 +200,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         FanSpeed = (FanSpeed?)entity.FanSpeed
     };
 
+    /// <summary>Creates a new DeviceEntity from a device snapshot.</summary>
     private static DeviceEntity MapSnapshotToNewEntity(DeviceSnapshot snapshot) => new()
     {
         Id = snapshot.Id,
@@ -206,6 +216,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
         TargetTemperature = snapshot.TargetTemperature
     };
 
+    /// <summary>Updates an existing DeviceEntity in place from a device snapshot.</summary>
     private static void MapSnapshotToEntity(DeviceSnapshot snapshot, DeviceEntity entity)
     {
         entity.Name = snapshot.Name;

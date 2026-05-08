@@ -3,40 +3,25 @@
      ========================= -->
 
 <p-card styleClass="simulation-card">
-
-  <!-- =========================
-       CARD HEADER
-       ========================= -->
-
   <div class="simulation-card-header">
     <h2>Simulation Settings</h2>
   </div>
 
-  <!-- =========================
-       AMBIENT TEMPERATURE CONTROLS
-       ========================= -->
-
+  <!-- Ambient Temperature Controls -->
   <div *ngFor="let location of locations" class="setting-row ambient-row">
-
-    <!-- Ambient temperature icon -->
     <span class="material-symbols-outlined simulation-icon">
       thermostat
     </span>
 
     <div class="simulation-control">
-
-      <!-- Location temperature label -->
       <div class="simulation-header">
         <span class="simulation-label">
           {{ location }} Ambient Temperature:
         </span>
       </div>
 
-      <!-- Temperature slider -->
       <div class="ambient-slider-row">
-
         <ng-container *ngIf="hasAmbientTemperature(location); else loadingSlider">
-
           <p-slider
             styleClass="ambient-slider"
             [ngModel]="getAmbientTemperature(location)"
@@ -44,12 +29,9 @@
             [max]="maxTemp"
             (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"
           ></p-slider>
-
         </ng-container>
 
-        <!-- Disabled loading slider -->
         <ng-template #loadingSlider>
-
           <p-slider
             styleClass="ambient-slider"
             [ngModel]="minTemp"
@@ -57,83 +39,61 @@
             [max]="maxTemp"
             [disabled]="true"
           ></p-slider>
-
         </ng-template>
 
-        <!-- Temperature display -->
         <span class="simulation-value">
-
-          <ng-container *ngIf="hasAmbientTemperature(location); else loadingTemp">
+          <ng-container *ngIf="hasAmbientTemperature(location); else loadingText">
             {{ getDisplayAmbientTemperature(location) }}°F
           </ng-container>
 
-          <ng-template #loadingTemp>
+          <ng-template #loadingText>
             Loading...
           </ng-template>
-
         </span>
       </div>
     </div>
   </div>
 
-  <!-- =========================
-       SIMULATION SPEED CONTROLS
-       ========================= -->
-
+  <!-- Simulation Speed Controls -->
   <div class="setting-row speed-row">
-
-    <!-- Speed icon -->
     <span class="material-symbols-outlined simulation-icon">
       speed
     </span>
 
     <div class="simulation-control">
-
-      <!-- Speed label -->
       <div class="simulation-header">
         <span class="simulation-label">
           Simulation Speed:
         </span>
       </div>
 
-      <!-- Speed selection buttons -->
       <div class="speed-button-group">
-
         <button
-          type="button"
           *ngFor="let option of speedOptions"
+          type="button"
           class="speed-button"
           [class.selected]="simulationSpeed === option.value"
           (click)="setSimulationSpeed(option.value)"
         >
           {{ option.label }}
         </button>
-
       </div>
     </div>
   </div>
 
-  <!-- =========================
-       RESET SIMULATION
-       ========================= -->
-
+  <!-- Reset Simulation -->
   <div class="setting-row">
-
-    <!-- Reset icon -->
     <span class="material-symbols-outlined simulation-icon">
       restart_alt
     </span>
 
     <div class="simulation-control">
-
-      <!-- Reset label -->
       <div class="simulation-header">
         <span class="simulation-label">
           Reset Simulation:
         </span>
       </div>
 
-      <!-- Reset button -->
       <button
         type="button"
         class="reset-button"
@@ -141,8 +101,6 @@
       >
         Reset Simulator
       </button>
-
     </div>
   </div>
-
 </p-card>

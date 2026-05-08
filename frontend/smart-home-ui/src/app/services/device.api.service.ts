@@ -51,7 +51,7 @@ export class DeviceApiService {
    * Send a control command to a device.
    */
   controlDevice(deviceId: string, request: ControlDeviceRequest): Observable<DeviceResponse> {
-    return this.http.put<DeviceResponse>(`${this.baseUrl}/${deviceId}/commands`, request);
+    return this.http.post<DeviceResponse>(`${this.baseUrl}/${deviceId}/commands`, request);
   }
 
   /**

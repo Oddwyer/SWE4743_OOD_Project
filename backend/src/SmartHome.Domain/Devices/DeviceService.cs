@@ -2,11 +2,15 @@ using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Exceptions;
 using SmartHome.Domain.Locations;
 using SmartHome.Domain.Simulations;
 
 namespace SmartHome.Domain.Devices;
 
+/// <summary>
+/// Implements device application logic: registration, retrieval, command dispatch, history, and simulation enrollment.
+/// </summary>
 public class DeviceService : IDeviceService
 {
     private readonly IDeviceRepository _deviceRepository;
@@ -54,7 +58,7 @@ public class DeviceService : IDeviceService
         // Enforce single thermostat per location rule.
         if (_deviceRepository.ThermostatInLocation(register.DeviceLocation) && register.DeviceType == DeviceType.Thermostat)
         {
-            throw new InvalidOperationException($"A thermostat already exists in location {register.DeviceLocation}.");
+            throw new DeviceConflictException($"A thermostat already exists in location {register.DeviceLocation}.");
         }
         var device = _deviceFactory.CreateDevice(register.DeviceName, register.DeviceLocation, register.DeviceType);
 
@@ -108,17 +112,10 @@ public class DeviceService : IDeviceService
     {
         var device = GetDeviceById(deviceId);
 
-        if (device == null)
-        {
-            throw new KeyNotFoundException($"Device with ID {deviceId} was not found.");
-        }
-
-
         if (device is ThermostatDevice thermostat)
         {
             _simulationService.UnregisterThermostat(thermostat);
         }
-
 
         _deviceRepository.DeleteDevice(deviceId);
     }

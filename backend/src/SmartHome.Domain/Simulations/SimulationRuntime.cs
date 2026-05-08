@@ -1,6 +1,5 @@
-using SmartHome.Domain.Locations;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
+using System.Collections.Concurrent;
 
 namespace SmartHome.Domain.Simulations;
 
@@ -10,7 +9,8 @@ namespace SmartHome.Domain.Simulations;
 /// </summary>
 public class SimulationRuntime
 {
-    private readonly Dictionary<string, ThermostatDevice> _registeredThermostats = new();
+    // Thermostat registry is shared across multiple threads -> made concurrent.
+    private readonly ConcurrentDictionary<string, ThermostatDevice> _registeredThermostats = new();
 
     public SimulationTicker Ticker { get; }
 
@@ -40,7 +40,7 @@ public class SimulationRuntime
     /// </summary>
     public void UnregisterThermostat(ThermostatDevice thermostat)
     {
-        _registeredThermostats.Remove(thermostat.Id.ToString());
+        _registeredThermostats.TryRemove(thermostat.Id.ToString(), out _);
     }
 
 }

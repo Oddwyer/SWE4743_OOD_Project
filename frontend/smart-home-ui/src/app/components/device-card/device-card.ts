@@ -31,7 +31,7 @@ import { ThermostatMode } from '../../types/thermostatmode';
     SelectButtonModule,
   ],
   templateUrl: './device-card.html',
-  styleUrl: './device-card.css',
+  styleUrls: ['./device-card.css'],
 })
 
 /**
@@ -45,6 +45,7 @@ import { ThermostatMode } from '../../types/thermostatmode';
  * - door lock controls
  */
 export class DeviceCardComponent {
+  /** The device state to display and control. */
   @Input({ required: true }) device!: DeviceResponse;
 
   /**
@@ -66,6 +67,20 @@ export class DeviceCardComponent {
   ];
 
   constructor(private readonly deviceApiService: DeviceApiService) {}
+
+  /**
+   * Returns the human-readable label for a device type.
+   */
+  getDeviceTypeLabel(type: string): string {
+    const labels: Record<string, string> = {
+      light: 'Light',
+      fan: 'Fan',
+      thermostat: 'Thermostat',
+      doorLock: 'Door Lock',
+    };
+
+    return labels[type?.toLowerCase()] ?? type;
+  }
 
   /**
    * Returns the Material icon name for a device type.

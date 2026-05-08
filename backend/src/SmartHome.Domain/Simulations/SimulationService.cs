@@ -1,7 +1,6 @@
 using SmartHome.Domain.Locations;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
-using System.Collections;
 using SmartHome.Domain.Devices;
 
 namespace SmartHome.Domain.Simulations;
@@ -34,7 +33,15 @@ public class SimulationService : ISimulationService
     /// </summary>
     private void OnSimulationTick()
     {
-        UpdateAmbientTemperature();
+        try
+        {
+            UpdateAmbientTemperature();
+        }
+        catch (Exception ex)
+        {
+            // Replace with structured logging if logging abstractions are introduced into the Domain layer in the future.
+            Console.WriteLine($"Simulation tick failed: {ex.Message}");
+        }
     }
 
     /// <summary>

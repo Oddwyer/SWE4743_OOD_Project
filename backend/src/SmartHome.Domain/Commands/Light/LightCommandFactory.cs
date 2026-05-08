@@ -5,8 +5,12 @@ using SmartHome.Domain.Commands.Powered;
 
 namespace SmartHome.Domain.Commands.Light;
 
+/// <summary>
+/// Creates command objects for light devices (toggle power, set brightness, set color).
+/// </summary>
 public class LightCommandFactory : IDeviceCommandFactory
 {
+    /// <summary>Creates the appropriate light command from the request context.</summary>
     public IDeviceCommand CreateCommand(IDevice device, CommandData context)
     {
 
@@ -27,6 +31,7 @@ public class LightCommandFactory : IDeviceCommandFactory
         };
     }
 
+    /// <summary>Creates a TogglePower command for a light device.</summary>
     private IDeviceCommand CreateTogglePowerCommand(LightDevice light)
     {
 
@@ -38,6 +43,7 @@ public class LightCommandFactory : IDeviceCommandFactory
         return new TogglePowerCommand(light, poweredDevice);
     }
 
+    /// <summary>Creates a SetBrightness command, validating the brightness value is present.</summary>
     private IDeviceCommand CreateSetBrightnessCommand(LightDevice light, CommandData context)
     {
 
@@ -49,6 +55,7 @@ public class LightCommandFactory : IDeviceCommandFactory
         return new SetLightBrightnessCommand(light, context.Brightness.Value);
     }
 
+    /// <summary>Creates a SetColor command, validating the color value is present.</summary>
     private IDeviceCommand CreateSetColorCommand(LightDevice light, CommandData context)
     {
 

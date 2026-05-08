@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   /**
-   * Initializes dashboard data and starts the simulation clock.
+   * Initializes dashboard data.
    */
   ngOnInit(): void {
     this.loadDevices();
@@ -78,9 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Returns unique locations from all loaded devices.
-   */
+  /** Unique location names derived from loaded devices, prefixed with 'All'. */
   get locationFilters(): string[] {
     const locations = this.devices
       .map((device) => device.deviceLocation)
@@ -89,9 +87,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return ['All', ...new Set(locations)];
   }
 
-  /**
-   * Returns devices that match all selected filters.
-   */
+  /** Devices that pass all active power, location, and type filters. */
   get filteredDevices(): DeviceResponse[] {
     return this.devices.filter((device) => {
       return (
@@ -102,9 +98,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Groups filtered devices by location for display in the dashboard.
-   */
+  /** Filtered devices grouped by location, with each group sorted alphabetically by name. */
   get groupedDevices(): { location: string; devices: DeviceResponse[] }[] {
     const groups = new Map<string, DeviceResponse[]>();
 
@@ -120,13 +114,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     return Array.from(groups, ([location, devices]) => ({
       location,
-      devices,
-    }));
+      devices: devices.sort((a, b) => (a.deviceName ?? '').localeCompare(b.deviceName ?? '')),
+    })).sort((a, b) => a.location.localeCompare(b.location));
   }
 
-  /**
-   * Returns true when a device matches the selected power filter.
-   */
+  /** Returns true when the device satisfies the active power filter. */
   private matchesPowerFilter(device: DeviceResponse): boolean {
     if (this.selectedPowerFilter === 'All') {
       return true;
@@ -139,28 +131,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.isDeviceConsideredOff(device);
   }
 
-  /**
-   * Returns true when a device matches the selected location filter.
-   */
+  /** Returns true when the device belongs to the selected location (or when 'All' is selected). */
   private matchesLocationFilter(device: DeviceResponse): boolean {
     return (
       this.selectedLocationFilter === 'All' || device.deviceLocation === this.selectedLocationFilter
     );
   }
 
-  /**
-   * Returns true when a device matches the selected device type filter.
-   */
+  /** Returns true when the device matches the selected type (or when 'All' is selected). */
   private matchesTypeFilter(device: DeviceResponse): boolean {
     return this.selectedTypeFilter === 'All' || device.type === this.selectedTypeFilter;
   }
 
-  /**
-   * Returns whether the device should count as on for filtering.
-   *
-   * Door locks are latch devices and always count as on.
-   * Thermostat Idle does not count as on because only Heating/Cooling are active.
-   */
+  /** Returns true when the device is considered "on" for power filter purposes. */
   private isDeviceConsideredOn(device: DeviceResponse): boolean {
     if (device.type === 'DoorLock') {
       return true;
@@ -173,11 +156,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return device.isPoweredOn === true || device.isDeviceOn === true;
   }
 
-  /**
-   * Returns whether the device should count as off for filtering.
-   *
-   * Door locks are latch devices and are never considered off.
-   */
+  /** Returns true when the device is considered "off" for power filter purposes. */
   private isDeviceConsideredOff(device: DeviceResponse): boolean {
     if (device.type === 'DoorLock') {
       return false;
@@ -186,18 +165,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return !this.isDeviceConsideredOn(device);
   }
 
-  /**
-   * Clears all selected filters.
-   */
+  /** Resets all active filters to their 'All' defaults. */
   clearFilters(): void {
     this.selectedPowerFilter = 'All';
     this.selectedLocationFilter = 'All';
     this.selectedTypeFilter = 'All';
   }
 
-  /**
-   * Returns whether any filter is currently active.
-   */
+  /** True when any filter is set to a value other than 'All'. */
   get hasActiveFilters(): boolean {
     return (
       this.selectedPowerFilter !== 'All' ||
@@ -206,22 +181,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
-  /**
-   * Returns a location icon class based on the location name.
-   */
+  /** Returns an icon for a location based on its name. */
   getLocationIcon(location: string): string {
-    const loc = location?.toLowerCase();
+    const loc = (location ?? '').toLowerCase();
 
-    if (loc.includes('living')) return 'pi pi-home';
-    if (loc.includes('bedroom')) return 'pi pi-moon';
-    if (loc.includes('entry')) return 'pi pi-sign-in';
+    if (loc.includes('living')) {
+      return 'living';
+    }
 
-    return 'pi pi-map-marker';
+    if (loc.includes('bedroom')) {
+      return 'king_bed';
+    }
+
+    if (loc.includes('entry')) {
+      return 'door_open';
+    }
+
+    if (loc.includes('kitchen')) {
+      return 'kitchen';
+    }
+
+    if (loc.includes('garage')) {
+      return 'garage';
+    }
+
+    if (loc.includes('media')) {
+      return 'tv';
+    }
+    if (loc.includes('office')) {
+      return 'desktop_mac';
+    }
+    return 'home';
   }
 
-  /**
-   * Returns unique locations that contain thermostats.
-   */
+  /** Location names that contain at least one thermostat device. */
   get thermostatLocations(): string[] {
     const locations = this.devices
       .filter((device) => device.type?.toString().toLowerCase() === 'thermostat')
@@ -235,25 +228,57 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Resets dashboard simulation display state after the backend simulation resets.
    */
   handleSimulationReset(): void {
+    this.stopClock();
     this.simulationSpeed = 1;
     this.simulationSeconds = 0;
-
-    setTimeout(() => {
-      this.currentTime = '00:00:00';
-    });
-
+    this.currentTime = '00:00:00';
+    this.startClock();
     this.loadDevices();
+    this.cdr.detectChanges();
   }
 
   /**
-   * Starts the simulation clock interval.
+   * Updates the speed multiplier.
+   *
+   * The clock interval stays stable. Speed only changes how much time
+   * is added on each tick.
+   */
+  handleSpeedChanged(speed: number): void {
+    this.simulationSpeed = speed;
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Starts or stops the dashboard clock based on whether ambient
+   * temperature is still visibly adjusting.
+   */
+  handleSimulationRunningChanged(isRunning: boolean): void {
+    if (isRunning) {
+      this.startClock();
+    }
+  }
+
+  /**
+   * Starts the clock only if it is not already running.
    */
   private startClock(): void {
-    this.updateClock();
+    if (this.clockIntervalId !== undefined) {
+      return;
+    }
 
     this.clockIntervalId = window.setInterval(() => {
       this.updateClock();
     }, 1000);
+  }
+
+  /**
+   * Stops the clock when ambient temperature finishes adjusting.
+   */
+  private stopClock(): void {
+    if (this.clockIntervalId !== undefined) {
+      window.clearInterval(this.clockIntervalId);
+      this.clockIntervalId = undefined;
+    }
   }
 
   /**
@@ -268,21 +293,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const minutes = Math.floor((this.simulationSeconds % 3600) / 60);
     const seconds = this.simulationSeconds % 60;
 
-    setTimeout(() => {
-      this.currentTime =
-        `${hours.toString().padStart(2, '0')}:` +
-        `${minutes.toString().padStart(2, '0')}:` +
-        `${seconds.toString().padStart(2, '0')}`;
-    });
+    this.currentTime =
+      `${hours.toString().padStart(2, '0')}:` +
+      `${minutes.toString().padStart(2, '0')}:` +
+      `${seconds.toString().padStart(2, '0')}`;
+
+    this.cdr.detectChanges();
   }
 
   /**
    * Clears the simulation clock interval when the dashboard is destroyed.
    */
   ngOnDestroy(): void {
-    if (this.clockIntervalId !== undefined) {
-      window.clearInterval(this.clockIntervalId);
-      this.clockIntervalId = undefined;
-    }
+    this.stopClock();
   }
 }

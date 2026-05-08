@@ -16,31 +16,27 @@
 
         <div class="device-status-inline">
 
-          <!-- =========================
-               POWERED DEVICE CONTROLS
-               ========================= -->
+          <!-- Powered Device Controls -->
+          <ng-container *ngIf="canTogglePower()">
+            <button
+              pButton
+              icon="pi pi-power-off"
+              class="p-button-text p-button-sm"
+              [ngClass]="(device.isPoweredOn ?? device.isDeviceOn) ? 'power-on' : 'power-off'"
+              (click)="toggleDevicePower()">
+            </button>
+          </ng-container>
 
-          <button
-            *ngIf="canTogglePower()"
-            pButton
-            icon="pi pi-power-off"
-            class="p-button-text p-button-sm"
-            [ngClass]="(device.isPoweredOn ?? device.isDeviceOn) ? 'power-on' : 'power-off'"
-            (click)="toggleDevicePower()">
-          </button>
-
-          <!-- =========================
-               LATCHED DEVICE CONTROLS
-               ========================= -->
-
-          <button
-            *ngIf="canToggleLatch()"
-            pButton
-            [icon]="device.isLocked ? 'pi pi-lock' : 'pi pi-lock-open'"
-            class="p-button-text p-button-sm latch-button"
-            [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
-            (click)="toggleLatch()">
-          </button>
+          <!-- Latched Device Controls -->
+          <ng-container *ngIf="canToggleLatch()">
+            <button
+              pButton
+              [icon]="device.isLocked ? 'pi pi-lock' : 'pi pi-lock-open'"
+              class="p-button-text p-button-sm latch-button"
+              [ngClass]="device.isLocked ? 'latch-on' : 'latch-off'"
+              (click)="toggleLatch()">
+            </button>
+          </ng-container>
 
           <span class="device-status-text">
             {{ getDeviceStatus() }}
@@ -51,9 +47,10 @@
 
       <h3>{{ device.deviceName }}</h3>
 
-      <h4>{{ device.type | titlecase }}</h4>
+      <h4>{{ getDeviceTypeLabel(device.type) | titlecase }}</h4>
 
     </div>
+
   </ng-template>
 
   <!-- =========================
@@ -66,7 +63,7 @@
          POWER TOGGLE
          ========================= -->
 
-    <div class="power-row" *ngIf="canTogglePower()">
+    <div *ngIf="canTogglePower()" class="power-row">
 
       <span class="power-label">
         Power
@@ -83,7 +80,7 @@
          LOCK TOGGLE
          ========================= -->
 
-    <div class="power-row" *ngIf="canToggleLatch()">
+    <div *ngIf="canToggleLatch()" class="power-row">
 
       <span class="lock-label">
         Lock
@@ -100,7 +97,7 @@
          LATCH STATUS
          ========================= -->
 
-    <div *ngIf="device.isLocked !== null">
+    <div *ngIf="device.type === 'DoorLock'">
 
       <div class="control-header">
 
@@ -113,6 +110,7 @@
         </span>
 
       </div>
+
     </div>
 
     <!-- =========================
@@ -120,7 +118,11 @@
          ========================= -->
 
     <div
-      *ngIf="device.lightBrightness !== null && device.minBrightness !== null && device.maxBrightness !== null"
+      *ngIf="
+        device.lightBrightness !== null &&
+        device.minBrightness !== null &&
+        device.maxBrightness !== null
+      "
       class="control-row brightness-row"
       [class.control-disabled]="!(device.isPoweredOn ?? device.isDeviceOn)">
 
@@ -177,7 +179,9 @@
           </span>
 
         </div>
+
       </div>
+
     </div>
 
     <!-- =========================
@@ -196,8 +200,8 @@
       <div class="fan-speed-buttons">
 
         <button
-          type="button"
           *ngFor="let option of fanSpeedOptions"
+          type="button"
           class="fan-speed-button"
           [class.selected]="device.fanSpeed?.toLowerCase() === option.value.toLowerCase()"
           [disabled]="!(device.isPoweredOn ?? device.isDeviceOn)"
@@ -208,6 +212,7 @@
         </button>
 
       </div>
+
     </div>
 
     <!-- =========================
@@ -226,8 +231,8 @@
       <div class="thermostat-mode-buttons">
 
         <button
-          type="button"
           *ngFor="let option of thermostatModeOptions"
+          type="button"
           class="thermostat-mode-button"
           [class.selected]="device.thermostatMode?.toLowerCase() === option.value.toLowerCase()"
           [disabled]="!isThermostatPoweredOn()"
@@ -238,14 +243,19 @@
         </button>
 
       </div>
+
     </div>
 
     <!-- =========================
-         THERMOSTAT DESIRED TEMPERATURE
+         THERMOSTAT TARGET TEMPERATURE
          ========================= -->
 
     <div
-      *ngIf="device.targetTemperature !== null && device.minTemperature !== null && device.maxTemperature !== null"
+      *ngIf="
+        device.targetTemperature !== null &&
+        device.minTemperature !== null &&
+        device.maxTemperature !== null
+      "
       class="control-row temperature-row"
       [class.control-disabled]="!isThermostatPoweredOn()">
 

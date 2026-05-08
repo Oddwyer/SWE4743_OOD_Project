@@ -2,51 +2,53 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SmartHome.Infrastructure.ORM_Persistence
 {
+    /// <summary>
+    /// EF Core database context for the SmartHome application; manages devices, locations, and command history.
+    /// </summary>
     public class SmartHomeDbContext : DbContext
-{
-    public SmartHomeDbContext(DbContextOptions<SmartHomeDbContext> options) 
-    : base(options) {}
-
-    public DbSet<DeviceEntity> Devices { get; set; } // table created for our device entities
-    public DbSet<LocationEntity> Locations { get; set; } // table created for our location entities
-    public DbSet<CommandHistoryEntity> CommandHistories { get; set; } // table created for our command history entities
-
-// general configurations for all entities and tables will happen below in the OnModelCreating method, 
-// such as setting primary keys, required fields, and relationships between tables
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        /// <summary>Initializes the context with the provided EF Core options.</summary>
+        public SmartHomeDbContext(DbContextOptions<SmartHomeDbContext> options)
+            : base(options) {}
 
-        // Configure DeviceEntity
-        modelBuilder.Entity<DeviceEntity>(entity =>
+        /// <summary>Persisted device records.</summary>
+        public DbSet<DeviceEntity> Devices { get; set; }
+        /// <summary>Persisted location ambient temperature records.</summary>
+        public DbSet<LocationEntity> Locations { get; set; }
+        /// <summary>Persisted command history records.</summary>
+        public DbSet<CommandHistoryEntity> CommandHistories { get; set; }
+
+        /// <summary>Configures table schema, primary keys, required fields, and foreign key relationships.</summary>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            entity.HasKey(e => e.Id); // Id is the primary key
-            entity.Property(e => e.Name).IsRequired();
-            entity.Property(e => e.Location).IsRequired();
-            entity.Property(e => e.Type).IsRequired();
-        });
+            base.OnModelCreating(modelBuilder);
 
-        // Configure LocationEntity
-        modelBuilder.Entity<LocationEntity>(entity =>
-        {
-            entity.HasKey(e => e.Location); // Use Location as the primary key
-            entity.Property(e => e.AmbientTemperature).IsRequired();
-        });
+            modelBuilder.Entity<DeviceEntity>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Location).IsRequired();
+                entity.Property(e => e.Type).IsRequired();
+            });
 
-        // Configure CommandHistoryEntity
-        modelBuilder.Entity<CommandHistoryEntity>(entity =>
-        {
-            entity.HasKey(e => e.Id); // Id is the primary key
-            entity.Property(e => e.DeviceId).IsRequired();
-            entity.Property(e => e.CommandExecuted).IsRequired();
-            entity.Property(e => e.Timestamp).IsRequired();
+            modelBuilder.Entity<LocationEntity>(entity =>
+            {
+                entity.HasKey(e => e.Location);
+                entity.Property(e => e.AmbientTemperature).IsRequired();
+            });
 
-            // Set up foreign key relationship with DeviceEntity
-            entity.HasOne<DeviceEntity>()
-                  .WithMany()
-                  .HasForeignKey(ch => ch.DeviceId)
-                  .OnDelete(DeleteBehavior.Cascade);
-        });
+            modelBuilder.Entity<CommandHistoryEntity>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.DeviceId).IsRequired();
+                entity.Property(e => e.CommandExecuted).IsRequired();
+                entity.Property(e => e.Timestamp).IsRequired();
+
+                entity.HasOne<DeviceEntity>()
+                      .WithMany()
+                      .HasForeignKey(ch => ch.DeviceId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+        }
     }
-}
 }

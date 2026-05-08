@@ -26,7 +26,7 @@ public class OffState : IFanState
     /// </summary>
     public void SetFanSpeed(FanSpeed speed)
     {
-        // No effect when the fan is off
+        // Throws exceptin that cannot change speed when fan is off.
         throw new InvalidOperationException("Cannot set fan speed when fan is off.");
     }
 

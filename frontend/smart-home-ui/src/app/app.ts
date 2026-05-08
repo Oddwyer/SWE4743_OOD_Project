@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { DashboardComponent } from './components/dashboard/dashboard';
 
+/** Root application component — renders the smart home dashboard. */
 @Component({
   selector: 'app-root',
   imports: [DashboardComponent],

@@ -1,17 +1,22 @@
 using SmartHome.Domain.Devices;
 using SmartHome.Infrastructure.ORM_Persistence;
 
+/// <summary>
+/// Seeds the database with initial locations and devices when the database is empty.
+/// </summary>
 public static class SmartHomeSeedData
 {
+    /// <summary>
+    /// Inserts the default locations (Living Room, Bedroom, Kitchen) and one representative device per
+    /// location if no devices exist yet.
+    /// </summary>
     public static void Seed(SmartHomeDbContext _dbContext)
     {
-        // Check if there are already devices in the database to avoid seeding duplicate data
         if (_dbContext.Devices.Any())
         {
-            return; // Database has been seeded, ie devices, locations, etc already exist, so we can skip seeding
+            return;
         }
 
-        // Seed initial locations with ambient temperatures
         var locations = new List<LocationEntity>
         {
             new LocationEntity { Location = "Living Room", AmbientTemperature = 65 },
@@ -20,7 +25,6 @@ public static class SmartHomeSeedData
         };
         _dbContext.Locations.AddRange(locations);
 
-        // Seed initial devices
         var devices = new List<DeviceEntity>
         {
             new DeviceEntity { Name = "Living Room Thermostat", Location = "Living Room", Type = DeviceType.Thermostat, IsOn = false, TargetTemperature = 70 },
