@@ -278,7 +278,3 @@ Architecture Walkthrough:
 ## Known Issues
 
 The Angular frontend may log a non-blocking change detection warning related to the simulated clock. Core functionality is unaffected.
-
-```
-
-```

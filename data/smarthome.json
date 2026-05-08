@@ -125,7 +125,7 @@
       "IsOn": true,
       "DeviceState": "Idle",
       "ThermostatMode": 3,
-      "TargetTemperature": 60,
+      "TargetTemperature": 72,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3547,12 +3547,30 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T17:02:57.8754298Z",
       "Operation": "Set target temperature to 60\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "6b9a1b64-4394-460a-b3bc-b7d64b8db708",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T17:39:06.9826568Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "b7a6d4a3-1629-485f-8506-f55182dfd584",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T17:39:08.1070887Z",
+      "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "c43e90da-e49f-4f33-af50-037899c9ed95",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T17:39:15.8317682Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 60
+      "AmbientTemperature": 72
     },
     {
       "Location": "master bedroom",
