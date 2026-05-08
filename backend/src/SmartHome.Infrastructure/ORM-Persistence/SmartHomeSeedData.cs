@@ -14,16 +14,16 @@ public static class SmartHomeSeedData
         // Seed initial locations with ambient temperatures
         var locations = new List<LocationEntity>
         {
-            new LocationEntity { Location = "Living Room", AmbientTemperature = 22 },
-            new LocationEntity { Location = "Bedroom", AmbientTemperature = 20 },
-            new LocationEntity { Location = "Kitchen", AmbientTemperature = 24 }
+            new LocationEntity { Location = "Living Room", AmbientTemperature = 65 },
+            new LocationEntity { Location = "Bedroom", AmbientTemperature = 65 },
+            new LocationEntity { Location = "Kitchen", AmbientTemperature = 65 }
         };
         _dbContext.Locations.AddRange(locations);
 
         // Seed initial devices
         var devices = new List<DeviceEntity>
         {
-            new DeviceEntity { Name = "Living Room Thermostat", Location = "Living Room", Type = DeviceType.Thermostat, IsOn = false, TargetTemperature = 22 },
+            new DeviceEntity { Name = "Living Room Thermostat", Location = "Living Room", Type = DeviceType.Thermostat, IsOn = false, TargetTemperature = 70 },
             new DeviceEntity { Name = "Bedroom Light", Location = "Bedroom", Type = DeviceType.Light, IsOn = false, LightBrightness = 0, LightColor = "White" },
             new DeviceEntity { Name = "Kitchen Fan", Location = "Kitchen", Type = DeviceType.Fan, IsOn = false, FanSpeed = 0 }
         };

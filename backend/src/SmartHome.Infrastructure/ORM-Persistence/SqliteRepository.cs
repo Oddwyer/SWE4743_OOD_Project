@@ -43,7 +43,9 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
     public IDevice? FindDeviceById(Guid deviceId)
     {
         var entity = _dbContext.Devices.Find(deviceId);
-        return entity == null ? null : _deviceFactory.RehydrateDevice(MapToRehydrationData(entity));
+        return entity == null 
+        ? null 
+        : _deviceFactory.RehydrateDevice(MapToRehydrationData(entity));
     }
 
     public void AddDevice(Device device)

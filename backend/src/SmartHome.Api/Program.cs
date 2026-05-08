@@ -7,7 +7,7 @@ using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.DoorLock;
 using SmartHome.Domain.Simulations;
 using SmartHome.Domain.Locations;
-using SmartHome.Infrastructure;
+using SmartHome.Infrastructure.ORM_Persistence;
 using SmartHome.Api.Middleware;
 using FluentValidation.AspNetCore;
 using FluentValidation;
@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,14 +74,15 @@ builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 builder.Services.AddScoped<IDeviceFactory, DeviceFactory>();
 builder.Services.AddScoped<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 
-builder.Services.AddScoped<JsonRepository>(); // gets replaced for ORM and sqlite
-builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+// swapping json for sqlite repository for ORM implementation
+builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
+builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
 
-// this will be commented out while I build out the rest of the ORM components
-// builder.Services.AddScoped<SqliteRepository>();
-// builder.Services.AddScoped<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
-// builder.Services.AddScoped<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
+// Add DbContext with SQLite provider
+builder.Services.AddDbContext<SmartHomeDbContext>(options =>
+{
+    options.UseSqlite("Data Source=SmartHome.db");
+});
 
 // Configure JSON serialization to use camelCase and serialize enums as strings.
 builder.Services.AddControllers()
@@ -103,6 +105,14 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// database creation, migration, and seeding
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<SmartHomeDbContext>();
+    dbContext.Database.Migrate();
+    SmartHomeSeedData.Seed(dbContext);
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();
