@@ -25,36 +25,71 @@ public class GlobalErrorHandling
         catch (KeyNotFoundException ex)
         {
             _logger.LogWarning(ex, "Resource not found.");
-            await WriteErrorResponse(context, HttpStatusCode.NotFound, "https://httpstatuses.com/404", "Not Found", ex.Message);
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.NotFound,
+                "https://httpstatuses.com/404",
+                "Not Found",
+                "The requested resource could not be found.");
         }
         catch (ArgumentOutOfRangeException ex)
         {
             _logger.LogWarning(ex, "Invalid range.");
-            await WriteErrorResponse(context, HttpStatusCode.BadRequest, "https://httpstatuses.com/400", "Invalid request range", ex.Message);
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.BadRequest,
+                "https://httpstatuses.com/400",
+                "Invalid Request Range",
+                "One or more values were outside the allowed range.");
         }
         catch (ArgumentException ex)
         {
             _logger.LogWarning(ex, "Bad request.");
-            await WriteErrorResponse(context, HttpStatusCode.BadRequest, "https://httpstatuses.com/400", "Bad Request", ex.Message);
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.BadRequest,
+                "https://httpstatuses.com/400",
+                "Bad Request",
+                "The request contains invalid input.");
         }
         catch (InvalidOperationException ex)
         {
             _logger.LogWarning(ex, "Invalid operation.");
-            await WriteErrorResponse(context, HttpStatusCode.BadRequest, "https://httpstatuses.com/400", "Invalid Operation", ex.Message);
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.BadRequest,
+                "https://httpstatuses.com/400",
+                "Invalid Operation",
+                "The requested operation could not be completed.");
         }
         catch (NotImplementedException ex)
         {
             _logger.LogWarning(ex, "Feature not implemented.");
-            await WriteErrorResponse(context, HttpStatusCode.NotImplemented, "https://httpstatuses.com/501", "Not Implemented", ex.Message);
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.NotImplemented,
+                "https://httpstatuses.com/501",
+                "Not Implemented",
+                "This feature is not implemented.");
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Unexpected error occurred.");
-            await WriteErrorResponse(context, HttpStatusCode.InternalServerError, "https://httpstatuses.com/500", "Internal Server Error", "An unexpected error occurred. Please try again later.");
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.InternalServerError,
+                "https://httpstatuses.com/500",
+                "Internal Server Error",
+                "An unexpected error occurred. Please try again later.");
         }
     }
 
-    private static async Task WriteErrorResponse(HttpContext context, HttpStatusCode statusCode, string type, string title, string detail)
+    private static async Task WriteErrorResponse(
+        HttpContext context,
+        HttpStatusCode statusCode,
+        string type,
+        string title,
+        string detail)
     {
         context.Response.ContentType = "application/problem+json";
         context.Response.StatusCode = (int)statusCode;

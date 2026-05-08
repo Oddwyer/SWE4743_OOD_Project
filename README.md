@@ -64,7 +64,7 @@ docker compose down
 
 ## Access Points
 
-- API: http://localhost:5001
+- API: http://localhost:4200
 - Swagger: http://localhost:5001/swagger
 
 ---
@@ -189,8 +189,6 @@ GET    /api/devices/{id}/history
 
 /bruno
 /data
-
-TODO: /frontend
 ```
 
 ---
