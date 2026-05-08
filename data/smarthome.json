@@ -3691,6 +3691,18 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T19:21:19.5670851Z",
       "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "ad6149eb-8754-44ee-9d96-fefc90390813",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:22:06.6372941Z",
+      "Operation": "Powered off Living Room Thermostat."
+    },
+    {
+      "Id": "11b9f839-c237-491e-ac9a-d5f3a9f99425",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T19:22:07.4934875Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [
