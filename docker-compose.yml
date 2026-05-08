@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/src/SmartHome.Api/Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SMART_HOME_DATA_PATH=/data/smarthome.json
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend/smart-home-ui
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
+    restart: unless-stopped

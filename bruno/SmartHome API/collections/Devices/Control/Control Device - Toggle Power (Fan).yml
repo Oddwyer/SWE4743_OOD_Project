@@ -1,0 +1,23 @@
+info:
+  name: Control Device - Toggle Power (Fan)
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/Devices/6bac8a57-3997-4669-9848-bd88a13e8855/commands"
+  body:
+    type: json
+    data: |-
+      {
+        "command": "TogglePower"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that valid control commands are accepted and applied to a device.

@@ -1,0 +1,218 @@
+<div class="manage-devices-card">
+  <div class="manage-devices-card-header">
+    <span class="material-symbols-outlined">settings</span>
+    <h2>Manage Devices</h2>
+  </div>
+
+  <!-- Add Device -->
+  <section class="manage-section">
+    <h3>Add Device</h3>
+
+    <button type="button" class="manage-button" (click)="openAddDeviceModal()">Add Device</button>
+  </section>
+
+  <!-- View Device History -->
+  <section class="manage-section">
+    <h3>View Device History</h3>
+
+    <button type="button" class="manage-button" (click)="openHistoryDeviceModal()">
+      View History
+    </button>
+  </section>
+
+  <!-- Remove Device -->
+  <section class="manage-section">
+    <h3>Remove Device</h3>
+
+    <button type="button" class="manage-button danger-button" (click)="openRemoveDeviceModal()">
+      Remove Device
+    </button>
+  </section>
+</div>
+
+<!-- =========================
+     ADD DEVICE MODAL
+     ========================= -->
+
+<div *ngIf="showAddDeviceModal" class="modal-backdrop" (click)="showAddDeviceModal = false">
+  <div class="picker-modal" (click)="$event.stopPropagation()">
+    <h3>Add Device</h3>
+
+    <label class="manage-field">
+      <span>Device Name</span>
+
+      <input
+        type="text"
+        pInputText
+        placeholder="Example: Kitchen Lamp"
+        [(ngModel)]="newDeviceName"
+      />
+    </label>
+
+    <label class="manage-field">
+      <span>Location</span>
+
+      <input
+        type="text"
+        pInputText
+        placeholder="Example: Kitchen"
+        [(ngModel)]="newDeviceLocation"
+      />
+    </label>
+
+    <button type="button" class="picker-button" (click)="showTypePicker = true">
+      <span>Type:</span>
+
+      <strong>{{ selectedDeviceType }}</strong>
+    </button>
+
+    <button
+      type="button"
+      class="modal-confirm"
+      (click)="addDevice()"
+      [disabled]="!newDeviceName.trim() || !newDeviceLocation.trim()"
+    >
+      Confirm Add
+    </button>
+
+    <button type="button" class="modal-cancel" (click)="showAddDeviceModal = false">Cancel</button>
+  </div>
+</div>
+
+<!-- =========================
+     DEVICE TYPE PICKER
+     ========================= -->
+
+<div *ngIf="showTypePicker" class="modal-backdrop higher-modal" (click)="showTypePicker = false">
+  <div class="picker-modal small-modal" (click)="$event.stopPropagation()">
+    <h3>Choose Device Type</h3>
+
+    <button
+      *ngFor="let deviceType of deviceTypes"
+      type="button"
+      class="modal-option"
+      (click)="selectDeviceType(deviceType)"
+    >
+      {{ deviceType }}
+    </button>
+
+    <button type="button" class="modal-cancel" (click)="showTypePicker = false">Cancel</button>
+  </div>
+</div>
+
+<!-- =========================
+     HISTORY MODAL
+     ========================= -->
+
+<div *ngIf="showHistoryDeviceModal" class="modal-backdrop" (click)="showHistoryDeviceModal = false">
+  <div class="picker-modal history-modal" (click)="$event.stopPropagation()">
+    <div class="history-modal-header">
+      <h3>Device History</h3>
+
+      <p class="modal-help">Choose a device to view its command history.</p>
+    </div>
+
+    <div class="history-modal-body">
+      <div *ngIf="devices.length === 0" class="empty-message">No devices available.</div>
+
+      <button
+        *ngFor="let device of devices"
+        type="button"
+        class="modal-option"
+        [class.selected-option]="selectedHistoryDeviceId === device.id"
+        (click)="selectHistoryDevice(device.id)"
+      >
+        {{ device.deviceName }}
+
+        <span>{{ device.deviceLocation }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="modal-confirm"
+        (click)="loadDeviceHistory()"
+        [disabled]="!selectedHistoryDeviceId"
+      >
+        Load History
+      </button>
+
+      <p *ngIf="isLoadingHistory">Loading history...</p>
+
+      <div *ngIf="!isLoadingHistory && historyEntries.length > 0" class="history-list">
+        <div *ngFor="let entry of historyEntries" class="history-entry">
+          <div class="history-command">
+            {{ entry.commandName }}
+          </div>
+
+          <div class="history-time">
+            {{ entry.timestamp | date: 'short' }}
+          </div>
+        </div>
+      </div>
+
+      <p
+        *ngIf="hasLoadedHistory && !isLoadingHistory && historyEntries.length === 0"
+        class="empty-message"
+      >
+        No command history found for this device.
+      </p>
+    </div>
+
+    <div class="history-modal-footer">
+      <button type="button" class="modal-cancel" (click)="showHistoryDeviceModal = false">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================
+     REMOVE DEVICE MODAL
+     ========================= -->
+
+<div *ngIf="showRemoveDeviceModal" class="modal-backdrop" (click)="showRemoveDeviceModal = false">
+  <div class="picker-modal" (click)="$event.stopPropagation()">
+    <h3>Remove Device</h3>
+
+    <p class="modal-help">Choose the device you wish to remove.</p>
+
+    <div *ngIf="devices.length === 0" class="empty-message">No devices available.</div>
+
+    <button
+      *ngFor="let device of devices"
+      type="button"
+      class="modal-option"
+      [class.selected-option]="selectedRemoveDeviceId === device.id"
+      (click)="selectRemoveDevice(device.id)"
+    >
+      {{ device.deviceName }}
+
+      <span>{{ device.deviceLocation }}</span>
+    </button>
+
+    <div *ngIf="selectedRemoveDeviceId" class="confirm-warning">
+      Remove
+
+      <strong>
+        {{ getDeviceName(selectedRemoveDeviceId) }}
+      </strong>
+
+      <span *ngIf="getDeviceLocation(selectedRemoveDeviceId)">
+        from {{ getDeviceLocation(selectedRemoveDeviceId) }}?
+      </span>
+    </div>
+
+    <button
+      type="button"
+      class="modal-confirm danger-confirm"
+      (click)="removeDevice()"
+      [disabled]="!selectedRemoveDeviceId"
+    >
+      Confirm Remove
+    </button>
+
+    <button type="button" class="modal-cancel" (click)="showRemoveDeviceModal = false">
+      Cancel
+    </button>
+  </div>
+</div>

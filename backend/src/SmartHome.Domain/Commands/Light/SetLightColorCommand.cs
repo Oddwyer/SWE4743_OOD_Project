@@ -1,0 +1,28 @@
+using SmartHome.Domain.Devices.Light;
+
+namespace SmartHome.Domain.Commands.Light;
+
+/// <summary>
+/// Sets the color of a light device. 
+/// </summary>
+public class SetLightColorCommand : DeviceCommand
+{
+    public string Color { get; }
+    private readonly LightDevice _lightDevice;
+
+    public SetLightColorCommand(LightDevice device, string color) : base(device)
+    {
+        _lightDevice = device;
+        Color = color;
+    }
+
+    /// <summary>
+    /// Executes the command to change the light color. 
+    /// </summary>
+    public override void Execute()
+    {
+        _lightDevice.SetColor(Color);
+        _commandDescription = $"Set light color to {Color} for {_lightDevice.DeviceName}.";
+    }
+
+}

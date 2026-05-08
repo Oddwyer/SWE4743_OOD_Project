@@ -1,0 +1,17 @@
+info:
+  name: "Registered Device - Valid "
+  type: http
+  seq: 1
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/Devices/74fe14e8-b5d5-4b92-96a7-eeedb82b3e27"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies successful deletion of an existing device.

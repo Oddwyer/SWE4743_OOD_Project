@@ -1,0 +1,23 @@
+info:
+  name: Simulation - Speed (5x)
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/simulation/speed"
+  body:
+    type: json
+    data: |-
+      {
+        "speedMultiplier": "fiveX"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that unimplemented simulation functionality returns a 501 response via middleware.

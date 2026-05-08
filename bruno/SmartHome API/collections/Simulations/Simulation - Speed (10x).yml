@@ -1,0 +1,23 @@
+info:
+  name: Simulation - Speed (10x)
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/simulation/speed"
+  body:
+    type: json
+    data: |-
+      {
+        "speedMultiplier": "tenX"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Verifies that unimplemented simulation functionality returns a 501 response via middleware.

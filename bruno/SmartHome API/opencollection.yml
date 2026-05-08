@@ -1,0 +1,147 @@
+opencollection: 1.0.0
+
+info:
+  name: Smart Home API
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+docs:
+  content: |-
+    # Smart Home API — Bruno Test Collection
+
+    ## Overview
+    This Bruno collection contains request definitions and test scenarios for the Smart Home Simulator API.
+
+    It is used to:
+    - Validate API endpoint behavior
+    - Test both valid and invalid scenarios
+    - Verify HTTP status codes and business rules
+    - Support development and debugging of the API
+
+    ---
+
+    ## Setup Instructions
+
+    #### 1. Run the API locally using `dotnet run`
+
+    #### 2. Ensure the API is running at http://localhost:5073
+
+    #### 3. Select Environment in Bruno (Use the environment: SmartHome API)
+
+    ---
+
+    ## Environment Variables
+
+    | Variable | Description |
+    |----------|------------|
+    | baseUrl  | Base URL for all API requests (e.g., http://localhost:5073) |
+
+    ---
+
+    ## Collection Structure
+
+    - SmartHome API
+      - Devices
+        - Register
+        - Get
+        - Control
+        - Delete
+      - Locations
+      - Simulations
+
+    ## Testing Strategy
+
+    Each endpoint includes:
+
+    ### Valid Requests
+    - Expected successful responses (200 OK)
+
+    ### Invalid Requests
+    - Validation errors (400 Bad Request)
+
+    ### Edge Cases
+    - Not found scenarios (404 Not Found)
+    - Not implemented features (501 Not Implemented)
+
+    ---
+
+    ## Example Test Cases
+
+    ### Device Registration
+    - Valid device → 200 OK
+    - Missing fields → 400 Bad Request
+    - Invalid domain state → 400 Bad Request
+
+    ### Device Retrieval
+    - Valid ID → 200 OK
+    - Invalid ID → 404 Not Found
+
+    ### Device Control
+    - Valid command → 200 OK
+    - Unsupported operation → 404 Not Found
+
+    ### Simulation
+    - Speed change → 501 Not Implemented
+    - Reset → 501 Not Implemented
+
+    ### Location
+    - Set ambient temperature → 200 OK
+    - Invalid temperature → 400 Bad Request
+
+    ---
+
+    ## Design Notes
+
+    - Uses environment variables for flexibility
+    - Organized by domain feature:
+      - Devices
+      - Locations
+      - Simulations
+    - Supports repeatable test execution via Runner
+    - Aligns with API design:
+      - RESTful endpoints
+      - Proper status code usage
+      - Separation of concerns (Controller → Service → Domain)
+
+    ---
+
+    ## Usage
+
+    To run all tests:
+
+    1. Open Bruno Runner
+    2. Select collection: SmartHome API
+    3. Click Run
+
+    ---
+
+    ## Notes
+
+    - Ensure API is running before executing requests
+    - Some endpoints intentionally return 501 Not Implemented
+    - Test coverage focuses on:
+      - Validation
+      - Error handling
+      - Endpoint correctness
+
+    ---
+
+    ## Location in Repository
+
+    backend/bruno/SmartHome API
+  type: text/markdown
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
