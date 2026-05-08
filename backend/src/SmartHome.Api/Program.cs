@@ -18,6 +18,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using SmartHome.Api.SSE;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,6 +79,7 @@ builder.Services.AddSwaggerGen(c =>
 // These are singletons because ticker/runtime state should survive across requests.
 builder.Services.AddSingleton<SimulationTicker>();
 builder.Services.AddSingleton<SimulationRuntime>();
+builder.Services.AddSingleton<IEventBroadcaster, SSEBroadcaster>();
 
 // Initializes runtime simulation state from persisted devices on startup.
 builder.Services.AddSingleton<SimulationInitializer>();
