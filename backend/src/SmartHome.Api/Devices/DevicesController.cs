@@ -30,7 +30,11 @@ public class DevicesController : ControllerBase
         var devices = _deviceService.GetAllDevices(filter);
 
         // Map domain devices to API response models.
-        var response = devices.Select(DeviceMapper.ToResponse);
+        var response = devices.Select(device =>
+        {
+            var ambient = _simulationService.GetAmbientTemperature(device.DeviceLocation);
+            return DeviceMapper.ToResponse(device, ambient);
+        });
 
         return Ok(response);
     }
@@ -86,9 +90,9 @@ public class DevicesController : ControllerBase
     }
 
     /// <summary>
-    /// PUT: api/devices/{id}/commands
+    /// POST: api/devices/{id}/commands
     /// </summary>
-    [HttpPut("{deviceId:guid}/commands")]
+    [HttpPost("{deviceId:guid}/commands")]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

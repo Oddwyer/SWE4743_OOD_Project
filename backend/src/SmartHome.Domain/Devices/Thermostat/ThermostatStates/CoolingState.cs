@@ -3,7 +3,6 @@ namespace SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 /// <summary>
 /// Represents the thermostat cooling state.
 /// </summary>
-
 public class CoolingState : IThermostatState
 {
     private readonly ThermostatDevice _thermostat;
@@ -28,9 +27,9 @@ public class CoolingState : IThermostatState
     /// </summary>
     public void SetTargetTemperature(int temp)
     {
-        if (temp < _thermostat.MinTemperature || temp > _thermostat.MaxTemperature)
+        if (temp < ThermostatDevice.MinTemperature || temp > ThermostatDevice.MaxTemperature)
         {
-            throw new ArgumentOutOfRangeException(nameof(temp), $"Target temperature must be between {_thermostat.MinTemperature}°F and {_thermostat.MaxTemperature}°F.");
+            throw new ArgumentOutOfRangeException(nameof(temp), $"Target temperature must be between {ThermostatDevice.MinTemperature}°F and {ThermostatDevice.MaxTemperature}°F.");
         }
         _thermostat.SetTargetTemperatureInternal(temp);
 

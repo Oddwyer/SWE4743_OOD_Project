@@ -4,6 +4,9 @@ using SmartHome.Domain.Commands.Fan;
 
 namespace SmartHome.Domain.Devices.Fan;
 
+/// <summary>
+/// Fan device with adjustable speed and on/off power control.
+/// </summary>
 public class FanDevice : Device, IPoweredDevice
 {
     // States
@@ -101,7 +104,7 @@ public class FanDevice : Device, IPoweredDevice
     {
         _powerState = DevicePowerState.Off;
         _currentState = Off;
-        Speed = FanSpeed.Medium;
+        Speed = defaultSpeed;
         UpdatedAt = DateTime.UtcNow;
 
     }

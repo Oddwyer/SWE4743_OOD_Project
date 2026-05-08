@@ -8,10 +8,9 @@ using SmartHome.Domain.Contracts;
 namespace SmartHome.Api.Devices;
 
 /// <summary>
-/// Abstracts conditional logic that varies by device type to avoid if/else statements in 
-/// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller. 
+/// Abstracts conditional logic that varies by device type to avoid if/else statements in
+/// DeviceResponse DTO providing a clean, simple DeviceResponse to the controller.
 /// </summary>
-
 public static class DeviceMapper
 {
     /// <summary>
@@ -38,8 +37,8 @@ public static class DeviceMapper
                 response.LightBrightness = light.LightBrightness;
                 response.IsPoweredOn = light.PowerState == DevicePowerState.On;
                 response.LightColor = light.Color;
-                response.MaxBrightness = light.MaxBrightness;
-                response.MinBrightness = light.MinBrightness;
+                response.MaxBrightness = LightDevice.MaxBrightness;
+                response.MinBrightness = LightDevice.MinBrightness;
                 break;
 
             case FanDevice fan:
@@ -51,11 +50,11 @@ public static class DeviceMapper
                 response.ThermostatMode = thermostat.Mode;
                 response.IsPoweredOn = thermostat.PowerState == DevicePowerState.On;
                 response.TargetTemperature = thermostat.TargetTemperature;
-                response.MaxTemperature = thermostat.MaxTemperature;
-                response.MinTemperature = thermostat.MinTemperature;
+                response.MaxTemperature = ThermostatDevice.MaxTemperature;
+                response.MinTemperature = ThermostatDevice.MinTemperature;
                 response.AmbientTemperature = ambientTemperature;
                 response.ThermostatState = thermostat.CurrentStateType; // Convert enum to string for API response
-                response.DefaultTemperature = thermostat.DefaultTemperature;
+                response.DefaultTemperature = ThermostatDevice.DefaultTemperature;
                 break;
 
             case DoorLocks doorlock:

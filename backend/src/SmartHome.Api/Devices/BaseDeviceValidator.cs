@@ -6,7 +6,6 @@ namespace SmartHome.Api.Devices;
 /// <summary>
 /// Base validator for device-related requests. Validates common properties such as device name, location, and type.
 /// </summary>
-
 public class BaseDeviceValidator<T> : AbstractValidator<T> where T : BaseDevice
 {
     public BaseDeviceValidator()

@@ -1,4 +1,4 @@
-using SmartHome.Domain;
+using SmartHome.Api.Simulations;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Fan;
@@ -20,6 +20,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Register MVC controllers and configure API behavior.
+// Includes:
+// - RFC/problem+json validation responses
+// - camelCase JSON serialization
+// - enum serialization as readable strings instead of integers
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -27,7 +32,7 @@ builder.Services.AddControllers()
         {
             var problemDetails = new ValidationProblemDetails(context.ModelState)
             {
-                Type = "https://httpstatuses.com/400",
+                Type = "about:blank",
                 Title = "One or more validation errors occurred.",
                 Status = StatusCodes.Status400BadRequest,
                 Instance = context.HttpContext.Request.Path
@@ -38,6 +43,14 @@ builder.Services.AddControllers()
                 ContentTypes = { "application/problem+json" }
             };
         };
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter(
+                JsonNamingPolicy.CamelCase,
+                allowIntegerValues: false)
+        );
     });
 
 builder.Services.AddFluentValidationAutoValidation();
@@ -139,7 +152,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<SmartHomeDbContext>();
-    dbContext.Database.Migrate();
+    if (app.Environment.IsEnvironment("Testing"))
+        dbContext.Database.EnsureCreated();
+    else
+        dbContext.Database.Migrate();
     SmartHomeSeedData.Seed(dbContext);
 }
 
@@ -162,3 +178,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
+
+// Exposes the auto-generated Program class to the integration test project.
+public partial class Program { }

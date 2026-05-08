@@ -3,17 +3,18 @@ using SmartHome.Domain.Commands.Thermostat;
 
 namespace SmartHome.Domain.Devices.Thermostat;
 
+/// <summary>
+/// Temperature-regulating device that heats or cools a room based on ambient and target temperature.
+/// </summary>
 public class ThermostatDevice : Device, IPoweredDevice
 {
-    private const int DefaultTargetTemperature = 72;
+    public const int DefaultTemperature = 72;
+    public const int MinTemperature = 60; // Minimum allowed temperature
+    public const int MaxTemperature = 80; // Maximum allowed temperature
 
-    public int DefaultTemperature => DefaultTargetTemperature;
     private const ThermostatMode defaultMode = ThermostatMode.Auto;
 
-    public int MinTemperature => 60; // Minimum allowed temperature
-    public int MaxTemperature => 80; // Maximum allowed temperature
-
-    public int TargetTemperature { get; private set; } = DefaultTargetTemperature;
+    public int TargetTemperature { get; private set; } = DefaultTemperature;
     public IThermostatModeStrategy CurrentStrategy { get; private set; }
     public ThermostatMode Mode { get; private set; } = defaultMode;
 

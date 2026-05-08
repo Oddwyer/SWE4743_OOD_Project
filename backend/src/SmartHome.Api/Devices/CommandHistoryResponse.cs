@@ -5,9 +5,10 @@ namespace SmartHome.Api.Devices;
 /// </summary>
 public class CommandHistoryResponse
 {
-    // All devices
+    /// <summary>Identifier of the device this history entry belongs to.</summary>
     public Guid DeviceId { get; set; }
+    /// <summary>Human-readable description of the command that was executed.</summary>
     public string CommandName { get; set; } = string.Empty;
+    /// <summary>UTC timestamp of when the command was executed.</summary>
     public DateTime Timestamp { get; set; }
-
 }

@@ -19,7 +19,12 @@ public class JsonRepository : IDeviceRepository, ILocationRepository
     private static readonly object _fileLock = new();
     private readonly Dictionary<string, int> _locations = new();
     private readonly List<CommandHistoryEntry> _commandHistory = new();
-    private readonly string _filePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../data/smarthome.json"));
+    private readonly string _filePath =
+        Environment.GetEnvironmentVariable("SMART_HOME_DATA_PATH")
+        ?? Path.GetFullPath(
+            Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "../../../data/smarthome.json"));
     private readonly IDeviceFactory _deviceFactory;
 
     public JsonRepository(IDeviceFactory deviceFactory)

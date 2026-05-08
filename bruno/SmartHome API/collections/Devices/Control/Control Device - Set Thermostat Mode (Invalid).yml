@@ -4,7 +4,7 @@ info:
   seq: 18
 
 http:
-  method: PUT
+  method: POST
   url: "{{baseUrl}}/api/Devices/f21cfc72-c982-44d0-8d6e-4706451d06b5/commands"
   body:
     type: json
