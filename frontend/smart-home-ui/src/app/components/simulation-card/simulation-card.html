@@ -16,65 +16,56 @@
        AMBIENT TEMPERATURE CONTROLS
        ========================= -->
 
-  <div *ngFor="let location of locations" class="setting-row ambient-row">
+  @for (location of locations; track location) {
+    <div class="setting-row ambient-row">
 
-    <!-- Ambient temperature icon -->
-    <span class="material-symbols-outlined simulation-icon">
-      thermostat
-    </span>
+      <!-- Ambient Temperature Icon -->
+      <span class="material-symbols-outlined simulation-icon">
+        thermostat
+      </span>
 
-    <div class="simulation-control">
+      <div class="simulation-control">
 
-      <!-- Location temperature label -->
-      <div class="simulation-header">
-        <span class="simulation-label">
-          {{ location }} Ambient Temperature:
-        </span>
-      </div>
+        <!-- Location Temperature Label -->
+        <div class="simulation-header">
+          <span class="simulation-label">
+            {{ location }} Ambient Temperature:
+          </span>
+        </div>
 
-      <!-- Temperature slider -->
-      <div class="ambient-slider-row">
+        <!-- Temperature Slider -->
+        <div class="ambient-slider-row">
 
-        <ng-container *ngIf="hasAmbientTemperature(location); else loadingSlider">
+          @if (hasAmbientTemperature(location)) {
+            <p-slider
+              styleClass="ambient-slider"
+              [ngModel]="getAmbientTemperature(location)"
+              [min]="minTemp"
+              [max]="maxTemp"
+              (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"
+            ></p-slider>
+          } @else {
+            <p-slider
+              styleClass="ambient-slider"
+              [ngModel]="minTemp"
+              [min]="minTemp"
+              [max]="maxTemp"
+              [disabled]="true"
+            ></p-slider>
+          }
 
-          <p-slider
-            styleClass="ambient-slider"
-            [ngModel]="getAmbientTemperature(location)"
-            [min]="minTemp"
-            [max]="maxTemp"
-            (onSlideEnd)="setAmbientTemperature(location, $any($event).value)"
-          ></p-slider>
-
-        </ng-container>
-
-        <!-- Disabled loading slider -->
-        <ng-template #loadingSlider>
-
-          <p-slider
-            styleClass="ambient-slider"
-            [ngModel]="minTemp"
-            [min]="minTemp"
-            [max]="maxTemp"
-            [disabled]="true"
-          ></p-slider>
-
-        </ng-template>
-
-        <!-- Temperature display -->
-        <span class="simulation-value">
-
-          <ng-container *ngIf="hasAmbientTemperature(location); else loadingTemp">
-            {{ getDisplayAmbientTemperature(location) }}°F
-          </ng-container>
-
-          <ng-template #loadingTemp>
-            Loading...
-          </ng-template>
-
-        </span>
+          <!-- Temperature Display -->
+          <span class="simulation-value">
+            @if (hasAmbientTemperature(location)) {
+              {{ getDisplayAmbientTemperature(location) }}°F
+            } @else {
+              Loading...
+            }
+          </span>
+        </div>
       </div>
     </div>
-  </div>
+  }
 
   <!-- =========================
        SIMULATION SPEED CONTROLS
@@ -82,32 +73,33 @@
 
   <div class="setting-row speed-row">
 
-    <!-- Speed icon -->
+    <!-- Speed Icon -->
     <span class="material-symbols-outlined simulation-icon">
       speed
     </span>
 
     <div class="simulation-control">
 
-      <!-- Speed label -->
+      <!-- Speed Label -->
       <div class="simulation-header">
         <span class="simulation-label">
           Simulation Speed:
         </span>
       </div>
 
-      <!-- Speed selection buttons -->
+      <!-- Speed Selection Buttons -->
       <div class="speed-button-group">
 
-        <button
-          type="button"
-          *ngFor="let option of speedOptions"
-          class="speed-button"
-          [class.selected]="simulationSpeed === option.value"
-          (click)="setSimulationSpeed(option.value)"
-        >
-          {{ option.label }}
-        </button>
+        @for (option of speedOptions; track option.value) {
+          <button
+            type="button"
+            class="speed-button"
+            [class.selected]="simulationSpeed === option.value"
+            (click)="setSimulationSpeed(option.value)"
+          >
+            {{ option.label }}
+          </button>
+        }
 
       </div>
     </div>
@@ -119,21 +111,21 @@
 
   <div class="setting-row">
 
-    <!-- Reset icon -->
+    <!-- Reset Icon -->
     <span class="material-symbols-outlined simulation-icon">
       restart_alt
     </span>
 
     <div class="simulation-control">
 
-      <!-- Reset label -->
+      <!-- Reset Label -->
       <div class="simulation-header">
         <span class="simulation-label">
           Reset Simulation:
         </span>
       </div>
 
-      <!-- Reset button -->
+      <!-- Reset Button -->
       <button
         type="button"
         class="reset-button"
