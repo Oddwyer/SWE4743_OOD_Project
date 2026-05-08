@@ -3571,6 +3571,30 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T17:55:22.8011614Z",
       "Operation": "Powered on Living Room Thermostat."
+    },
+    {
+      "Id": "455013b9-356d-4be9-834e-b8fde29c94f7",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T18:06:21.7710382Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "f9311107-4439-438b-822d-80132cdc6811",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T18:06:24.6299909Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "ed26badc-353e-469e-b441-14454c1fd6ca",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-08T18:09:53.4766983Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "f299ae80-0674-4329-860b-64c08e34a278",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T18:35:44.3611926Z",
+      "Operation": "Powered on Living Room Thermostat."
     }
   ],
   "Locations": [

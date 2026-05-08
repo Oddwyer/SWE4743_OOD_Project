@@ -12,7 +12,7 @@ http:
       {
         "deviceName": "",
         "deviceLocation": "",
-        "type": ""
+        "type": "Light"
       }
   auth: inherit
 

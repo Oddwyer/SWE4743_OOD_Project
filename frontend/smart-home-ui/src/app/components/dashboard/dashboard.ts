@@ -231,6 +231,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.simulationSpeed = 1;
     this.simulationSeconds = 0;
     this.currentTime = '00:00:00';
+
+    this.clearFilters();
     this.startClock();
     this.loadDevices();
     this.cdr.detectChanges();
