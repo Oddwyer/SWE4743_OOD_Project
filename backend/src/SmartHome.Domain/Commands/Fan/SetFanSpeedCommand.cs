@@ -2,7 +2,7 @@ using SmartHome.Domain.Commands;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Devices.Fan;
 
-namespace SmartHome.Domain.Commands;
+namespace SmartHome.Domain.Commands.Fan;
 
 /// <summary>
 /// Sets the speed of a fan device.
