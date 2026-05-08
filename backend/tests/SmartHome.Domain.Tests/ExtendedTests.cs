@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using SmartHome.Api.Devices;
 using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;

@@ -1,12 +1,7 @@
-using System;
-using FluentValidation;
 using SmartHome.Api.Devices;
 using SmartHome.Api.Locations;
 using SmartHome.Api.Simulations;
 using SmartHome.Domain.Commands;
-using SmartHome.Domain.Devices;
-using SmartHome.Domain.Devices.Fan;
-using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Simulations;
 using Xunit;
 

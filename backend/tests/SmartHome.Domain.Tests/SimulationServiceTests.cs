@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using SmartHome.Domain.Commands.History;
-using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
-using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Thermostat;
 using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 using SmartHome.Domain.Locations;

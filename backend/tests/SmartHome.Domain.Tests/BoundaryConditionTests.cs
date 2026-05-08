@@ -1,11 +1,8 @@
-using System;
 using SmartHome.Domain.Devices.Fan;
 using SmartHome.Domain.Devices.Light;
 using SmartHome.Domain.Devices.Thermostat;
-using SmartHome.Domain.Devices.Thermostat.ThermostatStates;
 using SmartHome.Domain.Commands;
 using SmartHome.Api.Devices;
-using FluentValidation;
 using Xunit;
 
 namespace SmartHome.Domain.Tests;
