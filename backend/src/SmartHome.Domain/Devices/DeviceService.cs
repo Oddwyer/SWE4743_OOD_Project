@@ -2,6 +2,7 @@ using SmartHome.Domain.Commands;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices.Thermostat;
+using SmartHome.Domain.Exceptions;
 using SmartHome.Domain.Locations;
 using SmartHome.Domain.Simulations;
 
@@ -54,7 +55,7 @@ public class DeviceService : IDeviceService
         // Enforce single thermostat per location rule.
         if (_deviceRepository.ThermostatInLocation(register.DeviceLocation) && register.DeviceType == DeviceType.Thermostat)
         {
-            throw new InvalidOperationException($"A thermostat already exists in location {register.DeviceLocation}.");
+            throw new DeviceConflictException($"A thermostat already exists in location {register.DeviceLocation}.");
         }
         var device = _deviceFactory.CreateDevice(register.DeviceName, register.DeviceLocation, register.DeviceType);
 

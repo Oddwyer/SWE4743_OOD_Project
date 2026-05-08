@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using SmartHome.Domain.Exceptions;
 
 namespace SmartHome.Api.Middleware;
 
@@ -51,6 +52,16 @@ public class GlobalErrorHandling
                 "about:blank",
                 "Bad Request",
                 "The request contains invalid input.");
+        }
+        catch (DeviceConflictException ex)
+        {
+            _logger.LogWarning(ex, "Device conflict.");
+            await WriteErrorResponse(
+                context,
+                HttpStatusCode.Conflict,
+                "about:blank",
+                "Conflict",
+                "The requested device conflicts with an existing device.");
         }
         catch (InvalidOperationException ex)
         {
