@@ -1,21 +1,22 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
+import { FormsModule } from '@angular/forms';
 
 import { DeviceApiService } from '../../services/device.api.service';
 import { DeviceCardComponent } from '../device-card/device-card';
 import { DeviceResponse } from '../../devicemodels/deviceresponse';
 import { SimulationCardComponent } from '../simulation-card/simulation-card';
 import { ManageDevicesCardComponent } from '../manage-devices-card/manage-devices-card';
-import { DeviceType } from '../../types/devicetype';
 import { PowerFilter } from '../../types/powerfilter';
-import { DeviceTypeFilter } from '../../types/devicetypefilter';
+import { DeviceFilter } from '../../types/devicefilter';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     DeviceCardComponent,
     CardModule,
     SimulationCardComponent,
@@ -34,13 +35,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentTime = '00:00:00';
   simulationSpeed = 1;
   simulationSeconds = 0;
+  showFilterModal = false;
 
   selectedPowerFilter: PowerFilter = 'All';
-  selectedLocationFilter = 'All';
-  selectedTypeFilter: DeviceTypeFilter = 'All';
-
   readonly powerFilters: PowerFilter[] = ['All', 'On', 'Off'];
-  readonly typeFilters: DeviceTypeFilter[] = ['All', 'Light', 'Fan', 'Thermostat', 'DoorLock'];
+
+  selectedLocationFilter = 'All';
+
+  selectedTypeFilter: DeviceFilter = 'All';
+  readonly typeFilters: DeviceFilter[] = ['All', 'Light', 'Fan', 'Thermostat', 'DoorLock'];
 
   private clockIntervalId?: number;
 
