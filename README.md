@@ -1,5 +1,9 @@
 # Smart Home Simulator
 
+## Team Size
+
+Work completed by a team of two.
+
 ## Overview
 
 The Smart Home Simulator is a full-stack application that models and controls household devices such as lights, fans, thermostats, and door locks.

@@ -40,7 +40,8 @@ public class SimulationService : ISimulationService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Simulation tick failed: {ex.Message}"); // Logger not accessible here. 
+            // Replace with structured logging if logging abstractions are introduced into the Domain layer in the future.
+            Console.WriteLine($"Simulation tick failed: {ex.Message}");
         }
     }
 

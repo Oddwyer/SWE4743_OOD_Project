@@ -191,13 +191,27 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
       next: () => {
         this.restartAmbientRefresh();
         this.simulationChanged.emit();
-        this.speedChanged.emit(Number(speed));
+        this.speedChanged.emit(this.getSpeedMultiplier(speed));
       },
       error: (err: unknown) => {
         this.simulationSpeed = previousSpeed;
         console.error('Failed to set simulation speed.', err);
       },
     });
+  }
+
+  /**
+   * Converts a simulation speed enum into its numeric multiplier.
+   */
+  private getSpeedMultiplier(speed: SimulationSpeed): number {
+    const multipliers: Record<SimulationSpeed, number> = {
+      [SimulationSpeed.OneX]: 1,
+      [SimulationSpeed.TwoX]: 2,
+      [SimulationSpeed.FiveX]: 5,
+      [SimulationSpeed.TenX]: 10,
+    };
+
+    return multipliers[speed] ?? 1;
   }
 
   /**
@@ -212,7 +226,7 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
         this.displayAmbientTemps = {};
         this.refreshInProgress = false;
 
-        this.speedChanged.emit(Number(SimulationSpeed.OneX));
+        this.speedChanged.emit(this.getSpeedMultiplier(SimulationSpeed.OneX));
 
         this.restartAmbientRefresh();
         this.loadAmbientTemperatures();
@@ -231,9 +245,10 @@ export class SimulationCardComponent implements OnChanges, OnDestroy {
    */
   private getRefreshInterval(): number {
     const baseInterval = 5000;
-    const speed = Number(this.simulationSpeed) || 1;
 
-    return Math.max(baseInterval / speed, 2000);
+    const speedMultiplier = this.getSpeedMultiplier(this.simulationSpeed);
+
+    return Math.max(baseInterval / speedMultiplier, 2000);
   }
 
   /**

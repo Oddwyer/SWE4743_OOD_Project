@@ -124,8 +124,8 @@
       "Location": "Living Room",
       "IsOn": true,
       "DeviceState": "Idle",
-      "ThermostatMode": 1,
-      "TargetTemperature": 76,
+      "ThermostatMode": 3,
+      "TargetTemperature": 67,
       "LightColor": null,
       "LightBrightness": null,
       "FanSpeed": null
@@ -3187,12 +3187,36 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T04:09:20.1397668Z",
       "Operation": "Set mode to Heat for Living Room Thermostat."
+    },
+    {
+      "Id": "73d15928-c9de-434c-804e-11939c963172",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T04:20:40.040308Z",
+      "Operation": "Set target temperature to 67\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "88383fa2-a10f-45b4-a88d-6effbab44306",
+      "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
+      "Timestamp": "2026-05-08T04:20:58.1119119Z",
+      "Operation": "Set mode to Auto for Living Room Thermostat."
+    },
+    {
+      "Id": "1add3aed-0b73-42c9-914d-4068388ce5d3",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T04:21:33.9508923Z",
+      "Operation": "Unlocked Back Door Lock."
+    },
+    {
+      "Id": "a8a99f08-fc2b-4118-b90f-e63cb9376c81",
+      "DeviceId": "5acb1dc6-b92c-4ff7-9f65-a32999b07887",
+      "Timestamp": "2026-05-08T04:21:34.9336089Z",
+      "Operation": "Locked Back Door Lock."
     }
   ],
   "Locations": [
     {
       "Location": "living room",
-      "AmbientTemperature": 76
+      "AmbientTemperature": 67
     }
   ]
 }
