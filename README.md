@@ -267,8 +267,7 @@ docker-compose.yml
 
 [Application Demo](https://www.loom.com/share/548398bc6e494c6aac0fa27718c3252a)
 
-// TODO: [INSERT LINK]
-[Architecture Walkthrough](Add link here!)
+[Architecture Walkthrough](https://www.loom.com/share/580b6177a3204353a16452df96d730af)
 
 ---
 
