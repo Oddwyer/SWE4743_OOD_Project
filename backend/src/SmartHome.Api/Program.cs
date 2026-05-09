@@ -79,10 +79,10 @@ builder.Services.AddSwaggerGen(c =>
 // These are singletons because ticker/runtime state should survive across requests.
 builder.Services.AddSingleton<SimulationTicker>();
 builder.Services.AddSingleton<SimulationRuntime>();
-builder.Services.AddSingleton<IEventBroadcaster, SSEBroadcaster>();
-
 // Initializes runtime simulation state from persisted devices on startup.
 builder.Services.AddSingleton<SimulationInitializer>();
+
+builder.Services.AddSingleton<IEventBroadcaster, SSEBroadcaster>();
 
 // Register application services.
 builder.Services.AddSingleton<ISimulationService, SimulationService>();
@@ -94,20 +94,20 @@ builder.Services.AddSingleton<IDeviceTypeFactory, FanDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
-// Extra credit SQLite/ORM implementation in progrgess but is not currently wired as the active repository.
-
-//builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
-//builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
-
 // Register command and strategy factories.
 builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 
+// Register command and strategy factories.
+builder.Services.AddSingleton<SqliteRepository>();
+builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
+builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
+
 // Register JSON repository and expose it through repository interfaces.
-builder.Services.AddSingleton<JsonRepository>();
-builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
+//builder.Services.AddSingleton<JsonRepository>();
+//builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
+//builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Add DbContext with SQLite provider
 builder.Services.AddDbContextFactory<SmartHomeDbContext>(options =>

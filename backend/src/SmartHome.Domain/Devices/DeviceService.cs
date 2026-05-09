@@ -20,6 +20,7 @@ public class DeviceService : IDeviceService
     private readonly IDeviceCommandFactory _commandFactory;
     private readonly ISimulationService _simulationService;
 
+
     public DeviceService(ISimulationService simulationService, IDeviceRepository deviceRepository, IDeviceFactory factory, IDeviceCommandFactory commandFactory, ILocationRepository locationRepository)
     {
         _deviceRepository = deviceRepository;

@@ -4142,6 +4142,48 @@
       "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
       "Timestamp": "2026-05-09T02:17:45.7547475Z",
       "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "e18aa9a2-6e8a-4f8e-8d14-bb39751c2df8",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:24:28.1807558Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "3194cc4e-7dbd-45df-891a-e0df7fb0adb9",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:24:29.1719743Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "04ba7de7-5043-4bb5-9dfe-69b7ff4afbe8",
+      "DeviceId": "03a91f7d-5b9d-468c-a5f8-fb55b94fa44a",
+      "Timestamp": "2026-05-09T02:24:33.874404Z",
+      "Operation": "Powered on Living Room Floor Lamp."
+    },
+    {
+      "Id": "27afb718-1285-45c3-b81d-85da3c1a8610",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-09T02:24:42.8571029Z",
+      "Operation": "Unlocked Front Door Lock."
+    },
+    {
+      "Id": "4df678de-e99a-4b29-aac5-da73f4744644",
+      "DeviceId": "3498f2ff-47d2-42f5-9934-bcaa0c64846d",
+      "Timestamp": "2026-05-09T02:24:43.3913489Z",
+      "Operation": "Locked Front Door Lock."
+    },
+    {
+      "Id": "62e15c49-727d-4d48-aba0-f88d46f63c2e",
+      "DeviceId": "03a91f7d-5b9d-468c-a5f8-fb55b94fa44a",
+      "Timestamp": "2026-05-09T02:25:49.1672769Z",
+      "Operation": "Powered on Living Room Floor Lamp."
+    },
+    {
+      "Id": "0708458d-a996-46b1-8326-d55cc3d0871c",
+      "DeviceId": "03a91f7d-5b9d-468c-a5f8-fb55b94fa44a",
+      "Timestamp": "2026-05-09T02:25:50.0226826Z",
+      "Operation": "Powered off Living Room Floor Lamp."
     }
   ],
   "Locations": [
