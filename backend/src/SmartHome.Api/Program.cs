@@ -93,6 +93,7 @@ builder.Services.AddSingleton<IDeviceTypeFactory, ThermostatDeviceFactory>();
 builder.Services.AddSingleton<IDeviceTypeFactory, DoorLockFactory>();
 
 // Extra credit SQLite/ORM implementation in progrgess but is not currently wired as the active repository.
+
 //builder.Services.AddScoped<IDeviceRepository, SqliteRepository>();
 //builder.Services.AddScoped<ILocationRepository, SqliteRepository>();
 
@@ -107,10 +108,8 @@ builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<Jso
 builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Add DbContext with SQLite provider
-builder.Services.AddDbContext<SmartHomeDbContext>(options =>
-{
-    options.UseSqlite("Data Source=SmartHome.db");
-});
+builder.Services.AddDbContextFactory<SmartHomeDbContext>(options =>
+    options.UseSqlite("Data Source=SmartHome.db"));
 
 // Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>

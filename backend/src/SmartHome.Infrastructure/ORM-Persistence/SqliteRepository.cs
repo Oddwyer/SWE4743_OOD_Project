@@ -10,7 +10,14 @@ using SmartHome.Infrastructure.ORM_Persistence;
 
 /// <summary>
 /// SQLite-backed implementation of IDeviceRepository and ILocationRepository using EF Core.
+///
+/// Uses EF Core's built-in IDbContextFactory&lt;SmartHomeDbContext&gt; to create
+/// short-lived DbContext instances per operation instead of storing a shared DbContext.
+///
+/// This preserves the application's singleton-based simulation architecture while
+/// avoiding scoped-to-singleton dependency injection and threading issues.
 /// </summary>
+
 public class SqliteRepository : IDeviceRepository, ILocationRepository
 {
     private readonly IDbContextFactory<SmartHomeDbContext> _dbContextFactory;
