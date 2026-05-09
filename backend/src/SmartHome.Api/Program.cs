@@ -111,7 +111,7 @@ builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<S
 
 // Add DbContext with SQLite provider
 builder.Services.AddDbContextFactory<SmartHomeDbContext>(options =>
-    options.UseSqlite("Data Source=SmartHome.db"));
+    options.UseSqlite("Data Source=/data/SmartHome.db"));
 
 // Allow the local Angular frontend to call the API during development.
 builder.Services.AddCors(options =>

@@ -10,6 +10,7 @@ import { SimulationCardComponent } from '../simulation-card/simulation-card';
 import { ManageDevicesCardComponent } from '../manage-devices-card/manage-devices-card';
 import { PowerFilter } from '../../types/powerfilter';
 import { DeviceFilter } from '../../types/devicefilter';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -314,7 +315,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * when the backend reports simulation updates.
    */
   private startDeviceEvents(): void {
-    this.deviceEvents = new EventSource('http://localhost:5001/api/devices/events');
+    this.deviceEvents = new EventSource(`${environment.apiBaseUrl}/devices/events`);
 
     this.deviceEvents.addEventListener('device-changed', () => {
       this.loadDevices();
