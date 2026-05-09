@@ -1,4 +1,5 @@
 using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
@@ -12,20 +13,24 @@ using SmartHome.Infrastructure.ORM_Persistence;
 /// </summary>
 public class SqliteRepository : IDeviceRepository, ILocationRepository
 {
-    private readonly SmartHomeDbContext _dbContext;
+    private readonly IDbContextFactory<SmartHomeDbContext> _dbContextFactory;
     private readonly IDeviceFactory _deviceFactory;
 
     /// <summary>Initializes the repository with a shared EF Core context and device factory.</summary>
-    public SqliteRepository(SmartHomeDbContext dbContext, IDeviceFactory deviceFactory)
+    public SqliteRepository(IDbContextFactory<SmartHomeDbContext> dbContextFactory, IDeviceFactory deviceFactory)
     {
-        _dbContext = dbContext;
+        _dbContextFactory = dbContextFactory;
         _deviceFactory = deviceFactory;
     }
 
-    /// <summary>Returns all devices matching the provided filter criteria.</summary>
+    /// <summary>
+    /// Returns all devices matching the provided filter criteria.
+    /// </summary>
     public IEnumerable<IDevice> FindAllDevices(DeviceFilter filter)
     {
-        var query = _dbContext.Devices.AsQueryable();
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var query = dbContext.Devices.AsQueryable();
 
         if (filter.Type != null)
         {
@@ -42,20 +47,27 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
             query = query.Where(d => d.IsOn == filter.IsOn.Value);
         }
 
-        return query.AsEnumerable().Select(e => _deviceFactory.RehydrateDevice(MapToRehydrationData(e)));
+        return query
+            .ToList()
+            .Select(e => _deviceFactory.RehydrateDevice(MapToRehydrationData(e)));
     }
 
     /// <summary>Returns the device with the given ID, or null if not found.</summary>
     public IDevice? FindDeviceById(Guid deviceId)
     {
-        var entity = _dbContext.Devices.Find(deviceId);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var entity = dbContext.Devices.Find(deviceId);
+
         return entity == null
-        ? null
-        : _deviceFactory.RehydrateDevice(MapToRehydrationData(entity));
+            ? null
+            : _deviceFactory.RehydrateDevice(MapToRehydrationData(entity));
     }
 
     public void AddDevice(Device device)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var entity = new DeviceEntity
         {
             Id = device.Id,
@@ -64,126 +76,155 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
             Type = device.Type
         };
 
-        _dbContext.Devices.Add(entity);
-        _dbContext.SaveChanges();
+        dbContext.Devices.Add(entity);
+        dbContext.SaveChanges();
     }
 
     /// <summary>Removes the device with the given ID from the database.</summary>
     public void DeleteDevice(Guid deviceId)
     {
-        var entity = _dbContext.Devices.Find(deviceId);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var entity = dbContext.Devices.Find(deviceId);
         if (entity != null)
         {
-            _dbContext.Devices.Remove(entity);
-            _dbContext.SaveChanges();
+            dbContext.Devices.Remove(entity);
+            dbContext.SaveChanges();
         }
     }
 
     /// <summary>Inserts a new device or updates the existing record; returns the saved device.</summary>
     public IDevice SaveDevice(IDevice device)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var snapshot = JsonRepository.ToDeviceSnapshot(device);
-        var existingDevice = _dbContext.Devices.Find(device.Id);
+        var existingDevice = dbContext.Devices.Find(device.Id);
 
         if (existingDevice != null)
         {
             MapSnapshotToEntity(snapshot, existingDevice);
-            _dbContext.Devices.Update(existingDevice);
+            dbContext.Devices.Update(existingDevice);
         }
         else
         {
-            _dbContext.Devices.Add(MapSnapshotToNewEntity(snapshot));
+            dbContext.Devices.Add(MapSnapshotToNewEntity(snapshot));
         }
-        _dbContext.SaveChanges();
+        dbContext.SaveChanges();
         return device;
     }
 
     /// <summary>Returns all persisted locations with their ambient temperatures.</summary>
     public IEnumerable<Location> GetAllLocations()
     {
-        return _dbContext.Locations.ToList().Select(e => new Location
-        {
-            Name = e.Location,
-            AmbientTemperature = e.AmbientTemperature
-        });
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.Locations
+            .ToList()
+            .Select(e => new Location
+            {
+                Name = e.Location,
+                AmbientTemperature = e.AmbientTemperature
+            });
     }
 
     /// <summary>Inserts a new location record.</summary>
     public void AddLocation(Location location)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var entity = new LocationEntity
         {
             Location = location.Name,
             AmbientTemperature = location.AmbientTemperature
         };
-        _dbContext.Locations.Add(entity);
-        _dbContext.SaveChanges();
+
+        dbContext.Locations.Add(entity);
+        dbContext.SaveChanges();
     }
 
     /// <summary>Removes a location record by name.</summary>
     public void RemoveLocation(string locationName)
     {
-        var entity = _dbContext.Locations.Find(locationName);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var entity = dbContext.Locations.Find(locationName);
+
         if (entity != null)
         {
-            _dbContext.Locations.Remove(entity);
-            _dbContext.SaveChanges();
+            dbContext.Locations.Remove(entity);
+            dbContext.SaveChanges();
         }
     }
 
     /// <summary>Returns true when a thermostat device already exists in the specified location.</summary>
     public bool ThermostatInLocation(string location)
     {
-        return _dbContext.Devices.Any(d => d.Location == location && d.Type == DeviceType.Thermostat);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.Devices.Any(d => d.Location == location && d.Type == DeviceType.Thermostat);
     }
 
     /// <summary>Returns command history entries for the specified device, newest first.</summary>
     public IEnumerable<CommandHistoryEntry> GetHistoryForDevice(Guid deviceId)
     {
-        return _dbContext.CommandHistories
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.CommandHistories
             .Where(ch => ch.DeviceId == deviceId)
-            .AsEnumerable()
             .OrderByDescending(ch => ch.Timestamp)
-            .Select(ch => CommandHistoryEntry.Rehydrate(ch.Id, ch.DeviceId, ch.CommandExecuted, ch.Timestamp));
+            .ToList()
+            .Select(ch => CommandHistoryEntry.Rehydrate(
+                ch.Id,
+                ch.DeviceId,
+                ch.CommandExecuted,
+                ch.Timestamp));
     }
 
     /// <summary>Persists a command history entry to the database.</summary>
     public void SaveHistoryEntry(CommandHistoryEntry entry)
     {
-        _dbContext.CommandHistories.Add(new CommandHistoryEntity
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        dbContext.CommandHistories.Add(new CommandHistoryEntity
         {
             Id = entry.Id,
             DeviceId = entry.DeviceId,
             CommandExecuted = entry.Operation,
             Timestamp = entry.Timestamp
         });
-        _dbContext.SaveChanges();
+
+        dbContext.SaveChanges();
     }
 
     /// <summary>Returns the stored ambient temperature (°F) for the given location, or null if not found.</summary>
     public int? GetAmbientTemperature(string locationName)
     {
-        return _dbContext.Locations.Find(locationName)?.AmbientTemperature;
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.Locations.Find(locationName)?.AmbientTemperature;
     }
 
     /// <summary>Inserts or updates the ambient temperature record for a location.</summary>
     public void SaveAmbientTemperature(string location, int temperature)
     {
-        var entity = _dbContext.Locations.Find(location);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var entity = dbContext.Locations.Find(location);
         if (entity != null)
         {
             entity.AmbientTemperature = temperature;
-            _dbContext.Locations.Update(entity);
+            dbContext.Locations.Update(entity);
         }
         else
         {
-            _dbContext.Locations.Add(new LocationEntity
+            dbContext.Locations.Add(new LocationEntity
             {
                 Location = location,
                 AmbientTemperature = temperature
             });
         }
-        _dbContext.SaveChanges();
+        dbContext.SaveChanges();
     }
 
     /// <summary>Maps a DeviceEntity to the rehydration data contract used by the device factory.</summary>
