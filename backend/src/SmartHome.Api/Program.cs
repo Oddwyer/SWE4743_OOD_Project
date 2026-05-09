@@ -99,15 +99,11 @@ builder.Services.AddSingleton<IDeviceFactory, DeviceFactory>();
 builder.Services.AddSingleton<IThermostatModeStrategyFactory, ThermostatStrategyFactory>();
 builder.Services.AddScoped<IDeviceCommandFactory, CommandFactory>();
 
-// Register command and strategy factories.
+// Register interface and ORM repositories.
 builder.Services.AddSingleton<SqliteRepository>();
 builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
 builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
 
-// Register JSON repository and expose it through repository interfaces.
-//builder.Services.AddSingleton<JsonRepository>();
-//builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<JsonRepository>());
-//builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<JsonRepository>());
 
 // Add DbContext with SQLite provider
 builder.Services.AddDbContextFactory<SmartHomeDbContext>(options =>
