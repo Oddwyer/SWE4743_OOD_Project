@@ -155,6 +155,19 @@
       "LightColor": "#FFFFFF",
       "LightBrightness": 100,
       "FanSpeed": null
+    },
+    {
+      "Id": "cba1228e-a760-4626-9484-05dc580ec8fc",
+      "Name": "ORM TEST LIGHT",
+      "Type": 0,
+      "Location": "ORM",
+      "IsOn": false,
+      "DeviceState": null,
+      "ThermostatMode": null,
+      "TargetTemperature": null,
+      "LightColor": "#FFFFFF",
+      "LightBrightness": 100,
+      "FanSpeed": null
     }
   ],
   "CommandHistory": [
