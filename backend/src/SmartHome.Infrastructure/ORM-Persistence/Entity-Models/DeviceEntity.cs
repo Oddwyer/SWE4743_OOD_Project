@@ -22,9 +22,6 @@ public class DeviceEntity
     /// <summary>Fan speed integer value (fan devices only).</summary>
     public int? FanSpeed { get; set; }
 
-    /// <summary>True when locked (door lock devices only).</summary>
-    public bool? IsLocked { get; set; }
-
     /// <summary>Light color hex string (light devices only).</summary>
     public string? LightColor { get; set; }
     /// <summary>Light brightness 10–100 (light devices only).</summary>

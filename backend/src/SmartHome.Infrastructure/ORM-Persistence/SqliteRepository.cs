@@ -1,3 +1,4 @@
+using System.Data.Common;
 using SmartHome.Domain.Commands.History;
 using SmartHome.Domain.Contracts;
 using SmartHome.Domain.Devices;
@@ -48,8 +49,8 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
     public IDevice? FindDeviceById(Guid deviceId)
     {
         var entity = _dbContext.Devices.Find(deviceId);
-        return entity == null 
-        ? null 
+        return entity == null
+        ? null
         : _deviceFactory.RehydrateDevice(MapToRehydrationData(entity));
     }
 
@@ -57,6 +58,7 @@ public class SqliteRepository : IDeviceRepository, ILocationRepository
     {
         var entity = new DeviceEntity
         {
+            Id = device.Id,
             Name = device.DeviceName,
             Location = device.DeviceLocation,
             Type = device.Type

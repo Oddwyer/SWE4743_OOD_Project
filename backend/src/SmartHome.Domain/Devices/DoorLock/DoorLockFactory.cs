@@ -25,7 +25,6 @@ public class DoorLockFactory : IDeviceTypeFactory
 
     }
 
-
     /// <summary>
     /// Restores a door lock from persisted values.
     /// </summary>
