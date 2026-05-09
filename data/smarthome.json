@@ -4094,6 +4094,54 @@
       "DeviceId": "f21cfc72-c982-44d0-8d6e-4706451d06b5",
       "Timestamp": "2026-05-08T20:01:03.6256242Z",
       "Operation": "Set target temperature to 66\u00B0F for Living Room Thermostat."
+    },
+    {
+      "Id": "2562f444-cade-4ff0-9349-bc674c56cad6",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:29.9492459Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "a8d7b154-98c9-43db-aeda-da5e1ea6c24b",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:31.7304138Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "eb21c462-75e2-46ee-9d2c-386560f33e65",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:33.2872085Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "6556e8d5-e919-4b4f-adcc-afdb75932d02",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:36.1103789Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "87c61815-6629-4644-9bf4-8bbf7d15b8bc",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:40.0002051Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "7c83838e-9335-4932-83bb-ed0963995c89",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:40.7596894Z",
+      "Operation": "Powered off Overhead Light."
+    },
+    {
+      "Id": "b25f4fdc-59a0-4969-90c4-7d7017a2507d",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:44.4216855Z",
+      "Operation": "Powered on Overhead Light."
+    },
+    {
+      "Id": "b283047c-c2f0-4cb0-b591-363c7ae63dff",
+      "DeviceId": "5589731f-a375-4692-8680-0684c13f3e9d",
+      "Timestamp": "2026-05-09T02:17:45.7547475Z",
+      "Operation": "Powered off Overhead Light."
     }
   ],
   "Locations": [
