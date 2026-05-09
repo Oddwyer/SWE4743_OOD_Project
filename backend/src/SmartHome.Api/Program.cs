@@ -104,7 +104,6 @@ builder.Services.AddSingleton<SqliteRepository>();
 builder.Services.AddSingleton<IDeviceRepository>(sp => sp.GetRequiredService<SqliteRepository>());
 builder.Services.AddSingleton<ILocationRepository>(sp => sp.GetRequiredService<SqliteRepository>());
 
-
 // Add DbContext with SQLite provider
 builder.Services.AddDbContextFactory<SmartHomeDbContext>(options =>
     options.UseSqlite("Data Source=/data/SmartHome.db"));

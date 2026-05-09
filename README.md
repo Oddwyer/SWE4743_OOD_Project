@@ -20,10 +20,13 @@ This project demonstrates:
 
 - SOLID principles
 - Clean layered architecture
-- Design patterns (State, Factory, Strategy)
+- Design patterns (State, Factory, Strategy, Repository, Command)
 - RESTful API design
-- JSON-based persistence
+- SQLite ORM persistence with Entity Framework Core
+- Real-time synchronization with Server-Sent Events (SSE)
+- Docker volume-based persistence
 - Validation and error handling best practices
+- Dependency Injection and DTO/Mapper architecture
 
 ---
 
@@ -34,7 +37,7 @@ The backend follows a layered architecture:
 Controller Layer → HTTP handling and validation  
 Service Layer → Business logic and orchestration  
 Domain Layer → Core models and state machines  
-Infrastructure Layer → JSON persistence
+Infrastructure Layer → ORM persistence and infrastructure services
 
 ### Design Pattern Catalog
 
@@ -43,7 +46,7 @@ Infrastructure Layer → JSON persistence
 | State Pattern                    | `SmartHome.Domain/Devices/States/*`, including light, fan, thermostat, and door lock state classes                                                                                    | Each device has valid and invalid transitions. The State pattern keeps state-specific behavior out of controllers and services and makes transitions explicit. For example, a light can only change brightness while it is on, and a thermostat transitions between Off, Idle, Heating, and Cooling. |
 | Factory Pattern                  | `IDeviceFactory`, `DeviceFactory`, `IDeviceTypeFactory`, `LightDeviceFactory`, `FanDeviceFactory`, `ThermostatDeviceFactory`, `DoorLockDeviceFactory`                                 | Device creation is centralized instead of scattered through controllers. This supports the Open-Closed Principle because new device types can be added through new factories rather than changing controller logic.                                                                                  |
 | Strategy Pattern                 | `IThermostatModeStrategy`, `HeatModeStrategy`, `CoolModeStrategy`, `AutoModeStrategy`, `ThermostatModeStrategyFactory`                                                                | Thermostat behavior changes depending on mode. Heat, Cool, and Auto each decide differently whether the thermostat should heat, cool, or remain idle. Strategy keeps this logic interchangeable without large conditional blocks inside the thermostat.                                              |
-| Repository Pattern               | `IDeviceRepository`, `ILocationRepository`, `JsonRepository`                                                                                                                          | Persistence is hidden behind interfaces so the service layer does not directly depend on JSON file handling. This keeps business logic separate from storage details and would allow JSON persistence to be replaced later with a database repository.                                               |
+| Repository Pattern               | `IDeviceRepository`, `ILocationRepository`, `SqliteRepository`                                                                                                                        | Persistence is hidden behind interfaces so the service layer does not directly depend on database or storage implementation details.                                                                                                                                                                 |
 | Command Pattern                  | `IDeviceCommand`, `DeviceCommand`, `TogglePowerCommand`, `SetBrightnessCommand`, `SetFanSpeedCommand`, `SetThermostatModeCommand`, `SetTargetTemperatureCommand`, `ToggleLockCommand` | Device actions are represented as command objects. This makes each operation reusable, testable, and easy to log in command history. The command history stores what operation was performed and when.                                                                                               |
 | Dependency Injection             | `Program.cs` service registrations                                                                                                                                                    | Services, repositories, factories, validators, and controllers receive dependencies through constructor injection. This avoids service locator behavior and keeps classes testable.                                                                                                                  |
 | Global Error Handling Middleware | `GlobalExceptionHandlingMiddleware`                                                                                                                                                   | Error handling is centralized instead of repeated in every controller. Domain and validation errors are converted into consistent `application/problem+json` responses without leaking stack traces or internal details.                                                                             |
@@ -175,21 +178,44 @@ It provides:
 
 ---
 
-## Persistence
+## Extra Credit: ORM Persistence
 
-SQLite/EF Core ORM experimentation is included as extra-credit work, but the active persistence implementation used by the application is JSON-based persistence through `JsonRepository`.
+The application supports persistent storage through a SQLite database using Entity Framework Core ORM integration.
 
-File location:
+Database persistence is container-safe through Docker volume mapping:
 
 ```text
-/data/smarthome.json
+/data/SmartHome.db
 ```
 
-Features:
+### Features
 
-- State persists across restarts
-- Device dehydration and rehydration
-- Seed data included
+- State persists across Docker restarts and rebuilds
+- Seed data included for demonstration/testing
+- EF Core ORM-based repository implementation
+- SQLite database stored through mounted Docker volume
+- Device and location state persisted across sessions
+
+### ORM Architecture
+
+Persistence responsibilities are isolated behind repository interfaces:
+
+- `IDeviceRepository`
+- `ILocationRepository`
+
+The active ORM implementation uses:
+
+- `SqliteRepository`
+- `SmartHomeDbContext`
+- EF Core SQLite provider
+
+This preserves separation of concerns between:
+
+- controllers
+- business logic/services
+- persistence infrastructure
+
+while allowing the persistence layer to evolve independently from application logic.
 
 ---
 
@@ -258,7 +284,7 @@ docker-compose.yml
 /bruno
 
 /data
-  smarthome.json
+  SmartHome.db
 ```
 
 ---
@@ -274,6 +300,8 @@ docker-compose.yml
 ## Extra Credit: Server-Sent Events (SSE) Real-Time Synchronization
 
 As a late-stage enhancement after the primary demo videos were recorded, the application was extended with Server-Sent Events (SSE) support for real-time dashboard synchronization across connected clients.
+
+The final implementation supports both ORM persistence and SSE-based real-time synchronization simultaneously.
 
 ### Functionality
 
