@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartHome.Domain.Devices;
 using SmartHome.Domain.Simulations;
+using SmartHome.Api.SSE;
 
 namespace SmartHome.Api.Devices;
 
@@ -13,11 +14,13 @@ public class DevicesController : ControllerBase
 {
     private readonly IDeviceService _deviceService;
     private readonly ISimulationService _simulationService;
+    private readonly IEventBroadcaster _eventBroadcaster; // For SSE.
 
-    public DevicesController(IDeviceService deviceService, ISimulationService simulationService)
+    public DevicesController(IDeviceService deviceService, ISimulationService simulationService, IEventBroadcaster eventBroadcaster)
     {
         _deviceService = deviceService;
         _simulationService = simulationService;
+        _eventBroadcaster = eventBroadcaster;
     }
 
     /// <summary>
@@ -78,7 +81,7 @@ public class DevicesController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<DeviceResponse> RegisterDevice([FromBody] RegisterDeviceRequest request)
+    public async Task<ActionResult<DeviceResponse>> RegisterDevice([FromBody] RegisterDeviceRequest request)
     {
 
         var registerData = DeviceMapper.MapToRegisterData(request);
@@ -86,6 +89,7 @@ public class DevicesController : ControllerBase
         var device = _deviceService.RegisterDevice(registerData);
         var ambient = _simulationService.GetAmbientTemperature(device.DeviceLocation); // Get ambient temperature for device location
         var response = DeviceMapper.ToResponse(device, ambient);
+        await _eventBroadcaster.BroadcastDeviceChangedAsync(device.Id);
         return CreatedAtAction(nameof(GetDeviceById), new { deviceId = device.Id }, response);
     }
 
@@ -96,14 +100,14 @@ public class DevicesController : ControllerBase
     [ProducesResponseType(typeof(DeviceResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<DeviceResponse> ControlDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
+    public async Task<ActionResult<DeviceResponse>> ControlDevice(Guid deviceId, [FromBody] ControlDeviceRequest request)
     {
 
         var context = DeviceMapper.MapToCommandData(request);
         var updatedDevice = _deviceService.ApplyDeviceCommand(deviceId, context);
         var ambient = _simulationService.GetAmbientTemperature(updatedDevice.DeviceLocation); // Get ambient temperature for device location
         var response = DeviceMapper.ToResponse(updatedDevice, ambient);
-
+        await _eventBroadcaster.BroadcastDeviceChangedAsync(deviceId);
         return Ok(response);
 
     }
@@ -114,9 +118,10 @@ public class DevicesController : ControllerBase
     [HttpDelete("{deviceId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RemoveDevice(Guid deviceId)
+    public async Task<IActionResult> RemoveDevice(Guid deviceId)
     {
         _deviceService.RemoveDevice(deviceId);
+        await _eventBroadcaster.BroadcastDeviceChangedAsync(deviceId);
 
         return NoContent();
     }

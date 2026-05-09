@@ -58,7 +58,7 @@ Infrastructure Layer → JSON persistence
 - Docker
 - Docker Compose
 
-### Run (recommended)
+### Run in Docker (recommended)
 
 ```bash
 docker compose up --build
@@ -71,6 +71,30 @@ docker compose down
 ```
 
 ---
+
+## Run Local (without Docker)
+
+### Backend
+
+```bash
+cd backend/src/SmartHome.Api
+dotnet run --launch-profile https
+```
+
+### Frontend
+
+```bash
+cd frontend/smart-home-ui
+npm install
+npm run build
+```
+
+### Frontend Build Verification
+
+```bash
+cd frontend/smart-home-ui
+npm run build
+```
 
 ## Access Points
 
@@ -134,32 +158,6 @@ The collection includes both:
 
 - Success cases
 - Error cases
-
----
-
-## Local Development (without Docker)
-
-### Backend
-
-```bash
-cd backend/src/SmartHome.Api
-dotnet run --launch-profile https
-```
-
-### Frontend
-
-```bash
-cd frontend/smart-home-ui
-npm install
-npm run build
-```
-
-### Frontend Build Verification
-
-```bash
-cd frontend/smart-home-ui
-npm run build
-```
 
 ---
 
@@ -269,10 +267,39 @@ docker-compose.yml
 
 [Application Demo](https://www.loom.com/share/548398bc6e494c6aac0fa27718c3252a)
 
-// TODO: [INSERT LINK]
-[Architecture Walkthrough](Add link here!)
+[Architecture Walkthrough](https://www.loom.com/share/580b6177a3204353a16452df96d730af)
 
 ---
+
+## Extra Credit: Server-Sent Events (SSE) Real-Time Synchronization
+
+As a late-stage enhancement after the primary demo videos were recorded, the application was extended with Server-Sent Events (SSE) support for real-time dashboard synchronization across connected clients.
+
+### Functionality
+
+- Connected dashboards subscribe to a shared SSE event stream.
+- Device state changes are broadcast by the backend in real time.
+- All connected clients automatically refresh when:
+  - devices are controlled
+  - devices are added or removed
+  - the simulation is reset
+- Synchronization works across multiple browser tabs or devices viewing the application simultaneously.
+
+### Implementation Overview
+
+The backend exposes an SSE endpoint:
+
+```http
+GET /api/devices/events
+```
+
+When device state changes occur, the API broadcasts update events to all connected SSE clients using a singleton event broadcaster service.
+
+The Angular frontend subscribes to the SSE stream using the browser EventSource API and reactively reloads dashboard state when events are received.
+
+### Notes:
+
+This feature was implemented after the original Loom demonstrations were recorded and may not appear in the submitted demo videos.
 
 ## Known Issues
 
